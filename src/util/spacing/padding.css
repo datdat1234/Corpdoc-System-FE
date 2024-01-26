@@ -1,0 +1,149 @@
+/************************************************** PADDING TOP **************************************************/
+/************************************************** PADDING TOP **************************************************/
+/************************************************** PADDING TOP **************************************************/
+
+.pTop2 {
+  padding-top: 2px;
+}
+.pTop5 {
+  padding-top: 5px;
+}
+.pTop10 {
+  padding-top: 10px;
+}
+.pTop15 {
+  padding-top: 15px;
+}
+.pTop20 {
+  padding-top: 20px;
+}
+.pTop25 {
+  padding-top: 25px;
+}
+
+/************************************************** PADDING BOTTOM **************************************************/
+/************************************************** PADDING BOTTOM **************************************************/
+/************************************************** PADDING BOTTOM **************************************************/
+
+.pBottom2 {
+  padding-bottom: 2px;
+}
+.pBottom5 {
+  padding-bottom: 5px;
+}
+.pBottom10 {
+  padding-bottom: 10px;
+}
+.pBottom15 {
+  padding-bottom: 15px;
+}
+.pBottom20 {
+  padding-bottom: 20px;
+}
+.pBottom25 {
+  padding-bottom: 25px;
+}
+
+/************************************************** PADDING LEFT **************************************************/
+/************************************************** PADDING LEFT **************************************************/
+/************************************************** PADDING LEFT **************************************************/
+
+.pLeft2 {
+  padding-left: 2px;
+}
+.pLeft5 {
+  padding-left: 5px;
+}
+.pLeft10 {
+  padding-left: 10px;
+}
+.pLeft15 {
+  padding-left: 15px;
+}
+.pLeft20 {
+  padding-left: 20px;
+}
+.pLeft25 {
+  padding-left: 25px;
+}
+
+/************************************************** PADDING RIGHT **************************************************/
+/************************************************** PADDING RIGHT **************************************************/
+/************************************************** PADDING RIGHT **************************************************/
+
+.pRight2 {
+  padding-right: 2px;
+}
+.pRight5 {
+  padding-right: 5px;
+}
+.pRight10 {
+  padding-right: 10px;
+}
+.pRight15 {
+  padding-right: 15px;
+}
+.pRight20 {
+  padding-right: 20px;
+}
+.pRight25 {
+  padding-right: 25px;
+}
+
+/************************************************** PADDING VERTICAL **************************************************/
+/************************************************** PADDING VERTICAL **************************************************/
+/************************************************** PADDING VERTICAL **************************************************/
+
+.pVertical2 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.pVertical5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pVertical10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.pVertical15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.pVertical20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.pVertical25 {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/************************************************** PADDING HORIZONTAL **************************************************/
+/************************************************** PADDING HORIZONTAL **************************************************/
+/************************************************** PADDING HORIZONTAL **************************************************/
+
+.pHorizontal2 {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.pHorizontal5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.pHorizontal10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.pHorizontal15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.pHorizontal20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.pHorizontal25 {
+  padding-left: 25px;
+  padding-right: 25px;
+}

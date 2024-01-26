@@ -1,0 +1,20 @@
+const color = {
+  black: "#000000",
+  white: "#FFFFFF",
+  main: "#F8853E",
+  header: "#F99A54",
+  subColor1: "#FAAF6A",
+  subColor2: "#FCCA7F",
+  subColor3: "#FDD995",
+  bgColor1: "#FEEEAB",
+  bgColor2: "#FFF5EA",
+  bgColor3: "#DFE0DF",
+  bgColor4: "#F5F4F2",
+  bgColor5: "#402E32",
+  bgColor5_50: "#402E3299",
+  bgColor5_75: "#402E32BF",
+  text: "#231811",
+  text_60: "#23181199",
+  text_75: "#23181100",
+};
+export default color;

@@ -1,0 +1,149 @@
+/************************************************** MARGIN TOP **************************************************/
+/************************************************** MARGIN TOP **************************************************/
+/************************************************** MARGIN TOP **************************************************/
+
+.mTop2 {
+  margin-top: 2px;
+}
+.mTop5 {
+  margin-top: 5px;
+}
+.mTop10 {
+  margin-top: 10px;
+}
+.mTop15 {
+  margin-top: 15px;
+}
+.mTop20 {
+  margin-top: 20px;
+}
+.mTop25 {
+  margin-top: 25px;
+}
+
+/************************************************** MARGIN BOTTOM **************************************************/
+/************************************************** MARGIN BOTTOM **************************************************/
+/************************************************** MARGIN BOTTOM **************************************************/
+
+.mBottom2 {
+  margin-bottom: 2px;
+}
+.mBottom5 {
+  margin-bottom: 5px;
+}
+.mBottom10 {
+  margin-bottom: 10px;
+}
+.mBottom15 {
+  margin-bottom: 15px;
+}
+.mBottom20 {
+  margin-bottom: 20px;
+}
+.mBottom25 {
+  margin-bottom: 25px;
+}
+
+/************************************************** MARGIN LEFT **************************************************/
+/************************************************** MARGIN LEFT **************************************************/
+/************************************************** MARGIN LEFT **************************************************/
+
+.mLeft2 {
+  margin-left: 2px;
+}
+.mLeft5 {
+  margin-left: 5px;
+}
+.mLeft10 {
+  margin-left: 10px;
+}
+.mLeft15 {
+  margin-left: 15px;
+}
+.mLeft20 {
+  margin-left: 20px;
+}
+.mLeft25 {
+  margin-left: 25px;
+}
+
+/************************************************** MARGIN RIGHT **************************************************/
+/************************************************** MARGIN RIGHT **************************************************/
+/************************************************** MARGIN RIGHT **************************************************/
+
+.mRight2 {
+  margin-right: 2px;
+}
+.mRight5 {
+  margin-right: 5px;
+}
+.mRight10 {
+  margin-right: 10px;
+}
+.mRight15 {
+  margin-right: 15px;
+}
+.mRight20 {
+  margin-right: 20px;
+}
+.mRight25 {
+  margin-right: 25px;
+}
+
+/************************************************** MARGIN VERTICAL **************************************************/
+/************************************************** MARGIN VERTICAL **************************************************/
+/************************************************** MARGIN VERTICAL **************************************************/
+
+.mVertical2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.mVertical5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.mVertical10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mVertical15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.mVertical20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mVertical25 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+/************************************************** MARGIN HORIZONTAL **************************************************/
+/************************************************** MARGIN HORIZONTAL **************************************************/
+/************************************************** MARGIN HORIZONTAL **************************************************/
+
+.mHorizontal2 {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.mHorizontal5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.mHorizontal10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mHorizontal15 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.mHorizontal20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.mHorizontal25 {
+  margin-left: 25px;
+  margin-right: 25px;
+}
