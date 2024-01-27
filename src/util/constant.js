@@ -114,6 +114,7 @@ export const REGISTER_URL_FE = "/register";
 
 // Danh sách link không được hiện sidebar và header
 export const NO_LAYOUT_LINKS = [
+  '/',
   LOGIN_URL_FE,
   REGISTER_URL_FE,
 ];
