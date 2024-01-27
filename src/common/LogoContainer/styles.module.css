@@ -1,0 +1,26 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.firstCircle {
+  position: absolute;
+  bottom: -103px;
+  left: -340px;
+  width: 1300px;
+  height: 1300px;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.secondCircle {
+  position: absolute;
+  bottom: -103px;
+  left: 352px;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  filter: blur(160px);
+}

@@ -1,7 +1,7 @@
-import get from "lodash/get";
-import isObject from "lodash/isObject";
-import React from "react";
-import color from "./color";
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+import React from 'react';
+import color from './color';
 
 const INNER_WIDTH = window.innerWidth;
 const INNER_HEIGHT = window.innerHeight;
@@ -10,7 +10,7 @@ const DESIGN_HEIGHT = 900;
 const MOBILE_DESIGN_WIDTH = 375;
 const MOBILE_DESIGN_HEIGHT = 812;
 
-export const deepClone = (item) => JSON.parse(JSON.stringify(item ?? ""));
+export const deepClone = (item) => JSON.parse(JSON.stringify(item ?? ''));
 
 export const rWidth = (value = 0, withpx = true) => {
   const result = (INNER_WIDTH * value) / DESIGN_WIDTH;
@@ -42,10 +42,7 @@ export const mrFont = (value = 0, withpx = true) => {
   return withpx ? `${result}px` : result;
 };
 
-export const textStyle = (styles) => {
-  const size = styles.size || 14; 
-  const weight = styles.weight || 400;
-  const color = styles.color || color.text;
+export const textStyle = (size = 14, weight = 400, color = color.text) => {
   return {
     fontSize: size,
     fontWeight: weight.toString(),
@@ -55,7 +52,7 @@ export const textStyle = (styles) => {
 
 export const findKeyInObjectR = (obj, findingKey) => {
   // Nếu obj là string, trả về obj
-  if (typeof obj === "string") return obj;
+  if (typeof obj === 'string') return obj;
   // Duyệt tất cả field của obj, nếu tìm thấy findingKey, trả về value tương ứng
   const message = get(obj, findingKey);
   if (message !== undefined) {
@@ -71,7 +68,7 @@ export const findKeyInObjectR = (obj, findingKey) => {
       }
     }
   }
-  return "";
+  return '';
 };
 
 export const logMessageDirect = (msg, useAntMessage = true) => {
@@ -79,15 +76,15 @@ export const logMessageDirect = (msg, useAntMessage = true) => {
 };
 
 export const logMessage = (error, useAntMessage = true) => {
-  let msg = "";
-  if (typeof error?.response?.data?.message === "string") {
+  let msg = '';
+  if (typeof error?.response?.data?.message === 'string') {
     msg = error.response.data.message;
-  } else if (typeof error?.data?.message === "string") {
+  } else if (typeof error?.data?.message === 'string') {
     msg = error.data.message;
-  } else if (typeof error?.message === "string") {
+  } else if (typeof error?.message === 'string') {
     msg = error.message;
   } else {
-    msg = findKeyInObjectR(error, "message");
+    msg = findKeyInObjectR(error, 'message');
   }
   return handleLogMessage(msg, useAntMessage);
 };

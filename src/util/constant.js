@@ -7,6 +7,8 @@ export const is1366x768 = window.innerWidth === 1366;
 export const SCREEN_WIDTH = window.innerWidth;
 export const SCREEN_HEIGHT = window.innerHeight;
 
+export const AUTH_FORM_WIDTH = 720;
+
 export const TEXT_STYLES = {
   text: {
     size: 12,
@@ -106,3 +108,12 @@ export const GRID_STYLES = {
   r12: 'row-12',
   c12: 'col-12',
 };
+
+export const LOGIN_URL_FE = "/login";
+export const REGISTER_URL_FE = "/register";
+
+// Danh sách link không được hiện sidebar và header
+export const NO_LAYOUT_LINKS = [
+  LOGIN_URL_FE,
+  REGISTER_URL_FE,
+];

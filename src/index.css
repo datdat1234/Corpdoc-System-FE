@@ -3,6 +3,10 @@
   font-family: 'Work Sans', sans-serif !important;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
   font-family: 'Work Sans', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
