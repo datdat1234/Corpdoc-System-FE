@@ -53,7 +53,7 @@ export default function FormTab({
             style={{
               borderRadius: '0',
               ...tabStyles[i],
-              backgroundColor: btnKey == i ? color.white : color.bgColor3,
+              backgroundColor: btnKey == i ? color.bgColor4 : color.bgColor3,
               boxShadow: btnKey != i && boxShadows[i],
             }}
             onClick={(e, data) => {

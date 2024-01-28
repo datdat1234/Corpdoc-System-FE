@@ -7,7 +7,7 @@
   top: -8px;
   left: 11px;
   padding: 0 8px;
-  background-color: white;
+  background-color: #F5F4F2;
 }
 
 .name {
@@ -22,11 +22,13 @@
   padding: 0 18px;
   font-size: 16px;
   outline: 0;
+  background-color: #F5F4F2;
 }
 
 .input:focus {
   border-color: #231811;
   outline: none !important;
+  background-color: #F5F4F2;
 }
 
 .input:focus + .label p {

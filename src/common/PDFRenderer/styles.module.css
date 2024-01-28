@@ -1,0 +1,15 @@
+.root {
+  overflow: scroll;
+  background-color: #F5F4F2;
+  overflow-x: hidden; 
+}
+
+.pageCtn {
+  height: 100vh;
+  margin-bottom: 50px;
+}
+
+.hiddenPage {
+  overflow: hidden;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}

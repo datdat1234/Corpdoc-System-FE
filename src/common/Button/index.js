@@ -1,0 +1,55 @@
+import React, { useState } from 'react';
+import styles from './styles.module.css';
+
+export default function Button({
+  name = '',
+  ctnStyles = {},
+  icon1Styles = {},
+  icon2Styles = {},
+  btnStyles = {},
+  icon1 = <></>,
+  icon2 = <></>,
+  onClick = () => ({}),
+}) {
+  // #region    VARIABLES //////////////////////////
+  //////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////
+  // #endregion VARIABLES //////////////////////////
+
+  // #region    useEffect //////////////////////////
+  //////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////
+  // #endregion useEffect //////////////////////////
+
+  // #region    FUNCTIONS //////////////////////////
+  //////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////
+  // #endregion FUNCTIONS //////////////////////////
+
+  // #region    VIEWS //////////////////////////////
+  //////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////
+  // #endregion VIEWS //////////////////////////////
+  return (
+    <div className={`w-100 ${styles.root}`} style={ctnStyles} onClick={onClick}>
+      <div style={icon1Styles} className={`${styles.icon}`}>
+        {icon1}
+      </div>
+      <button
+        type="button"
+        className="w-100"
+        style={btnStyles}
+        onClick={onClick}
+      >
+        {name}
+      </button>
+      <div style={icon2Styles} className={`${styles.icon}`}>
+        {icon2}
+      </div>
+    </div>
+  );
+}

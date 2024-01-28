@@ -1,0 +1,26 @@
+.logo {
+  width: 227px;
+  height: 57px;
+}
+
+.headerCtn {
+  box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+.name {
+  font-size: 16;
+  font-weight: 800;
+  color: #231811;
+  background-color: #F99A54;
+  text-align: right;
+  padding: 2px;
+}
+
+.role {
+  font-size: 12px;
+  font-weight: 700;
+  color: #231811;
+  background-color: #F99A54;
+  text-align: right;
+  padding: 0px 2px;
+}

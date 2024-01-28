@@ -92,8 +92,10 @@ export default function LoginPage() {
               flex: '1',
             }}
           />
-          <div className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}>
-            <CheckBoxForm 
+          <div
+            className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
+          >
+            <CheckBoxForm
               text="Ghi nhớ mật khẩu"
               checkBoxStyles={{
                 height: '22px',
@@ -104,7 +106,7 @@ export default function LoginPage() {
                 ...textStyle(
                   TEXT_STYLES.text14.size,
                   TEXT_STYLES.text14.weight,
-                  "#424242"
+                  '#424242'
                 ),
                 marginLeft: '10px',
               }}
@@ -114,7 +116,7 @@ export default function LoginPage() {
                 ...textStyle(
                   TEXT_STYLES.text14.size,
                   TEXT_STYLES.text14.weight,
-                  "#424242"
+                  '#424242'
                 ),
               }}
               className={`${styles.hoverPass}`}
