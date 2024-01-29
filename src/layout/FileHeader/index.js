@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import color from '../../util/color';
-import { TEXT_STYLES } from '../../util/constant';
+import color from 'util/color';
+import { TEXT_STYLES } from 'util/constant';
 
-export default function FileHeader({ name = '', page = 1, totalPage = 0, scale, setScale }) {
+export default function FileHeader({
+  name = '',
+  page = 1,
+  totalPage = 0,
+  scale,
+  setScale,
+}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  
+  const [scaleValue, setScaleValue] = useState(scale);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -21,12 +27,31 @@ export default function FileHeader({ name = '', page = 1, totalPage = 0, scale, 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handlePlus = () => {
-    setScale(scale + 1);
-  }
+    setScale(Number(scaleValue) + 1);
+    setScaleValue(Number(scaleValue) + 1);
+  };
 
   const handleMinus = () => {
-    setScale(scale - 1);
-  }
+    setScale(Number(scaleValue) - 1);
+    setScaleValue(Number(scaleValue) - 1);
+  };
+
+  const handleKeyDownScale = (e) => {
+    var number = e.target.value;
+    if (e.key === 'Enter') {
+      if (isNaN(number) || number < 50 || number > 500) {
+        setScale(100);
+        setScaleValue(100);
+        return;
+      }
+      setScale(scaleValue);
+      setScaleValue(scaleValue);
+    }
+  };
+
+  const handleChangeScale = (e) => {
+    setScaleValue(e.target.value);
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -39,7 +64,12 @@ export default function FileHeader({ name = '', page = 1, totalPage = 0, scale, 
     <div
       className={`d-flex align-items-center justify-content-between ${styles.headerCtn}`}
     >
-      <p className={`${styles.fileName}`}>{name}</p>
+      <p
+        className={`${styles.fileName}`}
+        style={{ width: `calc(${scale / 100}*10.5vw)` }}
+      >
+        {name}
+      </p>
       <button className={`${styles.button}`}>
         <FontAwesomeIcon icon={faDownload} />
       </button>
@@ -57,7 +87,21 @@ export default function FileHeader({ name = '', page = 1, totalPage = 0, scale, 
             <FontAwesomeIcon icon={faMinus} />
           </button>
           <div className={`${styles.bgScaleNum}`}>
-            <p className={`${styles.pageNumber}`}>{`${scale} %`}</p>
+            <input
+              type="number"
+              name="quantity"
+              min="50"
+              max="500"
+              value={scaleValue}
+              onKeyDown={(e) => {
+                handleKeyDownScale(e);
+              }}
+              onChange={(e) => {
+                handleChangeScale(e);
+              }}
+              className={`${styles.scaleNumber}`}
+            />
+            <p className={`${styles.pageNumber}`}>{`%`}</p>
           </div>
           <button className={`${styles.button}`} onClick={handlePlus}>
             <FontAwesomeIcon icon={faPlus} />

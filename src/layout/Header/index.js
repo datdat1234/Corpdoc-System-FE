@@ -1,15 +1,15 @@
 import React from 'react';
-import logo1 from '../../asset/images/logo1.png';
+import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
-import Button from '../../common/Button';
+import Button from 'common/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFileArrowUp,
   faChevronDown,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
-import color from '../../util/color';
-import { TEXT_STYLES } from '../../util/constant';
+import color from 'util/color';
+import { TEXT_STYLES } from 'util/constant';
 
 export default function Header() {
   // #region    VARIABLES //////////////////////////

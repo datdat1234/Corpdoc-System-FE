@@ -19,6 +19,7 @@
   width: calc(100% - 5px);
   flex: 0 0 auto;
   height: 100%;
+  overflow: auto;
 }
 
 .rightDivHeader {

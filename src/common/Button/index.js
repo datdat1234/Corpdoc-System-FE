@@ -9,7 +9,7 @@ export default function Button({
   btnStyles = {},
   icon1 = <></>,
   icon2 = <></>,
-  onClick = () => ({}),
+  onClick,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////

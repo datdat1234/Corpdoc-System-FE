@@ -109,12 +109,26 @@ export const GRID_STYLES = {
   c12: 'col-12',
 };
 
-export const LOGIN_URL_FE = "/login";
-export const REGISTER_URL_FE = "/register";
+export const LOGIN_URL_FE = '/login';
+export const REGISTER_URL_FE = '/register';
 
 // Danh sách link không được hiện sidebar và header
-export const NO_LAYOUT_LINKS = [
-  '/',
-  LOGIN_URL_FE,
-  REGISTER_URL_FE,
+export const NO_LAYOUT_LINKS = ['/', LOGIN_URL_FE, REGISTER_URL_FE];
+
+export const SIDEBAR_TABS = [
+  'Tài liệu của tôi',
+  'Chia sẻ với tôi',
+  'Đã lưu',
+  'Thùng rác',
+];
+
+export const SIDEBAR_STRUCTURE = [
+  {
+    id: '1',
+    name: 'Thư viện sách cá nhân',
+  },
+  {
+    id: '2',
+    name: 'Tài liệu pháp luật doanh nghiệp',
+  },
 ];

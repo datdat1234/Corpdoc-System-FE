@@ -5,6 +5,7 @@
 
 .headerCtn {
   box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.5);
+  padding: 10px 5px;
 }
 
 .name {

@@ -16,7 +16,7 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
   useEffect(() => {
-    var number = Math.ceil(scrollOffset / windowHeight + 1);
+    var number = Math.ceil(scrollOffset / ((scale / 100) * windowHeight) + 1);
     if (number > numPages) number = numPages;
     setPage(number);
   }, [scrollOffset]);
@@ -47,16 +47,15 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
       pages.push(
         <div
           key={i}
-          className={`w-100 d-flex align-items-center justify-content-center ${styles.pageCtn}`}
+          className={`w-100 flex-column d-flex align-items-center justify-content-center ${styles.pageCtn}`}
+          style={{ width: `calc(${scale / 100}*100%)` }}
         >
           <div
             className={`${styles.hiddenPage}`}
-            style={{
-              height: `calc(${scale / 100}*90vh)`,
-            }}
           >
             <Page scale={scale / 100} pageNumber={i} />
           </div>
+          <div className={`${styles.pageSpace}`}></div>
         </div>
       );
     }
@@ -66,7 +65,11 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div
-      className={`w-100 h-100 ${styles.root}`}
+      className={`${styles.root}`}
+      style={{
+        width: `calc(${scale / 100}*100%)`,
+        height: `calc(${scale / 100}*100%)`,
+      }}
       ref={parentRef}
       onScroll={handleScroll}
     >
