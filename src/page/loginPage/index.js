@@ -10,12 +10,14 @@ import FormInput from 'common/FormInput';
 import FormBtn from 'common/FormBtn';
 import CheckBoxForm from 'common/CheckBoxForm';
 import { TEXT_STYLES } from 'util/constant';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const formWidth = AUTH_FORM_WIDTH;
   const [tab, setTab] = useState(0);
+  const navigate = useNavigate();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -132,6 +134,11 @@ export default function LoginPage() {
     if (tab == 0) setTab(1);
     else setTab(0);
   };
+
+  const handleNavigate = (tab) => {
+    if (tab == 0) navigate(`/home`);
+    else navigate(`/home`);
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -232,7 +239,7 @@ export default function LoginPage() {
               >
                 {renderForm()}
                 <FormBtn
-                  name={'Đăng Ký'}
+                  name={tab == 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
                   btnStyles={{
                     maxHeight: '56px',
                     height: '56px',
@@ -242,6 +249,10 @@ export default function LoginPage() {
                     fontSize: `${TEXT_STYLES.h6Bold.size}px`,
                     fontWeight: `${TEXT_STYLES.h6Bold.weight}`,
                     color: color.white,
+                  }}
+                  onClick={() => {
+                    console.log(1);
+                    handleNavigate(tab);
                   }}
                 />
                 <div className="d-flex justify-content-center">

@@ -31,14 +31,19 @@ export default function CheckBoxForm({
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
-      <div class={`form-check d-flex align-items-center ${styles.checkBoxCtn}`}>
+      <div
+        className={`form-check d-flex align-items-center ${styles.checkBoxCtn}`}
+      >
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           value=""
           style={checkBoxStyles}
         />
-        <label class="form-check-label" for="flexCheckChecked" style={textStyles}>
+        <label
+          className="form-check-label"
+          style={textStyles}
+        >
           {text}
         </label>
       </div>
