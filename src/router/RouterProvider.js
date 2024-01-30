@@ -6,8 +6,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import LoginPage from '../page/loginPage';
-import HomePage from '../page/homePage';
+import LoginPage from 'page/loginPage';
+import HomePage from 'page/homePage';
 
 export default function RouterProvider() {
   const getSwitchAndRoutes = () => (

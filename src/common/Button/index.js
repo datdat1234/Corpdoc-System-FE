@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
-import color from 'util/color';
 
-export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
+export default function Button({
+  name,
+  ctnStyles = {},
+  icon1Styles = {},
+  icon2Styles = {},
+  btnStyles = {},
+  icon1 = <></>,
+  icon2 = <></>,
+  onClick,
+}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -27,16 +35,21 @@ export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`${styles.root}`}>
-      <div
-        className={`${styles.firstCircle}`}
-        style={{ backgroundColor: color.subColor2 }}
-      ></div>
-      <div
-        className={`${styles.secondCircle}`}
-        style={{ backgroundColor: color.bgColor4 }}
-      ></div>
-      <img style={imgStyles} src={src} alt={alt}></img>
+    <div className={`w-100 ${styles.root}`} style={ctnStyles} onClick={onClick}>
+      <div style={icon1Styles} className={`${styles.icon}`}>
+        {icon1}
+      </div>
+      <button
+        type="button"
+        className="w-100"
+        style={btnStyles}
+        onClick={onClick}
+      >
+        {name}
+      </button>
+      <div style={icon2Styles} className={`${styles.icon}`}>
+        {icon2}
+      </div>
     </div>
   );
 }

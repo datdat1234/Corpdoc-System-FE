@@ -3,4 +3,31 @@
   height: 100vh;
   padding: 0;
   margin: 0;
+  background-color: #F5F4F2;
+}
+
+.leftDiv {
+  border-right: 2px solid #231811;
+  width: calc(100% - 5px);
+  flex: 0 0 auto;
+  height: 100%;
+}
+
+.rightDiv {
+  position: relative;
+  border-left: 2px solid #231811;
+  width: calc(100% - 5px);
+  flex: 0 0 auto;
+  height: 100%;
+  overflow: auto;
+}
+
+.rightDivHeader {
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #F5F4F2;
+  z-index: 90;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }

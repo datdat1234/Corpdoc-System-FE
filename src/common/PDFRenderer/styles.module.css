@@ -1,0 +1,20 @@
+.root {
+  background-color: #F5F4F2;
+}
+
+.pageCtn {
+  padding-top: 1vh;
+}
+
+.hiddenPage {
+  overflow: hidden;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageSpace {
+  width: 100%;
+  height: 50px;
+}

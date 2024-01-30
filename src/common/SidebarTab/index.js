@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import color from 'util/color';
 
-export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
+export default function SidebarTab({
+  tabItems = [],
+}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -23,20 +25,25 @@ export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
+  const renderTab = () => {
+    const tabs = [];
+    for (let i = 0; i < tabItems.length; i++) {
+      tabs.push(
+        <li className="nav-item" key={i}>
+          {tabItems[i]}
+        </li>
+      );
+    }
 
+    return tabs;
+  };
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`${styles.root}`}>
-      <div
-        className={`${styles.firstCircle}`}
-        style={{ backgroundColor: color.subColor2 }}
-      ></div>
-      <div
-        className={`${styles.secondCircle}`}
-        style={{ backgroundColor: color.bgColor4 }}
-      ></div>
-      <img style={imgStyles} src={src} alt={alt}></img>
+    <div className={`w-100 ${styles.root}`}>
+      <ul className="nav nav-pills nav-fill d-flex flex-column">
+        {renderTab()}
+      </ul>
     </div>
   );
 }

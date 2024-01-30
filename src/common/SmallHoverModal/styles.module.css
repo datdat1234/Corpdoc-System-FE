@@ -1,0 +1,17 @@
+.root {
+  width: 165px;
+  background-color: #F5F4F2;
+  position: absolute;
+  left: calc(100% + 1px);
+  top: 0%;
+  border: 1px solid #402E32;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.3);
+}
+
+.border {
+  border-bottom: 1px solid #231811;
+}

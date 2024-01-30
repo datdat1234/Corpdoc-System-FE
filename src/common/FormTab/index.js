@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import color from '../../util/color';
+import color from 'util/color';
 
 export default function FormTab({
   tabHeader = [],
@@ -53,7 +53,7 @@ export default function FormTab({
             style={{
               borderRadius: '0',
               ...tabStyles[i],
-              backgroundColor: btnKey == i ? color.white : color.bgColor3,
+              backgroundColor: btnKey == i ? color.bgColor4 : color.bgColor3,
               boxShadow: btnKey != i && boxShadows[i],
             }}
             onClick={(e, data) => {
