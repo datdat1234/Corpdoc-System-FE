@@ -12,9 +12,9 @@ import HomePage from 'page/homePage';
 export default function RouterProvider() {
   const getSwitchAndRoutes = () => (
     <Routes>
-      <Route exact path="/" element={<LoginPage />} />
-      <Route exact path="/login" element={<LoginPage />} />
-      <Route exact path="/home" element={<HomePage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/home" element={<HomePage />} />
     </Routes>
   );
 
