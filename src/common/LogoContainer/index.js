@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import color from 'util/color';
+import color from 'util/js/color';
 
 export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
   // #region    VARIABLES //////////////////////////

@@ -3,11 +3,11 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "util/fontStyle.css";
-import "util/globalStyle.css";
-import "util/reset.css";
-import "util/spacing/margin.css";
-import "util/spacing/padding.css";
+import "util/css/fontStyle.css";
+import "util/css/globalStyle.css";
+import "reset.css";
+import "util/css/spacing/margin.css";
+import "util/css/spacing/padding.css";
 import App from "./App";
 import "./index.css";
 

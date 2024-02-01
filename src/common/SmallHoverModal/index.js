@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import Button from 'common/Button';
-import color from 'util/color';
+import color from 'util/js/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TEXT_STYLES } from 'util/constant';
+import { TEXT_STYLES } from 'util/js/constant';
 
 export default function SmallHoverModal({
   name = [],

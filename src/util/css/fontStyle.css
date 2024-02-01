@@ -1,93 +1,93 @@
 @font-face {
   font-family: "Work Sans";
   font-weight: 900;
-  src: url("../asset/fonts/Work_Sans/WorkSans-Black.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-Black.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 900;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-BlackItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-BlackItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 800;
-  src: url("../asset/fonts/Work_Sans/WorkSans-ExtraBold.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-ExtraBold.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 800;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-ExtraBoldItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-ExtraBoldItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 700;
-  src: url("../asset/fonts/Work_Sans/WorkSans-Bold.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-Bold.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 700;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-BoldItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-BoldItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 600;
-  src: url("../asset/fonts/Work_Sans/WorkSans-SemiBold.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-SemiBold.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 600;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-SemiBoldItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-SemiBoldItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 500;
-  src: url("../asset/fonts/Work_Sans/WorkSans-Medium.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-Medium.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 500;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-MediumItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-MediumItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 400;
-  src: url("../asset/fonts/Work_Sans/WorkSans-Regular.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-Regular.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 300;
-  src: url("../asset/fonts/Work_Sans/WorkSans-Light.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-Light.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 300;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-LightItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-LightItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 200;
-  src: url("../asset/fonts/Work_Sans/WorkSans-ExtraLight.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-ExtraLight.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 200;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-ExtraLightItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-ExtraLightItalic.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 100;
-  src: url("../asset/fonts/Work_Sans/WorkSans-Thin.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-Thin.ttf");
 }
 @font-face {
   font-family: "Work Sans";
   font-weight: 100;
   font-style: italic;
-  src: url("../asset/fonts/Work_Sans/WorkSans-ThinItalic.ttf");
+  src: url("../../asset/fonts/Work_Sans/WorkSans-ThinItalic.ttf");
 }

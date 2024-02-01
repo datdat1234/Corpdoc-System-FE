@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import FileHeader from './FileHeader';
 import Sidebar from './Sidebar';
-import { NO_LAYOUT_LINKS } from 'util/constant';
+import { NO_LAYOUT_LINKS } from 'util/js/constant';
 import styles from './styles.module.css';
 import PDFRenderer from 'common/PDFRenderer';
 

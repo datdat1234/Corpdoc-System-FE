@@ -9,7 +9,7 @@ import {
   faChevronDown,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
-import color from 'util/color';
+import color from 'util/js/color';
 import {
   TEXT_STYLES,
   UPLOAD_TABS,
@@ -18,7 +18,7 @@ import {
   SEARCH_TABS_ICON,
   PROFILE_TABS,
   PROFILE_TABS_ICON,
-} from 'util/constant';
+} from 'util/js/constant';
 
 export default function Header() {
   // #region    VARIABLES //////////////////////////

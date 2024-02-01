@@ -3,9 +3,9 @@ import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
 import FolderStruct from 'common/FolderStruct';
 import Button from 'common/Button';
-import { SIDEBAR_TABS, SIDEBAR_STRUCTURE } from 'util/constant';
-import { TEXT_STYLES } from 'util/constant';
-import color from 'util/color';
+import { SIDEBAR_TABS, SIDEBAR_STRUCTURE } from 'util/js/constant';
+import { TEXT_STYLES } from 'util/js/constant';
+import color from 'util/js/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShare,

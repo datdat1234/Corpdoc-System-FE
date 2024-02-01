@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
-import { AUTH_FORM_WIDTH } from 'util/constant';
+import { AUTH_FORM_WIDTH } from 'util/js/constant';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
-import { textStyle } from 'util/helper';
-import color from 'util/color';
+import { textStyle } from 'util/js/helper';
+import color from 'util/js/color';
 import FormTab from 'common/FormTab';
 import FormInput from 'common/FormInput';
 import FormBtn from 'common/FormBtn';
 import CheckBoxForm from 'common/CheckBoxForm';
-import { TEXT_STYLES } from 'util/constant';
+import { TEXT_STYLES } from 'util/js/constant';
 import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
