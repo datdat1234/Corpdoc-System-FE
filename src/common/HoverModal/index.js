@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import SmallHoverModal from 'common/SmallHoverModal';
-import color from 'util/color';
+import color from 'util/js/color';
 import {
   TEXT_STYLES,
   SMALL_HOVER_TABS,
   SMALL_HOVER_ICONS,
-} from 'util/constant';
+} from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function HoverModal({

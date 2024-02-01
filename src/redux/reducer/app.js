@@ -5,7 +5,7 @@ import {
   SET_USER_INFO,
   TOGGLE_SIDEBAR,
 } from "../action/app";
-import { deepClone } from "../../util/helper";
+import { deepClone } from "../../util/js/helper";
 
 export default function appReducer(
   state = {

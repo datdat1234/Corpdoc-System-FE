@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import color from 'util/color';
-import { TEXT_STYLES } from 'util/constant';
+import color from 'util/js/color';
+import { TEXT_STYLES } from 'util/js/constant';
 
 export default function FileHeader({
   name = '',
