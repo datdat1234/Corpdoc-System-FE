@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 
-export default function CheckBoxForm({
-  text = '',
-  checkBoxStyles = {},
-  textStyles = {},
-}) {
+export default function CheckBoxForm({ text = '' }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -35,15 +31,11 @@ export default function CheckBoxForm({
         className={`form-check d-flex align-items-center ${styles.checkBoxCtn}`}
       >
         <input
-          className="form-check-input"
+          className={`form-check-input ${styles.checkBox}`}
           type="checkbox"
           value=""
-          style={checkBoxStyles}
         />
-        <label
-          className="form-check-label"
-          style={textStyles}
-        >
+        <label className={`form-check-label text14 ${styles.text}`}>
           {text}
         </label>
       </div>

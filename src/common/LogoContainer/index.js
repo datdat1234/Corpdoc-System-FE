@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
-import color from 'util/js/color';
 
-export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
+export default function LogoContainer({ src = '', alt = '' }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -28,15 +27,9 @@ export default function LogoContainer({ src = '', alt = '', imgStyles = {} }) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
-      <div
-        className={`${styles.firstCircle}`}
-        style={{ backgroundColor: color.subColor2 }}
-      ></div>
-      <div
-        className={`${styles.secondCircle}`}
-        style={{ backgroundColor: color.bgColor4 }}
-      ></div>
-      <img style={imgStyles} src={src} alt={alt}></img>
+      <div className={`${styles.firstCircle} bg-subColor2`}></div>
+      <div className={`${styles.secondCircle} bg-bgColor4`}></div>
+      <img className={`${styles.image}`} src={src} alt={alt}></img>
     </div>
   );
 }

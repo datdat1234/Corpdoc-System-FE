@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import React from 'react';
-import color from './color';
 
 const INNER_WIDTH = window.innerWidth;
 const INNER_HEIGHT = window.innerHeight;
@@ -40,14 +39,6 @@ export const mrHeight = (value = 0, withpx = true) => {
 export const mrFont = (value = 0, withpx = true) => {
   const result = (INNER_WIDTH * value) / MOBILE_DESIGN_WIDTH;
   return withpx ? `${result}px` : result;
-};
-
-export const textStyle = (size = 14, weight = 400, color = color.text) => {
-  return {
-    fontSize: size,
-    fontWeight: weight.toString(),
-    color: color,
-  };
 };
 
 export const findKeyInObjectR = (obj, findingKey) => {

@@ -1,8 +1,15 @@
 .root {
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon {
   cursor: pointer;
+}
+
+.btn {
+  text-align: left;
 }

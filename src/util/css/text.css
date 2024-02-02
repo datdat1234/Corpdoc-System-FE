@@ -1,0 +1,124 @@
+.text {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.textBold {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.text14 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.text14Medium {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.text14SemiBold {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.text14Bold {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.text18 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.text18Medium {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.text18SemiBold {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.text18Bold {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.text18ExtraBold {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.textH6 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.textH6Medium {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.textH6Bold {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.textH6ExtraBold {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.textH6Black {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.textH5 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.textH5Black {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.textH4 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.textH3 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.textH2 {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.textH1 {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.text36Bold {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.text24Bold {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.text24Medium {
+  font-size: 24px;
+  font-weight: 500;
+}

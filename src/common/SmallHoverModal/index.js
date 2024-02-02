@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import Button from 'common/Button';
-import color from 'util/js/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TEXT_STYLES } from 'util/js/constant';
 
 export default function SmallHoverModal({
   name = [],
@@ -12,22 +10,7 @@ export default function SmallHoverModal({
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  const ctnStyles = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: '57px',
-    padding: '0 20px',
-    backgroundColor: color.bgColor4,
-  };
 
-  const btnStyles = {
-    backgroundColor: color.bgColor4,
-    fontSize: TEXT_STYLES.text14SemiBold.size,
-    fontWeight: TEXT_STYLES.text14SemiBold.weight,
-    color: color.text,
-  };
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -49,11 +32,11 @@ export default function SmallHoverModal({
     const items = [];
     for (let i = 0; i < name.length; i++) {
       items.push(
-        <div className={`w-100 ${i == 0 && styles.border}`} key={i}>
+        <div className={`w-100 ${i === 0 && styles.border}`} key={i}>
           <Button
             name={name[i]}
-            ctnStyles={ctnStyles}
-            btnStyles={btnStyles}
+            ctnStyles="flex-row h-57 pHorizontal20 bg-bgColor4"
+            btnStyles="text14SemiBold bg-bgColor4 text"
             icon1={icon[i].left && <FontAwesomeIcon icon={icon[i].left} />}
             icon2={icon[i].right && <FontAwesomeIcon icon={icon[i].right} />}
             onClick={onClick[i]}
