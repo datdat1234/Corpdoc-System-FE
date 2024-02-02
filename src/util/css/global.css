@@ -1,0 +1,53 @@
+/* Box Shadow */
+
+.formTab-1 {
+  box-shadow: inset -3px -3px 10px rgba(0,0,0,0.3);
+}
+
+.formTab-2 {
+  box-shadow: inset 3px -3px 10px rgba(0,0,0,0.3);
+}
+
+/* Cursor */
+
+.pointer {
+  cursor: pointer;
+}
+
+/* Z-index */
+
+.zIndex-100 {
+  z-index: 100;
+}
+
+.zIndex-200 {
+  z-index: 200;
+}
+
+.zIndex-300 {
+  z-index: 300;
+}
+
+.zIndex-400 {
+  z-index: 400;
+}
+
+.zIndex-500 {
+  z-index: 500;
+}
+
+/* Height */
+
+.h-39 {
+  height: 39px;
+}
+
+.h-57 {
+  height: 57px;
+}
+
+/* Width */
+
+.w-24 {
+  width: 24px;
+}

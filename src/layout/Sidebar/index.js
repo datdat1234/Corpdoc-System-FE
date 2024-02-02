@@ -4,8 +4,6 @@ import SidebarTab from 'common/SidebarTab';
 import FolderStruct from 'common/FolderStruct';
 import Button from 'common/Button';
 import { SIDEBAR_TABS, SIDEBAR_STRUCTURE } from 'util/js/constant';
-import { TEXT_STYLES } from 'util/js/constant';
-import color from 'util/js/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShare,
@@ -16,27 +14,6 @@ import {
 export default function Sidebar() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  const btnStyles = {
-    fontSize: TEXT_STYLES.h6ExtraBold.size,
-    fontWeight: TEXT_STYLES.h6ExtraBold.weight,
-    textAlign: 'left',
-  };
-
-  const ctnStyles = {
-    height: '39px',
-    borderTopRightRadius: '10px',
-    borderBottomRightRadius: '10px',
-    borderBottom: `1px solid ${color.main}`,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: '10px',
-  };
-
-  const icon1Styles = {
-    width: '24px',
-  };
-
   const [currentTab, setCurrentTab] = useState(0);
 
   const icons = [
@@ -69,16 +46,13 @@ export default function Sidebar() {
         <div key={i}>
           <Button
             name={SIDEBAR_TABS[i]}
-            btnStyles={{
-              ...btnStyles,
-              backgroundColor: currentTab == i ? color.main : color.bgColor4,
-              marginLeft: i != 0 && '10px',
-            }}
-            ctnStyles={{
-              ...ctnStyles,
-              backgroundColor: currentTab == i ? color.main : color.bgColor4,
-            }}
-            icon1Styles={i != 0 ? icon1Styles : {}}
+            btnStyles={`textH6ExtraBold ${
+              currentTab === i ? 'bg-main' : 'bg-bgColor4'
+            } ${i !== 0 && 'mLeft10'}`}
+            ctnStyles={`h-39 br-TopRight-10 br-BottomRight-10 pLeft10 border-bottom-1 border-main border-style-solid
+              ${currentTab === i ? 'bg-main' : 'bg-bgColor4'}
+            `}
+            icon1Styles={i !== 0 ? 'w-24' : ''}
             onClick={() => {
               setCurrentTab(i);
             }}
@@ -112,7 +86,7 @@ export default function Sidebar() {
       tabItems.push(
         <div key={i}>
           <FolderStruct
-            name={"Đồ án tốt nghiệp / Luận văn tốt nghiệp"}
+            name={'Đồ án tốt nghiệp / Luận văn tốt nghiệp'}
             onClick={() => {}}
             ident={1}
           />

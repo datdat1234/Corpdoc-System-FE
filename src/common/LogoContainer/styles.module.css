@@ -1,26 +1,35 @@
 .root {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
 .firstCircle {
   position: absolute;
-  bottom: -103px;
-  left: -340px;
-  width: 1300px;
-  height: 1300px;
+  bottom: -13vh;
+  left: -43vh;
+  width: 163vh;
+  height: 163vh;
   border-radius: 50%;
   filter: blur(80px);
+  border: 1px solid red;
 }
 
 .secondCircle {
   position: absolute;
-  bottom: -103px;
-  left: 352px;
-  width: 900px;
-  height: 900px;
+  bottom: -13vh;
+  left: 44vh;
+  width: 113vh;
+  height: 113vh;
   border-radius: 50%;
   filter: blur(160px);
+}
+
+.image {
+  position: absolute;
+  top: 19vh;
+  left: 32.5vh;
+  height: 78vh;
+  width: 106vh;
 }

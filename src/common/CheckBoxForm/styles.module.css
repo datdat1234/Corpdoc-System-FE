@@ -5,3 +5,14 @@
 .checkBoxCtn {
   margin: 0;
 }
+
+.checkBox {
+  height: 22px;
+  width: 22px;
+  margin-top: 0px;
+}
+
+.text {
+  color: #424242;
+  margin-left: 15px;
+}

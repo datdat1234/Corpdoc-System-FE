@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 
 export default function FormBtn({
   name = '',
-  btnStyles = {},
-  onClick = () => ({}),
+  onClick,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -33,8 +32,7 @@ export default function FormBtn({
     <div className={`w-100 ${styles.root}`}>
       <button
         type="button"
-        className="w-100"
-        style={btnStyles}
+        className={`w-100 bg-black white textH6Bold ${styles.btn}`}
         onClick={onClick}
       >
         {name}

@@ -50,9 +50,7 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
           className={`w-100 flex-column d-flex align-items-center justify-content-center ${styles.pageCtn}`}
           style={{ width: `calc(${scale / 100}*100%)` }}
         >
-          <div
-            className={`${styles.hiddenPage}`}
-          >
+          <div className={`${styles.hiddenPage}`}>
             <Page scale={scale / 100} pageNumber={i} />
           </div>
           <div className={`${styles.pageSpace}`}></div>

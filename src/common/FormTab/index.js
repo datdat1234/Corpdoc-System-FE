@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import color from 'util/js/color';
 
 export default function FormTab({
   tabHeader = [],
   action = [],
   tabStyles = [],
-  textStyles = {},
   boxShadows = [],
   activeTab = 0,
 }) {
@@ -15,7 +13,7 @@ export default function FormTab({
   const [btnKey, setBtnKey] = useState(activeTab);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-  
+
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
   useEffect(() => {
@@ -48,21 +46,17 @@ export default function FormTab({
         >
           <button
             type="button"
-            className="nav-link zindex-fixed"
+            className={`zindex-fixed ${styles.button} ${tabStyles[i]} ${
+              btnKey === i ? 'bg-bgColor4' : 'bg-bgColor3'
+            } ${btnKey !== i && boxShadows[i]}`}
             ident={i}
-            style={{
-              borderRadius: '0',
-              ...tabStyles[i],
-              backgroundColor: btnKey == i ? color.bgColor4 : color.bgColor3,
-              boxShadow: btnKey != i && boxShadows[i],
-            }}
             onClick={(e, data) => {
               action[i]();
               handleClicked(e, data);
             }}
           >
             <div className="d-flex justify-content-center align-items-center w-100 h-100">
-              <p style={textStyles}>{tabHeader[i]}</p>
+              <p className="text24Bold black">{tabHeader[i]}</p>
             </div>
           </button>
         </li>

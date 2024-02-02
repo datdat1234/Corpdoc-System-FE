@@ -13,6 +13,7 @@
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   margin-top: 9%;
+  padding-top: 5%;
   z-index: 200;
 }
 
@@ -21,18 +22,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F5F4F2;
+  background-color: #f5f4f2;
 }
 
 .border1 {
   width: 85%;
   height: 1px;
-  background-color: rgba(64, 46, 50, 1);
 }
 
 .border2 {
   width: 100%;
   height: 2px;
-  background-color: #F99A54;
+  background-color: #f99a54;
   z-index: 1000;
 }

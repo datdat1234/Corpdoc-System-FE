@@ -5,7 +5,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function FormInput({
   name = '',
-  inputStyles = {},
   type = 'text',
 }) {
   // #region    VARIABLES //////////////////////////
@@ -34,7 +33,7 @@ export default function FormInput({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root}`} style={inputStyles}>
+    <div className={`w-100 ${styles.root}`}>
       <input
         type={!canSeen ? type : 'text'}
         className={`form-control ${styles.input}`}

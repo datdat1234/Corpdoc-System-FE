@@ -1,0 +1,77 @@
+/* Border Radius 4 corner */
+
+.br-10 {
+  border-radius: 10px;
+}
+
+.br-15 {
+  border-radius: 15px;
+}
+
+/* Border Radius 1 corner */
+
+.br-TopLeft-10 {
+  border-top-left-radius: 10px;
+}
+
+.br-TopRight-10 {
+  border-top-right-radius: 10px;
+}
+
+.br-BottomLeft-10 {
+  border-bottom-left-radius: 10px;
+}
+
+.br-BottomRight-10 {
+  border-bottom-right-radius: 10px;
+}
+
+.br-TopLeft-15 {
+  border-top-left-radius: 15px;
+}
+
+.br-TopRight-15 {
+  border-top-right-radius: 15px;
+}
+
+.br-BottomLeft-15 {
+  border-bottom-left-radius: 15px;
+}
+
+.br-BottomRight-15 {
+  border-bottom-right-radius: 15px;
+}
+
+/* Border color */
+
+.border-main {
+  border-color: #f8853e;
+}
+
+/* Border width */
+
+.border-1 {
+  border-width: 1px;
+}
+
+.border-top-1 {
+  border-top-width: 1px;
+}
+
+.border-right-1 {
+  border-right-width: 1px;
+}
+
+.border-bottom-1 {
+  border-bottom-width: 1px;
+}
+
+.border-left-1 {
+  border-left-width: 1px;
+}
+
+/* Border style */
+
+.border-style-solid {
+  border-style: solid;
+}

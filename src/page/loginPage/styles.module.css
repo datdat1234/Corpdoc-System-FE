@@ -23,6 +23,7 @@
 
 .textWrapper {
   padding: 0 30px;
+  margin-bottom: 40px;
 }
 
 .infoWrapper {
@@ -49,7 +50,15 @@
   height: 25px;
 }
 
+.hoverPass {
+  color: #424242;
+}
+
 .hoverPass:hover {
   border-bottom: 2px solid #000000;
   cursor: pointer;
+}
+
+.haveAccount {
+  font-size: 14px;
 }

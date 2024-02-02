@@ -9,9 +9,7 @@ import {
   faChevronDown,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
-import color from 'util/js/color';
 import {
-  TEXT_STYLES,
   UPLOAD_TABS,
   UPLOAD_TABS_ICON,
   SEARCH_TABS,
@@ -23,43 +21,6 @@ import {
 export default function Header() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  const ctnStyles = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: '57px',
-    borderRadius: '15px',
-    padding: '0 5px',
-    backgroundColor: color.bgColor5,
-  };
-
-  const btnStyles = {
-    backgroundColor: color.bgColor5,
-    color: color.header,
-    fontSize: TEXT_STYLES.h6Black.size,
-    fontWeight: TEXT_STYLES.h6Black.weight,
-  };
-
-  const iconStyles = {
-    color: color.header,
-    padding: '10px',
-  };
-
-  const lastUploadBtnStyles = {
-    backgroundColor: color.bgColor5,
-    fontSize: TEXT_STYLES.h6Black.size,
-    fontWeight: TEXT_STYLES.h6Black.weight,
-    color: color.main,
-  };
-
-  const lastProfileBtnStyles = {
-    backgroundColor: color.main,
-    fontSize: TEXT_STYLES.h6Black.size,
-    fontWeight: TEXT_STYLES.h6Black.weight,
-    color: color.bgColor5,
-  };
-
   const [isHovered, setIsHovered] = useState(0);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -108,25 +69,21 @@ export default function Header() {
         >
           <Button
             name={'Tải lên tài liệu'}
-            ctnStyles={ctnStyles}
-            icon1Styles={iconStyles}
-            icon2Styles={iconStyles}
-            btnStyles={btnStyles}
+            ctnStyles="flex-row h-57 br-15 bg-bgColor5 pHorizontal5"
+            icon1Styles="header p10"
+            icon2Styles="header p10"
+            btnStyles="textH6Black bg-bgColor5 header"
             icon1={<FontAwesomeIcon icon={faFileArrowUp} />}
             icon2={<FontAwesomeIcon icon={faChevronDown} />}
             onClick={() => ({})}
           />
-          {isHovered == 1 && (
+          {isHovered === 1 && (
             <HoverModal
-              ctnStyles={{
-                backgroundColor: color.bgColor5,
-                padding: '0px 2px',
-                paddingTop: '5%',
-              }}
+              ctnStyles="bg-bgColor5 pHorizontal2"
               icon={UPLOAD_TABS_ICON}
               name={UPLOAD_TABS}
-              lastBtnStyles={lastUploadBtnStyles}
-              lastBtnColor={color.bgColor5}
+              lastBtnStyles="textH6Black bg-bgColor5"
+              lastBtnColor="main"
               onClick={[
                 () => console.log(1),
                 () => console.log(2),
@@ -144,28 +101,24 @@ export default function Header() {
         >
           <Button
             name={'Tìm kiếm'}
-            ctnStyles={ctnStyles}
-            icon1Styles={iconStyles}
-            icon2Styles={iconStyles}
-            btnStyles={btnStyles}
+            ctnStyles="flex-row h-57 br-15 bg-bgColor5 pHorizontal5"
+            icon1Styles="header p10"
+            icon2Styles="header p10"
+            btnStyles="textH6Black bg-bgColor5 header"
             icon1={<FontAwesomeIcon icon={faMagnifyingGlass} />}
             icon2={<FontAwesomeIcon icon={faChevronDown} />}
             onClick={() => ({})}
           />
-          {isHovered == 2 && (
+          {isHovered === 2 && (
             <HoverModal
-              ctnStyles={{
-                backgroundColor: color.bgColor5,
-                padding: '0px 2px',
-                paddingTop: '5%',
-              }}
+              ctnStyles="bg-bgColor5 pHorizontal2"
               icon={SEARCH_TABS_ICON}
               name={SEARCH_TABS}
               onClick={[() => console.log(1), () => console.log(2)]}
             />
           )}
         </div>
-        <div style={{ width: '143px' }}></div>
+        <div className={`${styles.spacer}`}></div>
         <div
           className="position-relative"
           onMouseEnter={() => handleMouseEnter(3)}
@@ -173,30 +126,19 @@ export default function Header() {
         >
           <Button
             name={renderUserInfo()}
-            ctnStyles={{
-              ...ctnStyles,
-              padding: '0 5px 0 25px',
-              backgroundColor: color.header,
-            }}
-            icon2Styles={{ ...iconStyles, color: color.text }}
+            ctnStyles="flex-row h-57 br-15 bg-header pRight5 pLeft25"
+            icon2Styles="text p10"
             icon2={<FontAwesomeIcon icon={faChevronDown} />}
             onClick={() => ({})}
           />
-          {isHovered == 3 && (
+          {isHovered === 3 && (
             <HoverModal
-              ctnStyles={{
-                backgroundColor: color.header,
-                padding: '0px 2px',
-                paddingTop: '5%',
-              }}
+              ctnStyles="bg-header pHorizontal2"
               icon={PROFILE_TABS_ICON}
               name={PROFILE_TABS}
-              lastBtnStyles={{
-                ...lastProfileBtnStyles,
-                backgroundColor: color.header,
-              }}
-              lastBtnColor={color.header}
-              spacerColor={color.header}
+              lastBtnStyles="textH6Black bg-header"
+              lastBtnColor="bgColor5"
+              spacerColor="bg-header"
               onClick={[
                 () => console.log(1),
                 () => console.log(2),

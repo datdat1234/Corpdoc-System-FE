@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
-import color from 'util/js/color';
 
 export default function SidebarTab({
   tabItems = [],

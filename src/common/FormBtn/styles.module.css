@@ -2,3 +2,9 @@
   position: relative;
 }
 
+.btn {
+  max-height: 56px;
+  height: 56px;
+  flex: 1;
+  border-radius: 8px;
+}

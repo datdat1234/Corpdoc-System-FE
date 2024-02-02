@@ -10,7 +10,6 @@ import {
 export default function FolderStruct({
   name = '',
   onClick,
-  ctnStyles = {},
   ident,
 }) {
   // #region    VARIABLES //////////////////////////
@@ -53,7 +52,6 @@ export default function FolderStruct({
     <div className={`${styles.ctn}`}>
       <div
         className={`w-100 ${styles.root}`}
-        style={ctnStyles}
         onClick={onClick}
       >
         <div
