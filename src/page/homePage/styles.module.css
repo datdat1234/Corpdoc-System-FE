@@ -1,3 +1,7 @@
-.text {
-  font-family: 'Work Sans';
+.root {
+  width: 100%;
+  position: relative;
+}
+
+.itemCtn {
 }

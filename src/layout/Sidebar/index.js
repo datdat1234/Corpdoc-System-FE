@@ -15,7 +15,6 @@ export default function Sidebar() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [currentTab, setCurrentTab] = useState(0);
-
   const icons = [
     <></>,
     <FontAwesomeIcon icon={faShare} />,
@@ -98,11 +97,24 @@ export default function Sidebar() {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`col-8 ${styles.root}`}>
+    <div className={`${styles.root}`}>
       <SidebarTab tabItems={renderTabItems()} />
-      <div className={`${styles.structCtn}`}>{renderFolderStructs()}</div>
-      <div className={`${styles.spacer}`}></div>
-      <div className={`${styles.structCtn}`}>{renderUserStructs()}</div>
+      <div>
+        <div className={`${styles.structCtn}`}>{renderFolderStructs()}</div>
+        <div className={`${styles.spacer}`}></div>
+        <div className={`${styles.structCtn}`}>{renderUserStructs()}</div>
+      </div>
+      <div className={`${styles.storageCtn} pVertical15 pHorizontal15`}>
+        <p className="text14 pVertical5">
+          Đã sử dụng 14,62 GB trong tổng số 15 GB (76%)
+        </p>
+        <div className={`${styles.progressCtn} progress bg-text60`}>
+          <div
+            className={`${styles.progressBar} progress-bar bg-main`}
+            style={{ width: '25%' }}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 }

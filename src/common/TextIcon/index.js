@@ -1,15 +1,14 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-export default function Button({
-  name,
+export default function TextIcon({
+  text,
   ctnStyles = '',
   icon1Styles = '',
   icon2Styles = '',
-  btnStyles = '',
+  textStyles = '',
   icon1 = <></>,
   icon2 = <></>,
-  onClick,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -35,16 +34,10 @@ export default function Button({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root} ${ctnStyles}`} onClick={onClick}>
+    <div className={`w-100 ${styles.root} ${ctnStyles}`}>
       <div className={`${icon1Styles} ${styles.icon}`}>{icon1}</div>
-      <button
-        type="button"
-        onClick={onClick}
-        className={`w-100 ${btnStyles} ${styles.btn}`}
-      >
-        {name}
-      </button>
-      <div className={`${icon2Styles} ${styles.icon}`}>{icon2}</div>
+      <p className={`w-100 ${textStyles} ${styles.btn}`}>{text}</p>
+      <div className={`${icon2Styles}`}>{icon2}</div>
     </div>
   );
 }

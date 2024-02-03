@@ -1,16 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-export default function Button({
-  name,
-  ctnStyles = '',
-  icon1Styles = '',
-  icon2Styles = '',
-  btnStyles = '',
-  icon1 = <></>,
-  icon2 = <></>,
-  onClick,
-}) {
+export default function IconButton({ icon, onClick, ctnStyles = '' }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -35,16 +26,8 @@ export default function Button({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root} ${ctnStyles}`} onClick={onClick}>
-      <div className={`${icon1Styles} ${styles.icon}`}>{icon1}</div>
-      <button
-        type="button"
-        onClick={onClick}
-        className={`w-100 ${btnStyles} ${styles.btn}`}
-      >
-        {name}
-      </button>
-      <div className={`${icon2Styles} ${styles.icon}`}>{icon2}</div>
+    <div className={`${styles.root} ${ctnStyles}`}>
+      <button onClick={onClick}>{icon}</button>
     </div>
   );
 }

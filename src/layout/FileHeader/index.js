@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDownload,
+  faPlus,
+  faMinus,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function FileHeader({
   name = '',
@@ -68,9 +73,14 @@ export default function FileHeader({
       >
         {name}
       </p>
-      <button className={`${styles.button}`}>
-        <FontAwesomeIcon icon={faDownload} />
-      </button>
+      <div>
+        <button className={`${styles.button} pRight20`}>
+          <FontAwesomeIcon icon={faDownload} />
+        </button>
+        <button className={`${styles.button} ${styles.button}`}>
+          <FontAwesomeIcon icon={faXmark} />{' '}
+        </button>
+      </div>
       <div className={`${styles.fileEdit}`}>
         <div className={`${styles.pageCtn}`}>
           <div className={`${styles.bgPageNum}`}>
