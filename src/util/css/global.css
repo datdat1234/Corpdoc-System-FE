@@ -1,11 +1,11 @@
 /* Box Shadow */
 
 .formTab-1 {
-  box-shadow: inset -3px -3px 10px rgba(0,0,0,0.3);
+  box-shadow: inset -3px -3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .formTab-2 {
-  box-shadow: inset 3px -3px 10px rgba(0,0,0,0.3);
+  box-shadow: inset 3px -3px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Cursor */
@@ -46,8 +46,22 @@
   height: 57px;
 }
 
+.h-60 {
+  height: 60px;
+}
+
 /* Width */
 
 .w-24 {
   width: 24px;
+}
+
+.w-auto {
+  width: auto !important;
+}
+
+/* Font size */
+
+.fs-16 {
+  font-size: 16px;
 }

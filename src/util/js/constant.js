@@ -2,6 +2,11 @@ import {
   faPlus,
   faCaretRight,
   faRightFromBracket,
+  faBookmark,
+  faDownload,
+  faPencil,
+  faUpload,
+  faFolder,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const BASE_URL = process.env.REACT_APP_BE_URL || 'https://example.vn';
@@ -116,3 +121,40 @@ export const SMALL_HOVER_ICONS = [
     right: faCaretRight,
   },
 ];
+
+export const BREAD_CRUMB_TABS = [
+  {
+    icon1: faBookmark,
+    text: 'Lưu thư mục',
+    icon2: null,
+  },
+  {
+    icon1: faDownload,
+    text: 'Tải xuống',
+    icon2: null,
+  },
+  {
+    icon1: faPencil,
+    text: 'Sửa thông tin',
+    icon2: faCaretRight,
+  },
+  {
+    icon1: faUpload,
+    text: 'Tải lên tài liệu',
+    icon2: faCaretRight,
+  },
+  {
+    icon1: faFolder,
+    text: 'Thêm thư mục',
+    icon2: faCaretRight,
+  },
+];
+
+export const HOMEPAGE_ITEM_GRIDS = [
+  'col-1',
+  'col-10',
+  'col-6',
+  'col-6',
+  'col-1',
+];
+
