@@ -70,3 +70,10 @@
 .haveAccount {
   font-size: 14px;
 }
+
+@media only screen and (max-width: 1250px){
+  .loginContainer{
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}

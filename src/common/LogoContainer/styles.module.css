@@ -35,3 +35,13 @@
   height: 623px;
   width: 823px;
 }
+
+@media only screen and (max-width: 1250px){
+  .secondCircle {
+    top: -100px;
+    right: 0;
+  }
+  .image{
+      display: none;
+  }
+}
