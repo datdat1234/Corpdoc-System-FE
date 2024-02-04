@@ -1,0 +1,10 @@
+.root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #F8853E;
+  padding: 9px 15px;
+  margin-right: 10px;
+}

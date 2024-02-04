@@ -1,0 +1,53 @@
+.root {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navCtn {
+  width: 100%;
+  height: 50px !important;
+}
+
+.input {
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.inputRowCtn {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.inputRowDetailCtn {
+  width: calc(50% - 5px);
+}
+
+.checkboxCtn {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+}
+
+.btnCtn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: row;
+  height: 54px;
+}
+
+.btnWrapper {
+  width: 340px;
+  height: 100%;
+}

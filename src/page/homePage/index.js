@@ -3,6 +3,7 @@ import BreadCrumb from 'common/BreadCrumb';
 import SrcItem from 'common/SrcItem';
 import styles from './styles.module.css';
 import { HOMEPAGE_ITEM_GRIDS } from 'util/js/constant';
+import Pagination from 'common/Pagination';
 
 export default function HomePage() {
   // #region    VARIABLES //////////////////////////
@@ -120,12 +121,17 @@ export default function HomePage() {
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
-      <BreadCrumb />
-      <div className={`w-100 ${styles.itemCtn}`}>
-        <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value} />
-        <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value1} />
-        <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value2} />
-        <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value3} />
+      <div>
+        <BreadCrumb />
+        <div className="w-100">
+          <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value} />
+          <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value1} />
+          <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value2} />
+          <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={value3} />
+        </div>
+      </div>
+      <div className={`${styles.pagination}`}>
+        <Pagination />
       </div>
     </div>
   );
