@@ -38,6 +38,10 @@
 
 /* Height */
 
+.h-24 {
+  height: 24px;
+}
+
 .h-39 {
   height: 39px;
 }

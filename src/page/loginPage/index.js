@@ -52,7 +52,7 @@ export default function LoginPage() {
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
           >
-            <CheckBoxForm text="Ghi nhớ mật khẩu" />
+            <CheckBoxForm text="Ghi nhớ mật khẩu" textStyles='text14'/>
             <p className={`text14 ${styles.hoverPass}`}>Quên mật khẩu?</p>
           </div>
         </>

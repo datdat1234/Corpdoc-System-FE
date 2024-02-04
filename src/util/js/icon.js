@@ -17,12 +17,16 @@ import {
   faMagnifyingGlass,
   faShare,
   faTrashCan,
+  faAngleLeft,
+  faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
   caretDown: faCaretDown,
   caretRight: faCaretRight,
   angleRight: faAngleRight,
+  angleLeft: faAngleLeft,
+  angleDown: faAngleDown,
   folder: faFolder,
   eye: faEye,
   eyeSlash: faEyeSlash,

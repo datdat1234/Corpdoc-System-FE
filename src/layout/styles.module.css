@@ -32,9 +32,7 @@
 
 .contentCtn {
   min-width: 300px;
-  max-width: calc(100% - 220px);
-  padding: 20px 10px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .resizer {

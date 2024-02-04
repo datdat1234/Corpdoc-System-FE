@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './styles.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import icon from 'util/js/icon';
 
-export default function CheckBoxForm({ text = '', textStyles = '' }) {
+export default function CriteriaTag({ text = '', style = '' }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -26,19 +28,11 @@ export default function CheckBoxForm({ text = '', textStyles = '' }) {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`${styles.root}`}>
-      <div
-        className={`form-check d-flex align-items-center ${styles.checkBoxCtn}`}
-      >
-        <input
-          className={`form-check-input ${styles.checkBox}`}
-          type="checkbox"
-          value=""
-        />
-        <label className={`form-check-label ${textStyles} ${styles.text}`}>
-          {text}
-        </label>
-      </div>
+    <div className={`${styles.root} ${style}`}>
+      <p className="text14Bold mRight10">{text}</p>
+      <button onClick={() => console.log(1)}>
+        <FontAwesomeIcon icon={icon.xmark} />
+      </button>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import FileHeader from './FileHeader';
 import Sidebar from './Sidebar';
-import { NO_LAYOUT_LINKS } from 'util/js/constant';
+import { NO_LAYOUT_LINKS, NOT_SHOW_SIDEBAR } from 'util/js/constant';
 import styles from './styles.module.css';
 import PDFRenderer from 'common/PDFRenderer';
 
@@ -32,6 +32,12 @@ export default function Layout({ children }) {
   const isShowLayout = () => {
     return (
       NO_LAYOUT_LINKS.findIndex((item) => item === location.pathname) === -1
+    );
+  };
+
+  const checkShowSideBar = () => {
+    return (
+      NOT_SHOW_SIDEBAR.findIndex((item) => item === location.pathname) === -1
     );
   };
 
@@ -85,20 +91,24 @@ export default function Layout({ children }) {
           <div className={`d-flex flex-column ${styles.leftDiv}`}>
             <Header />
             <div className="d-flex flex-row row-22">
-              <div
-                className={`${styles.sidebar}`}
-                ref={resizableSidebarRef}
-                style={{ width: `${sidebarWidth}%` }}
-              >
-                <Sidebar />
+              {checkShowSideBar() && (
                 <div
-                  className={`${styles.resizerSideBar}`}
-                  onMouseDown={handleMouseDownSideBar}
-                ></div>
-              </div>
+                  className={`${styles.sidebar}`}
+                  ref={resizableSidebarRef}
+                  style={{ width: `${sidebarWidth}%` }}
+                >
+                  <Sidebar />
+                  <div
+                    className={`${styles.resizerSideBar}`}
+                    onMouseDown={handleMouseDownSideBar}
+                  ></div>
+                </div>
+              )}
               <div
-                className={`${styles.contentCtn} col-16`}
-                style={{ width: `${100 - sidebarWidth}%` }}
+                className={`${styles.contentCtn}`}
+                style={{
+                  width: `${checkShowSideBar() ? 100 - sidebarWidth : 100}%`,
+                }}
               >
                 {children}
               </div>

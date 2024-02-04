@@ -48,6 +48,10 @@
   border-color: #f8853e;
 }
 
+.border-bg5-60 {
+  border-color: rgba(64, 46, 50, 0.6);
+}
+
 /* Border width */
 
 .border-1 {
