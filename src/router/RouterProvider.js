@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import LoginPage from 'page/loginPage';
 import HomePage from 'page/homePage';
+import SearchPage from 'page/searchPage';
 
 export default function RouterProvider() {
   const getSwitchAndRoutes = () => (
@@ -15,6 +16,7 @@ export default function RouterProvider() {
       <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/search" element={<SearchPage />} />
     </Routes>
   );
 

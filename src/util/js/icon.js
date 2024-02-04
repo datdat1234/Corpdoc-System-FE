@@ -18,6 +18,7 @@ import {
   faShare,
   faTrashCan,
   faAngleLeft,
+  faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
@@ -25,6 +26,7 @@ const icon = {
   caretRight: faCaretRight,
   angleRight: faAngleRight,
   angleLeft: faAngleLeft,
+  angleDown: faAngleDown,
   folder: faFolder,
   eye: faEye,
   eyeSlash: faEyeSlash,
