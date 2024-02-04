@@ -13,7 +13,7 @@ export default function LoginPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const formWidth = AUTH_FORM_WIDTH;
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(1);
   const navigate = useNavigate();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -77,71 +77,66 @@ export default function LoginPage() {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`container-fluid d-flex flex-row ${styles.root}`}>
+    <div
+    className="position-relative"
+    >
+      <LogoContainer src={Logo} alt="CorpDoc Logo" />
       <div
-        className="col-15"
-        style={{ maxWidth: `calc(100vw - ${formWidth}px)` }}
-      >
-        <LogoContainer src={Logo} alt="CorpDoc Logo" />
-      </div>
-      <div
-        className="col-9 d-flex justify-content-center align-items-center bg-bgColor4 zIndex-500"
+        className={`position-absolute end-0 d-flex flex-column zIndex-500 justify-content-center align-items-center ${styles.loginContainer}`}
         style={{ minWidth: `${formWidth}px` }}
       >
-        <div>
-          <p className={`text36Bold black ${styles.welcome}`}>
-            Chào mừng đến với CorpDoc!
-          </p>
+        <p className={`text36Bold black ${styles.welcome}`}>
+          Chào mừng đến với CorpDoc!
+        </p>
+        <div
+          className={`d-flex flex-column justify-content-center align-items-center bg-bgColor4 ${styles.formContainer}`}
+        >
+          {/* <FormTab
+            tabHeader={['Đăng ký', 'Đăng nhập']}
+            action={[handleSignupTabClick, handleSigninTabClick]}
+            tabStyles={[
+              'p20 br-TopLeft-10 br-BottomRight-10',
+              'p20 br-TopRight-10 br-BottomLeft-10',
+            ]}
+            boxShadows={['formTab-1', 'formTab-2']}
+            activeTab={tab}
+          /> */}
           <div
-            className={`d-flex flex-column justify-content-center align-items-center ${styles.formContainer}`}
+            className={`d-flex flex-column justify-content-center align-items-center ${styles.formWrapper}`}
           >
-            <FormTab
-              tabHeader={['Đăng ký', 'Đăng nhập']}
-              action={[handleSignupTabClick, handleSigninTabClick]}
-              tabStyles={[
-                'p20 br-TopLeft-10 br-BottomRight-10',
-                'p20 br-TopRight-10 br-BottomLeft-10',
-              ]}
-              boxShadows={['formTab-1', 'formTab-2']}
-              activeTab={tab}
-            />
+            <div className={`w-100 ${styles.textWrapper}`}>
+              <h6 className="textH6 black mBottom15">
+                {tab === 0 ? 'Cùng bắt đầu nào!' : 'Mừng bạn quay trở lại!'}
+              </h6>
+              <p className="text24Medium black">
+                {tab === 0 ? 'Tạo tài khoản của bạn' : 'Đăng nhập ngay'}
+              </p>
+            </div>
             <div
-              className={`d-flex flex-column justify-content-center align-items-center ${styles.formWrapper}`}
+              // className={`d-flex flex-column justify-content-between align-content-center ${
+              //   tab === 0 ? styles.infoWrapper : styles.infoWrapperSignIn
+              // }`}
             >
-              <div className={`w-100 ${styles.textWrapper}`}>
-                <h6 className="textH6 black mBottom15">
-                  {tab === 0 ? 'Cùng bắt đầu nào!' : 'Mừng bạn quay trở lại'}
-                </h6>
-                <p className="text24Medium black">
-                  {tab === 0 ? 'Tạo tài khoản của bạn' : 'Đăng nhập ngay'}
-                </p>
-              </div>
-              <div
-                className={`d-flex flex-column justify-content-between align-content-center ${
-                  tab === 0 ? styles.infoWrapper : styles.infoWrapperSignIn
-                }`}
-              >
-                {renderForm()}
-                <FormBtn
-                  name={tab === 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
-                  onClick={() => {
-                    console.log(1);
-                    handleNavigate(tab);
-                  }}
-                />
-                <div className="d-flex justify-content-center">
-                  <p className={`${styles.haveAccount}`}>Đã có tài khoản?</p>{' '}
-                  &nbsp;
-                  <div
-                    className={`text14Bold black ${styles.signIn}`}
-                    onClick={() => handleSetTab()}
-                  >
-                    <span className="pointer">
-                      {tab === 0 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
-                    </span>
-                  </div>
+              {renderForm()}
+              <FormBtn
+                name={tab === 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
+                onClick={() => {
+                  console.log(1);
+                  handleNavigate(tab);
+                }}
+              />
+              {/* <div className="d-flex justify-content-center">
+                <p className={`${styles.haveAccount}`}>Đã có tài khoản?</p>{' '}
+                &nbsp;
+                <div
+                  className={`text14Bold black ${styles.signIn}`}
+                  onClick={() => handleSetTab()}
+                >
+                  <span className="pointer">
+                    {tab === 0 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
+                  </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

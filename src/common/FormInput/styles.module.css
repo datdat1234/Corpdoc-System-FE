@@ -1,7 +1,9 @@
 .root {
   position: relative;
-  max-height: 56px;
+  height: 56px;
+  min-width: 330px;
   flex: 1;
+  margin-top: 20px;
 }
 
 .label {
@@ -29,6 +31,7 @@
 
 .input:focus {
   border-color: #231811;
+  -webkit-box-shadow: none;
   outline: none !important;
   background-color: #F5F4F2;
 }

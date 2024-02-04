@@ -33,7 +33,7 @@ export default function FormInput({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root}`}>
+    <div className={`${styles.root}`}>
       <input
         type={!canSeen ? type : 'text'}
         className={`form-control ${styles.input}`}

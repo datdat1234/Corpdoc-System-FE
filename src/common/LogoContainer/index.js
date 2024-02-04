@@ -26,10 +26,12 @@ export default function LogoContainer({ src = '', alt = '' }) {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`${styles.root}`}>
-      <div className={`${styles.firstCircle} bg-subColor2`}></div>
-      <div className={`${styles.secondCircle} bg-bgColor4`}></div>
-      <img className={`${styles.image}`} src={src} alt={alt}></img>
+    <div className="position-absolute">
+      <div className={`${styles.root}`}>
+        <div className={`${styles.firstCircle} bg-subColor2`}></div>
+        <div className={`${styles.secondCircle} bg-bgColor4`}></div>
+        <img className={`${styles.image}`} src={src} alt={alt}></img>
+      </div>
     </div>
   );
 }

@@ -2,34 +2,36 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  min-height: 735px;
   overflow: hidden;
 }
 
 .firstCircle {
   position: absolute;
-  bottom: -13vh;
-  left: -43vh;
-  width: 163vh;
-  height: 163vh;
+  top: -277px;
+  left: -340px;
+  width: 1200px;
+  height: 1200px;
   border-radius: 50%;
-  filter: blur(80px);
-  border: 1px solid red;
+  filter: blur(50px);
+  /* border: 1px solid red; */
 }
 
 .secondCircle {
   position: absolute;
-  bottom: -13vh;
-  left: 44vh;
-  width: 113vh;
-  height: 113vh;
+  top: 50px;
+  right: 35%;
+  width: 850px;
+  height: 850px;
   border-radius: 50%;
-  filter: blur(160px);
+  filter: blur(100px);
 }
 
 .image {
   position: absolute;
-  top: 19vh;
-  left: 32.5vh;
-  height: 78vh;
-  width: 106vh;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 40%;
+  height: 623px;
+  width: 823px;
 }
