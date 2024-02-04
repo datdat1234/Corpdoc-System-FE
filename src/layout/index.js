@@ -52,21 +52,21 @@ export default function Layout({ children }) {
     document.removeEventListener('mouseup', handleMouseUp);
   };
 
-  const handleMouseDown1 = (event) => {
+  const handleMouseDownSideBar = (event) => {
     event.preventDefault();
-    document.addEventListener('mousemove', handleMouseMove1);
-    document.addEventListener('mouseup', handleMouseUp1);
+    document.addEventListener('mousemove', handleMouseMoveSideBar);
+    document.addEventListener('mouseup', handleMouseUpSideBar);
   };
 
-  const handleMouseMove1 = (event) => {
+  const handleMouseMoveSideBar = (event) => {
     const containerWidth = resizableSidebarRef.current.parentNode.clientWidth;
     const newWidth = (event.clientX / containerWidth) * 100;
     setSidebarWidth(newWidth);
   };
 
-  const handleMouseUp1 = () => {
-    document.removeEventListener('mousemove', handleMouseMove1);
-    document.removeEventListener('mouseup', handleMouseUp1);
+  const handleMouseUpSideBar = () => {
+    document.removeEventListener('mousemove', handleMouseMoveSideBar);
+    document.removeEventListener('mouseup', handleMouseUpSideBar);
   };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
@@ -93,7 +93,7 @@ export default function Layout({ children }) {
                 <Sidebar />
                 <div
                   className={`${styles.resizerSideBar}`}
-                  onMouseDown={handleMouseDown1}
+                  onMouseDown={handleMouseDownSideBar}
                 ></div>
               </div>
               <div

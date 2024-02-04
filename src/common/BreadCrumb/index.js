@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 
 export default function BreadCrumb({}) {
   // #region    VARIABLES //////////////////////////
@@ -35,12 +35,11 @@ export default function BreadCrumb({}) {
       } ${styles.root}`}
       onClick={() => setModal(!modal)}
     >
-      <FontAwesomeIcon icon={faAngleRight} />
+      <FontAwesomeIcon icon={icon.angleRight} />
       <p className="pHorizontal10 textH6ExtraBold">
         Phòng Nhân sự / Thư viện sách cá nhân
       </p>
-      <FontAwesomeIcon icon={faCaretDown} />
-      <i className="fa-solid fa-caret-up"></i>
+      <FontAwesomeIcon icon={icon.caretDown} />
       {modal && <BreadCrumbModal />}
     </div>
   );

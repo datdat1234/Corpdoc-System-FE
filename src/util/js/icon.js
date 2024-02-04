@@ -1,0 +1,43 @@
+import {
+  faCaretDown,
+  faAngleRight,
+  faCaretRight,
+  faFolder,
+  faEye,
+  faEyeSlash,
+  faFile,
+  faBookmark,
+  faEllipsisVertical,
+  faDownload,
+  faPlus,
+  faMinus,
+  faXmark,
+  faFileArrowUp,
+  faChevronDown,
+  faMagnifyingGlass,
+  faShare,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
+
+const icon = {
+  caretDown: faCaretDown,
+  caretRight: faCaretRight,
+  angleRight: faAngleRight,
+  folder: faFolder,
+  eye: faEye,
+  eyeSlash: faEyeSlash,
+  file: faFile,
+  bookMark: faBookmark,
+  ellipsisVertical: faEllipsisVertical,
+  download: faDownload,
+  plus: faPlus,
+  minus: faMinus,
+  xmark: faXmark,
+  fileArrowUp: faFileArrowUp,
+  chevronDown: faChevronDown,
+  magnifyingGlass: faMagnifyingGlass,
+  share: faShare,
+  trashCan: faTrashCan,
+};
+
+export default icon;

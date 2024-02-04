@@ -4,11 +4,7 @@ import styles from './styles.module.css';
 import Button from 'common/Button';
 import HoverModal from 'common/HoverModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFileArrowUp,
-  faChevronDown,
-  faMagnifyingGlass,
-} from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 import {
   UPLOAD_TABS,
   UPLOAD_TABS_ICON,
@@ -73,8 +69,8 @@ export default function Header() {
             icon1Styles="header p10"
             icon2Styles="header p10"
             btnStyles="textH6Black bg-bgColor5 header"
-            icon1={<FontAwesomeIcon icon={faFileArrowUp} />}
-            icon2={<FontAwesomeIcon icon={faChevronDown} />}
+            icon1={<FontAwesomeIcon icon={icon.fileArrowUp} />}
+            icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
             onClick={() => ({})}
           />
           {isHovered === 1 && (
@@ -105,8 +101,8 @@ export default function Header() {
             icon1Styles="header p10"
             icon2Styles="header p10"
             btnStyles="textH6Black bg-bgColor5 header"
-            icon1={<FontAwesomeIcon icon={faMagnifyingGlass} />}
-            icon2={<FontAwesomeIcon icon={faChevronDown} />}
+            icon1={<FontAwesomeIcon icon={icon.magnifyingGlass} />}
+            icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
             onClick={() => ({})}
           />
           {isHovered === 2 && (
@@ -128,7 +124,7 @@ export default function Header() {
             name={renderUserInfo()}
             ctnStyles="flex-row h-57 br-15 bg-header pRight5 pLeft25"
             icon2Styles="text p10"
-            icon2={<FontAwesomeIcon icon={faChevronDown} />}
+            icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
             onClick={() => ({})}
           />
           {isHovered === 3 && (

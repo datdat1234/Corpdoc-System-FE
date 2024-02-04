@@ -4,13 +4,7 @@ import IconButton from 'common/IconButton';
 import Button from 'common/Button';
 import TextIcon from 'common/TextIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretDown,
-  faFile,
-  faFolder,
-  faBookmark,
-  faEllipsisVertical,
-} from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 
 export default function SrcItem({ value = [], grid = [] }) {
   // #region    VARIABLES //////////////////////////
@@ -37,7 +31,7 @@ export default function SrcItem({ value = [], grid = [] }) {
     if (isSave) {
       return (
         <IconButton
-          icon={<FontAwesomeIcon icon={faBookmark} />}
+          icon={<FontAwesomeIcon icon={icon.bookMark} />}
           ctnStyles="mRight10"
           onClick={() => {
             console.log('click');
@@ -47,7 +41,7 @@ export default function SrcItem({ value = [], grid = [] }) {
     } else {
       return (
         <IconButton
-          icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
+          icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
           onClick={() => {
             console.log('click');
           }}
@@ -66,7 +60,7 @@ export default function SrcItem({ value = [], grid = [] }) {
         name={text}
         ctnStyles="justify-content-start"
         icon1={null}
-        icon2={<FontAwesomeIcon icon={faCaretDown} />}
+        icon2={<FontAwesomeIcon icon={icon.caretDown} />}
         icon2Styles="pLeft10"
         btnStyles="textH6Bold w-auto text"
         onClick={() => {
@@ -81,7 +75,7 @@ export default function SrcItem({ value = [], grid = [] }) {
       return (
         <TextIcon
           text={text}
-          icon1={<FontAwesomeIcon icon={faFile} />}
+          icon1={<FontAwesomeIcon icon={icon.file} />}
           textStyles="text14Bold mLeft10"
         />
       );
@@ -89,7 +83,7 @@ export default function SrcItem({ value = [], grid = [] }) {
       return (
         <TextIcon
           text={text}
-          icon1={<FontAwesomeIcon icon={faFolder} />}
+          icon1={<FontAwesomeIcon icon={icon.folder} />}
           icon1Styles="main"
           textStyles="text14Medium mLeft10"
         />

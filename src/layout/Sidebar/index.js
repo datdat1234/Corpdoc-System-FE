@@ -5,11 +5,7 @@ import FolderStruct from 'common/FolderStruct';
 import Button from 'common/Button';
 import { SIDEBAR_TABS, SIDEBAR_STRUCTURE } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faShare,
-  faBookmark,
-  faTrashCan,
-} from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 
 export default function Sidebar() {
   // #region    VARIABLES //////////////////////////
@@ -17,9 +13,9 @@ export default function Sidebar() {
   const [currentTab, setCurrentTab] = useState(0);
   const icons = [
     <></>,
-    <FontAwesomeIcon icon={faShare} />,
-    <FontAwesomeIcon icon={faBookmark} />,
-    <FontAwesomeIcon icon={faTrashCan} />,
+    <FontAwesomeIcon icon={icon.share} />,
+    <FontAwesomeIcon icon={icon.bookMark} />,
+    <FontAwesomeIcon icon={icon.trashCan} />,
   ];
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////

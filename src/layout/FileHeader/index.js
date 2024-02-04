@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faDownload,
-  faPlus,
-  faMinus,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 
 export default function FileHeader({
   name = '',
@@ -75,10 +70,10 @@ export default function FileHeader({
       </p>
       <div>
         <button className={`${styles.button} pRight20`}>
-          <FontAwesomeIcon icon={faDownload} />
+          <FontAwesomeIcon icon={icon.download} />
         </button>
         <button className={`${styles.button} ${styles.button}`}>
-          <FontAwesomeIcon icon={faXmark} />{' '}
+          <FontAwesomeIcon icon={icon.xmark} />{' '}
         </button>
       </div>
       <div className={`${styles.fileEdit}`}>
@@ -92,7 +87,7 @@ export default function FileHeader({
         <div className={`${styles.divider}`}></div>
         <div className={`${styles.scaleCtn}`}>
           <button className={`${styles.button}`} onClick={handleMinus}>
-            <FontAwesomeIcon icon={faMinus} />
+            <FontAwesomeIcon icon={icon.minus} />
           </button>
           <div className={`${styles.bgScaleNum}`}>
             <input
@@ -112,7 +107,7 @@ export default function FileHeader({
             <p className={`${styles.pageNumber}`}>{`%`}</p>
           </div>
           <button className={`${styles.button}`} onClick={handlePlus}>
-            <FontAwesomeIcon icon={faPlus} />
+            <FontAwesomeIcon icon={icon.plus} />
           </button>
         </div>
       </div>
