@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretDown,
-  faCaretRight,
-  faFolder,
-} from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 
 export default function FolderStruct({
   name = '',
@@ -59,13 +55,13 @@ export default function FolderStruct({
           onClick={handleExpand}
         >
           {isExpand ? (
-            <FontAwesomeIcon icon={faCaretDown} />
+            <FontAwesomeIcon icon={icon.caretDown} />
           ) : (
-            <FontAwesomeIcon icon={faCaretRight} />
+            <FontAwesomeIcon icon={icon.caretRight} />
           )}
         </div>
         <div className={`${styles.icon} ${styles.folderIcon}`}>
-          <FontAwesomeIcon icon={faFolder} />
+          <FontAwesomeIcon icon={icon.folder} />
         </div>
         <button type="button" className={`${styles.button}`} onClick={onClick}>
           {name}

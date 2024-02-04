@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import icon from 'util/js/icon';
 
 export default function FormInput({
   name = '',
@@ -46,9 +46,9 @@ export default function FormInput({
       {type === 'password' && (
         <div className={styles.icon} onClick={() => handlePassword()}>
           {canSeen ? (
-            <FontAwesomeIcon icon={faEye} />
+            <FontAwesomeIcon icon={icon.eye} />
           ) : (
-            <FontAwesomeIcon icon={faEyeSlash} />
+            <FontAwesomeIcon icon={icon.eyeSlash} />
           )}
         </div>
       )}
