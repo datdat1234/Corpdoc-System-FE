@@ -10,9 +10,16 @@
   height: 22px;
   width: 22px;
   margin-top: 0px;
+  cursor: pointer;
+}
+
+.checkBox:checked {
+  background-color: #9E9E9E;
+  -webkit-box-shadow: none;
+  border-color: #9E9E9E;
 }
 
 .text {
   color: #424242;
-  margin-left: 15px;
+  margin-left: 10px;
 }
