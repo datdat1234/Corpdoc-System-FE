@@ -71,8 +71,18 @@
   font-size: 14px;
 }
 
-@media only screen and (max-width: 1250px){
-  .loginContainer{
+.forgotPassCtn {
+  width: 100%;
+  min-width: 550px;
+}
+
+.contactCtn {
+  max-width: 550px;
+  padding: 50px 90px;
+}
+
+@media only screen and (max-width: 1250px) {
+  .loginContainer {
     left: 50%;
     transform: translate(-50%, 0);
   }

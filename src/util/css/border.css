@@ -1,5 +1,9 @@
 /* Border Radius 4 corner */
 
+.br-8 {
+  border-radius: 8px;
+}
+
 .br-10 {
   border-radius: 10px;
 }
