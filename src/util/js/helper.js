@@ -1,6 +1,6 @@
+import React from 'react';
 import get from 'lodash/get';
 import isObject from 'lodash/isObject';
-import React from 'react';
 
 const INNER_WIDTH = window.innerWidth;
 const INNER_HEIGHT = window.innerHeight;

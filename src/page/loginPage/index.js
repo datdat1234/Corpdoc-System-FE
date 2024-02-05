@@ -5,15 +5,18 @@ import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
 import FormTab from 'common/FormTab';
 import FormInput from 'common/FormInput';
-import FormBtn from 'common/FormBtn';
+import Button from 'common/Button';
 import CheckBoxForm from 'common/CheckBoxForm';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import icon from 'util/js/icon';
 
 export default function LoginPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const formWidth = AUTH_FORM_WIDTH;
   const [tab, setTab] = useState(1);
+  const [isResetPass, setIsResetPass] = useState(false);
   const navigate = useNavigate();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -52,8 +55,13 @@ export default function LoginPage() {
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
           >
-            <CheckBoxForm text="Ghi nhớ mật khẩu" textStyles='text14'/>
-            <p className={`text14 ${styles.hoverPass}`}>Quên mật khẩu?</p>
+            <CheckBoxForm text="Ghi nhớ mật khẩu" textStyles="text14" />
+            <p
+              className={`text14 ${styles.hoverPass}`}
+              onClick={handleResetPass}
+            >
+              Quên mật khẩu?
+            </p>
           </div>
         </>
       );
@@ -68,6 +76,10 @@ export default function LoginPage() {
     if (tab === 0) navigate(`/home`);
     else navigate(`/home`);
   };
+
+  const handleResetPass = () => {
+    setIsResetPass(true);
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -77,9 +89,7 @@ export default function LoginPage() {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div
-    className="position-relative"
-    >
+    <div className="position-relative">
       <LogoContainer src={Logo} alt="CorpDoc Logo" />
       <div
         className={`position-absolute end-0 d-flex flex-column zIndex-500 justify-content-center align-items-center ${styles.loginContainer}`}
@@ -91,41 +101,45 @@ export default function LoginPage() {
         <div
           className={`d-flex flex-column justify-content-center align-items-center bg-bgColor4 ${styles.formContainer}`}
         >
-          {/* <FormTab
-            tabHeader={['Đăng ký', 'Đăng nhập']}
-            action={[handleSignupTabClick, handleSigninTabClick]}
-            tabStyles={[
-              'p20 br-TopLeft-10 br-BottomRight-10',
-              'p20 br-TopRight-10 br-BottomLeft-10',
-            ]}
-            boxShadows={['formTab-1', 'formTab-2']}
-            activeTab={tab}
-          /> */}
-          <div
-            className={`d-flex flex-column justify-content-center align-items-center ${styles.formWrapper}`}
-          >
-            <div className={`w-100 ${styles.textWrapper}`}>
-              <h6 className="textH6 black mBottom15">
-                {tab === 0 ? 'Cùng bắt đầu nào!' : 'Mừng bạn quay trở lại!'}
-              </h6>
-              <p className="text24Medium black">
-                {tab === 0 ? 'Tạo tài khoản của bạn' : 'Đăng nhập ngay'}
-              </p>
-            </div>
-            <div
-              // className={`d-flex flex-column justify-content-between align-content-center ${
-              //   tab === 0 ? styles.infoWrapper : styles.infoWrapperSignIn
-              // }`}
-            >
-              {renderForm()}
-              <FormBtn
-                name={tab === 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
-                onClick={() => {
-                  console.log(1);
-                  handleNavigate(tab);
-                }}
-              />
-              {/* <div className="d-flex justify-content-center">
+          {!isResetPass && (
+            <div>
+              {/* <FormTab
+                tabHeader={['Đăng ký', 'Đăng nhập']}
+                action={[handleSignupTabClick, handleSigninTabClick]}
+                tabStyles={[
+                  'p20 br-TopLeft-10 br-BottomRight-10',
+                  'p20 br-TopRight-10 br-BottomLeft-10',
+                ]}
+                boxShadows={['formTab-1', 'formTab-2']}
+                activeTab={tab}
+              /> */}
+              <div
+                className={`d-flex flex-column justify-content-center align-items-center ${styles.formWrapper}`}
+              >
+                <div className={`w-100 ${styles.textWrapper}`}>
+                  <h6 className="textH6 black mBottom15">
+                    {tab === 0 ? 'Cùng bắt đầu nào!' : 'Mừng bạn quay trở lại!'}
+                  </h6>
+                  <p className="text24Medium black">
+                    {tab === 0 ? 'Tạo tài khoản của bạn' : 'Đăng nhập ngay'}
+                  </p>
+                </div>
+                <div
+                // className={`d-flex flex-column justify-content-between align-content-center ${
+                //   tab === 0 ? styles.infoWrapper : styles.infoWrapperSignIn
+                // }`}
+                >
+                  {renderForm()}
+                  <Button
+                    name={tab === 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
+                    ctnStyles="w-100 h-56 bg-text br-8"
+                    btnStyles="text-center textH6Bold white bg-text"
+                    onClick={() => {
+                      console.log(1);
+                      handleNavigate(tab);
+                    }}
+                  />
+                  {/* <div className="d-flex justify-content-center">
                 <p className={`${styles.haveAccount}`}>Đã có tài khoản?</p>{' '}
                 &nbsp;
                 <div
@@ -137,8 +151,29 @@ export default function LoginPage() {
                   </span>
                 </div>
               </div> */}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
+          {isResetPass && (
+            <div className={`${styles.forgotPassCtn}`}>
+              <Button
+                name="Cài lại mật khẩu"
+                ctnStyles="h-68 pLeft25"
+                btnStyles="d-flex align-items-center justify-content-center text24Bold bg-bgColor4"
+                icon1={<FontAwesomeIcon icon={icon.angleLeft} />}
+                icon1Styles=""
+                onClick={() => setIsResetPass(false)}
+              />
+              <div className={`${styles.contactCtn}`}>
+                <p className="lh-sm text-center textH5">
+                  Vui lòng liên hệ với{' '}
+                  <span className="text20Black">Trưởng phòng ban</span> để có
+                  thể cài đặt lại mật khẩu.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

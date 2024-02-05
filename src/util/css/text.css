@@ -122,3 +122,18 @@
   font-size: 24px;
   font-weight: 500;
 }
+
+.text20Black {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.text24Black {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.text18Bold {
+  font-size: 18px;
+  font-weight: 700;
+}

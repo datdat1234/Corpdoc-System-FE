@@ -61,7 +61,10 @@ export default function Input({
     if (type === 'date') {
       return (
         <div>
-          <input type="date" className={`${styles.input} ${styles.inputDate}`} />
+          <input
+            type="date"
+            className={`${styles.input} ${styles.inputDate}`}
+          />
         </div>
       );
     }
@@ -72,6 +75,14 @@ export default function Input({
         </div>
       );
     }
+    if (type === 'textarea') {
+      return (
+        <div>
+          <textarea className={`${styles.textareaCtn}`}></textarea>
+        </div>
+      );
+    }
+    return <></>;
   };
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////

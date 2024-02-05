@@ -19,11 +19,15 @@ import {
   faTrashCan,
   faAngleLeft,
   faAngleDown,
+  faCamera,
+  faLink,
+  faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
   caretDown: faCaretDown,
   caretRight: faCaretRight,
+  camera: faCamera,
   angleRight: faAngleRight,
   angleLeft: faAngleLeft,
   angleDown: faAngleDown,
@@ -42,6 +46,8 @@ const icon = {
   magnifyingGlass: faMagnifyingGlass,
   share: faShare,
   trashCan: faTrashCan,
+  link: faLink,
+  circleCheck: faCircleCheck,
 };
 
 export default icon;

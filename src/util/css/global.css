@@ -46,6 +46,10 @@
   height: 39px;
 }
 
+.h-56 {
+  height: 56px;
+}
+
 .h-57 {
   height: 57px;
 }
@@ -54,10 +58,18 @@
   height: 60px;
 }
 
+.h-68 {
+  height: 68px;
+}
+
 /* Width */
 
 .w-24 {
   width: 24px;
+}
+
+.w-340 {
+  width: 340px
 }
 
 .w-auto {
@@ -68,4 +80,8 @@
 
 .fs-16 {
   font-size: 16px;
+}
+
+.fs-20 {
+  font-size: 20px;
 }
