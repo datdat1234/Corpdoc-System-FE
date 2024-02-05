@@ -6,6 +6,8 @@ import Sidebar from './Sidebar';
 import { NO_LAYOUT_LINKS, NOT_SHOW_SIDEBAR } from 'util/js/constant';
 import styles from './styles.module.css';
 import PDFRenderer from 'common/PDFRenderer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import icon from 'util/js/icon';
 
 export default function Layout({ children }) {
   // #region    VARIABLES //////////////////////////
@@ -115,9 +117,12 @@ export default function Layout({ children }) {
             </div>
           </div>
           <div
-            className={`${styles.resizer}`}
+            className={`d-flex flex-column justify-content-center align-items-center ${styles.resizer}`}
             onMouseDown={handleMouseDown}
-          ></div>
+          >
+            <FontAwesomeIcon icon={icon.gripVertical} />
+            <FontAwesomeIcon icon={icon.gripVertical} />
+          </div>
         </div>
         <div
           className={`${styles.pdfCtn}`}

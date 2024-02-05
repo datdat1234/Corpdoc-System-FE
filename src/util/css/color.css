@@ -1,3 +1,24 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --main: #f8853e;
+  --header: #f99a54;
+  --subColor1: #faaf6a;
+  --subColor2: #fcca7f;
+  --subColor3: #fdd995;
+  --bgColor1: #feeeab;
+  --bgColor2: #fff5ea;
+  --bgColor3: #dfe0df;
+  --bgColor4: #f5f4f2;
+  --bgColor5: #402e32;
+  --bgColor550: rgba(64, 46, 50, 0.5);
+  --bgColor575: rgba(64, 46, 50, 0.75);
+  --text: #231811;
+  --text50: rgba(35, 24, 17, 0.5);
+  --text60: rgba(35, 24, 17, 0.6);
+  --text75: rgba(35, 24, 17, 0.75);
+}
+
 /* Text colors */
 
 .black {

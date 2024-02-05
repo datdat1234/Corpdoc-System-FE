@@ -14,6 +14,7 @@
   height: 1200px;
   border-radius: 50%;
   filter: blur(50px);
+  background-color: var(--subColor2);
   /* border: 1px solid red; */
 }
 
@@ -25,6 +26,7 @@
   height: 850px;
   border-radius: 50%;
   filter: blur(100px);
+  background-color: var(--bgColor4);
 }
 
 .image {
@@ -42,6 +44,6 @@
     right: 0;
   }
   .image{
-      display: none;
+    display: none;
   }
 }

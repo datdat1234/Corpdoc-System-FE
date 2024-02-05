@@ -19,6 +19,7 @@ import {
   faTrashCan,
   faAngleLeft,
   faAngleDown,
+  faGripVertical,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
@@ -42,6 +43,7 @@ const icon = {
   magnifyingGlass: faMagnifyingGlass,
   share: faShare,
   trashCan: faTrashCan,
+  gripVertical: faGripVertical,
 };
 
 export default icon;

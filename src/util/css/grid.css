@@ -122,6 +122,10 @@
 
 /* Row Grid */
 
+:root {
+  --rowSingle: calc(920px / 24);
+}
+
 .row-1 {
   flex: 0 0 auto;
   height: 4.166%;

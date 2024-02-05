@@ -77,9 +77,7 @@ export default function LoginPage() {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div
-    className="position-relative"
-    >
+    <div className="position-relative">
       <LogoContainer src={Logo} alt="CorpDoc Logo" />
       <div
         className={`position-absolute end-0 d-flex flex-column zIndex-500 justify-content-center align-items-center ${styles.loginContainer}`}
