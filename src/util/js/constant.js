@@ -158,4 +158,4 @@ export const HOMEPAGE_ITEM_GRIDS = [
   'col-1',
 ];
 
-export const NOT_SHOW_SIDEBAR = ['/search'];
+export const NOT_SHOW_SIDEBAR = ['/search', '/upload', '/result-page'];

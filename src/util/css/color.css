@@ -68,6 +68,18 @@
   color: #23181100;
 }
 
+.success {
+  color: #609966;
+}
+
+.error {
+  color: #ff0303;
+}
+
+.textError {
+  color: #f16767;
+}
+
 /* Background colors */
 
 .bg-black {
@@ -136,4 +148,12 @@
 
 .bg-text75 {
   background-color: #23181100;
+}
+
+.bg-success {
+  color: #609966;
+}
+
+.bg-error {
+  color: #ff0303;
 }

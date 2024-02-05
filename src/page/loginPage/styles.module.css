@@ -3,7 +3,7 @@
   height: 100vh;
   padding: 0;
   margin: 0;
-  background-color: #F5F4F2;
+  background-color: #f5f4f2;
 }
 
 .loginContainer {
@@ -71,8 +71,18 @@
   font-size: 14px;
 }
 
-@media only screen and (max-width: 1250px){
-  .loginContainer{
+.forgotPassCtn {
+  width: 100%;
+  min-width: 550px;
+}
+
+.contactCtn {
+  max-width: 550px;
+  padding: 50px 90px;
+}
+
+@media only screen and (max-width: 1250px) {
+  .loginContainer {
     left: 50%;
     transform: translate(-50%, 0);
   }
