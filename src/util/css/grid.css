@@ -117,7 +117,7 @@
 
 .col-24 {
   flex: 0 0 auto;
-  width: 100%;
+  width: 920px;
 }
 
 /* Row Grid */
@@ -128,120 +128,120 @@
 
 .row-1 {
   flex: 0 0 auto;
-  height: 4.166%;
+  height: calc(var(--rowSingle) * 1);
 }
 
 .row-2 {
   flex: 0 0 auto;
-  height: 8.332%;
+  height: calc(var(--rowSingle) * 2);
 }
 
 .row-3 {
   flex: 0 0 auto;
-  height: 12.498%;
+  height: calc(var(--rowSingle) * 3);
 }
 
 .row-4 {
   flex: 0 0 auto;
-  height: 16.664%;
+  height: calc(var(--rowSingle) * 4);
 }
 
 .row-5 {
   flex: 0 0 auto;
-  height: 20.83%;
+  height: calc(var(--rowSingle) * 5);
 }
 
 .row-6 {
   flex: 0 0 auto;
-  height: 24.996%;
+  height: calc(var(--rowSingle) * 6);
 }
 
 .row-7 {
   flex: 0 0 auto;
-  height: 29.162%;
+  height: calc(var(--rowSingle) * 7);
 }
 
 .row-8 {
   flex: 0 0 auto;
-  height: 33.328%;
+  height: calc(var(--rowSingle) * 8);
 }
 
 .row-9 {
   flex: 0 0 auto;
-  height: 37.494%;
+  height: calc(var(--rowSingle) * 9);
 }
 
 .row-10 {
   flex: 0 0 auto;
-  height: 41.66%;
+  height: calc(var(--rowSingle) * 10);
 }
 
 .row-11 {
   flex: 0 0 auto;
-  height: 45.826%;
+  height: calc(var(--rowSingle) * 11);
 }
 
 .row-12 {
   flex: 0 0 auto;
-  height: 50%;
+  height: calc(var(--rowSingle) * 12);
 }
 
 .row-13 {
   flex: 0 0 auto;
-  height: 54.158%;
+  height: calc(920px - (var(--rowSingle) * 11));
 }
 
 .row-14 {
   flex: 0 0 auto;
-  height: 58.324%;
+  height: calc(920px - (var(--rowSingle) * 10));
 }
 
 .row-15 {
   flex: 0 0 auto;
-  height: 62.49%;
+  height: calc(920px - (var(--rowSingle) * 9));
 }
 
 .row-16 {
   flex: 0 0 auto;
-  height: 66.656%;
+  height: calc(920px - (var(--rowSingle) * 8));
 }
 
 .row-17 {
   flex: 0 0 auto;
-  height: 70.822%;
+  height: calc(920px - (var(--rowSingle) * 7));
 }
 
 .row-18 {
   flex: 0 0 auto;
-  height: 74.988%;
+  height: calc(920px - (var(--rowSingle) * 6));
 }
 
 .row-19 {
   flex: 0 0 auto;
-  height: 79.154%;
+  height: calc(920px - (var(--rowSingle) * 5));
 }
 
 .row-20 {
   flex: 0 0 auto;
-  height: 83.32%;
+  height: calc(920px - (var(--rowSingle) * 4));
 }
 
 .row-21 {
   flex: 0 0 auto;
-  height: 87.486%;
+  height: calc(920px - (var(--rowSingle) * 3));
 }
 
 .row-22 {
   flex: 0 0 auto;
-  height: 91.652%;
+  height: calc(920px - (var(--rowSingle) * 2));
 }
 
 .row-23 {
   flex: 0 0 auto;
-  height: 95.818%;
+  height: calc(920px - (var(--rowSingle) * 1));
 }
 
 .row-24 {
   flex: 0 0 auto;
-  height: 100%;
+  height: calc(920px - (var(--rowSingle) * 0));
 }

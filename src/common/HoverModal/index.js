@@ -51,30 +51,28 @@ export default function HoverModal({
     for (let i = 0; i < name.length; i++) {
       tabItems.push(
         <div
-          className="w-100 position-relative"
+          className={`w-100 position-relative ${styles.itemButton}`}
           key={i}
           onMouseEnter={() => handleMouseEnter(i)}
           onMouseLeave={() => handleMouseLeave()}
         >
           <Button
             name={name[i]}
-            ctnStyles={`flex-row h-57 p5 pRight10 ${
-              i === name.length - 1 ? lastBtnColor : 'bg-bgColor4'
-            } ${i === name.length - 1 ? lastBtnColor : 'bgColor4'} 
-            ${
-              checkHavingLastBtn(i) &&
-              'br-BottomRight-15 br-BottomLeft-15 mBottom2'
-            } 
+            ctnStyles={`pHorizontal15 pVertical10 
+              ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4 bgColor4'}
+              ${checkHavingLastBtn(i) ? 'br-BottomRight-15 br-BottomLeft-15 mBottom2' : ''} 
             `}
-            icon1Styles={`header ${icon[i].left && 'pLeft10'} ${
-              i !== 3 && 'pNone'
-            }`}
-            icon2Styles={`text ${i === name.length - 1 && 'pNone'}`}
-            btnStyles={`${
-              i === name.length - 1 ? lastBtnColor : 'bg-bgColor4'
-            } ${i === name.length - 1 && lastBtnStyles} text14SemiBold mLeft10`}
-            icon1={icon[i].left && <FontAwesomeIcon icon={icon[i].left} />}
-            icon2={icon[i].right && <FontAwesomeIcon icon={icon[i].right} />}
+
+            icon1Styles={`header`}
+            icon2Styles={`text mLeft5`}
+
+            btnStyles={`text14SemiBold
+              ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4'} 
+              ${i === name.length - 1 ? lastBtnStyles : ''} 
+            `}
+              
+            icon1={icon[i].left && <FontAwesomeIcon icon={icon[i].left} size={`lg`} />}
+            icon2={icon[i].right && <FontAwesomeIcon icon={icon[i].right} size={`lg`} />}
             onClick={onClick[i]}
           />
           {renderBorder(i)}

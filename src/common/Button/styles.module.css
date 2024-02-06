@@ -3,13 +3,16 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+  height: 100%;
 }
 
 .icon {
   cursor: pointer;
+  width: 30px;
 }
 
 .btn {
   text-align: left;
+  flex-grow: 1;
 }

@@ -51,7 +51,9 @@ export default function Layout({ children }) {
 
   const handleMouseMove = (event) => {
     const containerWidth = resizableRef.current.parentNode.clientWidth;
-    const newWidth = (event.clientX / containerWidth) * 100;
+    var newWidth = (event.clientX / containerWidth) * 100;
+    if(newWidth < 25) newWidth = 25
+    else if(newWidth > 75) newWidth = 75;
     setWidth(newWidth);
   };
 
@@ -120,8 +122,7 @@ export default function Layout({ children }) {
             className={`d-flex flex-column justify-content-center align-items-center ${styles.resizer}`}
             onMouseDown={handleMouseDown}
           >
-            <FontAwesomeIcon icon={icon.gripVertical} />
-            <FontAwesomeIcon icon={icon.gripVertical} />
+            <FontAwesomeIcon icon={icon.gripLinesVertical} />
           </div>
         </div>
         <div

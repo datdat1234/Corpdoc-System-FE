@@ -13,6 +13,7 @@
   --bgColor5: #402e32;
   --bgColor550: rgba(64, 46, 50, 0.5);
   --bgColor575: rgba(64, 46, 50, 0.75);
+  --bgColor6: #D9D9D9;
   --text: #231811;
   --text50: rgba(35, 24, 17, 0.5);
   --text60: rgba(35, 24, 17, 0.6);
@@ -75,6 +76,10 @@
 
 .bgColor575 {
   color: #402e32bf;
+}
+
+.bgColor6 {
+  color: #D9D9D9;
 }
 
 .text {
@@ -157,6 +162,10 @@
 
 .bg-bgColor575 {
   background-color: #402e32bf;
+}
+
+.bg-bgColor6 {
+  background-color: #D9D9D9;
 }
 
 .bg-text {

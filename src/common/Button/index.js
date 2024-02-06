@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './styles.module.css';
 
 export default function Button({
-  name,
+  name = null,
   ctnStyles = '',
   icon1Styles = '',
   icon2Styles = '',
   btnStyles = '',
-  icon1 = <></>,
-  icon2 = <></>,
+  icon1 = null,
+  icon2 = null,
   onClick,
 }) {
   // #region    VARIABLES //////////////////////////
@@ -36,15 +36,21 @@ export default function Button({
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`w-100 ${styles.root} ${ctnStyles}`} onClick={onClick}>
-      <div className={`${icon1Styles} ${styles.icon}`}>{icon1}</div>
-      <button
-        type="button"
-        onClick={onClick}
-        className={`w-100 ${btnStyles} ${styles.btn}`}
-      >
-        {name}
-      </button>
-      <div className={`${icon2Styles} ${styles.icon}`}>{icon2}</div>
+      {icon1 && (
+        <div className={`${icon1Styles} ${styles.icon} d-flex align-items-center justify-content-center`}>{icon1}</div>
+      )}
+      {name && (
+        <button
+          type="button"
+          onClick={onClick}
+          className={`${btnStyles} ${styles.btn}`}
+        >
+          {name}
+        </button>
+      )}
+      {icon2 && (
+        <div className={`${icon2Styles} d-flex align-items-center justify-content-center`}>{icon2}</div>
+      )}
     </div>
   );
 }
