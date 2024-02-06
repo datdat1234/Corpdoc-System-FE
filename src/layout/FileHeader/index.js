@@ -9,6 +9,7 @@ export default function FileHeader({
   totalPage = 0,
   scale,
   setScale,
+  setShowPdf,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -50,6 +51,10 @@ export default function FileHeader({
   const handleChangeScale = (e) => {
     setScaleValue(e.target.value);
   };
+
+  const handleClosePdf = () => {
+    setShowPdf(false);
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -72,8 +77,8 @@ export default function FileHeader({
         <button className={`${styles.button} pRight20`}>
           <FontAwesomeIcon icon={icon.download} />
         </button>
-        <button className={`${styles.button} ${styles.button}`}>
-          <FontAwesomeIcon icon={icon.xmark} />{' '}
+        <button className={`${styles.button} ${styles.button}`} onClick={handleClosePdf}>
+          <FontAwesomeIcon icon={icon.xmark} />
         </button>
       </div>
       <div className={`${styles.fileEdit}`}>

@@ -20,6 +20,7 @@ export default function Layout({ children }) {
   const [scale, setScale] = useState(100);
   const [width, setWidth] = useState(50);
   const [sidebarWidth, setSidebarWidth] = useState(33.328);
+  const [showPdf, setShowPdf] = useState(false);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -126,25 +127,28 @@ export default function Layout({ children }) {
           </div>
         </div>
         <div
-          className={`${styles.pdfCtn}`}
+          className={`${styles.pdfCtn} ${!showPdf && 'bg-bgColor560'}`}
           style={{ width: `${100 - width}%` }}
         >
-          <div className={`d-flex flex-column ${styles.rightDiv}`}>
-            <div className={`row-2 ${styles.rightDivHeader}`}>
-              <FileHeader
-                page={page}
-                totalPage={totalPage}
-                name={'Cây Cam Ngọt Của Tôi'}
+          {showPdf && (
+            <div className={`d-flex flex-column ${styles.rightDiv}`}>
+              <div className={`row-2 ${styles.rightDivHeader}`}>
+                <FileHeader
+                  page={page}
+                  totalPage={totalPage}
+                  name={'Cây Cam Ngọt Của Tôi'}
+                  scale={scale}
+                  setScale={setScale}
+                  setShowPdf={setShowPdf}
+                />
+              </div>
+              <PDFRenderer
+                setPage={setPage}
+                setTotalPage={setTotalPage}
                 scale={scale}
-                setScale={setScale}
               />
             </div>
-            <PDFRenderer
-              setPage={setPage}
-              setTotalPage={setTotalPage}
-              scale={scale}
-            />
-          </div>
+          )}
         </div>
       </div>
     );

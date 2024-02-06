@@ -3,20 +3,17 @@ import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
 import FolderStruct from 'common/FolderStruct';
 import Button from 'common/Button';
-import { SIDEBAR_TABS, SIDEBAR_STRUCTURE } from 'util/js/constant';
+import {
+  SIDEBAR_TABS,
+  SIDEBAR_ICONS,
+  SIDEBAR_STRUCTURE,
+} from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import icon from 'util/js/icon';
 
 export default function Sidebar() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [currentTab, setCurrentTab] = useState(0);
-  const icons = [
-    <></>,
-    <FontAwesomeIcon icon={icon.share} />,
-    <FontAwesomeIcon icon={icon.bookMark} />,
-    <FontAwesomeIcon icon={icon.trashCan} />,
-  ];
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -51,7 +48,7 @@ export default function Sidebar() {
             onClick={() => {
               setCurrentTab(i);
             }}
-            icon1={icons[i]}
+            icon1={<FontAwesomeIcon icon={SIDEBAR_ICONS[i]} />}
           />
         </div>
       );
@@ -94,7 +91,7 @@ export default function Sidebar() {
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
-      <SidebarTab tabItems={renderTabItems()} />
+      <SidebarTab tabItems={renderTabItems()} ctnStyles='pVertical20 pRight60'/>
       <div>
         <div className={`${styles.structCtn}`}>{renderFolderStructs()}</div>
         <div className={`${styles.spacer}`}></div>

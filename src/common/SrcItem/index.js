@@ -50,8 +50,16 @@ export default function SrcItem({ value = [], grid = [] }) {
     }
   };
 
-  const renderTextCell = (text) => {
-    return <p className="text14Medium">{text}</p>;
+  const renderTextCell = (text, type) => {
+    return (
+      <p
+        className={`text14Medium ellipsis ${
+          type === 'text-size' && 'ta-right mRight10'
+        }`}
+      >
+        {text}
+      </p>
+    );
   };
 
   const renderHeaderCell = (text) => {
@@ -91,19 +99,20 @@ export default function SrcItem({ value = [], grid = [] }) {
     }
   };
 
+  const renderItems = (item) => {
+    if (item.type.includes('save')) return renderIconBtnCell(true);
+    if (item.type.includes('edit')) return renderIconBtnCell(false);
+    if (item.type.includes('text')) return renderTextCell(item.text, item.type);
+    if (item.type.includes('header')) return renderHeaderCell(item.text);
+    if (item.type.includes('file')) return renderNameCell(true, item.text);
+    if (item.type.includes('folder')) return renderNameCell(false, item.text);
+  };
+
   const renderGrid = () => {
     return grid.map((val, index) => {
       return (
         <div key={index} className={`${val}`}>
-          {value[index].type === 'save' && renderIconBtnCell(true)}
-          {value[index].type === 'edit' && renderIconBtnCell(false)}
-          {value[index].type === 'text' && renderTextCell(value[index].text)}
-          {value[index].type === 'header' &&
-            renderHeaderCell(value[index].text)}
-          {value[index].type === 'file' &&
-            renderNameCell(true, value[index].text)}
-          {value[index].type === 'folder' &&
-            renderNameCell(false, value[index].text)}
+          {renderItems(value[index])}
         </div>
       );
     });
