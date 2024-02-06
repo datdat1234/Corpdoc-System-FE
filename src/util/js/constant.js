@@ -1,13 +1,4 @@
-import {
-  faPlus,
-  faCaretRight,
-  faRightFromBracket,
-  faBookmark,
-  faDownload,
-  faPencil,
-  faUpload,
-  faFolder,
-} from '@fortawesome/free-solid-svg-icons';
+import icon from './icon';
 
 export const BASE_URL = process.env.REACT_APP_BE_URL || 'https://example.vn';
 export const API_URL = `${BASE_URL}/api`;
@@ -42,6 +33,12 @@ export const SIDEBAR_TABS = [
   'Thùng rác',
 ];
 
+export const SIDEBAR_ICONS = [null, icon.share, icon.bookMark, icon.trashCan];
+
+export const PROFILE_PAGE_TABS = ['Thông tin cá nhân', 'Cài đặt'];
+
+export const PROFILE_PAGE_ICONS = [icon.user, icon.gear];
+
 export const SIDEBAR_STRUCTURE = [
   {
     id: '1',
@@ -63,18 +60,18 @@ export const UPLOAD_TABS = [
 export const UPLOAD_TABS_ICON = [
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
-    left: faPlus,
+    left: icon.plus,
     right: null,
   },
 ];
@@ -84,11 +81,11 @@ export const SEARCH_TABS = ['Tài liệu', 'Thư mục'];
 export const SEARCH_TABS_ICON = [
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
 ];
 
@@ -97,15 +94,15 @@ export const PROFILE_TABS = ['Chỉnh sửa thông tin', 'Cài đặt', 'Đăng 
 export const PROFILE_TABS_ICON = [
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
     left: null,
-    right: faRightFromBracket,
+    right: icon.rightFromBracket,
   },
 ];
 
@@ -114,39 +111,39 @@ export const SMALL_HOVER_TABS = ['Thêm thư mục', 'Thêm tài liệu'];
 export const SMALL_HOVER_ICONS = [
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
   {
     left: null,
-    right: faCaretRight,
+    right: icon.caretRight,
   },
 ];
 
 export const BREAD_CRUMB_TABS = [
   {
-    icon1: faBookmark,
+    icon1: icon.bookmark,
     text: 'Lưu thư mục',
     icon2: null,
   },
   {
-    icon1: faDownload,
+    icon1: icon.download,
     text: 'Tải xuống',
     icon2: null,
   },
   {
-    icon1: faPencil,
+    icon1: icon.pencil,
     text: 'Sửa thông tin',
-    icon2: faCaretRight,
+    icon2: icon.caretRight,
   },
   {
-    icon1: faUpload,
+    icon1: icon.upload,
     text: 'Tải lên tài liệu',
-    icon2: faCaretRight,
+    icon2: icon.caretRight,
   },
   {
-    icon1: faFolder,
+    icon1: icon.folder,
     text: 'Thêm thư mục',
-    icon2: faCaretRight,
+    icon2: icon.caretRight,
   },
 ];
 
@@ -158,4 +155,20 @@ export const HOMEPAGE_ITEM_GRIDS = [
   'col-1',
 ];
 
-export const NOT_SHOW_SIDEBAR = ['/search', '/upload', '/result-page'];
+export const SEARCH_RESULT_GRIDS = [
+  'col-1',
+  'col-8',
+  'col-3-5',
+  'col-4',
+  'col-3-5',
+  'col-3',
+  'col-1',
+];
+
+export const NOT_SHOW_SIDEBAR = [
+  '/search',
+  '/upload',
+  '/result-page',
+  '/search-result',
+  '/profile',
+];

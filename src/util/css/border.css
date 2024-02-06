@@ -12,6 +12,10 @@
   border-radius: 15px;
 }
 
+.br-50 {
+  border-radius: 50%;
+}
+
 /* Border Radius 1 corner */
 
 .br-TopLeft-10 {

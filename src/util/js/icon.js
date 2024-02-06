@@ -22,6 +22,11 @@ import {
   faCamera,
   faLink,
   faCircleCheck,
+  faRightFromBracket,
+  faPencil,
+  faUpload,
+  faUser,
+  faGear,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
@@ -48,6 +53,11 @@ const icon = {
   trashCan: faTrashCan,
   link: faLink,
   circleCheck: faCircleCheck,
+  rightFromBracket: faRightFromBracket,
+  pencil: faPencil,
+  upload: faUpload,
+  user: faUser,
+  gear: faGear,
 };
 
 export default icon;

@@ -11,6 +11,8 @@ import HomePage from 'page/homePage';
 import SearchPage from 'page/searchPage';
 import UploadPage from 'page/uploadPage';
 import ResultPage from 'page/resultPage';
+import SearchResultPage from 'page/searchResultPage';
+import ProfilePage from 'page/profilePage';
 
 export default function RouterProvider() {
   const getSwitchAndRoutes = () => (
@@ -21,6 +23,8 @@ export default function RouterProvider() {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/upload" element={<UploadPage />} />
       <Route path="/result-page" element={<ResultPage />} />
+      <Route path="/search-result" element={<SearchResultPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );
 

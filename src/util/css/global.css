@@ -85,3 +85,17 @@
 .fs-20 {
   font-size: 20px;
 }
+
+/* Font weight */
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Text align */
+
+.ta-right {
+  text-align: right;
+}
