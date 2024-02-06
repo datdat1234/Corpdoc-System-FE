@@ -37,6 +37,24 @@ export default function LoginPage() {
     setTab(1);
   };
 
+  const handleSetTab = () => {
+    if (tab === 0) setTab(1);
+    else setTab(0);
+  };
+
+  const handleNavigate = (tab) => {
+    if (tab === 0) navigate(`/home`);
+    else navigate(`/home`);
+  };
+
+  const handleResetPass = () => {
+    setIsResetPass(true);
+  };
+  //////////////////////////////////////////////////
+  // #endregion FUNCTIONS //////////////////////////
+
+  // #region    VIEWS //////////////////////////////
+  //////////////////////////////////////////////////
   const renderForm = () => {
     if (tab === 0)
       return (
@@ -66,26 +84,6 @@ export default function LoginPage() {
         </>
       );
   };
-
-  const handleSetTab = () => {
-    if (tab === 0) setTab(1);
-    else setTab(0);
-  };
-
-  const handleNavigate = (tab) => {
-    if (tab === 0) navigate(`/home`);
-    else navigate(`/home`);
-  };
-
-  const handleResetPass = () => {
-    setIsResetPass(true);
-  };
-  //////////////////////////////////////////////////
-  // #endregion FUNCTIONS //////////////////////////
-
-  // #region    VIEWS //////////////////////////////
-  //////////////////////////////////////////////////
-
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (

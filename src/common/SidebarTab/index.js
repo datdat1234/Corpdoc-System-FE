@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 
 export default function SidebarTab({
   tabItems = [],
+  ctnStyles = '',
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -39,7 +40,7 @@ export default function SidebarTab({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root}`}>
+    <div className={`w-100 ${styles.root} ${ctnStyles}`}>
       <ul className="nav nav-pills nav-fill d-flex flex-column">
         {renderTab()}
       </ul>

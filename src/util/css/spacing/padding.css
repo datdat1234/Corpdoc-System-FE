@@ -116,6 +116,12 @@
 .pRight25 {
   padding-right: 25px;
 }
+.pRight40 {
+  padding-right: 40px;
+}
+.pRight60 {
+  padding-right: 60px;
+}
 
 /************************************************** PADDING VERTICAL **************************************************/
 /************************************************** PADDING VERTICAL **************************************************/
@@ -144,6 +150,10 @@
 .pVertical25 {
   padding-top: 25px;
   padding-bottom: 25px;
+}
+.pVertical50 {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 /************************************************** PADDING HORIZONTAL **************************************************/

@@ -13,7 +13,7 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F5F4F2;
+  background-color: #f5f4f2;
 }
 
 code {
@@ -28,11 +28,27 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
 select {
   -webkit-appearance: none;
   appearance: none;
+}
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(64, 46, 50, 0.6);
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(64, 46, 50, 0.8);
 }
