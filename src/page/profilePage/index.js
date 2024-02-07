@@ -33,20 +33,18 @@ export default function ProfilePage() {
     const tabItems = [];
     for (let i = 0; i < PROFILE_PAGE_TABS.length; i++) {
       tabItems.push(
-        <div key={i}>
+        <div key={i} className={`mBottom5 ${styles.tabCtn}`}>
           <Button
             name={PROFILE_PAGE_TABS[i]}
-            btnStyles={`textH6ExtraBold ${
-              currentTab === i ? 'bg-main' : 'bg-bgColor4'
-            } mLeft10`}
-            ctnStyles={`h-39 br-TopRight-10 br-BottomRight-10 pLeft10 border-bottom-1 border-main border-style-solid
-              ${currentTab === i ? 'bg-main' : 'bg-bgColor4'}
+            btnStyles={`textH6ExtraBold ${styles.buttonText}
+            ${currentTab === i ? 'bg-header' : 'bg-bgColor4'}`}
+            ctnStyles={`br-TopRight-10 br-BottomRight-10 p10 border-bottom-1 border-header border-style-solid
+              ${currentTab === i ? 'bg-header' : 'bg-bgColor4'}
             `}
-            icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
+            icon1={<FontAwesomeIcon icon={PROFILE_PAGE_ICONS[i]} />}
             onClick={() => {
               setCurrentTab(i);
             }}
-            icon1={<FontAwesomeIcon icon={PROFILE_PAGE_ICONS[i]} />}
           />
         </div>
       );
