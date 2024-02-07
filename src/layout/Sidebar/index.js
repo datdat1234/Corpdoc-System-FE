@@ -35,20 +35,18 @@ export default function Sidebar() {
     const tabItems = [];
     for (let i = 0; i < SIDEBAR_TABS.length; i++) {
       tabItems.push(
-        <div key={i}>
+        <div key={i} className={`mBottom5 ${styles.tabCtn}`}>
           <Button
             name={SIDEBAR_TABS[i]}
-            btnStyles={`textH6ExtraBold ${
-              currentTab === i ? 'bg-main' : 'bg-bgColor4'
-            } ${i !== 0 && 'mLeft10'}`}
-            ctnStyles={`h-39 br-TopRight-10 br-BottomRight-10 pLeft10 border-bottom-1 border-main border-style-solid
-              ${currentTab === i ? 'bg-main' : 'bg-bgColor4'}
+            btnStyles={`textH6ExtraBold mLeft5 ${styles.buttonText}
+            ${currentTab === i ? 'bg-header' : 'bg-bgColor4'}`}
+            ctnStyles={`br-TopRight-10 br-BottomRight-10 p10 border-bottom-1 border-header border-style-solid
+              ${currentTab === i ? 'bg-header' : 'bg-bgColor4'}
             `}
-            icon1Styles={i !== 0 ? 'w-24' : ''}
+            icon1={<FontAwesomeIcon icon={SIDEBAR_ICONS[i]} />}
             onClick={() => {
               setCurrentTab(i);
             }}
-            icon1={<FontAwesomeIcon icon={SIDEBAR_ICONS[i]} />}
           />
         </div>
       );

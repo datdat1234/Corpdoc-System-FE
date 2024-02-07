@@ -9,7 +9,7 @@
 
 .icon {
   cursor: pointer;
-  width: 30px;
+  min-width: 30px;
 }
 
 .btn {

@@ -29,7 +29,7 @@ export default function SidebarTab({
     const tabs = [];
     for (let i = 0; i < tabItems.length; i++) {
       tabs.push(
-        <li className="nav-item" key={i}>
+        <li className="w-100 nav-item" key={i}>
           {tabItems[i]}
         </li>
       );

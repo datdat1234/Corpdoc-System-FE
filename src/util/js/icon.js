@@ -29,6 +29,7 @@ import {
   faGear,
   faGripLinesVertical,
   faBell,
+  faFolderTree,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
@@ -62,6 +63,7 @@ const icon = {
   gear: faGear,
   gripLinesVertical: faGripLinesVertical,
   bell: faBell,
+  folderTree: faFolderTree,
 };
 
 export default icon;
