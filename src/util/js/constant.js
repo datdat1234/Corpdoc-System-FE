@@ -165,10 +165,21 @@ export const SEARCH_RESULT_GRIDS = [
   'col-1',
 ];
 
+export const APPROVAL_GRIDS = [
+  'col-1',
+  'col-7',
+  'col-3-5',
+  'col-4',
+  'col-3-5',
+  'col-3',
+  'col-2',
+];
+
 export const NOT_SHOW_SIDEBAR = [
   '/search',
   '/upload',
   '/result-page',
   '/search-result',
   '/profile',
+  '/approval',
 ];

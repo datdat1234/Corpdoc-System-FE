@@ -25,28 +25,38 @@ export default function Input({
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-
+  const checkIsRow = (ctn) => {
+    if (ctn === 'root') {
+      return type.includes('row') ? 'h-40' : 'flex-column mBottom10';
+    }
+    if (ctn === 'input') {
+      return type.includes('row') ? styles.input2 : styles.input;
+    }
+    if (ctn === 'text') {
+      return !type.includes('row') ? 'mBottom10' : styles.textCtn1;
+    }
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
   const renderInput = () => {
-    if (type === 'text') {
+    if (type.includes('text')) {
       return (
         <div>
           <input
             type="text"
-            className={`${styles.input}`}
+            className={`${checkIsRow('input')}`}
             placeholder={placeholder}
           />
         </div>
       );
     }
-    if (type === 'select') {
+    if (type.includes('select')) {
       return (
         <div className={`${styles.selectCtn}`}>
-          <select className={`${styles.input}`}>
+          <select className={`${checkIsRow('input')}`}>
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
             <option value="fiat">Fiat</option>
@@ -58,24 +68,24 @@ export default function Input({
         </div>
       );
     }
-    if (type === 'date') {
+    if (type.includes('date')) {
       return (
         <div>
           <input
             type="date"
-            className={`${styles.input} ${styles.inputDate}`}
+            className={`${checkIsRow('input')} ${styles.inputDate}`}
           />
         </div>
       );
     }
-    if (type === 'checkbox') {
+    if (type.includes('checkbox')) {
       return (
-        <div>
+        <div className="mTop10">
           <CheckBoxForm text={text} textStyles={textStyles} />
         </div>
       );
     }
-    if (type === 'textarea') {
+    if (type.includes('textarea')) {
       return (
         <div>
           <textarea className={`${styles.textareaCtn}`}></textarea>
@@ -87,11 +97,13 @@ export default function Input({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`${styles.root}`}>
+    <div className={`${styles.root} ${checkIsRow('root')}`}>
       {type !== 'checkbox' && (
-        <div className={`${styles.textCtn}`}>
-          <p className="textH6Bold mRight10">{text}</p>
-          <p className={`text14 ${styles.text}`}>{bonusText}</p>
+        <div className={`${styles.textCtn} ${checkIsRow('text')}`}>
+          <p className="textH6Bold text-nowrap">{text}</p>
+          {bonusText !== '' && (
+            <p className={`text14 mLeft10 ${styles.text}`}>{bonusText}</p>
+          )}
         </div>
       )}
       <div className={`${styles.inputCtn}`}>{renderInput()}</div>

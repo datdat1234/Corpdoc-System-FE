@@ -8,3 +8,14 @@
   height: 24px;
   margin-bottom: 10px;
 }
+
+.editCtn {
+  width: 100%;
+  height: 100%;
+}
+
+.approvalCtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import IconButton from 'common/IconButton';
 import Button from 'common/Button';
 import TextIcon from 'common/TextIcon';
+import CheckBoxForm from 'common/CheckBoxForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
@@ -40,12 +41,14 @@ export default function SrcItem({ value = [], grid = [] }) {
       );
     } else {
       return (
-        <IconButton
-          icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
-          onClick={() => {
-            console.log('click');
-          }}
-        />
+        <div className={`${styles.editCtn}`}>
+          <IconButton
+            icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
+            onClick={() => {
+              console.log('click');
+            }}
+          />
+        </div>
       );
     }
   };
@@ -99,6 +102,37 @@ export default function SrcItem({ value = [], grid = [] }) {
     }
   };
 
+  const renderCheckBox = (item) => {
+    return (
+      <CheckBoxForm
+        checked={item.isChecked}
+        setCheckAll={item.setCheckAll}
+        isCheckAllInput={item.isCheckAllInput}
+        setIsCheckAllInput={item.setIsCheckAllInput}
+      />
+    );
+  };
+
+  const renderApproval = (item) => {
+    return (
+      <div className={`${styles.approvalCtn}`}>
+        <IconButton
+          icon={<FontAwesomeIcon icon={icon.circleCheck} className="success" />}
+          onClick={() => {
+            console.log('click');
+          }}
+        />
+        <IconButton
+          icon={<FontAwesomeIcon icon={icon.xmark} className="bgColor4" />}
+          ctnStyles="bg-error error br-50 w-16 h-16 d-flex justify-content-center align-item-center"
+          onClick={() => {
+            console.log('click');
+          }}
+        />
+      </div>
+    );
+  };
+
   const renderItems = (item) => {
     if (item.type.includes('save')) return renderIconBtnCell(true);
     if (item.type.includes('edit')) return renderIconBtnCell(false);
@@ -106,6 +140,8 @@ export default function SrcItem({ value = [], grid = [] }) {
     if (item.type.includes('header')) return renderHeaderCell(item.text);
     if (item.type.includes('file')) return renderNameCell(true, item.text);
     if (item.type.includes('folder')) return renderNameCell(false, item.text);
+    if (item.type.includes('checkbox')) return renderCheckBox(item);
+    if (item.type.includes('approval')) return renderApproval(item);
   };
 
   const renderGrid = () => {
