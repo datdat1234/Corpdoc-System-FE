@@ -13,6 +13,7 @@ import UploadPage from 'page/uploadPage';
 import ResultPage from 'page/resultPage';
 import SearchResultPage from 'page/searchResultPage';
 import ProfilePage from 'page/profilePage';
+import ApprovalPage from 'page/approvalPage';
 
 export default function RouterProvider() {
   const getSwitchAndRoutes = () => (
@@ -25,6 +26,7 @@ export default function RouterProvider() {
       <Route path="/result-page" element={<ResultPage />} />
       <Route path="/search-result" element={<SearchResultPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/approval" element={<ApprovalPage />} />
     </Routes>
   );
 

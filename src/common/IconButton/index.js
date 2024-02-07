@@ -26,8 +26,8 @@ export default function IconButton({ icon, onClick, ctnStyles = '' }) {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`${styles.root} ${ctnStyles}`}>
-      <button onClick={onClick}>{icon}</button>
+    <div className={`${styles.root} ${ctnStyles}`} onClick={onClick}>
+      {icon}
     </div>
   );
 }
