@@ -128,15 +128,17 @@ export default function LoginPage() {
                 // }`}
                 >
                   {renderForm()}
-                  <Button
-                    name={tab === 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
-                    ctnStyles="w-100 h-56 bg-text br-8"
-                    btnStyles="text-center textH6Bold white bg-text"
-                    onClick={() => {
-                      console.log(1);
-                      handleNavigate(tab);
-                    }}
-                  />
+                  <div className={styles.authButton}>
+                    <Button
+                      name={tab === 1 ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'}
+                      ctnStyles="w-100 h-56 bg-text br-8"
+                      btnStyles="text-center textH6Bold white bg-text"
+                      onClick={() => {
+                        console.log(1);
+                        handleNavigate(tab);
+                      }}
+                    />
+                  </div>
                   {/* <div className="d-flex justify-content-center">
                 <p className={`${styles.haveAccount}`}>Đã có tài khoản?</p>{' '}
                 &nbsp;

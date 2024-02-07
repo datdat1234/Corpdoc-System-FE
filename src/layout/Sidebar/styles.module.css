@@ -32,3 +32,14 @@
 .progressBar {
   border-radius: 100px;
 }
+
+.tabCtn {
+  height: 44px;
+}
+
+.buttonText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

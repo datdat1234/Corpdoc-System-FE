@@ -56,6 +56,10 @@
   border-color: #f8853e;
 }
 
+.border-header {
+  border-color: var(--header);
+}
+
 .border-bg5-60 {
   border-color: rgba(64, 46, 50, 0.6);
 }

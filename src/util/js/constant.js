@@ -27,13 +27,13 @@ export const REGISTER_URL_FE = '/register';
 export const NO_LAYOUT_LINKS = ['/', LOGIN_URL_FE, REGISTER_URL_FE];
 
 export const SIDEBAR_TABS = [
-  'Tài liệu của tôi',
-  'Chia sẻ với tôi',
+  'Phòng ban của bạn - Nhân sự',
+  'Chia sẻ với phòng ban',
   'Đã lưu',
   'Thùng rác',
 ];
 
-export const SIDEBAR_ICONS = [null, icon.share, icon.bookMark, icon.trashCan];
+export const SIDEBAR_ICONS = [icon.folderTree, icon.share, icon.bookMark, icon.trashCan];
 
 export const PROFILE_PAGE_TABS = ['Thông tin cá nhân', 'Cài đặt'];
 
