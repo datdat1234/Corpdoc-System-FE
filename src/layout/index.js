@@ -20,7 +20,7 @@ export default function Layout({ children }) {
   const [scale, setScale] = useState(100);
   const [width, setWidth] = useState(50);
   const [sidebarWidth, setSidebarWidth] = useState(33.328);
-  const [showPdf, setShowPdf] = useState(false);
+  const [showPdf, setShowPdf] = useState(true);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -95,7 +95,7 @@ export default function Layout({ children }) {
         >
           <div className={`d-flex flex-column ${styles.leftDiv}`}>
             <Header />
-            <div className="d-flex flex-row row-22">
+            <div className={`d-flex flex-row ${styles.bodyLeft}`}>
               {checkShowSideBar() && (
                 <div
                   className={`${styles.sidebar}`}
