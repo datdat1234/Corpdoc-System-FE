@@ -33,7 +33,7 @@ export const SIDEBAR_TABS = [
   'Thùng rác',
 ];
 
-export const SIDEBAR_ICONS = [icon.folderTree, icon.share, icon.bookMark, icon.trashCan];
+export const SIDEBAR_ICONS = [icon.folderTree, icon.share, icon.bookmark, icon.trashCan];
 
 export const PROFILE_PAGE_TABS = ['Thông tin cá nhân', 'Cài đặt'];
 
