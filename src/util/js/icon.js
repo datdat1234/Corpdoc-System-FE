@@ -43,7 +43,7 @@ const icon = {
   eye: faEye,
   eyeSlash: faEyeSlash,
   file: faFile,
-  bookMark: faBookmark,
+  bookmark: faBookmark,
   ellipsisVertical: faEllipsisVertical,
   download: faDownload,
   plus: faPlus,

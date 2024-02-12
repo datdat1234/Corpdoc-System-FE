@@ -31,7 +31,7 @@ export default function BreadCrumb({}) {
   return (
     <div
       className={`w-100 pHorizontal10 ${
-        modal ? 'br-TopLeft-15 br-TopRight-15' : 'br-15'
+        modal ? 'br-2 br-TopLeft-15 br-TopRight-15' : 'br-15'
       } ${styles.root}`}
       onClick={() => setModal(!modal)}
     >

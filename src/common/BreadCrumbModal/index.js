@@ -30,7 +30,7 @@ export default function BreadCrumbModal({}) {
     const tabLength = BREAD_CRUMB_TABS.length;
     for (let i = 0; i < tabLength; i++) {
       tabItems.push(
-        <div key={i}>
+        <div key={i} className={styles.tabCtn}>
           <Button
             ctnStyles={`h-60 ${
               i !== tabLength - 1 && 'border-bottom-1 border-style-solid'
@@ -60,7 +60,7 @@ export default function BreadCrumbModal({}) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div
-      className={`w-100 pHorizontal20 br-BottomLeft-15 br-BottomRight-15 ${styles.root}`}
+      className={`w-100 pHorizontal20 br-2 br-BottomLeft-15 br-BottomRight-15 ${styles.root}`}
     >
       {renderTabs()}
     </div>
