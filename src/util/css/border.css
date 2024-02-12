@@ -1,5 +1,9 @@
 /* Border Radius 4 corner */
 
+.br-2 {
+  border-radius: 2px;
+}
+
 .br-8 {
   border-radius: 8px;
 }
@@ -18,8 +22,24 @@
 
 /* Border Radius 1 corner */
 
-.br-TopLeft-10 {
-  border-top-left-radius: 10px;
+.br-TopLeft-2 {
+  border-top-left-radius: 2px;
+}
+
+.br-TopRight-2 {
+  border-top-right-radius: 2px;
+}
+
+.br-BottomLeft-2 {
+  border-bottom-left-radius: 2px;
+}
+
+.br-BottomRight-2 {
+  border-bottom-right-radius: 2px;
+}
+
+.br-TopLeft-2 {
+  border-top-left-radius: 2px;
 }
 
 .br-TopRight-10 {
