@@ -4,6 +4,7 @@ import IconButton from 'common/IconButton';
 import Button from 'common/Button';
 import TextIcon from 'common/TextIcon';
 import CheckBoxForm from 'common/CheckBoxForm';
+import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
@@ -11,6 +12,7 @@ export default function SrcItem({ value = [], grid = [] }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [isSaved, setIsSaved] = useState(false);
+  const [modal, setModal] = useState(false);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -32,7 +34,7 @@ export default function SrcItem({ value = [], grid = [] }) {
     if (isSave) {
       return (
         <IconButton
-          icon={<FontAwesomeIcon icon={icon.bookMark} />}
+          icon={<FontAwesomeIcon icon={icon.bookmark} />}
           ctnStyles="mRight10"
           onClick={() => {
             console.log('click');
@@ -44,10 +46,9 @@ export default function SrcItem({ value = [], grid = [] }) {
         <div className={`${styles.editCtn}`}>
           <IconButton
             icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
-            onClick={() => {
-              console.log('click');
-            }}
+            onClick={() => setModal(!modal)}
           />
+          {modal && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2'/>}
         </div>
       );
     }
@@ -155,5 +156,9 @@ export default function SrcItem({ value = [], grid = [] }) {
   };
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
-  return <div className={`${styles.root}`}>{renderGrid()}</div>;
+  return (
+    <div className={`${styles.root}`}>
+      {renderGrid()}
+    </div>
+  );
 }

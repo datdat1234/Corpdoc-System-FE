@@ -4,7 +4,7 @@ import Button from 'common/Button';
 import { BREAD_CRUMB_TABS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function BreadCrumbModal({}) {
+export default function BreadCrumbModal({ctnStyles = ''}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -60,7 +60,7 @@ export default function BreadCrumbModal({}) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div
-      className={`w-100 pHorizontal20 br-2 br-BottomLeft-15 br-BottomRight-15 ${styles.root}`}
+      className={`pHorizontal20 ${styles.root} ${ctnStyles}`}
     >
       {renderTabs()}
     </div>

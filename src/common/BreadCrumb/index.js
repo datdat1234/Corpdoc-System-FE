@@ -40,7 +40,7 @@ export default function BreadCrumb({}) {
         Phòng Nhân sự / Thư viện sách cá nhân
       </p>
       <FontAwesomeIcon icon={icon.caretDown} />
-      {modal && <BreadCrumbModal />}
+      {modal && <BreadCrumbModal ctnStyles='w-100 br-2 br-BottomLeft-15 br-BottomRight-15'/>}
     </div>
   );
 }
