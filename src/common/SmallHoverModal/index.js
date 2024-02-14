@@ -32,7 +32,7 @@ export default function SmallHoverModal({
     const items = [];
     for (let i = 0; i < name.length; i++) {
       items.push(
-        <div className={`w-100 ${i === 0 && styles.border}`} key={i}>
+        <div className={`w-100 ${styles.tabCtn} ${i === 0 && styles.border}`} key={i}>
           <Button
             name={name[i]}
             ctnStyles="flex-row h-57 pHorizontal20 bg-bgColor4"
@@ -48,5 +48,5 @@ export default function SmallHoverModal({
   };
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
-  return <div className={`${styles.root}`}>{renderChild()}</div>;
+  return <div className={`br-15 br-TopLeft-2 ${styles.root}`}>{renderChild()}</div>;
 }

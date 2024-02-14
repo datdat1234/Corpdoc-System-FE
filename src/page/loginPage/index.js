@@ -157,14 +157,16 @@ export default function LoginPage() {
           )}
           {isResetPass && (
             <div className={`${styles.forgotPassCtn}`}>
-              <Button
-                name="Cài lại mật khẩu"
-                ctnStyles="h-68 pLeft25"
-                btnStyles="d-flex align-items-center justify-content-center text24Bold bg-bgColor4"
-                icon1={<FontAwesomeIcon icon={icon.angleLeft} />}
-                icon1Styles=""
-                onClick={() => setIsResetPass(false)}
-              />
+              <div className={styles.tabCtn}>
+                <Button
+                  name="Cài lại mật khẩu"
+                  ctnStyles="h-68 pLeft25"
+                  btnStyles="d-flex align-items-center justify-content-center text24Bold bg-bgColor4"
+                  icon1={<FontAwesomeIcon icon={icon.angleLeft} />}
+                  icon1Styles=""
+                  onClick={() => setIsResetPass(false)}
+                />
+              </div>
               <div className={`${styles.contactCtn}`}>
                 <p className="lh-sm text-center textH5">
                   Vui lòng liên hệ với{' '}

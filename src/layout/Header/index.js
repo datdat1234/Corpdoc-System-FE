@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
 import Button from 'common/Button';
@@ -17,6 +18,7 @@ import {
 export default function Header() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(0);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -54,7 +56,7 @@ export default function Header() {
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`row-2 d-flex align-items-center justify-content-start ${styles.headerCtn}`}>
-      <div>
+      <div onClick={() => navigate('/home')}>
         <img className={styles.logo} src={logo1} alt={'Logo'}></img>
       </div>
       <div className={styles.remainCtn}></div>
@@ -90,9 +92,9 @@ export default function Header() {
             lastBtnStyles="textH6Black bg-bgColor5"
             lastBtnColor="main"
             onClick={[
-              () => console.log(1),
-              () => console.log(2),
-              () => console.log(3),
+              () => {handleMouseLeave(); navigate('/upload')},
+              () => {handleMouseLeave(); navigate('/upload')},
+              () => {handleMouseLeave(); navigate('/upload')},
               () => console.log(4),
             ]}
             smallHoverIDs={[2]}
@@ -128,7 +130,10 @@ export default function Header() {
             ctnStyles="bg-bgColor5 pHorizontal2"
             icon={SEARCH_TABS_ICON}
             name={SEARCH_TABS}
-            onClick={[() => console.log(1), () => console.log(2)]}
+            onClick={[
+              () => {handleMouseLeave(); navigate('/search')},
+              () => {handleMouseLeave(); navigate('/search')}
+            ]}
           />
         )}
       </div>
@@ -175,9 +180,9 @@ export default function Header() {
             lastBtnColor="bgColor5"
             spacerColor="bg-header"
             onClick={[
-              () => console.log(1),
+              () => {handleMouseLeave(); navigate('/profile')},
               () => console.log(2),
-              () => console.log(3),
+              () => navigate('/login'),
             ]}
           />
         )}

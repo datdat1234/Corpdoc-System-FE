@@ -77,12 +77,16 @@
 
 .forgotPassCtn {
   width: 100%;
-  min-width: 550px;
+  min-width: 450px;
 }
 
 .contactCtn {
-  max-width: 550px;
-  padding: 50px 90px;
+  max-width: 450px;
+  padding: 50px 40px;
+}
+
+.tabCtn {
+  height: 68px;
 }
 
 @media only screen and (max-width: 1250px) {

@@ -11,8 +11,9 @@ import icon from 'util/js/icon';
 export default function SrcItem({ value = [], grid = [] }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  var modals = Array(grid.length).fill(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(modals);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -25,12 +26,23 @@ export default function SrcItem({ value = [], grid = [] }) {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
 
+  const setOpenModal = (index) => {
+    if(modal[index] === true) {
+      modals = Array(grid.length).fill(false);
+    }
+    else {
+      modals = Array(grid.length).fill(false);
+      modals[index] = true;
+    }
+    setModal(modals);
+  }
+
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-  const renderIconBtnCell = (isSave) => {
+  const renderIconBtnCell = (isSave, index = 0) => {
     if (isSave) {
       return (
         <IconButton
@@ -46,9 +58,9 @@ export default function SrcItem({ value = [], grid = [] }) {
         <div className={`${styles.editCtn}`}>
           <IconButton
             icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
-            onClick={() => setModal(!modal)}
+            onClick={() => setOpenModal(index)}
           />
-          {modal && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2'/>}
+          {modal[index] && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2'/>}
         </div>
       );
     }
@@ -134,9 +146,9 @@ export default function SrcItem({ value = [], grid = [] }) {
     );
   };
 
-  const renderItems = (item) => {
+  const renderItems = (item, index) => {
     if (item.type.includes('save')) return renderIconBtnCell(true);
-    if (item.type.includes('edit')) return renderIconBtnCell(false);
+    if (item.type.includes('edit')) return renderIconBtnCell(false, index);
     if (item.type.includes('text')) return renderTextCell(item.text, item.type);
     if (item.type.includes('header')) return renderHeaderCell(item.text);
     if (item.type.includes('file')) return renderNameCell(true, item.text);
@@ -149,7 +161,7 @@ export default function SrcItem({ value = [], grid = [] }) {
     return grid.map((val, index) => {
       return (
         <div key={index} className={`${val}`}>
-          {renderItems(value[index])}
+          {renderItems(value[index], index)}
         </div>
       );
     });
