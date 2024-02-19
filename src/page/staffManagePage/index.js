@@ -5,7 +5,7 @@ import Button from 'common/Button';
 import SrcItem from 'common/SrcItem';
 import Pagination from 'common/Pagination';
 import Input from 'common/Input';
-import { APPROVAL_GRIDS } from 'util/js/constant';
+import { STAFF_MANAGE_GRIDS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
@@ -48,14 +48,6 @@ export default function StaffManagePage() {
       type: 'header',
     },
     {
-      text: 'Kích thước',
-      type: 'header',
-    },
-    {
-      text: 'Địa điểm',
-      type: 'header',
-    },
-    {
       text: '',
       type: '',
     },
@@ -71,22 +63,14 @@ export default function StaffManagePage() {
     },
     {
       text: 'Nguyễn Văn A',
-      type: 'user',
-    },
-    {
-      text: 'Nguyễn Văn B',
       type: 'text',
     },
     {
-      text: '1/12/2024 11:52 PM',
+      text: 'user1_group1_company',
       type: 'text',
     },
     {
-      text: '1,111,111 KB',
-      type: 'text-size',
-    },
-    {
-      text: 'Tài liệu của tôi/Truyện hư cấu',
+      text: 'Trưởng phòng',
       type: 'text',
     },
     {
@@ -162,13 +146,15 @@ export default function StaffManagePage() {
               btnStyles="bg-error white"
             />
           </div>
+          <div className={`${styles.totalWrapper} text-end main text20Black`}>
+            Tổng cộng: 3
+          </div>
         </div>
         <div className={`${styles.resultCtn}`}>
           <div className="w-100">
-            <SrcItem grid={APPROVAL_GRIDS} value={value} />
-            <SrcItem grid={APPROVAL_GRIDS} value={value1} />
-            <SrcItem grid={APPROVAL_GRIDS} value={value1} />
-            <SrcItem grid={APPROVAL_GRIDS} value={value1} />
+            <SrcItem grid={STAFF_MANAGE_GRIDS} value={value} />
+            <SrcItem grid={STAFF_MANAGE_GRIDS} value={value1} />
+            <SrcItem grid={STAFF_MANAGE_GRIDS} value={value1} />
           </div>
           <div className={`${styles.pagination}`}>
             <Pagination />

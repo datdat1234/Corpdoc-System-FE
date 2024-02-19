@@ -255,6 +255,14 @@ export const APPROVAL_GRIDS = [
   'col-2',
 ];
 
+export const STAFF_MANAGE_GRIDS = [
+  'col-1',
+  'col-10',
+  'col-6',
+  'col-5',
+  'col-2',
+];
+
 export const NOT_SHOW_SIDEBAR = [
   '/search-folder',
   '/search-file',
