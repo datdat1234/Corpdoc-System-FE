@@ -1,9 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Button from 'common/Button';
+import SidebarTab from 'common/SidebarTab';
 import Header from './Header';
 import FileHeader from './FileHeader';
 import Sidebar from './Sidebar';
-import { NO_LAYOUT_LINKS, NOT_SHOW_SIDEBAR } from 'util/js/constant';
+import SettingSidebar from './SettingSidebar';
+import { 
+  NO_LAYOUT_LINKS, 
+  NOT_SHOW_SIDEBAR, 
+  IS_SETTING_PAGE } from 'util/js/constant';
 import styles from './styles.module.css';
 import PDFRenderer from 'common/PDFRenderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,6 +51,12 @@ export default function Layout({ children }) {
     );
   };
 
+  const checkSettingPage = () => {
+    return (
+      IS_SETTING_PAGE.findIndex((item) => item === location.pathname) >= 0
+    );
+  };
+
   const handleMouseDown = (event) => {
     event.preventDefault();
     document.addEventListener('mousemove', handleMouseMove);
@@ -53,8 +66,8 @@ export default function Layout({ children }) {
   const handleMouseMove = (event) => {
     const containerWidth = resizableRef.current.parentNode.clientWidth;
     var newWidth = (event.clientX / containerWidth) * 100;
-    if(newWidth < 25) newWidth = 25
-    else if(newWidth > 75) newWidth = 75;
+    if(newWidth < 40) newWidth = 40
+    else if(newWidth > 60) newWidth = 60;
     setWidth(newWidth);
   };
 
@@ -109,10 +122,11 @@ export default function Layout({ children }) {
                   ></div>
                 </div>
               )}
+              {checkSettingPage() && <SettingSidebar />}
               <div
                 className={`${styles.contentCtn}`}
                 style={{
-                  width: `${checkShowSideBar() ? 100 - sidebarWidth : 100}%`,
+                  width: `${checkShowSideBar() || checkSettingPage() ? 100 - sidebarWidth : 100}%`,
                 }}
               >
                 {children}
@@ -142,11 +156,13 @@ export default function Layout({ children }) {
                   setShowPdf={setShowPdf}
                 />
               </div>
-              <PDFRenderer
-                setPage={setPage}
-                setTotalPage={setTotalPage}
-                scale={scale}
-              />
+              <div className={styles.rightDivBody}>
+                <PDFRenderer
+                  setPage={setPage}
+                  setTotalPage={setTotalPage}
+                  scale={scale}
+                />
+              </div>
             </div>
           )}
         </div>

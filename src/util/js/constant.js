@@ -35,9 +35,14 @@ export const SIDEBAR_TABS = [
 
 export const SIDEBAR_ICONS = [icon.folderTree, icon.share, icon.bookmark, icon.trashCan];
 
-export const PROFILE_PAGE_TABS = ['Thông tin cá nhân', 'Cài đặt'];
+export const SIDEBAR_TABS_ADMIN = [
+  'Khu vực tài liệu mật',
+  'Các phòng ban - ',
+  'Đã lưu',
+  'Thùng rác',
+]
 
-export const PROFILE_PAGE_ICONS = [icon.user, icon.gear];
+export const SIDEBAR_ICONS_ADMIN = [icon.eyeSlash, icon.folderTree, icon.bookmark, icon.trashCan];
 
 export const SIDEBAR_STRUCTURE = [
   {
@@ -54,8 +59,11 @@ export const UPLOAD_TABS = [
   'Thư viện sách cá nhân',
   'Tài liệu pháp luật doanh nghiệp',
   'Đồ án tốt nghiệp _ Luận văn tốt nghiệp',
-  'Tạo cấu trúc mới',
 ];
+
+export const CREATE_STRUCTURE = [
+  'Tạo cấu trúc mới',
+]
 
 export const UPLOAD_TABS_ICON = [
   {
@@ -89,21 +97,93 @@ export const SEARCH_TABS_ICON = [
   },
 ];
 
-export const PROFILE_TABS = ['Chỉnh sửa thông tin', 'Cài đặt', 'Đăng xuất'];
+export const PROFILE_TABS = ['Thông tin cá nhân', 'Cài đặt', 'Đăng xuất'];
 
 export const PROFILE_TABS_ICON = [
   {
-    left: null,
-    right: icon.caretRight,
+    left: icon.user,
+    right: null,
   },
   {
-    left: null,
-    right: icon.caretRight,
+    left: icon.gear,
+    right: null,
   },
   {
     left: null,
     right: icon.rightFromBracket,
   },
+];
+
+export const PROFILE_NAVIGATE = [
+  '/profile',
+  '',
+  '/login',
+];
+
+export const PROFILE_TABS_MANAGER = ['Thông tin cá nhân', 'Quản lý nhân viên', 'Cài đặt', 'Đăng xuất'];
+
+export const PROFILE_TABS_MANAGER_ICON = [
+  {
+    left: icon.user,
+    right: null,
+  },
+  {
+    left: icon.clipboardUser,
+    right: null,
+  },
+  {
+    left: icon.gear,
+    right: null,
+  },
+  {
+    left: null,
+    right: icon.rightFromBracket,
+  },
+];
+
+export const PROFILE_NAVIGATE_MANAGER = [
+  '/profile',
+  '/staff-manage',
+  '',
+  '/login',
+];
+
+export const PROFILE_TABS_ADMIN = ['Thông tin cá nhân', 'Thông tin công ty', 'Thông tin phòng ban', 'Quản lý nhân viên', 'Cài đặt', 'Đăng xuất'];
+
+export const PROFILE_TABS_ADMIN_ICON = [
+  {
+    left: icon.user,
+    right: null,
+  },
+  {
+    left: icon.building,
+    right: null,
+  },
+  {
+    left: icon.userGroup,
+    right: null,
+  },
+  {
+    left: icon.clipboardUser,
+    right: null,
+  },
+  {
+    left: icon.gear,
+    right: null,
+  },
+  {
+    left: null,
+    right: icon.rightFromBracket,
+  },
+];
+
+export const PROFILE_NAVIGATE_ADMIN = [
+  '/profile',
+  '/company-manage',
+  '/-manage',
+  '/staff-manage',
+  '',
+  '/login',
 ];
 
 export const SMALL_HOVER_TABS = ['Thêm thư mục', 'Thêm tài liệu'];
@@ -176,10 +256,24 @@ export const APPROVAL_GRIDS = [
 ];
 
 export const NOT_SHOW_SIDEBAR = [
-  '/search',
-  '/upload',
+  '/search-folder',
+  '/search-file',
+  '/upload-file',
+  '/upload-folder',
   '/result-page',
-  '/search-result',
-  '/profile',
+  '/search-folder-result',
+  '/search-file-result',
   '/approval',
+  '/profile',
+  '/staff-manage',
+  '/company-manage',
+  '/dept-manage',
+];
+
+export const IS_SETTING_PAGE = [
+  '/profile',
+  '/staff-manage',
+  '/company-manage',
+  '/dept-manage',
+  '/setting',
 ];

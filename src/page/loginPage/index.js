@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import { AUTH_FORM_WIDTH } from 'util/js/constant';
+import { setUserInfo } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
 import FormTab from 'common/FormTab';
 import FormInput from 'common/FormInput';
 import Button from 'common/Button';
 import CheckBoxForm from 'common/CheckBoxForm';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
@@ -18,6 +20,7 @@ export default function LoginPage() {
   const [tab, setTab] = useState(1);
   const [isResetPass, setIsResetPass] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -44,7 +47,10 @@ export default function LoginPage() {
 
   const handleNavigate = (tab) => {
     if (tab === 0) navigate(`/home`);
-    else navigate(`/home`);
+    else {
+      dispatch(setUserInfo({name: 'Nguyễn Văn A', role: 'manager'}));
+      navigate(`/home`);
+    }
   };
 
   const handleResetPass = () => {

@@ -121,7 +121,7 @@ export default function ResultPage() {
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
           icon1={<FontAwesomeIcon icon={icon.angleLeft} />}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/upload-file')}
         />
       </div>
       <div className={`${styles.notiCtn}`}>
@@ -136,7 +136,7 @@ export default function ResultPage() {
           {renderSmallText()}
         </p>
       </div>
-      <div className="w-340">
+      <div className={`w-340 ${styles.submitBtn}`}>
         <Button
           name={renderBtnText()}
           ctnStyles="h-56 bg-text br-8"

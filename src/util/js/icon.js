@@ -30,6 +30,10 @@ import {
   faGripLinesVertical,
   faBell,
   faFolderTree,
+  faUserGroup,
+  faFileCircleCheck,
+  faBuilding,
+  faClipboardUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
@@ -64,6 +68,10 @@ const icon = {
   gripLinesVertical: faGripLinesVertical,
   bell: faBell,
   folderTree: faFolderTree,
+  userGroup: faUserGroup,
+  fileCircleCheck: faFileCircleCheck,
+  building: faBuilding,
+  clipboardUser: faClipboardUser,
 };
 
 export default icon;

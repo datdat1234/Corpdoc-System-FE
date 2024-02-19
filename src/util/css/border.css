@@ -111,3 +111,13 @@
 .border-style-solid {
   border-style: solid;
 }
+
+/* Border color */
+
+.border-color-bg5 {
+  border-color: var(--bgColor5);
+}
+
+.border-color-header {
+  border-color: var(--header);
+}

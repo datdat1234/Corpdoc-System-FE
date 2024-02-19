@@ -65,23 +65,12 @@ export default function FileHeader({
   // #endregion VIEWS //////////////////////////////
   return (
     <div
-      className={`d-flex align-items-center justify-content-between ${styles.headerCtn}`}
+      className={`d-flex align-items-center justify-content-start ${styles.headerCtn}`}
     >
-      <p
-        className={`${styles.fileName}`}
-        style={{ width: `calc(${scale / 100}*10.5vw)` }}
-      >
+      <div className={`col-7 mRight20 pRight20 ${styles.fileName}`}>
         {name}
-      </p>
-      <div>
-        <button className={`${styles.button} pRight20`}>
-          <FontAwesomeIcon icon={icon.download} />
-        </button>
-        <button className={`${styles.button} ${styles.button}`} onClick={handleClosePdf}>
-          <FontAwesomeIcon icon={icon.xmark} />
-        </button>
       </div>
-      <div className={`${styles.fileEdit}`}>
+      <div className={`col-7 mHorizontal20 ${styles.fileEdit}`}>
         <div className={`${styles.pageCtn}`}>
           <div className={`${styles.bgPageNum}`}>
             <p className={`${styles.pageNumber}`}>{page}</p>
@@ -94,7 +83,7 @@ export default function FileHeader({
           <button className={`${styles.button}`} onClick={handleMinus}>
             <FontAwesomeIcon icon={icon.minus} />
           </button>
-          <div className={`${styles.bgScaleNum}`}>
+          <div className={`pVertical5 ${styles.bgScaleNum}`}>
             <input
               type="number"
               name="quantity"
@@ -115,6 +104,14 @@ export default function FileHeader({
             <FontAwesomeIcon icon={icon.plus} />
           </button>
         </div>
+      </div>
+      <div className={`mLeft20 d-flex justify-content-end ${styles.fileAct}`}>
+        <button className={`${styles.button} pRight20`}>
+          <FontAwesomeIcon icon={icon.download} />
+        </button>
+        <button className={`${styles.button} ${styles.button}`} onClick={handleClosePdf}>
+          <FontAwesomeIcon icon={icon.xmark} />
+        </button>
       </div>
     </div>
   );

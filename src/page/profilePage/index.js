@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
 import Button from 'common/Button';
 import IconButton from 'common/IconButton';
 import Input from 'common/Input';
-import { PROFILE_PAGE_TABS, PROFILE_PAGE_ICONS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
 export default function ProfilePage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  const [currentTab, setCurrentTab] = useState(0);
+  const userInfo = useSelector((state) => state.app.userInfo);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -29,38 +29,11 @@ export default function ProfilePage() {
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-  const renderTabItems = () => {
-    const tabItems = [];
-    for (let i = 0; i < PROFILE_PAGE_TABS.length; i++) {
-      tabItems.push(
-        <div key={i} className={`mBottom5 ${styles.tabCtn}`}>
-          <Button
-            name={PROFILE_PAGE_TABS[i]}
-            btnStyles={`textH6ExtraBold ${styles.buttonText}
-            ${currentTab === i ? 'bg-header' : 'bg-bgColor4'}`}
-            ctnStyles={`br-TopRight-10 br-BottomRight-10 p10 border-bottom-1 border-header border-style-solid
-              ${currentTab === i ? 'bg-header' : 'bg-bgColor4'}
-            `}
-            icon1={<FontAwesomeIcon icon={PROFILE_PAGE_ICONS[i]} />}
-            onClick={() => {
-              setCurrentTab(i);
-            }}
-          />
-        </div>
-      );
-    }
-    return tabItems;
-  };
+
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
-      <div className={`${styles.navCtn}`}>
-        <SidebarTab
-          tabItems={renderTabItems()}
-          ctnStyles="pVertical50 pRight40"
-        />
-      </div>
       <div className={`${styles.contentCtn}`}>
         <div className={`${styles.avtCtn}`}>
           <div className={`${styles.avtWrapper}`}>
@@ -80,13 +53,13 @@ export default function ProfilePage() {
           <div className={`${styles.rowCtn}`}>
             <div className={`${styles.inputRowDetailCtn} mRight10`}>
               <Input
-                type="select"
+                type="text"
                 text="Phòng ban"
                 placeholder="Phòng nhân sự"
               />
             </div>
             <div className={`${styles.inputRowDetailCtn}`}>
-              <Input type="select" text="Phân quyền" placeholder="Nhân sự" />
+              <Input type="text" text="Phân quyền" placeholder="Nhân sự" />
             </div>
           </div>
           <Input
@@ -95,18 +68,21 @@ export default function ProfilePage() {
             placeholder="user1_group1_company"
           />
           <Input type="text" text="Họ và tên" placeholder="Nguyễn Văn A" />
-          <div className={`${styles.rowCtn}`}>
+          <Input type="text" text="Mật khẩu cũ" placeholder="**********" />
+          <Input type="text" text="Mật khẩu mới" placeholder="**********" />
+          <Input type="text" text="Nhập lại mật khẩu" placeholder="**********" />
+          {/* <div className={`${styles.rowCtn}`}>
             <div className={`${styles.inputRowDetailCtn} mRight10`}>
               <Input
-                type="select"
-                text="Phòng ban"
+                type="text"
+                text="Mật khẩu mới"
                 placeholder="Phòng nhân sự"
               />
             </div>
             <div className={`${styles.inputRowDetailCtn}`}>
-              <Input type="select" text="Phân quyền" placeholder="Nhân sự" />
+              <Input type="text" text="Nhập lại mật khẩu" placeholder="Nhân sự" />
             </div>
-          </div>
+          </div> */}
           <div className={`${styles.btnCtn}`}>
             <div className={`${styles.btnWrapper}`}>
               <Button

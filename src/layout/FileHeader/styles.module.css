@@ -1,5 +1,5 @@
 .headerCtn {
-  padding: 0 20px;
+  padding: 15px 20px;
   width: 100%;
   height: 100%;
   position: relative;
@@ -8,6 +8,7 @@
 .fileName {
   font-weight: 700;
   font-size: 18px;
+  line-height: 1.5;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -18,10 +19,6 @@
 }
 
 .fileEdit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -93,4 +90,8 @@
   margin: 0;
   width: 65%;
   margin-bottom: 2px;
+}
+
+.fileAct {
+  flex-grow: 1;
 }

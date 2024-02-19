@@ -42,17 +42,6 @@ export default function Input({
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
   const renderInput = () => {
-    if (type.includes('text')) {
-      return (
-        <div>
-          <input
-            type="text"
-            className={`${checkIsRow('input')}`}
-            placeholder={placeholder}
-          />
-        </div>
-      );
-    }
     if (type.includes('select')) {
       return (
         <div className={`${styles.selectCtn}`}>
@@ -89,6 +78,17 @@ export default function Input({
       return (
         <div>
           <textarea className={`${styles.textareaCtn}`}></textarea>
+        </div>
+      );
+    }
+    if (type.includes('text')) {
+      return (
+        <div>
+          <input
+            type="text"
+            className={`${checkIsRow('input')}`}
+            placeholder={placeholder}
+          />
         </div>
       );
     }
