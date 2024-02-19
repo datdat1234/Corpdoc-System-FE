@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
 import Button from 'common/Button';
@@ -8,18 +9,44 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import {
   UPLOAD_TABS,
+  CREATE_STRUCTURE,
   UPLOAD_TABS_ICON,
   SEARCH_TABS,
   SEARCH_TABS_ICON,
   PROFILE_TABS,
-  PROFILE_TABS_ICON,
+  PROFILE_NAVIGATE,
+  PROFILE_TABS_MANAGER,
+  PROFILE_NAVIGATE_MANAGER,
+  PROFILE_TABS_ADMIN,
+  PROFILE_NAVIGATE_ADMIN,
 } from 'util/js/constant';
+import { upload } from '@testing-library/user-event/dist/upload';
 
 export default function Header() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.app.userInfo);
   const [isHovered, setIsHovered] = useState(0);
+  let uploadTab = UPLOAD_TABS;
+  if (userInfo.role !== 'staff') uploadTab = uploadTab.concat(CREATE_STRUCTURE);
+  let profileTab, profileTabIcon, profileNavigate;
+  switch (userInfo.role){
+    case 'admin':
+      profileTab = PROFILE_TABS_ADMIN;
+      profileNavigate = PROFILE_NAVIGATE_ADMIN;
+      break;
+    case 'manager':
+      profileTab = PROFILE_TABS_MANAGER;
+      profileNavigate = PROFILE_NAVIGATE_MANAGER;
+      break;
+    default:
+      profileTab = PROFILE_TABS;
+      profileNavigate = PROFILE_NAVIGATE;
+  }
+  profileTabIcon = Array(profileTab.length-1).fill({left: null, right: icon.caretRight});
+  profileTabIcon.push({left: null, right: icon.rightFromBracket});
+
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -31,6 +58,14 @@ export default function Header() {
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
+  const setOnClick = (profileNavigate) => {
+    let onClick = [];
+    profileNavigate.forEach(element => {
+      if (element === '') onClick.push(() => {handleMouseLeave(); console.log('ok')})
+      else onClick.push(() => {handleMouseLeave(); navigate(element)})
+    });
+    return onClick;
+  }
   const handleMouseEnter = (i) => {
     setIsHovered(i);
   };
@@ -46,8 +81,12 @@ export default function Header() {
   const renderUserInfo = () => {
     return (
       <div>
-        <p className={`${styles.name}`}>Nguyễn Văn A</p>
-        <p className={`${styles.role}`}>Người dùng</p>
+        <p className={`${styles.name}`}>{userInfo.name}</p>
+        <p className={`${styles.role}`}>
+          {userInfo.role === 'staff' && 'Người dùng'}
+          {userInfo.role === 'manager' && 'Trưởng phòng'}
+          {userInfo.role === 'admin' && 'Quản trị viên'}
+        </p>
       </div>
     );
   };
@@ -60,6 +99,31 @@ export default function Header() {
         <img className={styles.logo} src={logo1} alt={'Logo'}></img>
       </div>
       <div className={styles.remainCtn}></div>
+      {userInfo.role === 'admin' &&
+        <div
+          className="position-relative"
+        >
+          {isHovered === 1 || isHovered === 2 ? (
+            <Button
+              ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
+              icon1Styles="text"
+              icon1={<FontAwesomeIcon icon={icon.userGroup} size={`lg`} />}
+              onClick={() => ({})}
+            />
+          ): (
+            <Button
+              name={'Phòng Nhân sự'}
+              ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
+              icon1Styles="text"
+              icon2Styles="text mLeft10"
+              btnStyles="textH6Black bg-bgColor3 text mHorizontal5"
+              icon1={<FontAwesomeIcon icon={icon.userGroup} size={`lg`} />}
+              icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
+              onClick={() => ({})}
+            />
+          )}
+        </div>
+      }
       <div
         className="position-relative"
         onMouseEnter={() => handleMouseEnter(1)}
@@ -86,16 +150,17 @@ export default function Header() {
         )}
         {isHovered === 1 && (
           <HoverModal
-            ctnStyles="bg-bgColor5 pHorizontal2"
+            ctnStyles="bg-bgColor4 border-color-bg5"
             icon={UPLOAD_TABS_ICON}
-            name={UPLOAD_TABS}
-            lastBtnStyles="textH6Black bg-bgColor5"
-            lastBtnColor="main"
+            name={uploadTab}
+            lastBtnStyles={userInfo.role === 'staff'? '' : "textH6Black header bg-bgColor5"}
+            lastBtnColor={userInfo.role === 'staff'? 'bg-bgColor4' : "bg-bgColor5"}
+            isFolder={true}
             onClick={[
-              () => {handleMouseLeave(); navigate('/upload')},
-              () => {handleMouseLeave(); navigate('/upload')},
-              () => {handleMouseLeave(); navigate('/upload')},
-              () => console.log(4),
+              () => {handleMouseLeave(); navigate('/upload-file')},
+              () => {handleMouseLeave(); navigate('/upload-file')},
+              () => {handleMouseLeave(); navigate('/upload-file')},
+              () => {handleMouseLeave(); navigate('/upload-folder', {state:{newStructure: true}})},
             ]}
             smallHoverIDs={[2]}
           />
@@ -127,16 +192,30 @@ export default function Header() {
         )}
         {isHovered === 2 && (
           <HoverModal
-            ctnStyles="bg-bgColor5 pHorizontal2"
+            ctnStyles="bg-bgColor4 border-color-text"
             icon={SEARCH_TABS_ICON}
             name={SEARCH_TABS}
             onClick={[
-              () => {handleMouseLeave(); navigate('/search')},
-              () => {handleMouseLeave(); navigate('/search')}
+              () => {handleMouseLeave(); navigate('/search-file')},
+              () => {handleMouseLeave(); navigate('/search-folder')}
             ]}
           />
         )}
       </div>
+      {userInfo.role !== 'staff' &&
+        <div
+          className="position-relative"
+          onMouseEnter={() => handleMouseEnter()}
+          onMouseLeave={() => handleMouseLeave()}
+        >
+          <Button
+            ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
+            icon1Styles="text"
+            icon1={<FontAwesomeIcon icon={icon.fileCircleCheck} size={`2x`}/>}
+            onClick={() => navigate('/approval')}
+          />
+        </div>
+      }
       <div
         className="position-relative"
         onMouseEnter={() => handleMouseEnter()}
@@ -173,17 +252,13 @@ export default function Header() {
         )}
         {isHovered === 3 && (
           <HoverModal
-            ctnStyles="bg-header pHorizontal2"
-            icon={PROFILE_TABS_ICON}
-            name={PROFILE_TABS}
+            ctnStyles="bg-bgColor4 border-color-header"
+            icon={profileTabIcon}
+            name={profileTab}
             lastBtnStyles="textH6Black bg-header"
-            lastBtnColor="bgColor5"
+            lastBtnColor="bgColor5 bg-header"
             spacerColor="bg-header"
-            onClick={[
-              () => {handleMouseLeave(); navigate('/profile')},
-              () => console.log(2),
-              () => navigate('/login'),
-            ]}
+            onClick={setOnClick(profileNavigate)}
           />
         )}
       </div>

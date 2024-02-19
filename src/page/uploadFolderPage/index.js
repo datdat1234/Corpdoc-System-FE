@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
@@ -6,10 +7,12 @@ import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function SearchPage() {
+export default function UploadFolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const newStructure = location.state? location.state.newStructure: null;
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -21,7 +24,9 @@ export default function SearchPage() {
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-
+  const handleNavigate = () => {
+    navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -34,53 +39,22 @@ export default function SearchPage() {
     <div className={`${styles.root}`}>
       <div className={`${styles.navCtn}`}>
         <Button
-          name="Tìm kiếm thư mục"
+          name={newStructure? "Tạo miền cấu trúc mới" : "Thêm thư mục mới"}
           ctnStyles="h-100 text18SemiBold border-bottom-1 border-style-solid border-bg5-60 br-10"
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
           icon1={<FontAwesomeIcon icon={icon.angleLeft} />}
+          onClick={() => navigate('/home')}
         />
       </div>
       <div className={`${styles.input}`}>
-        <Input type="text" text="Từ khóa" bonusText="(tối đa 50 ký tự)" />
-        <div className={`${styles.inputRowCtn}`}>
-          <div className={`${styles.inputRowDetailCtn} mRight10`}>
-            <Input type="select" text="Phòng ban" />
-          </div>
-          <div className={`${styles.inputRowDetailCtn}`}>
-            <Input type="select" text="Người tạo" />
-          </div>
-        </div>
-        <Input type="select" text="Miền" />
-        <Input type="select" text="Thư mục" />
-        <div className={`${styles.inputRowCtn}`}>
-          <div className={`${styles.inputRowDetailCtn} mRight10`}>
-            <Input type="date" text="Ngày tạo" />
-          </div>
-          <div className={`${styles.inputRowDetailCtn}`}>
-            <Input type="date" text="Ngày được xác nhận" />
-          </div>
-        </div>
-        <Input
-          type="text"
-          text="Tiêu chí"
-          bonusText="(Tối đa 20 ký tự. Nhấn phím Enter khi kết thúc 1 tiêu chí. Bạn được chọn tối đa 3 tiêu chí)"
-        />
+        {!newStructure && <Input type="select" text="Thư mục cha" />}
+        <Input type="text" text="Tên miền" bonusText="(tối đa 50 ký tự)" />
+        <Input type="textarea" text="Mô tả" />
+        <Input type="select" text="Tiêu chí của tài liệu" />
         <div className={`${styles.checkboxCtn}`}>
           <CriteriaTag text="Khoa học máy tính" />
           <CriteriaTag text="Khoa học máy tính" />
-        </div>
-        <div className={`${styles.checkboxCtn}`}>
-          <Input
-            type="checkbox"
-            text="Thư mục đã lưu"
-            textStyles="textH6Bold mRight10"
-          />
-          <Input
-            type="checkbox"
-            text="Thư mục được chia sẻ"
-            textStyles="textH6Bold"
-          />
         </div>
         <div className={`${styles.btnCtn} mBottom10`}>
           <div className={`${styles.btnWrapper}`}>
@@ -88,6 +62,7 @@ export default function SearchPage() {
               name="XÁC NHẬN"
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
+              onClick={handleNavigate}
             />
           </div>
         </div>

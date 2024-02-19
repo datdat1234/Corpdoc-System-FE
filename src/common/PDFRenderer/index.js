@@ -66,7 +66,6 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
       className={`${styles.root}`}
       style={{
         width: `calc(${scale / 100}*100%)`,
-        height: `calc(${scale / 100}*100%)`,
       }}
       ref={parentRef}
       onScroll={handleScroll}

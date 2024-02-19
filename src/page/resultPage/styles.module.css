@@ -34,3 +34,7 @@
   max-width: 510px;
   text-align: center;
 }
+
+.submitBtn {
+  height: 54px;
+}

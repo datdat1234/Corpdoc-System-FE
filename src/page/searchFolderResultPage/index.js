@@ -8,7 +8,7 @@ import { SEARCH_RESULT_GRIDS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
-export default function SearchResultPage() {
+export default function SearchFolderResultPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import SmallHoverModal from 'common/SmallHoverModal';
@@ -13,10 +14,12 @@ export default function HoverModal({
   lastBtnStyles = '',
   lastBtnColor = 'bg-bgColor4',
   spacerColor = 'bg-bgColor5',
+  isFolder = false,
   smallHoverIDs = [],
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(-1);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -30,7 +33,7 @@ export default function HoverModal({
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const checkHavingLastBtn = (i) => {
-    if (i === name.length - 1 && lastBtnStyles === '') return true;
+    if (i === name.length - 1 && lastBtnStyles !== '') return true;
     return false;
   };
 
@@ -51,16 +54,16 @@ export default function HoverModal({
     for (let i = 0; i < name.length; i++) {
       tabItems.push(
         <div
-          className={`w-100 position-relative ${styles.itemButton}`}
+          className={`position-relative ${styles.itemButton}`}
           key={i}
           onMouseEnter={() => handleMouseEnter(i)}
           onMouseLeave={() => handleMouseLeave()}
         >
           <Button
             name={name[i]}
-            ctnStyles={`pHorizontal15 pVertical10 
+            ctnStyles={`w-100 pHorizontal15 pVertical10 
               ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4 bgColor4'}
-              ${checkHavingLastBtn(i) ? 'br-BottomRight-15 br-BottomLeft-15 mBottom2' : ''} 
+              ${checkHavingLastBtn(i) ? 'br-BottomRight-10 br-BottomLeft-10 mBottom2' : 'br-BottomRight-15 br-BottomLeft-15'} 
             `}
 
             icon1Styles={`header`}
@@ -93,7 +96,7 @@ export default function HoverModal({
       );
     }
     if (i === 1) {
-      if (lastBtnStyles !== '') {
+      if (isFolder) {
         return (
           <div className={`${styles.spacerCtn}`}>
             <div className={`${styles.border2}`} />
@@ -115,7 +118,14 @@ export default function HoverModal({
   const renderSmallHover = (i) => {
     if (smallHoverIDs.includes(i)) {
       return (
-        <SmallHoverModal name={SMALL_HOVER_TABS} icon={SMALL_HOVER_ICONS} />
+        <SmallHoverModal 
+          name={SMALL_HOVER_TABS} 
+          icon={SMALL_HOVER_ICONS} 
+          onClick={[
+            () => {handleMouseLeave(); navigate('/upload-folder', {state:{newStructure: false}})},
+            () => {handleMouseLeave(); navigate('/upload-file')},
+          ]}
+        />
       );
     }
   };

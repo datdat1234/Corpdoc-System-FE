@@ -1,0 +1,15 @@
+.root {
+  width: 250px;
+  height: 100%;
+}
+
+.tabCtn {
+  height: 44px;
+}
+
+.buttonText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
