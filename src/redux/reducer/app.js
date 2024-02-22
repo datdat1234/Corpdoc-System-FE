@@ -8,7 +8,7 @@ import {
 export default function appReducer(
   state = {
     globalLoading: false,
-    userInfo: { name: 'user_1', role: 'staff' },
+    userInfo: { name: 'user_1', role: 'Staff' },
     fileInfo: {},
   },
   action

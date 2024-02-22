@@ -25,13 +25,13 @@ export default function SettingSidebar() {
   const [currentTab, setCurrentTab] = useState(0);
   const userInfo = useSelector((state) => state.app.userInfo);
   let profileTab, profileTabIcon, profileNavigate;
-  switch (userInfo.role){
+  switch (userInfo.Role){
     case 'admin':
       profileTab = PROFILE_TABS_ADMIN;
       profileTabIcon = PROFILE_TABS_ADMIN_ICON;
       profileNavigate = PROFILE_NAVIGATE_ADMIN;
       break;
-    case 'manager':
+    case 'Manager':
       profileTab = PROFILE_TABS_MANAGER;
       profileTabIcon = PROFILE_TABS_MANAGER_ICON;
       profileNavigate = PROFILE_NAVIGATE_MANAGER;

@@ -30,6 +30,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [errUsername, setErrUsername] = useState('');
   const [errPassword, setErrPassword] = useState('');
+  const [errLogin, setErrLogin] = useState('');
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -65,14 +66,25 @@ export default function LoginPage() {
     return false;
   };
 
-  const handleNavigate = (tab) => {
-    // if (tab === 0) navigate(`/home`);
-    // else {
+  const handleNavigate = async (tab) => {
+    if (tab === 0) navigate(`/home`);
+    else {
       if(!checkInputLogin()) return;
-      console.log(login(username, password));
-      // dispatch(setUserInfo({name: 'Nguyễn Văn A', role: 'manager'}));
-      // navigate(`/home`);
-    // }
+      try {
+        const res = await login(username, password);
+        console.log(res);
+        const resultCode = res?.data?.resultCode;
+        if (resultCode !== "00047") {
+          setErrLogin(res?.data?.resultMessage.vi);
+          return;
+        }
+        const userInfo = res?.data?.data;
+        dispatch(setUserInfo(userInfo));
+        navigate(`/home`);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
   };
 
   const handleResetPass = () => {
@@ -100,6 +112,7 @@ export default function LoginPage() {
           {errUsername && <p className='text-danger mVertical10 text16Bold'>{errUsername}</p>}
           <FormInput name="Mật khẩu" type="password" setInputVal={setPassword}/>
           {errPassword && <p className='text-danger mVertical10 text16Bold'>{errPassword}</p>}
+          {errLogin !== '' && <p className='text-danger mVertical10 text16Bold'>{errLogin}</p>}
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
           >
