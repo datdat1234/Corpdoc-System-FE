@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
-import { AUTH_FORM_WIDTH, API_URL } from 'util/js/constant';
+import { AUTH_FORM_WIDTH } from 'util/js/constant';
 import { setUserInfo, setFileInfo } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
