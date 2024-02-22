@@ -3,14 +3,13 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import { AUTH_FORM_WIDTH, API_URL } from 'util/js/constant';
-import { setUserInfo } from '../../redux/action/app';
+import { setUserInfo, setFileInfo } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
-import FormTab from 'common/FormTab';
 import FormInput from 'common/FormInput';
 import Button from 'common/Button';
 import CheckBoxForm from 'common/CheckBoxForm';
-import { Form, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 

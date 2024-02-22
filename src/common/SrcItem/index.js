@@ -27,15 +27,14 @@ export default function SrcItem({ value = [], grid = [] }) {
   //////////////////////////////////////////////////
 
   const setOpenModal = (index) => {
-    if(modal[index] === true) {
+    if (modal[index] === true) {
       modals = Array(grid.length).fill(false);
-    }
-    else {
+    } else {
       modals = Array(grid.length).fill(false);
       modals[index] = true;
     }
     setModal(modals);
-  }
+  };
 
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
@@ -60,7 +59,7 @@ export default function SrcItem({ value = [], grid = [] }) {
             icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
             onClick={() => setOpenModal(index)}
           />
-          {modal[index] && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2'/>}
+          {modal[index] && <BreadCrumbModal ctnStyles="br-15 br-TopRight-2" />}
         </div>
       );
     }
@@ -86,7 +85,7 @@ export default function SrcItem({ value = [], grid = [] }) {
         icon1={null}
         icon2={<FontAwesomeIcon icon={icon.caretDown} />}
         icon2Styles="pLeft10"
-        btnStyles="textH6Bold w-auto text"
+        btnStyles="textH6Bold w-auto text bg-bgColor4"
         onClick={() => {
           console.log('click');
         }}
@@ -94,13 +93,14 @@ export default function SrcItem({ value = [], grid = [] }) {
     );
   };
 
-  const renderNameCell = (isFile, text) => {
+  const renderNameCell = (isFile, text, id) => {
     if (isFile)
       return (
         <TextIcon
           text={text}
           icon1={<FontAwesomeIcon icon={icon.file} />}
           textStyles="text14Bold mLeft10"
+          id={id}
         />
       );
     else {
@@ -110,6 +110,7 @@ export default function SrcItem({ value = [], grid = [] }) {
           icon1={<FontAwesomeIcon icon={icon.folder} />}
           icon1Styles="main"
           textStyles="text14Medium mLeft10"
+          id={id}
         />
       );
     }
@@ -151,8 +152,10 @@ export default function SrcItem({ value = [], grid = [] }) {
     if (item.type.includes('edit')) return renderIconBtnCell(false, index);
     if (item.type.includes('text')) return renderTextCell(item.text, item.type);
     if (item.type.includes('header')) return renderHeaderCell(item.text);
-    if (item.type.includes('file')) return renderNameCell(true, item.text);
-    if (item.type.includes('folder')) return renderNameCell(false, item.text);
+    if (item.type.includes('file'))
+      return renderNameCell(true, item.text, item.id);
+    if (item.type.includes('folder'))
+      return renderNameCell(false, item.text, item.id);
     if (item.type.includes('checkbox')) return renderCheckBox(item);
     if (item.type.includes('approval')) return renderApproval(item);
   };
@@ -168,9 +171,5 @@ export default function SrcItem({ value = [], grid = [] }) {
   };
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
-  return (
-    <div className={`${styles.root}`}>
-      {renderGrid()}
-    </div>
-  );
+  return <div className={`${styles.root}`}>{renderGrid()}</div>;
 }

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import { useSelector } from 'react-redux';
+import { downloadFile } from 'util/js/APIs';
+import { saveAs } from 'file-saver';
 
 export default function FileHeader({
-  name = '',
   page = 1,
   totalPage = 0,
   scale,
@@ -14,6 +16,7 @@ export default function FileHeader({
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [scaleValue, setScaleValue] = useState(scale);
+  const fileInfo = useSelector((state) => state.app.fileInfo);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -55,6 +58,17 @@ export default function FileHeader({
   const handleClosePdf = () => {
     setShowPdf(false);
   };
+
+  const handleDownloadfile = async () => {
+    try {
+      const fileId = fileInfo?.FileID;
+      const response = await downloadFile(fileId);
+      const blob = new Blob([response?.data], { type: 'application/pdf' });
+      saveAs(blob, `${fileId}.pdf`);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -68,7 +82,7 @@ export default function FileHeader({
       className={`d-flex align-items-center justify-content-start ${styles.headerCtn}`}
     >
       <div className={`col-7 mRight20 pRight20 ${styles.fileName}`}>
-        {name}
+        {fileInfo?.Name}
       </div>
       <div className={`col-7 mHorizontal20 ${styles.fileEdit}`}>
         <div className={`${styles.pageCtn}`}>
@@ -106,10 +120,16 @@ export default function FileHeader({
         </div>
       </div>
       <div className={`mLeft20 d-flex justify-content-end ${styles.fileAct}`}>
-        <button className={`${styles.button} pRight20`}>
+        <button
+          className={`${styles.button} pRight20`}
+          onClick={handleDownloadfile}
+        >
           <FontAwesomeIcon icon={icon.download} />
         </button>
-        <button className={`${styles.button} ${styles.button}`} onClick={handleClosePdf}>
+        <button
+          className={`${styles.button} ${styles.button}`}
+          onClick={handleClosePdf}
+        >
           <FontAwesomeIcon icon={icon.xmark} />
         </button>
       </div>
