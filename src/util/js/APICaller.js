@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import
 import { logMessage } from './helper';
 
 const getToken = () => {

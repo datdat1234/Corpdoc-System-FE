@@ -22,6 +22,10 @@ import {
 } from 'util/js/constant';
 import { upload } from '@testing-library/user-event/dist/upload';
 
+////////API IMPORT //////////////////////////////////
+////////////////////////////////////////////////////
+import { logout } from 'util/js/APICaller';
+
 export default function Header() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -62,6 +66,7 @@ export default function Header() {
     let onClick = [];
     profileNavigate.forEach(element => {
       if (element === '') onClick.push(() => {handleMouseLeave(); console.log('ok')})
+      else if (element === '/login') onClick.push(() => {logout()})
       else onClick.push(() => {handleMouseLeave(); navigate(element)})
     });
     return onClick;
