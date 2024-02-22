@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Button from 'common/Button';
@@ -7,10 +7,11 @@ import Header from './Header';
 import FileHeader from './FileHeader';
 import Sidebar from './Sidebar';
 import SettingSidebar from './SettingSidebar';
-import { 
-  NO_LAYOUT_LINKS, 
-  NOT_SHOW_SIDEBAR, 
-  IS_SETTING_PAGE } from 'util/js/constant';
+import {
+  NO_LAYOUT_LINKS,
+  NOT_SHOW_SIDEBAR,
+  IS_SETTING_PAGE,
+} from 'util/js/constant';
 import styles from './styles.module.css';
 import PDFRenderer from 'common/PDFRenderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +20,7 @@ import icon from 'util/js/icon';
 export default function Layout({ children }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const fileInfo = useSelector((state) => state.app.fileInfo);
   const resizableRef = useRef(null);
   const resizableSidebarRef = useRef(null);
   const location = useLocation();
@@ -27,13 +29,15 @@ export default function Layout({ children }) {
   const [scale, setScale] = useState(100);
   const [width, setWidth] = useState(50);
   const [sidebarWidth, setSidebarWidth] = useState(33.328);
-  const [showPdf, setShowPdf] = useState(true);
+  const [showPdf, setShowPdf] = useState(false);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-
+  useEffect(() => {
+    setShowPdf(fileInfo?.Url ? true : false);
+  }, [fileInfo]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -52,9 +56,7 @@ export default function Layout({ children }) {
   };
 
   const checkSettingPage = () => {
-    return (
-      IS_SETTING_PAGE.findIndex((item) => item === location.pathname) >= 0
-    );
+    return IS_SETTING_PAGE.findIndex((item) => item === location.pathname) >= 0;
   };
 
   const handleMouseDown = (event) => {
@@ -66,8 +68,8 @@ export default function Layout({ children }) {
   const handleMouseMove = (event) => {
     const containerWidth = resizableRef.current.parentNode.clientWidth;
     var newWidth = (event.clientX / containerWidth) * 100;
-    if(newWidth < 40) newWidth = 40
-    else if(newWidth > 60) newWidth = 60;
+    if (newWidth < 40) newWidth = 40;
+    else if (newWidth > 60) newWidth = 60;
     setWidth(newWidth);
   };
 
@@ -126,7 +128,11 @@ export default function Layout({ children }) {
               <div
                 className={`${styles.contentCtn}`}
                 style={{
-                  width: `${checkShowSideBar() || checkSettingPage() ? 100 - sidebarWidth : 100}%`,
+                  width: `${
+                    checkShowSideBar() || checkSettingPage()
+                      ? 100 - sidebarWidth
+                      : 100
+                  }%`,
                 }}
               >
                 {children}
@@ -150,7 +156,6 @@ export default function Layout({ children }) {
                 <FileHeader
                   page={page}
                   totalPage={totalPage}
-                  name={'Cây Cam Ngọt Của Tôi'}
                   scale={scale}
                   setScale={setScale}
                   setShowPdf={setShowPdf}

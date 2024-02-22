@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './styles.module.css';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { useSelector } from 'react-redux';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function PDFRenderer({ setPage, setTotalPage, scale }) {
@@ -10,6 +11,7 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
   const windowHeight = window.innerHeight;
   const [numPages, setNumPages] = useState(1);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const fileInfo = useSelector((state) => state.app.fileInfo);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -70,7 +72,7 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
       ref={parentRef}
       onScroll={handleScroll}
     >
-      <Document file="/asset/TEST.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={fileInfo?.Url} onLoadSuccess={onDocumentLoadSuccess}>
         {renderPages()}
       </Document>
     </div>

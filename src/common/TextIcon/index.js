@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
+import { viewFile } from 'util/js/APIs';
+import { useDispatch } from 'react-redux';
+import { setFileInfo } from '../../redux/action/app';
 
 export default function TextIcon({
   text,
@@ -9,10 +12,11 @@ export default function TextIcon({
   textStyles = '',
   icon1 = <></>,
   icon2 = <></>,
+  id,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-
+  const dispatch = useDispatch();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -24,7 +28,18 @@ export default function TextIcon({
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-
+  const handleViewfile = async () => {
+    try {
+      const response = await viewFile(
+        id,
+        '13ed4be3-ae82-4e65-8370-986656fc8e63'
+      );
+      const fileInfo = response?.data?.data;
+      dispatch(setFileInfo({ ...fileInfo }));
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -34,7 +49,11 @@ export default function TextIcon({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root} ${ctnStyles}`}>
+    <div
+      className={`w-100 ${styles.root} ${ctnStyles}`}
+      id={id}
+      onClick={handleViewfile}
+    >
       <div className={`${icon1Styles} ${styles.icon}`}>{icon1}</div>
       <p className={`w-100 ${textStyles} ${styles.btn}`}>{text}</p>
       <div className={`${icon2Styles}`}>{icon2}</div>

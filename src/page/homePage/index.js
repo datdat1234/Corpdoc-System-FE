@@ -39,6 +39,7 @@ export default function HomePage() {
     {
       text: 'Truyện hư cấu',
       type: 'folder',
+      id: '1',
     },
     {
       text: '1/12/2024 11:52 PM',
@@ -62,6 +63,7 @@ export default function HomePage() {
     {
       text: 'Truyện phi hư cấu',
       type: 'folder',
+      id: '1',
     },
     {
       text: '1/12/2024 11:52 PM',
@@ -85,6 +87,7 @@ export default function HomePage() {
     {
       text: 'Cây cam ngọt của tôi',
       type: 'file',
+      id: '29fe90c1-1a45-41e7-a528-23c661467ddd',
     },
     {
       text: '1/12/2024 11:52 PM',
