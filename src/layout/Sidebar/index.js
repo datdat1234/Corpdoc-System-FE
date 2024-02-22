@@ -37,7 +37,7 @@ export default function Sidebar() {
   //////////////////////////////////////////////////
   const renderTabItems = () => {
     const tabItems = [];
-    if (userInfo.role === 'admin') {
+    if (userInfo.Role === 'Admin') {
       for (let i = 0; i < SIDEBAR_TABS_ADMIN.length; i++) {
         tabItems.push(
           <div key={SIDEBAR_TABS_ADMIN.length-i+2} className={`mBottom5 ${styles.tabCtn}`}>
@@ -58,7 +58,7 @@ export default function Sidebar() {
       }
     }
     for (let i = 0; i < SIDEBAR_TABS.length; i++) {
-      if (userInfo.role === 'manager' || (userInfo.role === 'staff' && SIDEBAR_TABS[i] !== 'Thùng rác')){
+      if (userInfo.Role === 'Manager' || (userInfo.Role === 'Staff' && SIDEBAR_TABS[i] !== 'Thùng rác')){
         tabItems.push(
           <div key={i} className={`mBottom5 ${styles.tabCtn}`}>
             <Button

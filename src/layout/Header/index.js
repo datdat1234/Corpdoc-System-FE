@@ -29,14 +29,14 @@ export default function Header() {
   const userInfo = useSelector((state) => state.app.userInfo);
   const [isHovered, setIsHovered] = useState(0);
   let uploadTab = UPLOAD_TABS;
-  if (userInfo.role !== 'staff') uploadTab = uploadTab.concat(CREATE_STRUCTURE);
+  if (userInfo.Role !== 'Staff') uploadTab = uploadTab.concat(CREATE_STRUCTURE);
   let profileTab, profileTabIcon, profileNavigate;
-  switch (userInfo.role){
+  switch (userInfo.Role){
     case 'admin':
       profileTab = PROFILE_TABS_ADMIN;
       profileNavigate = PROFILE_NAVIGATE_ADMIN;
       break;
-    case 'manager':
+    case 'Manager':
       profileTab = PROFILE_TABS_MANAGER;
       profileNavigate = PROFILE_NAVIGATE_MANAGER;
       break;
@@ -81,11 +81,11 @@ export default function Header() {
   const renderUserInfo = () => {
     return (
       <div>
-        <p className={`${styles.name}`}>{userInfo.name}</p>
+        <p className={`${styles.name}`}>{userInfo.Name}</p>
         <p className={`${styles.role}`}>
-          {userInfo.role === 'staff' && 'Người dùng'}
-          {userInfo.role === 'manager' && 'Trưởng phòng'}
-          {userInfo.role === 'admin' && 'Quản trị viên'}
+          {userInfo.Role === 'Staff' && 'Nhân viên'}
+          {userInfo.Role === 'Manager' && 'Trưởng phòng'}
+          {userInfo.Role === 'Admin' && 'Quản trị viên'}
         </p>
       </div>
     );
@@ -99,7 +99,7 @@ export default function Header() {
         <img className={styles.logo} src={logo1} alt={'Logo'}></img>
       </div>
       <div className={styles.remainCtn}></div>
-      {userInfo.role === 'admin' &&
+      {userInfo.Role === 'Admin' &&
         <div
           className="position-relative"
         >
@@ -153,8 +153,8 @@ export default function Header() {
             ctnStyles="bg-bgColor4 border-color-bg5"
             icon={UPLOAD_TABS_ICON}
             name={uploadTab}
-            lastBtnStyles={userInfo.role === 'staff'? '' : "textH6Black header bg-bgColor5"}
-            lastBtnColor={userInfo.role === 'staff'? 'bg-bgColor4' : "bg-bgColor5"}
+            lastBtnStyles={userInfo.Role === 'Staff'? '' : "textH6Black header bg-bgColor5"}
+            lastBtnColor={userInfo.Role === 'Staff'? 'bg-bgColor4' : "bg-bgColor5"}
             isFolder={true}
             onClick={[
               () => {handleMouseLeave(); navigate('/upload-file')},
@@ -202,7 +202,7 @@ export default function Header() {
           />
         )}
       </div>
-      {userInfo.role !== 'staff' &&
+      {userInfo.Role !== 'Staff' &&
         <div
           className="position-relative"
           onMouseEnter={() => handleMouseEnter()}
