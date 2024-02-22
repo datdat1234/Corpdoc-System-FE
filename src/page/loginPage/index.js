@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import { AUTH_FORM_WIDTH } from 'util/js/constant';
-import { setUserInfo } from '../../redux/action/app';
+import { setUserInfo, setFileInfo } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
-import FormTab from 'common/FormTab';
 import FormInput from 'common/FormInput';
 import Button from 'common/Button';
 import CheckBoxForm from 'common/CheckBoxForm';
-import { Form, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
@@ -48,7 +47,7 @@ export default function LoginPage() {
   const handleNavigate = (tab) => {
     if (tab === 0) navigate(`/home`);
     else {
-      dispatch(setUserInfo({name: 'Nguyễn Văn A', role: 'manager'}));
+      dispatch(setUserInfo({ name: 'Nguyễn Văn A', role: 'manager' }));
       navigate(`/home`);
     }
   };
@@ -140,7 +139,6 @@ export default function LoginPage() {
                       ctnStyles="w-100 h-56 bg-text br-8"
                       btnStyles="text-center textH6Bold white bg-text"
                       onClick={() => {
-                        console.log(1);
                         handleNavigate(tab);
                       }}
                     />

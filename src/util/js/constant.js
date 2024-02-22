@@ -1,6 +1,6 @@
 import icon from './icon';
 
-export const BASE_URL = process.env.REACT_APP_BE_URL || 'https://example.vn';
+export const BASE_URL = process.env.REACT_APP_BE_URL || 'http://localhost:3001';
 export const API_URL = `${BASE_URL}/api`;
 export const is1920x1080 = window.innerWidth === 1920;
 export const is1920OrMore = window.innerWidth >= 1920;
@@ -33,16 +33,26 @@ export const SIDEBAR_TABS = [
   'Thùng rác',
 ];
 
-export const SIDEBAR_ICONS = [icon.folderTree, icon.share, icon.bookmark, icon.trashCan];
+export const SIDEBAR_ICONS = [
+  icon.folderTree,
+  icon.share,
+  icon.bookmark,
+  icon.trashCan,
+];
 
 export const SIDEBAR_TABS_ADMIN = [
   'Khu vực tài liệu mật',
   'Các phòng ban - ',
   'Đã lưu',
   'Thùng rác',
-]
+];
 
-export const SIDEBAR_ICONS_ADMIN = [icon.eyeSlash, icon.folderTree, icon.bookmark, icon.trashCan];
+export const SIDEBAR_ICONS_ADMIN = [
+  icon.eyeSlash,
+  icon.folderTree,
+  icon.bookmark,
+  icon.trashCan,
+];
 
 export const SIDEBAR_STRUCTURE = [
   {
@@ -61,9 +71,7 @@ export const UPLOAD_TABS = [
   'Đồ án tốt nghiệp _ Luận văn tốt nghiệp',
 ];
 
-export const CREATE_STRUCTURE = [
-  'Tạo cấu trúc mới',
-]
+export const CREATE_STRUCTURE = ['Tạo cấu trúc mới'];
 
 export const UPLOAD_TABS_ICON = [
   {
@@ -114,13 +122,14 @@ export const PROFILE_TABS_ICON = [
   },
 ];
 
-export const PROFILE_NAVIGATE = [
-  '/profile',
-  '',
-  '/login',
-];
+export const PROFILE_NAVIGATE = ['/profile', '', '/login'];
 
-export const PROFILE_TABS_MANAGER = ['Thông tin cá nhân', 'Quản lý nhân viên', 'Cài đặt', 'Đăng xuất'];
+export const PROFILE_TABS_MANAGER = [
+  'Thông tin cá nhân',
+  'Quản lý nhân viên',
+  'Cài đặt',
+  'Đăng xuất',
+];
 
 export const PROFILE_TABS_MANAGER_ICON = [
   {
@@ -148,7 +157,14 @@ export const PROFILE_NAVIGATE_MANAGER = [
   '/login',
 ];
 
-export const PROFILE_TABS_ADMIN = ['Thông tin cá nhân', 'Thông tin công ty', 'Thông tin phòng ban', 'Quản lý nhân viên', 'Cài đặt', 'Đăng xuất'];
+export const PROFILE_TABS_ADMIN = [
+  'Thông tin cá nhân',
+  'Thông tin công ty',
+  'Thông tin phòng ban',
+  'Quản lý nhân viên',
+  'Cài đặt',
+  'Đăng xuất',
+];
 
 export const PROFILE_TABS_ADMIN_ICON = [
   {
