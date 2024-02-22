@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
-import { AUTH_FORM_WIDTH } from 'util/js/constant';
+import { AUTH_FORM_WIDTH, API_URL } from 'util/js/constant';
 import { setUserInfo } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
@@ -13,6 +14,11 @@ import { Form, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
+
+////////API IMPORT //////////////////////////////////
+////////////////////////////////////////////////////
+import { login } from 'util/js/APIs';
+
 export default function LoginPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -21,6 +27,10 @@ export default function LoginPage() {
   const [isResetPass, setIsResetPass] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errUsername, setErrUsername] = useState('');
+  const [errPassword, setErrPassword] = useState('');
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -45,12 +55,25 @@ export default function LoginPage() {
     else setTab(0);
   };
 
-  const handleNavigate = (tab) => {
-    if (tab === 0) navigate(`/home`);
-    else {
-      dispatch(setUserInfo({name: 'Nguyễn Văn A', role: 'manager'}));
-      navigate(`/home`);
+  const checkInputLogin = () => {
+    if (username && password) return true;
+    if (!username) {
+      setErrUsername('Vui lòng điền username.')
     }
+    if (!password) {
+      setErrPassword('Vui lòng điền mật khẩu.')
+    }
+    return false;
+  };
+
+  const handleNavigate = (tab) => {
+    // if (tab === 0) navigate(`/home`);
+    // else {
+      if(!checkInputLogin()) return;
+      console.log(login(username, password));
+      // dispatch(setUserInfo({name: 'Nguyễn Văn A', role: 'manager'}));
+      // navigate(`/home`);
+    // }
   };
 
   const handleResetPass = () => {
@@ -74,8 +97,10 @@ export default function LoginPage() {
     else
       return (
         <>
-          <FormInput name="Email" type="text" />
-          <FormInput name="Mật khẩu" type="password" />
+          <FormInput name="Username" type="text" setInputVal={setUsername}/>
+          {errUsername && <p className='text-danger mVertical10 text16Bold'>{errUsername}</p>}
+          <FormInput name="Mật khẩu" type="password" setInputVal={setPassword}/>
+          {errPassword && <p className='text-danger mVertical10 text16Bold'>{errPassword}</p>}
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
           >
@@ -140,7 +165,6 @@ export default function LoginPage() {
                       ctnStyles="w-100 h-56 bg-text br-8"
                       btnStyles="text-center textH6Bold white bg-text"
                       onClick={() => {
-                        console.log(1);
                         handleNavigate(tab);
                       }}
                     />

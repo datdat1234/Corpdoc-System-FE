@@ -6,6 +6,7 @@ import icon from 'util/js/icon';
 export default function FormInput({
   name = '',
   type = 'text',
+  setInputVal = null,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -39,6 +40,8 @@ export default function FormInput({
         className={`form-control ${styles.input}`}
         aria-label="Small"
         aria-describedby="inputGroup-sizing-sm"
+        // value={inputVal}
+        onChange={e => setInputVal(e.target.value)}
       />
       <div className={styles.label}>
         <p className={styles.name}>{name}</p>

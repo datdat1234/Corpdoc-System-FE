@@ -3,13 +3,13 @@ import { API_URL } from "./constant";
 
 export const checkLogin = (username) => {
   return post(`${API_URL}/user/login`, {
-    user_name: username,
+    username: username,
   });
 };
 
 export const login = (username, password) => {
   return post(`${API_URL}/user/login`, {
-    user_name: username,
+    username: username,
     password: password,
   });
 };

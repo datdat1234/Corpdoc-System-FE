@@ -45,8 +45,8 @@ const callAxios = (
       // Nếu status trả ra là 401 và không phải đang ở trang login hoặc oauth2 thì logout
       if (
         status === 401 &&
-        !window.location.href?.includes(LOGIN_URL_FE) &&
-        !window.location.href?.includes(OAUTH2_URL_FE)
+        !window.location.href?.includes(LOGIN_URL_FE) 
+        // && !window.location.href?.includes(OAUTH2_URL_FE)
       ) {
         logout();
       } else {

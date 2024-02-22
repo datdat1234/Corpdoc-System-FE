@@ -16,14 +16,10 @@
 
 .resultCtn {
   width: 100%;
-  max-height: calc(100vh - var(--rowSingle) * 2 - 85px);
-  padding: 20px 15px;
-  overflow: auto;
-  /* width: 100%;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center; */
+  justify-content: center;
 }
 
 .wrapper {
