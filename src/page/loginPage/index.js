@@ -17,7 +17,7 @@ import icon from 'util/js/icon';
 ////////////////////////////////////////////////////
 import { login } from 'util/js/APIs';
 
-export default function LoginPage() {
+export default function LoginPage( {setIsLogin} ) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const formWidth = AUTH_FORM_WIDTH;
@@ -66,6 +66,7 @@ export default function LoginPage() {
   };
 
   const handleNavigate = async (tab) => {
+    console.log('ok')
     if (tab === 0) navigate(`/home`);
     else {
       if(!checkInputLogin()) return;
@@ -79,6 +80,8 @@ export default function LoginPage() {
         }
         const userInfo = res?.data?.data;
         dispatch(setUserInfo(userInfo));
+        localStorage.setItem("token", userInfo.accessToken);
+        setIsLogin(userInfo.accessToken);
         navigate(`/home`);
       } catch (error) {
         console.error('Error:', error);
