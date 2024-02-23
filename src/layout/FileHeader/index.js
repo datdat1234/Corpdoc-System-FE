@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFileInfo } from '../../redux/action/app';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
@@ -15,6 +17,7 @@ export default function FileHeader({
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const dispatch = useDispatch();
   const [scaleValue, setScaleValue] = useState(scale);
   const fileInfo = useSelector((state) => state.app.fileInfo);
   //////////////////////////////////////////////////
@@ -56,6 +59,7 @@ export default function FileHeader({
   };
 
   const handleClosePdf = () => {
+    dispatch(setFileInfo({}));
     setShowPdf(false);
   };
 

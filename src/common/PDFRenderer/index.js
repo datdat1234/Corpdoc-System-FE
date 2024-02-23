@@ -8,17 +8,19 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const parentRef = useRef(null);
+  const pageRef = useRef(null);
   const windowHeight = window.innerHeight;
   const [numPages, setNumPages] = useState(1);
   const [scrollOffset, setScrollOffset] = useState(0);
   const fileInfo = useSelector((state) => state.app.fileInfo);
+  var pageHeight = pageRef && pageRef.current? pageRef.current.offsetHeight: (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
   useEffect(() => {
-    var number = Math.ceil(scrollOffset / ((scale / 100) * windowHeight) + 1);
+    var number = Math.floor(scrollOffset / pageHeight + 1);
     if (number > numPages) number = numPages;
     setPage(number);
   }, [scrollOffset]);
@@ -51,6 +53,7 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
           key={i}
           className={`w-100 flex-column d-flex align-items-center justify-content-center ${styles.pageCtn}`}
           style={{ width: `calc(${scale / 100}*100%)` }}
+          ref={pageRef}
         >
           <div className={`${styles.hiddenPage}`}>
             <Page scale={scale / 100} pageNumber={i} />
