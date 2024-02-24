@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
@@ -11,6 +11,9 @@ export default function ResultPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { type, status, isNew } = state;
+  const [pageType, setPageType] = useState(type || 'file');
+  const [pageStatus, setPageStatus] = useState(status || 'error');
+  const [newPage, setNewPage] = useState(isNew || false);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -23,25 +26,25 @@ export default function ResultPage() {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleBigText = () => {
-    if (type === 'file') {
-      if (status === 'success') {
+    if (pageType === 'file') {
+      if (pageStatus === 'success') {
         return 'TẢI LÊN THÀNH CÔNG';
       } else {
         return 'TẢI LÊN THẤT BẠI';
       }
     } else {
-      if (status === 'success') {
+      if (pageStatus === 'success') {
         return 'TẠO THƯ MỤC THÀNH CÔNG';
       } else {
-        if (isNew === 'true') return 'TẠO MIỀN CẤU TRÚC MỚI KHÔNG THÀNH CÔNG';
+        if (newPage === true) return 'TẠO MIỀN CẤU TRÚC MỚI KHÔNG THÀNH CÔNG';
         return 'TẠO THƯ MỤC MỚI KHÔNG THÀNH CÔNG';
       }
     }
   };
 
   const renderSmallText = () => {
-    if (type === 'file') {
-      if (status === 'success') {
+    if (pageType === 'file') {
+      if (pageStatus === 'success') {
         return (
           <div>
             Yêu cầu tải lên đã được gửi đến{' '}
@@ -53,7 +56,7 @@ export default function ResultPage() {
         return <div>Tải lên không thành công. Vui lòng thử lại.</div>;
       }
     } else {
-      if (status === 'success') {
+      if (pageStatus === 'success') {
         return (
           <div>
             Yêu cầu tạo thư mục đã được gửi đến{' '}
@@ -62,7 +65,7 @@ export default function ResultPage() {
           </div>
         );
       } else {
-        if (isNew === 'true')
+        if (newPage === true)
           return (
             <div>Tạo miền cấu trúc mới không thành công. Vui lòng thử lại.</div>
           );
@@ -72,17 +75,17 @@ export default function ResultPage() {
   };
 
   const renderBtnText = () => {
-    if (type === 'file') {
-      if (status === 'success') {
+    if (pageType === 'file') {
+      if (pageStatus === 'success') {
         return 'Tiếp tục tải lên';
       } else {
         return 'Thử lại';
       }
     } else {
-      if (status === 'success') {
+      if (pageStatus === 'success') {
         return 'Tiếp tục tạo thư mục';
       } else {
-        if (isNew === 'true') return 'Thử lại';
+        if (newPage === true) return 'Thử lại';
         return 'Thử lại';
       }
     }
@@ -90,14 +93,14 @@ export default function ResultPage() {
 
   const renderColor = (kind) => {
     if (kind === 'icon') {
-      if (status === 'success') {
+      if (pageStatus === 'success') {
         return 'success';
       } else {
         return 'error';
       }
     }
     if (kind === 'text') {
-      if (status === 'success') {
+      if (pageStatus === 'success') {
         return 'success';
       } else {
         return 'textError';
@@ -121,7 +124,9 @@ export default function ResultPage() {
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
           icon1={<FontAwesomeIcon icon={icon.angleLeft} />}
-          onClick={() => navigate('/upload-file')}
+          onClick={() =>
+            navigate('/upload-file', { state: { isShowCritetia: true } })
+          }
         />
       </div>
       <div className={`${styles.notiCtn}`}>
@@ -129,12 +134,12 @@ export default function ResultPage() {
           icon={icon.circleCheck}
           className={`${styles.icon} ${renderColor('icon')}`}
         />
-        <p className={`text24Black ${renderColor('text')}`}>
+        <div className={`text24Black ${renderColor('text')}`}>
           {handleBigText()}
-        </p>
-        <p className={`${styles.smallText} lh-sm text18`}>
+        </div>
+        <div className={`${styles.smallText} lh-sm text18`}>
           {renderSmallText()}
-        </p>
+        </div>
       </div>
       <div className={`w-340 ${styles.submitBtn}`}>
         <Button

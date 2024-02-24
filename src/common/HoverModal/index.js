@@ -63,19 +63,28 @@ export default function HoverModal({
             name={name[i]}
             ctnStyles={`w-100 pHorizontal15 pVertical10 
               ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4 bgColor4'}
-              ${checkHavingLastBtn(i) ? 'br-BottomRight-10 br-BottomLeft-10 mBottom2' : 'br-BottomRight-15 br-BottomLeft-15'} 
+              ${
+                checkHavingLastBtn(i)
+                  ? 'br-BottomRight-10 br-BottomLeft-10 mBottom2'
+                  : 'br-BottomRight-15 br-BottomLeft-15'
+              } 
             `}
-
             icon1Styles={`header`}
             icon2Styles={`text mLeft5`}
-
             btnStyles={`text14SemiBold
               ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4'} 
               ${i === name.length - 1 ? lastBtnStyles : ''} 
             `}
-              
-            icon1={icon[i].left && <FontAwesomeIcon icon={icon[i].left} size={`lg`} />}
-            icon2={icon[i].right && <FontAwesomeIcon icon={icon[i].right} size={`lg`} />}
+            icon1={
+              icon[i].left && (
+                <FontAwesomeIcon icon={icon[i].left} size={`lg`} />
+              )
+            }
+            icon2={
+              icon[i].right && (
+                <FontAwesomeIcon icon={icon[i].right} size={`lg`} />
+              )
+            }
             onClick={onClick[i]}
           />
           {renderBorder(i)}
@@ -118,12 +127,18 @@ export default function HoverModal({
   const renderSmallHover = (i) => {
     if (smallHoverIDs.includes(i)) {
       return (
-        <SmallHoverModal 
-          name={SMALL_HOVER_TABS} 
-          icon={SMALL_HOVER_ICONS} 
+        <SmallHoverModal
+          name={SMALL_HOVER_TABS}
+          icon={SMALL_HOVER_ICONS}
           onClick={[
-            () => {handleMouseLeave(); navigate('/upload-folder', {state:{newStructure: false}})},
-            () => {handleMouseLeave(); navigate('/upload-file')},
+            () => {
+              handleMouseLeave();
+              navigate('/upload-folder', { state: { newStructure: false } });
+            },
+            () => {
+              handleMouseLeave();
+              navigate('/upload-file', { state: { isShowCritetia: true } });
+            },
           ]}
         />
       );

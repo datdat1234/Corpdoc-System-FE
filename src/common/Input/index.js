@@ -8,7 +8,8 @@ export default function Input({
   text = '',
   bonusText = '',
   type,
-  placeholder = '',
+  value,
+  setData,
   textStyles = '',
 }) {
   // #region    VARIABLES //////////////////////////
@@ -36,6 +37,23 @@ export default function Input({
       return !type.includes('row') ? 'mBottom10' : styles.textCtn1;
     }
   };
+
+  const renderSelectOpts = () => {
+    let options = [];
+    for (let i = 0; i < value.length; i++) {
+      options.push(
+        <option key={i} value={value[i]}>
+          {value[i]}
+        </option>
+      );
+    }
+    return (
+      <>
+        <option value="">Chọn tiêu chí</option>
+        {options}
+      </>
+    );
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -45,11 +63,11 @@ export default function Input({
     if (type.includes('select')) {
       return (
         <div className={`${styles.selectCtn}`}>
-          <select className={`${checkIsRow('input')}`}>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="fiat">Fiat</option>
-            <option value="audi">Audi</option>
+          <select
+            className={`${checkIsRow('input')}`}
+            onChange={(e) => setData(e.target.value)}
+          >
+            {renderSelectOpts()}
           </select>
           <div className={`${styles.icon}`}>
             <FontAwesomeIcon icon={icon.angleDown} />
@@ -77,7 +95,10 @@ export default function Input({
     if (type.includes('textarea')) {
       return (
         <div>
-          <textarea className={`${styles.textareaCtn}`}></textarea>
+          <textarea
+            className={`${styles.textareaCtn}`}
+            onChange={(e) => setData(e.target.value)}
+          ></textarea>
         </div>
       );
     }
@@ -87,7 +108,8 @@ export default function Input({
           <input
             type="text"
             className={`${checkIsRow('input')}`}
-            placeholder={placeholder}
+            value={value}
+            onChange={(e) => setData(e.target.value)}
           />
         </div>
       );

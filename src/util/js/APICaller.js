@@ -16,7 +16,7 @@ const buildAxiosConfig = (api, method, headers = null) => {
     },
   };
   if (headers) config.headers = { ...config.headers, ...headers };
-  if(headers?.responseType) config.responseType = headers.responseType;
+  if (headers?.responseType) config.responseType = headers.responseType;
   const token = getToken();
   if (token) {
     config.headers = { ...config.headers, Authorization: `Bearer ${token}` };
