@@ -1,8 +1,12 @@
 .root {
   background-color: #F5F4F2;
-  margin: 0 auto;
   height: 100%;
   overflow: auto;
+}
+
+.PDFCtn {
+  margin: 0 auto;
+  height: 100%;
 }
 
 .pageCtn {

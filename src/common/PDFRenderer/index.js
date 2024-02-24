@@ -13,7 +13,7 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
   const [numPages, setNumPages] = useState(1);
   const [scrollOffset, setScrollOffset] = useState(0);
   const fileInfo = useSelector((state) => state.app.fileInfo);
-  var pageHeight = pageRef && pageRef.current? pageRef.current.offsetHeight: (scale / 100);
+  var pageHeight = pageRef && pageRef.current? pageRef.current.offsetHeight - 50: (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -67,17 +67,21 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div
+    <div 
       className={`${styles.root}`}
-      style={{
-        width: `calc(${scale / 100}*100%)`,
-      }}
       ref={parentRef}
       onScroll={handleScroll}
     >
-      <Document file={fileInfo?.Url} onLoadSuccess={onDocumentLoadSuccess}>
-        {renderPages()}
-      </Document>
+      <div
+        className={`${styles.PDFCtn}`}
+        style={{
+          width: `calc(${scale / 100}*100%)`,
+        }}
+      >
+        <Document file={fileInfo?.Url} onLoadSuccess={onDocumentLoadSuccess}>
+          {renderPages()}
+        </Document>
+      </div>
     </div>
   );
 }
