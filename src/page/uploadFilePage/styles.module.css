@@ -53,4 +53,6 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
 }

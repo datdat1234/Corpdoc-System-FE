@@ -100,3 +100,13 @@ const handleLogMessage = (msg, useAntMessage) => {
     }
   }
 };
+
+export const extractFileName = (name) => {
+  const arr = name.split('.');
+  return arr[0];
+};
+
+export const extractFileType = (name) => {
+  const arr = name.split('.');
+  return arr[1];
+};

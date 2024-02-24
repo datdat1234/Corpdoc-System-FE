@@ -55,32 +55,32 @@ export default function ProfilePage() {
               <Input
                 type="text"
                 text="Phòng ban"
-                placeholder="Phòng nhân sự"
+                value="Phòng nhân sự"
               />
             </div>
             <div className={`${styles.inputRowDetailCtn}`}>
-              <Input type="text" text="Phân quyền" placeholder="Nhân sự" />
+              <Input type="text" text="Phân quyền" value="Nhân sự" />
             </div>
           </div>
           <Input
             type="text"
             text="Tên tài khoản"
-            placeholder="user1_group1_company"
+            value="user1_group1_company"
           />
-          <Input type="text" text="Họ và tên" placeholder="Nguyễn Văn A" />
-          <Input type="text" text="Mật khẩu cũ" placeholder="**********" />
-          <Input type="text" text="Mật khẩu mới" placeholder="**********" />
-          <Input type="text" text="Nhập lại mật khẩu" placeholder="**********" />
+          <Input type="text" text="Họ và tên" value="Nguyễn Văn A" />
+          <Input type="text" text="Mật khẩu cũ" value="**********" />
+          <Input type="text" text="Mật khẩu mới" value="**********" />
+          <Input type="text" text="Nhập lại mật khẩu" value="**********" />
           {/* <div className={`${styles.rowCtn}`}>
             <div className={`${styles.inputRowDetailCtn} mRight10`}>
               <Input
                 type="text"
                 text="Mật khẩu mới"
-                placeholder="Phòng nhân sự"
+                value="Phòng nhân sự"
               />
             </div>
             <div className={`${styles.inputRowDetailCtn}`}>
-              <Input type="text" text="Nhập lại mật khẩu" placeholder="Nhân sự" />
+              <Input type="text" text="Nhập lại mật khẩu" value="Nhân sự" />
             </div>
           </div> */}
           <div className={`${styles.btnCtn}`}>

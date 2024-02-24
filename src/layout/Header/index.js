@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
@@ -20,7 +20,6 @@ import {
   PROFILE_TABS_ADMIN,
   PROFILE_NAVIGATE_ADMIN,
 } from 'util/js/constant';
-import { upload } from '@testing-library/user-event/dist/upload';
 
 ////////API IMPORT //////////////////////////////////
 ////////////////////////////////////////////////////
@@ -35,7 +34,7 @@ export default function Header() {
   let uploadTab = UPLOAD_TABS;
   if (userInfo.Role !== 'Staff') uploadTab = uploadTab.concat(CREATE_STRUCTURE);
   let profileTab, profileTabIcon, profileNavigate;
-  switch (userInfo.Role){
+  switch (userInfo.Role) {
     case 'admin':
       profileTab = PROFILE_TABS_ADMIN;
       profileNavigate = PROFILE_NAVIGATE_ADMIN;
@@ -48,8 +47,11 @@ export default function Header() {
       profileTab = PROFILE_TABS;
       profileNavigate = PROFILE_NAVIGATE;
   }
-  profileTabIcon = Array(profileTab.length-1).fill({left: null, right: icon.caretRight});
-  profileTabIcon.push({left: null, right: icon.rightFromBracket});
+  profileTabIcon = Array(profileTab.length - 1).fill({
+    left: null,
+    right: icon.caretRight,
+  });
+  profileTabIcon.push({ left: null, right: icon.rightFromBracket });
 
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -64,13 +66,24 @@ export default function Header() {
   //////////////////////////////////////////////////
   const setOnClick = (profileNavigate) => {
     let onClick = [];
-    profileNavigate.forEach(element => {
-      if (element === '') onClick.push(() => {handleMouseLeave(); console.log('ok')})
-      else if (element === '/login') onClick.push(() => {logout()})
-      else onClick.push(() => {handleMouseLeave(); navigate(element)})
+    profileNavigate.forEach((element) => {
+      if (element === '')
+        onClick.push(() => {
+          handleMouseLeave();
+          console.log('ok');
+        });
+      else if (element === '/login')
+        onClick.push(() => {
+          logout();
+        });
+      else
+        onClick.push(() => {
+          handleMouseLeave();
+          navigate(element);
+        });
     });
     return onClick;
-  }
+  };
   const handleMouseEnter = (i) => {
     setIsHovered(i);
   };
@@ -99,15 +112,15 @@ export default function Header() {
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`row-2 d-flex align-items-center justify-content-start ${styles.headerCtn}`}>
-      <div onClick={() => navigate('/home')}>
+    <div
+      className={`row-2 d-flex align-items-center justify-content-start ${styles.headerCtn}`}
+    >
+      <div className={styles.logoCtn} onClick={() => navigate('/home')}>
         <img className={styles.logo} src={logo1} alt={'Logo'}></img>
       </div>
       <div className={styles.remainCtn}></div>
-      {userInfo.Role === 'Admin' &&
-        <div
-          className="position-relative"
-        >
+      {userInfo.Role === 'Admin' && (
+        <div className="position-relative">
           {isHovered === 1 || isHovered === 2 ? (
             <Button
               ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
@@ -115,7 +128,7 @@ export default function Header() {
               icon1={<FontAwesomeIcon icon={icon.userGroup} size={`lg`} />}
               onClick={() => ({})}
             />
-          ): (
+          ) : (
             <Button
               name={'Phòng Nhân sự'}
               ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
@@ -128,7 +141,7 @@ export default function Header() {
             />
           )}
         </div>
-      }
+      )}
       <div
         className="position-relative"
         onMouseEnter={() => handleMouseEnter(1)}
@@ -145,7 +158,7 @@ export default function Header() {
             icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
             onClick={() => ({})}
           />
-        ): (
+        ) : (
           <Button
             ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor5"
             icon1Styles="header"
@@ -158,14 +171,30 @@ export default function Header() {
             ctnStyles="bg-bgColor4 border-color-bg5"
             icon={UPLOAD_TABS_ICON}
             name={uploadTab}
-            lastBtnStyles={userInfo.Role === 'Staff'? '' : "textH6Black header bg-bgColor5"}
-            lastBtnColor={userInfo.Role === 'Staff'? 'bg-bgColor4' : "bg-bgColor5"}
+            lastBtnStyles={
+              userInfo.Role === 'Staff' ? '' : 'textH6Black header bg-bgColor5'
+            }
+            lastBtnColor={
+              userInfo.Role === 'Staff' ? 'bg-bgColor4' : 'bg-bgColor5'
+            }
             isFolder={true}
             onClick={[
-              () => {handleMouseLeave(); navigate('/upload-file')},
-              () => {handleMouseLeave(); navigate('/upload-file')},
-              () => {handleMouseLeave(); navigate('/upload-file')},
-              () => {handleMouseLeave(); navigate('/upload-folder', {state:{newStructure: true}})},
+              () => {
+                handleMouseLeave();
+                navigate('/upload-file', { state: { isShowCritetia: false } });
+              },
+              () => {
+                handleMouseLeave();
+                navigate('/upload-file', { state: { isShowCritetia: false } });
+              },
+              () => {
+                handleMouseLeave();
+                navigate('/upload-file', { state: { isShowCritetia: true } });
+              },
+              () => {
+                handleMouseLeave();
+                navigate('/upload-folder', { state: { newStructure: true } });
+              },
             ]}
             smallHoverIDs={[2]}
           />
@@ -183,15 +212,15 @@ export default function Header() {
             icon1Styles="header"
             icon2Styles="header mLeft10"
             btnStyles="textH6Black bg-bgColor5 header mHorizontal5"
-            icon1={<FontAwesomeIcon icon={icon.magnifyingGlass} size={`lg`}/>}
+            icon1={<FontAwesomeIcon icon={icon.magnifyingGlass} size={`lg`} />}
             icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
             onClick={() => ({})}
           />
-        ): (
+        ) : (
           <Button
             ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor5"
             icon1Styles="header"
-            icon1={<FontAwesomeIcon icon={icon.magnifyingGlass} size={`lg`}/>}
+            icon1={<FontAwesomeIcon icon={icon.magnifyingGlass} size={`lg`} />}
             onClick={() => ({})}
           />
         )}
@@ -201,13 +230,19 @@ export default function Header() {
             icon={SEARCH_TABS_ICON}
             name={SEARCH_TABS}
             onClick={[
-              () => {handleMouseLeave(); navigate('/search-file')},
-              () => {handleMouseLeave(); navigate('/search-folder')}
+              () => {
+                handleMouseLeave();
+                navigate('/search-file');
+              },
+              () => {
+                handleMouseLeave();
+                navigate('/search-folder');
+              },
             ]}
           />
         )}
       </div>
-      {userInfo.Role !== 'Staff' &&
+      {userInfo.Role !== 'Staff' && (
         <div
           className="position-relative"
           onMouseEnter={() => handleMouseEnter()}
@@ -216,11 +251,11 @@ export default function Header() {
           <Button
             ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
             icon1Styles="text"
-            icon1={<FontAwesomeIcon icon={icon.fileCircleCheck} size={`2x`}/>}
+            icon1={<FontAwesomeIcon icon={icon.fileCircleCheck} size={`2x`} />}
             onClick={() => navigate('/approval')}
           />
         </div>
-      }
+      )}
       <div
         className="position-relative"
         onMouseEnter={() => handleMouseEnter()}
@@ -229,7 +264,7 @@ export default function Header() {
         <Button
           ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
           icon1Styles="text"
-          icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`}/>}
+          icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
           onClick={() => ({})}
         />
       </div>

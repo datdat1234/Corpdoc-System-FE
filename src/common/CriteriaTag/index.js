@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
-export default function CriteriaTag({ text = '', style = '' }) {
+export default function CriteriaTag({ text = '', style = '', handleClick }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -30,7 +30,7 @@ export default function CriteriaTag({ text = '', style = '' }) {
   return (
     <div className={`${styles.root} ${style}`}>
       <p className="text14Bold mRight10">{text}</p>
-      <button onClick={() => console.log(1)}>
+      <button onClick={() => handleClick(text)}>
         <FontAwesomeIcon icon={icon.xmark} />
       </button>
     </div>

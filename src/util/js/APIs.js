@@ -1,6 +1,11 @@
 import { get, post, put, remove } from './APICaller';
 import { API_URL } from './constant';
 
+const getCompanyId = () => {
+  // return localStorage.getItem('companyId');
+  return '13ed4be3-ae82-4e65-8370-986656fc8e63';
+};
+
 export const checkLogin = (username) => {
   return post(`${API_URL}/user/login`, {
     username: username,
@@ -15,10 +20,10 @@ export const login = (username, password) => {
 };
 
 //#region Media
-export const viewFile = (fileId, companyId) => {
+export const viewFile = (fileId) => {
   return get(`${API_URL}/file`, {
     fileId: fileId,
-    companyId: companyId,
+    companyId: getCompanyId(),
   });
 };
 
@@ -32,21 +37,18 @@ export const downloadFile = (fileId) => {
   );
 };
 
-export const uploadFile = (file, objectType) => {
-  let params = new FormData();
-  params.append('file', file);
-  params.append('object_type', objectType);
-  return post(`${API_URL}/media/upload-file`, params, {
-    'Content-Type': 'multipart/form-data',
+export const getCriteria = () => {
+  return get(`${API_URL}/file/criteria`, {
+    companyId: getCompanyId(),
   });
 };
 
-export const uploadAttachment = (params) => {
-  let form = new FormData();
-  form.append('file', params.file);
-  form.append('object_type', params.object_type);
-  if (params?.object_id) form.append('object_id', params.object_id);
-  return post(`${API_URL}/media/attachment`, form, {
+export const uploadFile = (fileMetadata, fileContent) => {
+  const formData = new FormData();
+  formData.append('file_metadata', JSON.stringify(fileMetadata));
+  formData.append('company_id', JSON.stringify(getCompanyId()));
+  formData.append('file', fileContent);
+  return post(`${API_URL}/file/upload`, formData, {
     'Content-Type': 'multipart/form-data',
   });
 };

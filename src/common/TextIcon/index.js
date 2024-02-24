@@ -30,10 +30,7 @@ export default function TextIcon({
   //////////////////////////////////////////////////
   const handleViewfile = async () => {
     try {
-      const response = await viewFile(
-        id,
-        '13ed4be3-ae82-4e65-8370-986656fc8e63'
-      );
+      const response = await viewFile(id);
       const fileInfo = response?.data?.data;
       dispatch(setFileInfo({ ...fileInfo }));
     } catch (error) {
