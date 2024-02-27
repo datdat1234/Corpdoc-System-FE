@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
 import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria } from 'util/js/APIs';
+import { getCriteria, getFolderPath, uploadFolder } from 'util/js/APIs';
 
 export default function UploadFolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.app.userInfo);
   const location = useLocation();
   const newStructure = location.state ? location.state.newStructure : null;
   const [criteria, setCritetia] = useState([]);
-  const [folderCriteria, setFoldeCriteria] = useState([]);
+  const [folderName, setFolderName] = useState('');
+  const [author, setAuthor] = useState('');
+  const [desc, setDesc] = useState('');
+  const [folderCriteria, setFolderCriteria] = useState([]);
+  const [folders, setFolders] = useState([]);
+  const [folderParentInfo, setFolderParentInfo] = useState('');
+  const [showCritNumber, setShowCritNumber] = useState(0);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -23,8 +31,10 @@ export default function UploadFolderPage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getCriteria();
-      setCritetia(response?.data?.data?.criteria);
+      const crit_response = await getCriteria();
+      const folder_response = await getFolderPath(userInfo?.DeptID);
+      setCritetia(crit_response?.data?.data?.criteria);
+      setFolders(folder_response?.data?.data?.folder);
     };
 
     fetchData();
@@ -34,21 +44,59 @@ export default function UploadFolderPage() {
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-  const handleNavigate = () => {
-    navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
+  const handleUploadFolder = async () => {
+    const folderInfo = {
+      folderName,
+      author,
+      desc,
+      folderCriteria,
+      folderParentInfo: folders.find(
+        (folder) => folder.Path === folderParentInfo
+      )?.FolderID,
+      userId: userInfo?.UserID,
+      deptId: userInfo?.DeptID,
+      deleted: false,
+      isPrivate: false,
+    };
+    const response = await uploadFolder(folderInfo);
+    if (response?.data?.data?.resultCode === '00093') {
+      navigate(`/result-page`, { state: { type: 'folder', status: 'success' } });
+    } else {
+      navigate(`/result-page`, { state: { type: 'folder', status: 'error' } });
+    }
+  };
+
+  const handleSetParentInfo = (value) => {
+    setFolderParentInfo(value);
+    var criteria = folders.find((folder) => folder.Path === value)?.Criterions;
+    setFolderCriteria(criteria);
+    setShowCritNumber(criteria.length);
   };
 
   const handleSetCriteria = (criterion) => {
     if (folderCriteria.includes(criterion) || criterion === '') return;
     else {
-      setFoldeCriteria([...folderCriteria, criterion]);
+      setFolderCriteria([...folderCriteria, criterion]);
     }
   };
 
   const handleCloseCriteria = (criterion) => {
-    setFoldeCriteria(folderCriteria.filter((value) => value !== criterion));
+    setFolderCriteria(folderCriteria.filter((value) => value !== criterion));
   };
 
+  const handlePathValue = () => {
+    const options = [];
+    for (let i = 0; i < folders.length; i++) {
+      options.push(folders[i].Path);
+    }
+    return options;
+  };
+
+  //////////////////////////////////////////////////
+  // #endregion FUNCTIONS //////////////////////////
+
+  // #region    VIEWS //////////////////////////////
+  //////////////////////////////////////////////////
   const renderCriterionTag = () => {
     return folderCriteria.map((criterion, index) => {
       return (
@@ -56,16 +104,11 @@ export default function UploadFolderPage() {
           key={index}
           text={criterion}
           handleClick={handleCloseCriteria}
+          isShowIcon={index <= showCritNumber - 1 ? false : true}
         />
       );
     });
   };
-  //////////////////////////////////////////////////
-  // #endregion FUNCTIONS //////////////////////////
-
-  // #region    VIEWS //////////////////////////////
-  //////////////////////////////////////////////////
-
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
@@ -81,12 +124,32 @@ export default function UploadFolderPage() {
         />
       </div>
       <div className={`${styles.input}`}>
-        {/* {!newStructure && <Input type="select" text="Thư mục cha" />} */}
-        <Input type="text" text="Tên miền" bonusText="(tối đa 50 ký tự)" />
-        <Input type="textarea" text="Mô tả" />
+        {!newStructure && (
+          <Input
+            type="select"
+            text="Thư mục cha"
+            value={handlePathValue()}
+            setData={handleSetParentInfo}
+          />
+        )}
         <Input
-          type="select"
-          text="Tiêu chí của tài liệu"
+          type="text"
+          text="Tên miền"
+          bonusText="(tối đa 50 ký tự)"
+          value={folderName}
+          setData={setFolderName}
+        />
+        <Input
+          type="text"
+          text="Tác giả"
+          bonusText="(Tối đa 20 ký tự)"
+          value={author}
+          setData={setAuthor}
+        />
+        <Input type="textarea" text="Mô tả" value={desc} setData={setDesc} />
+        <Input
+          type="select-keydown"
+          text="Tiêu chí của thư mục"
           value={criteria}
           setData={handleSetCriteria}
         />
@@ -97,7 +160,7 @@ export default function UploadFolderPage() {
               name="XÁC NHẬN"
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
-              onClick={handleNavigate}
+              onClick={handleUploadFolder}
             />
           </div>
         </div>

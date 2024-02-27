@@ -47,14 +47,34 @@ export default function SearchFolderPage() {
         <Input type="text" text="Từ khóa" bonusText="(tối đa 50 ký tự)" />
         <div className={`${styles.inputRowCtn}`}>
           <div className={`${styles.inputRowDetailCtn} mRight10`}>
-            <Input type="select" text="Phòng ban" />
+            <Input
+              type="select"
+              text="Phòng ban"
+              value={[]}
+              setData={() => console.log(1)}
+            />
           </div>
           <div className={`${styles.inputRowDetailCtn}`}>
-            <Input type="select" text="Người tạo" />
+            <Input
+              type="select"
+              text="Người tạo"
+              value={[]}
+              setData={() => console.log(1)}
+            />
           </div>
         </div>
-        <Input type="select" text="Miền" />
-        <Input type="select" text="Thư mục" />
+        <Input
+          type="select"
+          text="Miền"
+          value={[]}
+          setData={() => console.log(1)}
+        />
+        <Input
+          type="select"
+          text="Thư mục"
+          value={[]}
+          setData={() => console.log(1)}
+        />
         <div className={`${styles.inputRowCtn}`}>
           <div className={`${styles.inputRowDetailCtn} mRight10`}>
             <Input type="date" text="Ngày tạo" />

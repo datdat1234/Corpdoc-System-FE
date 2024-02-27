@@ -17,7 +17,7 @@ export default function ApprovalPage() {
   const [isCheckAllInput, setIsCheckAllInput] = useState(true);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-  
+
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
 
@@ -120,12 +120,22 @@ export default function ApprovalPage() {
             <Input type="row-text" text="Tên" />
           </div>
           <div className={`${styles.inputDetailCtn}`}>
-            <Input type="row-select" text="Miền cấu trúc" />
+            <Input
+              type="row-select"
+              text="Miền cấu trúc"
+              value={[]}
+              setData={() => console.log(1)}
+            />
           </div>
         </div>
         <div className={`${styles.inputCtn} mBottom20`}>
           <div className={`${styles.inputDetailCtn}`}>
-            <Input type="row-select" text="Nhân viên" />
+            <Input
+              type="row-select"
+              text="Nhân viên"
+              value={[]}
+              setData={() => console.log(1)}
+            />
           </div>
           <div className={`${styles.inputDetailCtn}`}>
             <Input type="row-date" text="Ngày đăng tải" />
