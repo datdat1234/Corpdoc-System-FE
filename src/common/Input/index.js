@@ -2,6 +2,8 @@ import React, { useState , useRef } from 'react';
 import styles from './styles.module.css';
 import CheckBoxForm from 'common/CheckBoxForm';
 import Select from 'react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import icon from '../../util/js/icon';
 
 export default function Input({
   text = '',
