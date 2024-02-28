@@ -3,7 +3,7 @@ import { API_URL } from './constant';
 
 const getCompanyId = () => {
   return localStorage.getItem('companyId');
-  return '13ed4be3-ae82-4e65-8370-986656fc8e63';
+  // return '13ed4be3-ae82-4e65-8370-986656fc8e63';
 };
 
 export const checkLogin = (username) => {
