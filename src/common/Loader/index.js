@@ -31,7 +31,7 @@ export default function Loading({ className = "", color = "" }) {
       <GridLoader
         speedMultiplier={2.5}
         size={25}
-        color={color ? color : "#6a0dad"}
+        color={color ? color : "#f8853e"}
       />
     </div>
   );

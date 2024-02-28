@@ -12,6 +12,7 @@ export default function appReducer(
     userInfo: {},
     fileInfo: {},
     noti: {type:'', message: ''},
+    folderPage: {},
   },
   action
 ) {
