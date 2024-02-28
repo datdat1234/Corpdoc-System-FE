@@ -11,7 +11,6 @@ import CheckBoxForm from 'common/CheckBoxForm';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
-
 ////////API IMPORT //////////////////////////////////
 ////////////////////////////////////////////////////
 import { login, getRootFolder } from 'util/js/APIs';
@@ -80,10 +79,10 @@ export default function LoginPage({ setIsLogin }) {
         const userInfo = res?.data?.data;
         dispatch(setUserInfo(userInfo));
         localStorage.setItem('token', userInfo.accessToken);
+        localStorage.setItem("companyId", userInfo.CompanyID);
         const rootInfo = await getRootFolder(userInfo?.DeptID);
         const root = rootInfo?.data?.data?.folder;
         localStorage.setItem('root', root.FolderID);
-        localStorage.setItem("companyId", userInfo.CompanyID);
         setIsLogin(userInfo.accessToken);
         navigate(`/home`);
       } catch (error) {

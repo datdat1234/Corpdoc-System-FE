@@ -102,7 +102,7 @@ export default function ProfilePage() {
   return (
     <div className={`${styles.root}`}>
       <div className={`${styles.contentCtn}`}>
-        <div className={`${styles.avtCtn}`}>
+        {/* <div className={`${styles.avtCtn}`}>
           <div className={`${styles.avtWrapper}`}>
             <img src={userInfo.Avatar} alt="Avatar" width="100%" height="100%"/>
             <div className={`${styles.edit}`}>
@@ -116,7 +116,7 @@ export default function ProfilePage() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         <div className={`${styles.infoCtn}`}>
           <div className={`${styles.rowCtn}`}>
             <div className={`${styles.inputRowDetailCtn} mRight10`}>
