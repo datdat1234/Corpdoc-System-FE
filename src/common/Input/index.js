@@ -1,18 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useState , useRef } from 'react';
 import styles from './styles.module.css';
 import CheckBoxForm from 'common/CheckBoxForm';
 import Select from 'react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import icon from '../../util/js/icon';
 
 export default function Input({
   text = '',
   bonusText = '',
-  type,
-  value,
-  setData,
+  type = '',
+  value = '',
+  setData = (e)=>{},
   textStyles = '',
+  placeholder = '',
+  canChange = true,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const [canSeen, setCanSeen] = useState(false);
   const colourStyles = {
     control: (styles) => ({
       ...styles,
@@ -37,6 +42,10 @@ export default function Input({
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
+  const handlePassword = () => {
+    setCanSeen(!canSeen);
+  };
+
   const checkIsRow = (ctn) => {
     if (ctn === 'root') {
       return type.includes('row') ? 'h-40' : 'flex-column mBottom10';
@@ -92,6 +101,7 @@ export default function Input({
           <input
             type="date"
             className={`${checkIsRow('input')} ${styles.inputDate}`}
+            placeholder={placeholder}
           />
         </div>
       );
@@ -109,19 +119,52 @@ export default function Input({
           <textarea
             className={`${styles.textareaCtn}`}
             onChange={(e) => setData(e.target.value)}
+            placeholder={placeholder}
           ></textarea>
+        </div>
+      );
+    }
+    if (type.includes('password')) {
+      return (
+        <div>
+          <input
+            type={!canSeen ? 'password' : 'text'}
+            className={`${checkIsRow('input')}`}
+            value={value}
+            onChange={(e) => setData(e.target.value)}
+            placeholder={placeholder} 
+            onFocus={(e) => e.target.placeholder = ""} 
+            onBlur={(e) => e.target.placeholder = placeholder}
+          />
+          {type === 'password' && (
+            <div className={styles.icon} onClick={() => handlePassword()}>
+              {canSeen ? (
+                <FontAwesomeIcon icon={icon.eye} />
+              ) : (
+                <FontAwesomeIcon icon={icon.eyeSlash} />
+              )}
+            </div>
+          )}
         </div>
       );
     }
     if (type.includes('text')) {
       return (
         <div>
+          {canChange?
           <input
             type="text"
             className={`${checkIsRow('input')}`}
             value={value}
             onChange={(e) => setData(e.target.value)}
-          />
+            placeholder={placeholder} 
+            onFocus={(e) => e.target.placeholder = ""} 
+            onBlur={(e) => e.target.placeholder = placeholder}
+          />:
+          <div className={`text14SemiBold ${styles.cantChangeInput}`}>
+            {value}
+          </div>
+          }
         </div>
       );
     }

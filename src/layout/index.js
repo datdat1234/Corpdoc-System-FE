@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Button from 'common/Button';
 import SidebarTab from 'common/SidebarTab';
+import Notification from 'common/Notification';
 import Header from './Header';
 import FileHeader from './FileHeader';
 import Sidebar from './Sidebar';
@@ -21,6 +22,7 @@ export default function Layout({ children }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const fileInfo = useSelector((state) => state.app.fileInfo);
+  const noti = useSelector((state) => state.app.noti);
   const resizableRef = useRef(null);
   const resizableSidebarRef = useRef(null);
   const location = useLocation();
@@ -138,6 +140,7 @@ export default function Layout({ children }) {
                 {children}
               </div>
             </div>
+            {noti.type && <Notification noti={noti}/>}
           </div>
           <div
             className={`d-flex flex-column justify-content-center align-items-center ${styles.resizer}`}

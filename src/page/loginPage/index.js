@@ -83,6 +83,7 @@ export default function LoginPage({ setIsLogin }) {
         const rootInfo = await getRootFolder(userInfo?.DeptID);
         const root = rootInfo?.data?.data?.folder;
         localStorage.setItem('root', root.FolderID);
+        localStorage.setItem("companyId", userInfo.CompanyID);
         setIsLogin(userInfo.accessToken);
         navigate(`/home`);
       } catch (error) {

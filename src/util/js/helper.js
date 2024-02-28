@@ -1,3 +1,9 @@
+import React from 'react';
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+import { setNoti } from '../../redux/action/app';
+import store from '../../redux/store';
+
 const INNER_WIDTH = window.innerWidth;
 const INNER_HEIGHT = window.innerHeight;
 const DESIGN_WIDTH = 1440;
@@ -119,3 +125,20 @@ export const formatItemFile = (data) => {
   console.log(formattedData)
   return formattedData;
 };
+
+export const getNameRole = (role) => {
+  switch (role) { 
+    case 'Manager':
+      return 'Trưởng phòng';
+    case 'Admin':
+      return 'Quản trị viên';
+    default: return 'Nhân viên';
+  }
+}
+
+export const setNotification = (type, message) => {
+  store.dispatch(setNoti({type: type, message: message}));
+  setTimeout(()=>{
+    store.dispatch(setNoti({type: '', message: ''}));
+  }, 3000);
+}

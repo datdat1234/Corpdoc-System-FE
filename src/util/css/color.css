@@ -18,6 +18,9 @@
   --text50: rgba(35, 24, 17, 0.5);
   --text60: rgba(35, 24, 17, 0.6);
   --text75: rgba(35, 24, 17, 0.75);
+  --error: #c22424;
+  --warning: #fabc20;
+  --success: #439872;
 }
 
 /* Text colors */
@@ -95,11 +98,15 @@
 }
 
 .success {
-  color: #609966;
+  color: #439872;
+}
+
+.warning {
+  color: var(--warning);
 }
 
 .error {
-  color: #ff0303;
+  color: #c22424;
 }
 
 .textError {
@@ -185,9 +192,13 @@
 }
 
 .bg-success {
-  background-color: #609966;
+  background-color: #439872;
+}
+
+.bg-warning {
+  background-color: var(--warning);
 }
 
 .bg-error {
-  background-color: #ff0303;
+  background-color: #c22424;
 }

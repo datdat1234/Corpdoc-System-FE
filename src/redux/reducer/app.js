@@ -2,6 +2,7 @@ import {
   SET_GLOBAL_LOADING,
   SET_USER_INFO,
   SET_FILE_INFO,
+  SET_NOTI,
 } from '../action/app';
 // import { deepClone } from "../../util/js/helper";
 
@@ -10,6 +11,7 @@ export default function appReducer(
     globalLoading: false,
     userInfo: {},
     fileInfo: {},
+    noti: {type:'', message: ''},
   },
   action
 ) {
@@ -28,6 +30,11 @@ export default function appReducer(
       return {
         ...state,
         fileInfo: action.payload,
+      };
+    case SET_NOTI:
+      return {
+        ...state,
+        noti: action.payload,
       };
     default:
       return state;
