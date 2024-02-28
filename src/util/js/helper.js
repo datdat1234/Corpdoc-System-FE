@@ -122,7 +122,7 @@ export const formatItemFile = (data) => {
       },
     ]);
   }
-  console.log(formattedData)
+  // console.log(formattedData)
   return formattedData;
 };
 
