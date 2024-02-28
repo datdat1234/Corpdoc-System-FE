@@ -70,7 +70,7 @@ export default function Header() {
       if (element === '')
         onClick.push(() => {
           handleMouseLeave();
-          console.log('ok');
+          // console.log('ok');
         });
       else if (element === '/login')
         onClick.push(() => {
@@ -181,11 +181,11 @@ export default function Header() {
             onClick={[
               () => {
                 handleMouseLeave();
-                navigate('/upload-file', { state: { isShowCritetia: false } });
+                navigate('/upload-file', { state: { isShowCritetia: false, breadcrumb: uploadTab[0] } });
               },
               () => {
                 handleMouseLeave();
-                navigate('/upload-file', { state: { isShowCritetia: false } });
+                navigate('/upload-file', { state: { isShowCritetia: false, breadcrumb: uploadTab[0] } });
               },
               () => {
                 handleMouseLeave();

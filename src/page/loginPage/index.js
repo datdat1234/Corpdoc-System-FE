@@ -66,13 +66,13 @@ export default function LoginPage( {setIsLogin} ) {
   };
 
   const handleNavigate = async (tab) => {
-    console.log('ok')
+    // console.log('ok')
     if (tab === 0) navigate(`/home`);
     else {
       if(!checkInputLogin()) return;
       try {
         const res = await login(username, password);
-        console.log(res);
+        // console.log(res);
         const resultCode = res?.data?.resultCode;
         if (resultCode !== "00047") {
           setErrLogin(res?.data?.resultMessage.vi);

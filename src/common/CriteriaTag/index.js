@@ -3,7 +3,12 @@ import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
-export default function CriteriaTag({ text = '', style = '', handleClick }) {
+export default function CriteriaTag({
+  text = '',
+  style = '',
+  handleClick,
+  isShowIcon = true,
+}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
 
@@ -29,10 +34,12 @@ export default function CriteriaTag({ text = '', style = '', handleClick }) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root} ${style}`}>
-      <p className="text14Bold mRight10">{text}</p>
-      <button onClick={() => handleClick(text)}>
-        <FontAwesomeIcon icon={icon.xmark} />
-      </button>
+      <p className="text14Bold">{text}</p>
+      {isShowIcon && (
+        <button className="mLeft10" onClick={() => handleClick(text)}>
+          <FontAwesomeIcon icon={icon.xmark} />
+        </button>
+      )}
     </div>
   );
 }

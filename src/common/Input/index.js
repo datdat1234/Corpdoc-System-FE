@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState , useRef } from 'react';
 import styles from './styles.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import icon from 'util/js/icon';
 import CheckBoxForm from 'common/CheckBoxForm';
+import Select from 'react-select';
 
 export default function Input({
   text = '',
@@ -17,7 +16,19 @@ export default function Input({
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [canSeen, setCanSeen] = useState(false);
-
+  const colourStyles = {
+    control: (styles) => ({
+      ...styles,
+      width: '100%',
+      height: '50px',
+      borderRadius: '8px',
+      border: '1px solid #e6e6f0',
+      padding: '0 6px',
+      backgroundColor: 'white',
+      color: '#757575',
+    }),
+  };
+  const selectRef = useRef();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -45,21 +56,22 @@ export default function Input({
     }
   };
 
-  const renderSelectOpts = () => {
-    let options = [];
+  const handleOptions = () => {
+    const options = [];
     for (let i = 0; i < value.length; i++) {
-      options.push(
-        <option key={i} value={value[i]}>
-          {value[i]}
-        </option>
-      );
+      options.push({ value: value[i], label: value[i] });
     }
-    return (
-      <>
-        <option value="">Chọn tiêu chí</option>
-        {options}
-      </>
-    );
+    return options;
+  };
+
+  const handleOnKeyDown = (e) => {
+    if (e.code === 'Enter' && type.includes('keydown')) {
+      setData(e.target.value);
+    }
+  };
+
+  const handleChangeSelect = (value) => {
+    setData(value);
   };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
@@ -70,15 +82,14 @@ export default function Input({
     if (type.includes('select')) {
       return (
         <div className={`${styles.selectCtn}`}>
-          <select
-            className={`${checkIsRow('input')}`}
-            onChange={(e) => setData(e.target.value)}
-          >
-            {renderSelectOpts()}
-          </select>
-          <div className={`${styles.icon}`}>
-            <FontAwesomeIcon icon={icon.angleDown} />
-          </div>
+          <Select
+            ref={selectRef}
+            defaultValue={{ value: '', label: '' }}
+            options={handleOptions()}
+            styles={colourStyles}
+            onChange={(item) => handleChangeSelect(item.value)}
+            onKeyDown={(e) => handleOnKeyDown(e)}
+          />
         </div>
       );
     }
