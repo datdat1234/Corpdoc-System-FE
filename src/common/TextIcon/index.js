@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { viewFile } from 'util/js/APIs';
 import { useDispatch } from 'react-redux';
@@ -13,10 +14,12 @@ export default function TextIcon({
   icon1 = <></>,
   icon2 = <></>,
   id,
+  type = '',
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -28,6 +31,15 @@ export default function TextIcon({
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
+  const handleOnlick = () => {
+    if (type === 'file') {
+      handleViewfile();
+    }
+    if (type === 'folder') {
+      handleOpenFolder();
+    }
+  };
+
   const handleViewfile = async () => {
     try {
       const response = await viewFile(id);
@@ -36,6 +48,10 @@ export default function TextIcon({
     } catch (error) {
       console.error('Error:', error);
     }
+  };
+
+  const handleOpenFolder = async () => {
+    navigate(`/folder/${id}`);
   };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
@@ -49,7 +65,7 @@ export default function TextIcon({
     <div
       className={`w-100 ${styles.root} ${ctnStyles}`}
       id={id}
-      onClick={handleViewfile}
+      onClick={handleOnlick}
     >
       <div className={`${icon1Styles} ${styles.icon}`}>{icon1}</div>
       <p className={`w-100 ${textStyles} ${styles.btn}`}>{text}</p>

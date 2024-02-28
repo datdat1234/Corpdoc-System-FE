@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import { getChildByFolderId } from 'util/js/APIs';
 
-export default function FolderStruct({
-  name = '',
-  onClick,
-  ident,
-}) {
+export default function FolderStruct({ name = '', ident }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const navigate = useNavigate();
   const [isExpand, setIsExpand] = useState(false);
+  const [child, setChild] = useState([]);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -22,8 +22,14 @@ export default function FolderStruct({
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-  const handleExpand = () => {
+  const handleExpand = async () => {
     setIsExpand(!isExpand);
+    const childRes = await getChildByFolderId(ident);
+    setChild(childRes?.data?.data?.child);
+  };
+
+  const handleNavigate = () => {
+    navigate(`/folder/${ident}`);
   };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
@@ -33,10 +39,10 @@ export default function FolderStruct({
   const renderChildren = () => {
     if (!isExpand) return null;
     const tabItems = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < child.length; i++) {
       tabItems.push(
         <div key={i}>
-          <FolderStruct name={`Folder ${i}`} onClick={() => {}} ident={i} />
+          <FolderStruct name={child[i].Name} ident={child[i].FolderID} />
         </div>
       );
     }
@@ -46,10 +52,7 @@ export default function FolderStruct({
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.ctn}`}>
-      <div
-        className={`w-100 ${styles.root}`}
-        onClick={onClick}
-      >
+      <div className={`w-100 ${styles.root}`}>
         <div
           className={`${styles.icon} ${styles.expandIcon}`}
           onClick={handleExpand}
@@ -63,7 +66,11 @@ export default function FolderStruct({
         <div className={`${styles.icon} ${styles.folderIcon}`}>
           <FontAwesomeIcon icon={icon.folder} />
         </div>
-        <button type="button" className={`${styles.button}`} onClick={onClick}>
+        <button
+          type="button"
+          className={`${styles.button}`}
+          onClick={handleNavigate}
+        >
           {name}
         </button>
       </div>

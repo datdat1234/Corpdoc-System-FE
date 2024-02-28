@@ -27,6 +27,13 @@ export const getCriteria = () => {
   });
 };
 
+export const getFileByCriteria = (folderId) => {
+  return get(`${API_URL}/file/get-file`, {
+    companyId: getCompanyId(),
+    folderId,
+  });
+};
+
 //#endregion
 
 //#region Folder
@@ -42,6 +49,20 @@ export const uploadFolder = (folderInfo) => {
   return post(`${API_URL}/folder/upload-folder`, {
     companyId: getCompanyId(),
     ...folderInfo,
+  });
+};
+
+export const getChildByFolderId = (folderId) => {
+  return get(`${API_URL}/folder/get-child`, {
+    companyId: getCompanyId(),
+    folderId,
+  });
+};
+
+export const getRootFolder = (deptId) => {
+  return get(`${API_URL}/folder/get-root`, {
+    companyId: getCompanyId(),
+    deptId,
   });
 };
 

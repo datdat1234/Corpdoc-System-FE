@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
+  Navigate,
 } from 'react-router-dom';
 import LoginPage from 'page/loginPage';
 import HomePage from 'page/homePage';
@@ -21,45 +21,58 @@ import StaffManagePage from 'page/staffManagePage';
 import ApprovalPage from 'page/approvalPage';
 import CompanyManagePage from 'page/companyManagePage';
 import DeptManagePage from 'page/deptManagePage';
+import FolderPage from 'page/folderPage';
 
 export default function RouterProvider() {
   const [isLogin, setIsLogin] = useState(localStorage.getItem('token'));
-  
+
   const getElement = (path) => {
-    if(!isLogin) return <Navigate replace to="/login" />
-    switch(path) {
-      case "/home":
+    if (!isLogin) return <Navigate replace to="/login" />;
+    switch (path) {
+      case '/home':
         return <HomePage />;
-      case "/search-folder":
+      case '/search-folder':
         return <SearchFolderPage />;
-      case "/search-file":
+      case '/search-file':
         return <SearchFilePage />;
-      case "/upload-file":
+      case '/upload-file':
         return <UploadFilePage />;
-      case "/upload-folder":
+      case '/upload-folder':
         return <UploadFolderPage />;
-      case "/result-page":
+      case '/result-page':
         return <ResultPage />;
-      case "/search-folder-result":
+      case '/search-folder-result':
         return <SearchFolderResultPage />;
-      case "/search-file-result":
+      case '/search-file-result':
         return <SearchFileResultPage />;
-      case "/approval":
+      case '/approval':
         return <ApprovalPage />;
-      case "/profile":
+      case '/profile':
         return <ProfilePage />;
-      case "/staff-manage":
+      case '/staff-manage':
         return <StaffManagePage />;
-      case "/company-manage":
+      case '/company-manage':
         return <CompanyManagePage />;
-      case "/dept-manage":
+      case '/dept-manage':
         return <DeptManagePage />;
-      default: return <Navigate replace to="/login" />;
+      case '/folder':
+        return <FolderPage />;
+      default:
+        return <Navigate replace to="/login" />;
     }
-  }
+  };
   const getSwitchAndRoutes = () => (
     <Routes>
-      <Route path="/login" element={isLogin? <Navigate replace to="/home" /> : <LoginPage setIsLogin={setIsLogin}/>} />
+      <Route
+        path="/login"
+        element={
+          isLogin ? (
+            <Navigate replace to="/home" />
+          ) : (
+            <LoginPage setIsLogin={setIsLogin} />
+          )
+        }
+      />
       <Route path="/" element={getElement('/')} />
       <Route path="/home" element={getElement('/home')} />
       <Route path="/search-folder" element={getElement('/search-folder')} />
@@ -67,13 +80,20 @@ export default function RouterProvider() {
       <Route path="/upload-file" element={getElement('/upload-file')} />
       <Route path="/upload-folder" element={getElement('/upload-folder')} />
       <Route path="/result-page" element={getElement('/result-page')} />
-      <Route path="/search-folder-result" element={getElement('/search-folder-result')} />
-      <Route path="/search-file-result" element={getElement('/search-file-result')} />
+      <Route
+        path="/search-folder-result"
+        element={getElement('/search-folder-result')}
+      />
+      <Route
+        path="/search-file-result"
+        element={getElement('/search-file-result')}
+      />
       <Route path="/approval" element={getElement('/approval')} />
       <Route path="/profile" element={getElement('/profile')} />
       <Route path="/staff-manage" element={getElement('/staff-manage')} />
       <Route path="/company-manage" element={getElement('/company-manage')} />
       <Route path="/dept-manage" element={getElement('/dept-manage')} />
+      <Route path="/folder/:id" element={getElement('/folder')} />
     </Routes>
   );
 
