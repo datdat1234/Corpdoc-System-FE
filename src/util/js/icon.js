@@ -34,6 +34,8 @@ import {
   faFileCircleCheck,
   faBuilding,
   faClipboardUser,
+  faTriangleExclamation,
+  faCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icon = {
@@ -72,6 +74,8 @@ const icon = {
   fileCircleCheck: faFileCircleCheck,
   building: faBuilding,
   clipboardUser: faClipboardUser,
+  triangleExclamation: faTriangleExclamation,
+  circleExclamation: faCircleExclamation,
 };
 
 export default icon;

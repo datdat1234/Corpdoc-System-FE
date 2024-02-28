@@ -41,7 +41,6 @@ export default function SettingSidebar() {
       profileTabIcon = PROFILE_TABS_ICON;
       profileNavigate = PROFILE_NAVIGATE;
   }
-  console.log(profileNavigate);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 

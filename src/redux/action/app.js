@@ -1,6 +1,7 @@
 export const SET_GLOBAL_LOADING = "SET_GLOBAL_LOADING";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_FILE_INFO = "SET_FILE_INFO";
+export const SET_NOTI = "SET_NOTI";
 
 export function setGlobalLoading(visible) {
   return {
@@ -19,6 +20,13 @@ export function setUserInfo(visible) {
 export function setFileInfo(visible) {
   return {
     type: SET_FILE_INFO,
+    payload: visible,
+  };
+}
+
+export function setNoti(visible) {
+  return {
+    type: SET_NOTI,
     payload: visible,
   };
 }

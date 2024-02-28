@@ -63,6 +63,11 @@
   font-weight: 500;
 }
 
+.textH6SemiBold {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .textH6Bold {
   font-size: 16px;
   font-weight: 700;

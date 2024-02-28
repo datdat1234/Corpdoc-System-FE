@@ -81,6 +81,7 @@ export default function LoginPage( {setIsLogin} ) {
         const userInfo = res?.data?.data;
         dispatch(setUserInfo(userInfo));
         localStorage.setItem("token", userInfo.accessToken);
+        localStorage.setItem("companyId", userInfo.CompanyID);
         setIsLogin(userInfo.accessToken);
         navigate(`/home`);
       } catch (error) {

@@ -50,7 +50,8 @@ const callAxios = (
         // && !window.location.href?.includes(LOGIN_URL_FE) &&
         // !window.location.href?.includes(OAUTH2_URL_FE)
       ) {
-        logout();
+        // logout();
+        console.log("holly")
       } else {
         if (isShowErrorMessage) {
           logMessage(err);

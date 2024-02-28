@@ -2,7 +2,7 @@ import { get, post, put, remove } from './APICaller';
 import { API_URL } from './constant';
 
 const getCompanyId = () => {
-  // return localStorage.getItem('companyId');
+  return localStorage.getItem('companyId');
   return '13ed4be3-ae82-4e65-8370-986656fc8e63';
 };
 
@@ -18,6 +18,12 @@ export const login = (username, password) => {
     password: password,
   });
 };
+
+//#region Profile
+export const editUserInfo = (data) => {
+  return post(`${API_URL}/user/edit-user-info`, data);
+}
+//#endregion
 
 //#region Media
 export const viewFile = (fileId) => {
