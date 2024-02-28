@@ -111,6 +111,7 @@ export default function SearchModal({ value = [], grid = [] }) {
           text={text}
           icon1={<FontAwesomeIcon icon={icon.file} />}
           textStyles="text14Bold mLeft10"
+          type="file"
         />
       );
     else {
@@ -120,6 +121,7 @@ export default function SearchModal({ value = [], grid = [] }) {
           icon1={<FontAwesomeIcon icon={icon.folder} />}
           icon1Styles="main"
           textStyles="text14Medium mLeft10"
+          type="folder"
         />
       );
     }

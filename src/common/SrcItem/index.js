@@ -101,6 +101,7 @@ export default function SrcItem({ value = [], grid = [] }) {
           icon1={<FontAwesomeIcon icon={icon.file} />}
           textStyles="text14Bold mLeft10"
           id={id}
+          type="file"
         />
       );
     else {
@@ -111,6 +112,7 @@ export default function SrcItem({ value = [], grid = [] }) {
           icon1Styles="main"
           textStyles="text14Medium mLeft10"
           id={id}
+          type="folder"
         />
       );
     }

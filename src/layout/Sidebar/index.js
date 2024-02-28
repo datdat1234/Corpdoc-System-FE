@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
@@ -12,18 +12,28 @@ import {
   SIDEBAR_STRUCTURE,
 } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getChildByFolderId } from 'util/js/APIs';
 
 export default function Sidebar() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [currentTab, setCurrentTab] = useState(0);
+  const [child, setChild] = useState([]);
   const userInfo = useSelector((state) => state.app.userInfo);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
+  useEffect(() => {
+    const fetchData = async () => {
+      const rootId = await localStorage.getItem('root');
+      const childRes = await getChildByFolderId(rootId);
+      setChild(childRes?.data?.data?.child);
+    };
 
+    fetchData();
+  }, []);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -40,7 +50,10 @@ export default function Sidebar() {
     if (userInfo.Role === 'Admin') {
       for (let i = 0; i < SIDEBAR_TABS_ADMIN.length; i++) {
         tabItems.push(
-          <div key={SIDEBAR_TABS_ADMIN.length-i+2} className={`mBottom5 ${styles.tabCtn}`}>
+          <div
+            key={SIDEBAR_TABS_ADMIN.length - i + 2}
+            className={`mBottom5 ${styles.tabCtn}`}
+          >
             <Button
               name={SIDEBAR_TABS_ADMIN[i]}
               btnStyles={`textH6ExtraBold ${styles.buttonText}
@@ -58,7 +71,10 @@ export default function Sidebar() {
       }
     }
     for (let i = 0; i < SIDEBAR_TABS.length; i++) {
-      if (userInfo.Role === 'Manager' || (userInfo.Role === 'Staff' && SIDEBAR_TABS[i] !== 'Thùng rác')){
+      if (
+        userInfo.Role === 'Manager' ||
+        (userInfo.Role === 'Staff' && SIDEBAR_TABS[i] !== 'Thùng rác')
+      ) {
         tabItems.push(
           <div key={i} className={`mBottom5 ${styles.tabCtn}`}>
             <Button
@@ -87,7 +103,6 @@ export default function Sidebar() {
         <div key={i}>
           <FolderStruct
             name={SIDEBAR_STRUCTURE[i].name}
-            onClick={() => {}}
             ident={SIDEBAR_STRUCTURE[i].id}
           />
         </div>
@@ -98,13 +113,12 @@ export default function Sidebar() {
 
   const renderUserStructs = () => {
     const tabItems = [];
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < child.length; i++) {
       tabItems.push(
         <div key={i}>
           <FolderStruct
-            name={'Đồ án tốt nghiệp / Luận văn tốt nghiệp'}
-            onClick={() => {}}
-            ident={1}
+            name={child[i].Name}
+            ident={child[i].FolderID}
           />
         </div>
       );
@@ -115,7 +129,10 @@ export default function Sidebar() {
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
-      <SidebarTab tabItems={renderTabItems()} ctnStyles='pVertical20 pRight60'/>
+      <SidebarTab
+        tabItems={renderTabItems()}
+        ctnStyles="pVertical20 pRight60"
+      />
       <div>
         <div className={`${styles.structCtn}`}>{renderFolderStructs()}</div>
         <div className={`${styles.spacer}`}></div>

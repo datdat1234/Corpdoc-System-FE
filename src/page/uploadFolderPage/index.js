@@ -31,10 +31,10 @@ export default function UploadFolderPage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const crit_response = await getCriteria();
-      const folder_response = await getFolderPath(userInfo?.DeptID);
-      setCritetia(crit_response?.data?.data?.criteria);
-      setFolders(folder_response?.data?.data?.folder);
+      const critRes = await getCriteria();
+      const folderRes = await getFolderPath(userInfo?.DeptID);
+      setCritetia(critRes?.data?.data?.criteria);
+      setFolders(folderRes?.data?.data?.folder);
     };
 
     fetchData();

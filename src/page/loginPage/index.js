@@ -12,12 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 
-
 ////////API IMPORT //////////////////////////////////
 ////////////////////////////////////////////////////
-import { login } from 'util/js/APIs';
+import { login, getRootFolder } from 'util/js/APIs';
 
-export default function LoginPage( {setIsLogin} ) {
+export default function LoginPage({ setIsLogin }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const formWidth = AUTH_FORM_WIDTH;
@@ -57,10 +56,10 @@ export default function LoginPage( {setIsLogin} ) {
   const checkInputLogin = () => {
     if (username && password) return true;
     if (!username) {
-      setErrUsername('Vui lòng điền username.')
+      setErrUsername('Vui lòng điền username.');
     }
     if (!password) {
-      setErrPassword('Vui lòng điền mật khẩu.')
+      setErrPassword('Vui lòng điền mật khẩu.');
     }
     return false;
   };
@@ -69,18 +68,21 @@ export default function LoginPage( {setIsLogin} ) {
     // console.log('ok')
     if (tab === 0) navigate(`/home`);
     else {
-      if(!checkInputLogin()) return;
+      if (!checkInputLogin()) return;
       try {
         const res = await login(username, password);
         // console.log(res);
         const resultCode = res?.data?.resultCode;
-        if (resultCode !== "00047") {
+        if (resultCode !== '00047') {
           setErrLogin(res?.data?.resultMessage.vi);
           return;
         }
         const userInfo = res?.data?.data;
         dispatch(setUserInfo(userInfo));
-        localStorage.setItem("token", userInfo.accessToken);
+        localStorage.setItem('token', userInfo.accessToken);
+        const rootInfo = await getRootFolder(userInfo?.DeptID);
+        const root = rootInfo?.data?.data?.folder;
+        localStorage.setItem('root', root.FolderID);
         localStorage.setItem("companyId", userInfo.CompanyID);
         setIsLogin(userInfo.accessToken);
         navigate(`/home`);
@@ -111,11 +113,21 @@ export default function LoginPage( {setIsLogin} ) {
     else
       return (
         <>
-          <FormInput name="Username" type="text" setInputVal={setUsername}/>
-          {errUsername && <p className='text-danger mVertical10 text16Bold'>{errUsername}</p>}
-          <FormInput name="Mật khẩu" type="password" setInputVal={setPassword}/>
-          {errPassword && <p className='text-danger mVertical10 text16Bold'>{errPassword}</p>}
-          {errLogin !== '' && <p className='text-danger mVertical10 text16Bold'>{errLogin}</p>}
+          <FormInput name="Username" type="text" setInputVal={setUsername} />
+          {errUsername && (
+            <p className="text-danger mVertical10 text16Bold">{errUsername}</p>
+          )}
+          <FormInput
+            name="Mật khẩu"
+            type="password"
+            setInputVal={setPassword}
+          />
+          {errPassword && (
+            <p className="text-danger mVertical10 text16Bold">{errPassword}</p>
+          )}
+          {errLogin !== '' && (
+            <p className="text-danger mVertical10 text16Bold">{errLogin}</p>
+          )}
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
           >

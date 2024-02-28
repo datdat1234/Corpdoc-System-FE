@@ -4,10 +4,11 @@ import SrcItem from 'common/SrcItem';
 import styles from './styles.module.css';
 import { HOMEPAGE_ITEM_GRIDS } from 'util/js/constant';
 import Pagination from 'common/Pagination';
-import { getChildByFolderId } from 'util/js/APIs';
-import { formatItemFolder } from 'util/js/helper';
+import { getChildByFolderId, getFileByCriteria } from 'util/js/APIs';
+import { formatItemFolder, formatItemFile } from 'util/js/helper';
+import { useParams } from 'react-router-dom';
 
-export default function HomePage() {
+export default function FolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   var header = [
@@ -32,6 +33,7 @@ export default function HomePage() {
       type: '',
     },
   ];
+  const { id } = useParams();
   const [items, setItems] = useState([]);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -40,10 +42,11 @@ export default function HomePage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const rootId = await localStorage.getItem('root');
-      const childRes = await getChildByFolderId(rootId);
+      const childRes = await getChildByFolderId(id);
+      const filesRes = await getFileByCriteria(id);
       const folders = childRes?.data?.data?.child;
-      setItems(formatItemFolder(folders));
+      const files = filesRes?.data?.data?.files;
+      setItems(formatItemFolder(folders).concat(formatItemFile(files)));
     };
 
     fetchData();
@@ -78,6 +81,7 @@ export default function HomePage() {
   return (
     <div className={`${styles.root}`}>
       <div className={`${styles.wrapper}`}>
+        <BreadCrumb />
         <div className="w-100">{renderItem()}</div>
         <div className={`${styles.pagination}`}>
           <Pagination />

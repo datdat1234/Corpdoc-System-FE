@@ -65,6 +65,67 @@ export const extractFileType = (name) => {
   return arr[1];
 };
 
+export const formatItemFolder = (data) => {
+  const formattedData = [];
+  for (let i = 0; i < data.length; i++) {
+    formattedData.push([
+      {
+        text: '',
+        type: 'save',
+      },
+      {
+        text: data[i].Name,
+        type: 'folder',
+        id: data[i].FolderID,
+      },
+      {
+        text: data[i].CreatedDate,
+        type: 'text',
+      },
+      {
+        text: '1,100,099 KB',
+        type: 'text-size',
+      },
+      {
+        text: '',
+        type: 'edit',
+      },
+    ]);
+  }
+  return formattedData;
+};
+
+export const formatItemFile = (data) => {
+  const formattedData = [];
+  for (let i = 0; i < data.length; i++) {
+    formattedData.push([
+      {
+        text: '',
+        type: 'save',
+      },
+      {
+        text: data[i].Name,
+        type: 'file',
+        id: data[i].FileID,
+      },
+      {
+        text: data[i].CreatedDate,
+        type: 'text',
+      },
+      {
+        text: data[i].Size,
+        type: 'text-size',
+      },
+      {
+        text: '',
+        type: 'edit',
+      },
+    ]);
+  }
+  console.log(formattedData)
+  return formattedData;
+};
+
 export const getNameRole = (role) => {
   switch (role) { 
     case 'Manager':
