@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFolderPage } from '../../redux/action/app';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
@@ -8,7 +10,9 @@ import { getChildByFolderId } from 'util/js/APIs';
 export default function FolderStruct({ name = '', ident }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const switchFolder = useSelector((state) => state.app.folderPage);
   const [isExpand, setIsExpand] = useState(false);
   const [child, setChild] = useState([]);
   //////////////////////////////////////////////////
@@ -29,6 +33,7 @@ export default function FolderStruct({ name = '', ident }) {
   };
 
   const handleNavigate = () => {
+    dispatch(setFolderPage(!switchFolder));
     navigate(`/folder/${ident}`);
   };
   //////////////////////////////////////////////////

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFolderPage } from '../../redux/action/app';
 import styles from './styles.module.css';
 import { viewFile } from 'util/js/APIs';
-import { useDispatch } from 'react-redux';
 import { setFileInfo } from '../../redux/action/app';
 
 export default function TextIcon({
@@ -18,6 +19,7 @@ export default function TextIcon({
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const switchFolder = useSelector((state) => state.app.folderPage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //////////////////////////////////////////////////
@@ -51,6 +53,7 @@ export default function TextIcon({
   };
 
   const handleOpenFolder = async () => {
+    dispatch(setFolderPage(!switchFolder));
     navigate(`/folder/${id}`);
   };
   //////////////////////////////////////////////////

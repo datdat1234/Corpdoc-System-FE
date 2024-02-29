@@ -3,6 +3,7 @@ import {
   SET_USER_INFO,
   SET_FILE_INFO,
   SET_NOTI,
+  SET_FOLDER_PAGE,
 } from '../action/app';
 // import { deepClone } from "../../util/js/helper";
 
@@ -12,7 +13,7 @@ export default function appReducer(
     userInfo: {},
     fileInfo: {},
     noti: {type:'', message: ''},
-    folderPage: {},
+    folderPage: false,
   },
   action
 ) {
@@ -36,6 +37,11 @@ export default function appReducer(
       return {
         ...state,
         noti: action.payload,
+      };
+    case SET_FOLDER_PAGE:
+      return {
+        ...state,
+        folderPage: action.payload,
       };
     default:
       return state;

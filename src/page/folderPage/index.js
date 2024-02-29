@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import BreadCrumb from 'common/BreadCrumb';
 import SrcItem from 'common/SrcItem';
 import styles from './styles.module.css';
@@ -11,6 +12,7 @@ import { useParams } from 'react-router-dom';
 export default function FolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  var switchFolder = useSelector((state) => state.app.folderPage);
   var header = [
     {
       text: '',
@@ -37,7 +39,7 @@ export default function FolderPage() {
   const [items, setItems] = useState([]);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-
+console.log(switchFolder);
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function FolderPage() {
     };
 
     fetchData();
-  }, [items]);
+  }, [switchFolder]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 

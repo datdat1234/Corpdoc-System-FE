@@ -15,7 +15,8 @@ export default function HoverModal({
   lastBtnColor = 'bg-bgColor4',
   spacerColor = 'bg-bgColor5',
   isFolder = false,
-  smallHoverIDs = {},
+  smallHoverIDs = [],
+  setIsHovered1,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -125,7 +126,7 @@ export default function HoverModal({
   };
 
   const renderSmallHover = (i) => {
-    if (smallHoverIDs.id.includes(i)) {
+    if (smallHoverIDs.includes(i)) {
       return (
         <SmallHoverModal
           name={SMALL_HOVER_TABS}
@@ -134,12 +135,12 @@ export default function HoverModal({
             () => {
               handleMouseLeave();
               navigate('/upload-folder', { state: { newStructure: false } });
-              smallHoverIDs.setIsHovered(0);
+              setIsHovered1(0);
             },
             () => {
               handleMouseLeave();
               navigate('/upload-file', { state: { isShowCritetia: true } });
-              smallHoverIDs.setIsHovered(0);
+              setIsHovered1(0);
             },
           ]}
         />

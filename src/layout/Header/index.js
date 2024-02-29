@@ -196,10 +196,8 @@ export default function Header() {
                 navigate('/upload-folder', { state: { newStructure: true } });
               },
             ]}
-            smallHoverIDs={{
-              id: [2],
-              setIsHovered: setIsHovered,
-            }}
+            smallHoverIDs={[2]}
+            setIsHovered1={setIsHovered}
           />
         )}
       </div>

@@ -80,9 +80,11 @@ export default function LoginPage({ setIsLogin }) {
         dispatch(setUserInfo(userInfo));
         localStorage.setItem('token', userInfo.accessToken);
         localStorage.setItem("companyId", userInfo.CompanyID);
-        const rootInfo = await getRootFolder(userInfo?.DeptID);
-        const root = rootInfo?.data?.data?.folder;
-        localStorage.setItem('root', root.FolderID);
+        if (userInfo && userInfo.DeptID) {
+          const rootInfo = await getRootFolder(userInfo?.DeptID);
+          const root = rootInfo?.data?.data?.folder;
+          localStorage.setItem('root', root.FolderID);
+        }
         setIsLogin(userInfo.accessToken);
         navigate(`/home`);
       } catch (error) {
