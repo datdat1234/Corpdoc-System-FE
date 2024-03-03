@@ -112,6 +112,7 @@ export default function Sidebar() {
   };
 
   const renderUserStructs = () => {
+    if (!child) return [];
     const tabItems = [];
     for (let i = 0; i < child.length; i++) {
       tabItems.push(

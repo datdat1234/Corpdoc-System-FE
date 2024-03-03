@@ -1,6 +1,5 @@
 .root {
-  position: relative;
-  cursor: pointer;
+  position: relative; 
   display: flex;
   align-items: center;
   justify-content: left;
@@ -15,4 +14,12 @@
 .btn {
   text-align: left;
   flex-grow: 1;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.cursorDefault {
+  cursor: default;
 }

@@ -12,6 +12,7 @@ import HomePage from 'page/homePage';
 import SearchFolderPage from 'page/searchFolderPage';
 import SearchFilePage from 'page/searchFilePage';
 import UploadFilePage from 'page/uploadFilePage';
+import UploadFileSupportPage from 'page/uploadFileSupportPage';
 import UploadFolderPage from 'page/uploadFolderPage';
 import ResultPage from 'page/resultPage';
 import SearchFolderResultPage from 'page/searchFolderResultPage';
@@ -37,6 +38,8 @@ export default function RouterProvider() {
         return <SearchFilePage />;
       case '/upload-file':
         return <UploadFilePage />;
+      case '/upload-file-support':
+        return <UploadFileSupportPage />;
       case '/upload-folder':
         return <UploadFolderPage />;
       case '/result-page':
@@ -78,6 +81,7 @@ export default function RouterProvider() {
       <Route path="/search-folder" element={getElement('/search-folder')} />
       <Route path="/search-file" element={getElement('/search-file')} />
       <Route path="/upload-file" element={getElement('/upload-file')} />
+      <Route path="/upload-file-support" element={getElement('/upload-file-support')} />
       <Route path="/upload-folder" element={getElement('/upload-folder')} />
       <Route path="/result-page" element={getElement('/result-page')} />
       <Route

@@ -72,6 +72,13 @@ export const getRootFolder = (deptId) => {
   });
 };
 
+export const getDomainFolder = (deptId) => {
+  return post(`${API_URL}/folder/get-domain-folder`, {
+    companyId: getCompanyId(),
+    deptId: deptId,
+  });
+}
+
 //#endregion
 
 //#region Media

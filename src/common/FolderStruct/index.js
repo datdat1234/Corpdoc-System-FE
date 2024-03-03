@@ -43,6 +43,7 @@ export default function FolderStruct({ name = '', ident }) {
   //////////////////////////////////////////////////
   const renderChildren = () => {
     if (!isExpand) return null;
+    if (!child) return [];
     const tabItems = [];
     for (let i = 0; i < child.length; i++) {
       tabItems.push(

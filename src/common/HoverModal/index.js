@@ -73,7 +73,7 @@ export default function HoverModal({
             icon1Styles={`header`}
             icon2Styles={`text mLeft5`}
             btnStyles={`text14SemiBold
-              ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4'} 
+              ${i === name.length - 1 ? lastBtnColor : 'bg-bgColor4 black'} 
               ${i === name.length - 1 ? lastBtnStyles : ''} 
             `}
             icon1={
@@ -139,7 +139,7 @@ export default function HoverModal({
             },
             () => {
               handleMouseLeave();
-              navigate('/upload-file', { state: { isShowCritetia: true } });
+              navigate('/upload-file');
               setIsHovered1(0);
             },
           ]}
