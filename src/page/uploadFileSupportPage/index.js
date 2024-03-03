@@ -1,41 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
 import Input from 'common/Input';
-import CriteriaTag from 'common/CriteriaTag';
 import { extractFileName, extractFileType } from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria, uploadFile } from 'util/js/APIs';
+import { uploadFile } from 'util/js/APIs';
 
-export default function UploadFilePage() {
+export default function UploadFileSupportPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.app.userInfo);
-  const [criteria, setCritetia] = useState([]);
   const [fileName, setFileName] = useState('');
   const [author, setAuthor] = useState('');
   const [desc, setDesc] = useState('');
   const [type, setType] = useState('');
   const [size, setSize] = useState(0);
-  const [fileCriteria, setFileCriteria] = useState([]);
   const [fileContent, setFileContent] = useState(null);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getCriteria();
-      setCritetia(response?.data?.data?.criteria);
-    };
-
-    fetchData();
-  }, []);
+  
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -48,7 +38,6 @@ export default function UploadFilePage() {
       desc,
       type,
       size,
-      fileCriteria,
       userId: userInfo?.UserID,
       deptId: userInfo?.DeptID,
       deleted: false,
@@ -78,32 +67,12 @@ export default function UploadFilePage() {
     fileInput.click();
   };
 
-  const handleSetCriteria = (criterion) => {
-    if (fileCriteria.includes(criterion) || criterion === '') return;
-    else {
-      setFileCriteria([...fileCriteria, criterion]);
-    }
-  };
-
-  const handleCloseCriteria = (criterion) => {
-    setFileCriteria(fileCriteria.filter((value) => value !== criterion));
-  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-  const renderCriterionTag = () => {
-    return fileCriteria.map((criterion, index) => {
-      return (
-        <CriteriaTag
-          key={index}
-          text={criterion}
-          handleClick={handleCloseCriteria}
-        />
-      );
-    });
-  };
+
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
@@ -152,13 +121,6 @@ export default function UploadFilePage() {
           setData={setAuthor}
         />
         <Input type="textarea" text="Mô tả" value={desc} setData={setDesc} />
-        <Input
-          type="select"
-          text="Tiêu chí của tài liệu"
-          value={criteria}
-          setData={handleSetCriteria}
-        />
-        <div className={`${styles.checkboxCtn}`}>{renderCriterionTag()}</div>
         <div className={`${styles.btnCtn} mBottom10`}>
           <div className={`${styles.btnWrapper}`}>
             <Button

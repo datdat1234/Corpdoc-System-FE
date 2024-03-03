@@ -68,7 +68,6 @@ export const SIDEBAR_STRUCTURE = [
 export const UPLOAD_TABS = [
   'Thư viện sách cá nhân',
   'Tài liệu pháp luật doanh nghiệp',
-  'Đồ án tốt nghiệp _ Luận văn tốt nghiệp',
 ];
 
 export const CREATE_STRUCTURE = ['Tạo cấu trúc mới'];
@@ -283,6 +282,7 @@ export const NOT_SHOW_SIDEBAR = [
   '/search-folder',
   '/search-file',
   '/upload-file',
+  '/upload-file-support',
   '/upload-folder',
   '/result-page',
   '/search-folder-result',

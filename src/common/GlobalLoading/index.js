@@ -27,6 +27,6 @@ export default function GlobalLoading() {
 
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
-  if (visible) return <Loading color="#ffffff" className={styles.root} />;
+  if (visible) return <Loading />;
   else return null;
 }

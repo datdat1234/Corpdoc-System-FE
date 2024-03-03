@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo1 from 'asset/images/logo1.png';
@@ -20,6 +20,7 @@ import {
   PROFILE_TABS_ADMIN,
   PROFILE_NAVIGATE_ADMIN,
 } from 'util/js/constant';
+import { getDomainFolder } from 'util/js/APIs';
 
 ////////API IMPORT //////////////////////////////////
 ////////////////////////////////////////////////////
@@ -31,8 +32,7 @@ export default function Header() {
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.app.userInfo);
   const [isHovered, setIsHovered] = useState(0);
-  let uploadTab = UPLOAD_TABS;
-  if (userInfo.Role !== 'Staff') uploadTab = uploadTab.concat(CREATE_STRUCTURE);
+  const [uploadTab, setUploadTab] = useState(UPLOAD_TABS);
   let profileTab, profileTabIcon, profileNavigate;
   switch (userInfo.Role) {
     case 'admin':
@@ -55,9 +55,27 @@ export default function Header() {
 
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
+  console.log(uploadTab)
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
+  useEffect(()=>{
+    const fetchData = async () => {
+      const folderRes = await getDomainFolder(userInfo.DeptID);
+      const folders = folderRes?.data?.data?.domainIds;
+      const domainUpload = [];
+      if(folders){
+        for(let i=0; i<folders.length; i++) {
+          domainUpload.push(folders[i].Name);
+        }
+        setUploadTab(uploadTab.concat(domainUpload));
+      }
+
+      if (userInfo.Role !== 'Staff') setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
+    };
+
+    fetchData();
+  },[]);
 
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
@@ -181,15 +199,15 @@ export default function Header() {
             onClick={[
               () => {
                 handleMouseLeave();
-                navigate('/upload-file', { state: { isShowCritetia: false, breadcrumb: uploadTab[0] } });
+                navigate('/upload-file-support');
               },
               () => {
                 handleMouseLeave();
-                navigate('/upload-file', { state: { isShowCritetia: false, breadcrumb: uploadTab[0] } });
+                navigate('/upload-file-support');
               },
               () => {
                 handleMouseLeave();
-                navigate('/upload-file', { state: { isShowCritetia: true } });
+                navigate('/upload-file');
               },
               () => {
                 handleMouseLeave();

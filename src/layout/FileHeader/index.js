@@ -10,6 +10,7 @@ import { saveAs } from 'file-saver';
 
 export default function FileHeader({
   page = 1,
+  setPage,
   totalPage = 0,
   scale,
   setScale,
@@ -91,7 +92,16 @@ export default function FileHeader({
       <div className={`col-7 mHorizontal20 ${styles.fileEdit}`}>
         <div className={`${styles.pageCtn}`}>
           <div className={`${styles.bgPageNum}`}>
-            <p className={`${styles.pageNumber}`}>{page}</p>
+            {/* <p className={`${styles.pageNumber}`}>{page}</p> */}
+            <input
+              type="number"
+              name="page"
+              min="1"
+              max={totalPage}
+              value={page}
+              onChange={(e) => {setPage(e)}}
+              className={`${styles.scaleNumber}`}
+            />
           </div>
           <div className={`${styles.splash}`}>/</div>
           <p className={`${styles.pageNumber}`}>{totalPage}</p>

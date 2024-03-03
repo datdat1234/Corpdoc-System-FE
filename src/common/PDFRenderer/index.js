@@ -4,18 +4,18 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { useSelector } from 'react-redux';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PDFRenderer({ setPage, setTotalPage, scale }) {
+export default function PDFRenderer({ page, setPage, setTotalPage, scale }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const parentRef = useRef(null);
   const pageRef = useRef(null);
-  const windowHeight = window.innerHeight;
   const [numPages, setNumPages] = useState(1);
   const [scrollOffset, setScrollOffset] = useState(0);
   const fileInfo = useSelector((state) => state.app.fileInfo);
   var pageHeight = pageRef && pageRef.current? pageRef.current.offsetHeight - 50: (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
+  console.log(scrollOffset)
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
@@ -24,6 +24,12 @@ export default function PDFRenderer({ setPage, setTotalPage, scale }) {
     if (number > numPages) number = numPages;
     setPage(number);
   }, [scrollOffset]);
+  
+  useEffect(() => {
+    // var number = (page - 1)*pageHeight;
+    // if (number > numPages) number = numPages;
+    window.scrollTo(0, 1126);
+  }, [page]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 

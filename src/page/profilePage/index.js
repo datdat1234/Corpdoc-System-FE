@@ -174,19 +174,13 @@ export default function ProfilePage() {
           </div> */}
           <div className={`${styles.btnCtn}`}>
             <div className={`${styles.btnWrapper}`}>
-              {!handleBtn?
               <Button
                 name="XÁC NHẬN"
                 ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
                 btnStyles="bg-text white d-flex justify-content-center align-items-center"
                 onClick={() => handleSubmitBtn()}
-              />:
-              <Button
-                name="XÁC NHẬN"
-                ctnStyles="h-100 textH6Bold br-10 bg-bgColor6 justify-content-end"
-                btnStyles="bg-bgColor6 black d-flex justify-content-center align-items-center"
+                isLoad = {handleBtn}
               />
-              }
             </div>
           </div>
         </div>

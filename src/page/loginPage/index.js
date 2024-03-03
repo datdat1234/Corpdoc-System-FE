@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import { AUTH_FORM_WIDTH } from 'util/js/constant';
-import { setUserInfo, setFileInfo } from '../../redux/action/app';
+import { setUserInfo, setFileInfo, setGlobalLoading } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
 import Logo from 'asset/images/logo.png';
 import FormInput from 'common/FormInput';
@@ -21,6 +21,7 @@ export default function LoginPage({ setIsLogin }) {
   const formWidth = AUTH_FORM_WIDTH;
   const [tab, setTab] = useState(1);
   const [isResetPass, setIsResetPass] = useState(false);
+  const [isLoad, setIsLoad] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
@@ -67,13 +68,19 @@ export default function LoginPage({ setIsLogin }) {
     // console.log('ok')
     if (tab === 0) navigate(`/home`);
     else {
-      if (!checkInputLogin()) return;
+      setIsLoad(true);
+      if (!checkInputLogin()) {
+        setIsLoad(false);
+        return;
+      }
       try {
+        dispatch(setGlobalLoading(true));
         const res = await login(username, password);
         // console.log(res);
         const resultCode = res?.data?.resultCode;
         if (resultCode !== '00047') {
           setErrLogin(res?.data?.resultMessage.vi);
+          setIsLoad(false);
           return;
         }
         const userInfo = res?.data?.data;
@@ -87,7 +94,10 @@ export default function LoginPage({ setIsLogin }) {
         }
         setIsLogin(userInfo.accessToken);
         navigate(`/home`);
+        setIsLoad(false);
+        dispatch(setGlobalLoading(false));
       } catch (error) {
+        setIsLoad(false);
         console.error('Error:', error);
       }
     }
@@ -195,6 +205,7 @@ export default function LoginPage({ setIsLogin }) {
                       onClick={() => {
                         handleNavigate(tab);
                       }}
+                      isLoad={isLoad}
                     />
                   </div>
                   {/* <div className="d-flex justify-content-center">

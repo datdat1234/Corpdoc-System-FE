@@ -158,6 +158,7 @@ export default function Layout({ children }) {
               <div className={`row-2 ${styles.rightDivHeader}`}>
                 <FileHeader
                   page={page}
+                  setPage={setPage}
                   totalPage={totalPage}
                   scale={scale}
                   setScale={setScale}
@@ -166,6 +167,7 @@ export default function Layout({ children }) {
               </div>
               <div className={styles.rightDivBody}>
                 <PDFRenderer
+                  page={page}
                   setPage={setPage}
                   setTotalPage={setTotalPage}
                   scale={scale}
