@@ -15,7 +15,7 @@ export default function PDFRenderer({ page, setPage, setTotalPage, scale }) {
   var pageHeight = pageRef && pageRef.current? pageRef.current.offsetHeight - 50: (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-  console.log(scrollOffset)
+  // console.log(scrollOffset)
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////

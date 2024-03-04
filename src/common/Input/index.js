@@ -9,7 +9,7 @@ export default function Input({
   text = '',
   bonusText = '',
   type = '',
-  value = '',
+  value,
   setData = (e)=>{},
   textStyles = '',
   placeholder = '',

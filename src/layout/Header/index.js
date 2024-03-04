@@ -55,27 +55,28 @@ export default function Header() {
 
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-  console.log(uploadTab)
+  // console.log(uploadTab)
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       const folderRes = await getDomainFolder(userInfo.DeptID);
       const folders = folderRes?.data?.data?.domainIds;
       const domainUpload = [];
-      if(folders){
-        for(let i=0; i<folders.length; i++) {
+      if (folders) {
+        for (let i = 0; i < folders.length; i++) {
           domainUpload.push(folders[i].Name);
         }
         setUploadTab(uploadTab.concat(domainUpload));
       }
 
-      if (userInfo.Role !== 'Staff') setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
+      if (userInfo.Role !== 'Staff')
+        setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
     };
 
     fetchData();
-  },[]);
+  }, []);
 
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
