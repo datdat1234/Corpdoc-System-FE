@@ -19,6 +19,12 @@ export const login = (username, password) => {
   });
 };
 
+export const refreshToken = (refreshToken) => {
+  return post(`${API_URL}/user/refresh-token`, {
+    refreshToken: refreshToken,
+  });
+};
+
 //#region Profile
 export const editUserInfo = (data) => {
   return post(`${API_URL}/user/edit-user-info`, data);

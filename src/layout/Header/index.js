@@ -55,7 +55,6 @@ export default function Header() {
 
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-  console.log(uploadTab)
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
@@ -64,7 +63,7 @@ export default function Header() {
       const folderRes = await getDomainFolder(userInfo.DeptID);
       const folders = folderRes?.data?.data?.domainIds;
       const domainUpload = [];
-      if(folders){
+      if(folders !== undefined){
         for(let i=0; i<folders.length; i++) {
           domainUpload.push(folders[i].Name);
         }

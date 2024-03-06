@@ -134,7 +134,7 @@ export default function Sidebar() {
         tabItems={renderTabItems()}
         ctnStyles="pVertical20 pRight60"
       />
-      <div>
+      <div className={`${styles.folderStruct}`}>
         <div className={`${styles.structCtn}`}>{renderFolderStructs()}</div>
         <div className={`${styles.spacer}`}></div>
         <div className={`${styles.structCtn}`}>{renderUserStructs()}</div>

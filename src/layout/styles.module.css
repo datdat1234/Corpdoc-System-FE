@@ -58,9 +58,10 @@
 
 .sidebar {
   position: relative;
-  overflow-y: auto;
+  /* overflow-y: hidden; */
   min-width: 220px;
-  height: 
+  max-height: calc(100vh - var(--rowSingle)*2);
+  min-height: 100%;
 }
 
 .resizerSideBar {

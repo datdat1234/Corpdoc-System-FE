@@ -68,7 +68,7 @@ export default function UploadFolderPage() {
 
   const handleSetParentInfo = (value) => {
     setFolderParentInfo(value);
-    var criteria = folders.find((folder) => folder.Path === value)?.Criterions;
+    var criteria = folders.find((folder) => folder.Path === value)?.Criteria;
     setFolderCriteria(criteria);
     setShowCritNumber(criteria.length);
   };

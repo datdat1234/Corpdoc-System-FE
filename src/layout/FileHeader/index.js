@@ -99,7 +99,7 @@ export default function FileHeader({
               min="1"
               max={totalPage}
               value={page}
-              onChange={(e) => {setPage(e)}}
+              onChange={(e) => {setPage(e.target.value)}}
               className={`${styles.scaleNumber}`}
             />
           </div>

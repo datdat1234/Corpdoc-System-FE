@@ -10,8 +10,9 @@ import Input from 'common/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import { getNameRole, setNotification } from 'util/js/helper';
-import { editUserInfo } from '../../util/js/APIs';
+import { editUserInfo, refreshToken } from '../../util/js/APIs';
 import { setUserInfo } from '../../redux/action/app';
+import { logout } from '../../util/js/APICaller';
 
 export default function ProfilePage() {
   // #region    VARIABLES //////////////////////////
@@ -63,27 +64,52 @@ export default function ProfilePage() {
         return;
       }
       const data = {
-        userInfo: userInfo,
         name: name,
         oldPassword: oldPassword,
         newPassword: newPassword,
         companyId: userInfo.CompanyID,
         token: localStorage.getItem('token'),
       }
-      await editUserInfo(data).then((res) => {
-        console.log(res);
-        if (res.status !== 200)
-          setNotification('error', res.data.resultMessage.vi? res.data.resultMessage.vi : 'Thay đổi thông tin không thành công. Vui lòng thử lại!')
-        else {
-          if (name !== userInfo.Name) userInfo.Name = name;
-          dispatch(setUserInfo(userInfo));
-          setOldPassword('');
-          setNewPassword('');
-          setConfirmPassword('');
-          setNotification('success', 'Thay đổi thông tin thành công!');
+      try {
+        let isRefreshToken = 0;
+        while (isRefreshToken < 2) {
+          isRefreshToken++;
+          const res = await editUserInfo(data);
+          console.log(res);
+          if (res.status !== 200) {
+            if (res.data.resultCode === "00012") {
+              const response = await refreshToken(userInfo.refreshToken);
+              if(response?.status === 200) {
+                if(response?.data?.resultCode === "00065") {
+                  userInfo.accessToken = response?.data?.data?.accessToken;
+                  userInfo.refreshToken = response?.data?.data?.refreshToken;
+                  dispatch(setUserInfo(userInfo));
+                  localStorage.setItem('token', response?.data?.data?.accessToken);
+                  continue;
+                }
+                else {
+                  logout();
+                  return;
+                }
+              }
+              return;
+            }
+            else setNotification('error', res.data.resultMessage.vi? res.data.resultMessage.vi : 'Thay đổi thông tin không thành công. Vui lòng thử lại!')
+          }
+          else {
+            if (name !== userInfo.Name) userInfo.Name = name;
+            dispatch(setUserInfo(userInfo));
+            setOldPassword('');
+            setNewPassword('');
+            setConfirmPassword('');
+            setNotification('success', 'Thay đổi thông tin thành công!');
+            isRefreshToken = 2;
+          }
+          setHandleBtn(false);
         }
-        setHandleBtn(false);
-      })
+      } catch (err) {
+        logout();
+      }
       return;
     }
     setHandleBtn(false);

@@ -1,7 +1,9 @@
 .root {
   position: relative;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   min-width: 220px;
+  overflow-y: hidden;
   width: 100%;
   height: 100%;
 }
@@ -17,10 +19,10 @@
 }
 
 .storageCtn {
-  position: absolute;
-  bottom: 15px;
+  padding: 15px;
   width: 100%;
-  height: 9%;
+  flex: 0 1 auto;
+  /* height: 25px; */
 }
 
 .progressCtn {
@@ -43,3 +45,7 @@
   text-overflow: ellipsis;
 }
 
+.folderStruct{
+  flex: 1 1 auto;
+  overflow-y: auto;
+}

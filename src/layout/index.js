@@ -169,6 +169,7 @@ export default function Layout({ children }) {
                 <PDFRenderer
                   page={page}
                   setPage={setPage}
+                  totalPage={totalPage}
                   setTotalPage={setTotalPage}
                   scale={scale}
                 />

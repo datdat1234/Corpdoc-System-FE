@@ -4,31 +4,38 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { useSelector } from 'react-redux';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PDFRenderer({ page, setPage, setTotalPage, scale }) {
+export default function PDFRenderer({ page, setPage, totalPage, setTotalPage, scale }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const parentRef = useRef(null);
   const pageRef = useRef(null);
   const [numPages, setNumPages] = useState(1);
+  const [isEnterPage, setIsEnterPage] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   const fileInfo = useSelector((state) => state.app.fileInfo);
-  var pageHeight = pageRef && pageRef.current? pageRef.current.offsetHeight - 50: (scale / 100);
+  var pageHeight = pageRef && pageRef && pageRef.current? pageRef.current.offsetHeight - (50*(scale / 100)): (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-  console.log(scrollOffset)
 
   // #region    useEffect //////////////////////////
-  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////  
   useEffect(() => {
-    var number = Math.floor(scrollOffset / pageHeight + 1);
-    if (number > numPages) number = numPages;
-    setPage(number);
+    if(!isEnterPage) {
+      var number = Math.floor(scrollOffset / pageHeight + 1);
+      if (number > numPages) number = numPages;
+      setPage(number);
+    }
   }, [scrollOffset]);
   
   useEffect(() => {
-    // var number = (page - 1)*pageHeight;
-    // if (number > numPages) number = numPages;
-    window.scrollTo(0, 1126);
+    // console.log(page);
+    // setIsEnterPage(false);
+    // var number = pageHeight;
+    // console.log(number)
+    // document.getElementById('PDFCtn').scrollTo({
+    //   top: number,
+    //   behavior: "smooth"
+    // });
   }, [page]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
@@ -77,6 +84,7 @@ export default function PDFRenderer({ page, setPage, setTotalPage, scale }) {
       className={`${styles.root}`}
       ref={parentRef}
       onScroll={handleScroll}
+      id="PDFCtn"
     >
       <div
         className={`${styles.PDFCtn}`}
