@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
@@ -8,11 +8,13 @@ import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getCriteria, getFolderPath, uploadFolder } from 'util/js/APIs';
+import { setGlobalLoading } from '../../redux/action/app';
 
 export default function UploadFolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.app.userInfo);
   const location = useLocation();
   const newStructure = location.state ? location.state.newStructure : null;
@@ -45,6 +47,7 @@ export default function UploadFolderPage() {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleUploadFolder = async () => {
+    dispatch(setGlobalLoading(true));
     const folderInfo = {
       folderName,
       author,
@@ -62,8 +65,11 @@ export default function UploadFolderPage() {
     if (response?.data?.resultCode === '00093') {
       navigate(`/result-page`, { state: { type: 'folder', status: 'success' } });
     } else {
-      navigate(`/result-page`, { state: { type: 'folder', status: 'error' } });
+      navigate(`/result-page`, {
+        state: { type: 'folder', status: 'error' },
+      });
     }
+    dispatch(setGlobalLoading(false));
   };
 
   const handleSetParentInfo = (value) => {

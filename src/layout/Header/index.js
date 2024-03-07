@@ -58,7 +58,7 @@ export default function Header() {
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       if (userInfo && userInfo.DeptID) {
         const folderRes = await getDomainFolder(userInfo.DeptID);
@@ -71,8 +71,8 @@ export default function Header() {
           setUploadTab(uploadTab.concat(domainUpload));
         }
 
-        if (userInfo.Role !== 'Staff') setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
-      }
+      if (userInfo.Role !== 'Staff')
+        setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
     };
 
     fetchData();

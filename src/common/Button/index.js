@@ -14,8 +14,10 @@ export default function Button({
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  const ctnLoadStyles="h-100 textH6Bold br-10 bg-bgColor6 justify-content-end";
-  const btnLoadStyles="bg-bgColor6 black d-flex justify-content-center align-items-center"
+  const ctnLoadStyles =
+    'h-100 textH6Bold br-10 bg-bgColor6 justify-content-end';
+  const btnLoadStyles =
+    'bg-bgColor6 black d-flex justify-content-center align-items-center';
 
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -38,20 +40,34 @@ export default function Button({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div className={`w-100 ${styles.root} ${isLoad ? ctnLoadStyles : ctnStyles} ${isLoad? styles.cursorDefault : styles.cursorPointer}`} onClick={isLoad ? '' : onClick}>
+    <div
+      className={`w-100 ${styles.root} ${isLoad ? ctnLoadStyles : ctnStyles} ${
+        isLoad ? styles.cursorDefault : styles.cursorPointer
+      }`}
+      onClick={isLoad ? '' : onClick}
+    >
       {icon1 && (
-        <div className={`${icon1Styles} ${styles.icon} d-flex align-items-center justify-content-center`}>{icon1}</div>
+        <div
+          className={`${icon1Styles} ${styles.icon} d-flex align-items-center justify-content-center`}
+        >
+          {icon1}
+        </div>
       )}
       {name && (
         <div
-          onClick={isLoad? '' : onClick}
-          className={`${isLoad? btnLoadStyles : btnStyles} ${isLoad? styles.cursorDefault : styles.cursorPointer} ${styles.btn}`}
+          className={`${isLoad ? btnLoadStyles : btnStyles} ${
+            isLoad ? styles.cursorDefault : styles.cursorPointer
+          } ${styles.btn}`}
         >
           {name}
         </div>
       )}
       {icon2 && (
-        <div className={`${icon2Styles} d-flex align-items-center justify-content-center`}>{icon2}</div>
+        <div
+          className={`${icon2Styles} d-flex align-items-center justify-content-center`}
+        >
+          {icon2}
+        </div>
       )}
     </div>
   );
