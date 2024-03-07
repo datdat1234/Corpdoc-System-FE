@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LOGIN_URL_FE } from './constant.js';
-import { logMessage } from './helper';
+import { logMessage, setNotification } from './helper';
 
 const getToken = () => {
   return localStorage.getItem('token');
@@ -39,6 +39,7 @@ const callAxios = (
 
   return axios(config)
     .then((res) => {
+      let resultCode = res?.data?.resultCode;
       return res;
     })
     .catch((err) => {
