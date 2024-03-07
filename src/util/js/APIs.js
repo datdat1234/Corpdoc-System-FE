@@ -27,7 +27,10 @@ export const refreshToken = (refreshToken) => {
 
 //#region Profile
 export const editUserInfo = (data) => {
-  return post(`${API_URL}/user/edit-user-info`, data);
+  return post(`${API_URL}/user/edit-user-info`, {
+    companyId: getCompanyId(),
+    ...data
+  });
 }
 //#endregion
 

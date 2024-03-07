@@ -45,7 +45,7 @@ export default function UploadFileSupportPage() {
       isPrivate: false,
     };
     const response = await uploadFile(fileMetadata, fileContent);
-    if (response?.data?.data?.resultCode === '00034') {
+    if (response?.data?.resultCode === '00034') {
       navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
     } else {
       navigate(`/result-page`, { state: { type: 'file', status: 'error' } });

@@ -59,7 +59,7 @@ export default function UploadFolderPage() {
       isPrivate: false,
     };
     const response = await uploadFolder(folderInfo);
-    if (response?.data?.data?.resultCode === '00093') {
+    if (response?.data?.resultCode === '00093') {
       navigate(`/result-page`, { state: { type: 'folder', status: 'success' } });
     } else {
       navigate(`/result-page`, { state: { type: 'folder', status: 'error' } });

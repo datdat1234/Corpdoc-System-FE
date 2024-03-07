@@ -67,8 +67,6 @@ export default function ProfilePage() {
         name: name,
         oldPassword: oldPassword,
         newPassword: newPassword,
-        companyId: userInfo.CompanyID,
-        token: localStorage.getItem('token'),
       }
       try {
         let isRefreshToken = 0;
