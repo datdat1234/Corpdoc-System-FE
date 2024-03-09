@@ -22,7 +22,7 @@ export const login = (username, password) => {
 export const refreshToken = (refreshToken) => {
   return post(`${API_URL}/user/refresh-token`, {
     refreshToken: refreshToken,
-  }, null, true, true);
+  });
 };
 
 //#region Profile
