@@ -69,49 +69,23 @@ export default function ProfilePage() {
         newPassword: newPassword,
       }
       try {
-        let isRefreshToken = 0;
-        while (isRefreshToken < 2) {
-          isRefreshToken++;
-          const res = await editUserInfo(data);
-          console.log(res);
-          if (res.status !== 200) {
-            if (res.data.resultCode === "00012") {
-              const response = await refreshToken(userInfo.refreshToken);
-              if(response?.status === 200) {
-                if(response?.data?.resultCode === "00065") {
-                  userInfo.accessToken = response?.data?.data?.accessToken;
-                  userInfo.refreshToken = response?.data?.data?.refreshToken;
-                  dispatch(setUserInfo(userInfo));
-                  localStorage.setItem('token', response?.data?.data?.accessToken);
-                  continue;
-                }
-                else {
-                  logout();
-                  return;
-                }
-              }
-              return;
-            }
-            else setNotification('error', res.data.resultMessage.vi? res.data.resultMessage.vi : 'Thay đổi thông tin không thành công. Vui lòng thử lại!')
-          }
-          else {
-            if (name !== userInfo.Name) userInfo.Name = name;
-            dispatch(setUserInfo(userInfo));
-            setOldPassword('');
-            setNewPassword('');
-            setConfirmPassword('');
-            setNotification('success', 'Thay đổi thông tin thành công!');
-            isRefreshToken = 2;
-          }
-          setHandleBtn(false);
+        const res = await editUserInfo(data);
+        console.log(res);
+        if (res.status === 200) {
+          if (name !== userInfo.Name) userInfo.Name = name;
+          dispatch(setUserInfo(userInfo));
+          setOldPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
         }
+        setHandleBtn(false);
       } catch (err) {
         logout();
       }
       return;
     }
     setHandleBtn(false);
-    setNotification('warning', 'Vui lòng nhập thông tin muốn thay đổi!')
+    setNotification('warning', 'Vui lòng nhập thông tin muốn thay đổi!');
     return;
   }
 

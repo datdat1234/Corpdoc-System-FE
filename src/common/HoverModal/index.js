@@ -77,12 +77,12 @@ export default function HoverModal({
               ${i === name.length - 1 ? lastBtnStyles : ''} 
             `}
             icon1={
-              icon[i].left && (
+              icon[i]?.left && (
                 <FontAwesomeIcon icon={icon[i].left} size={`lg`} />
               )
             }
             icon2={
-              icon[i].right && (
+              icon[i]?.right && (
                 <FontAwesomeIcon icon={icon[i].right} size={`lg`} />
               )
             }
