@@ -32,6 +32,7 @@ export default function Layout({ children }) {
   const [width, setWidth] = useState(50);
   const [sidebarWidth, setSidebarWidth] = useState(33.328);
   const [showPdf, setShowPdf] = useState(false);
+  const [isEnterPage, setIsEnterPage] = useState(false);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -163,6 +164,7 @@ export default function Layout({ children }) {
                   scale={scale}
                   setScale={setScale}
                   setShowPdf={setShowPdf}
+                  setIsEnterPage={setIsEnterPage}
                 />
               </div>
               <div className={styles.rightDivBody}>
@@ -172,6 +174,8 @@ export default function Layout({ children }) {
                   totalPage={totalPage}
                   setTotalPage={setTotalPage}
                   scale={scale}
+                  isEnterPage={isEnterPage}
+                  setIsEnterPage={setIsEnterPage}
                 />
               </div>
             </div>

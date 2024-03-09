@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setFileInfo } from '../../redux/action/app';
 import styles from './styles.module.css';
@@ -7,6 +7,7 @@ import icon from 'util/js/icon';
 import { useSelector } from 'react-redux';
 import { downloadFile } from 'util/js/APIs';
 import { saveAs } from 'file-saver';
+import { setNotification } from 'util/js/helper';
 
 export default function FileHeader({
   page = 1,
@@ -15,17 +16,22 @@ export default function FileHeader({
   scale,
   setScale,
   setShowPdf,
+  setIsEnterPage,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const dispatch = useDispatch();
   const [scaleValue, setScaleValue] = useState(scale);
   const fileInfo = useSelector((state) => state.app.fileInfo);
+  const [inputPage, setInputPage] = useState(page);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
+  useEffect(()=>{
+    setInputPage(page);
+  },[page])
 
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
@@ -74,6 +80,22 @@ export default function FileHeader({
       console.error('Error:', error);
     }
   };
+
+  const handleFillPage = (e) => {
+    if(!Number(e.target.value)) {
+      setInputPage('');
+      return;
+    }
+    if(Number(e.target.value) > Number(totalPage)) {
+      setNotification("warning", "Vui lòng nhập số trang nhỏ hơn tổng số trang.")
+      return;
+    }
+    if(Number(e.target.value) < 1) {
+      setNotification("warning", "Vui lòng nhập số trang lớn hơn 1.")
+      return
+    }
+    setInputPage(Number(e.target.value))
+  }
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -98,8 +120,15 @@ export default function FileHeader({
               name="page"
               min="1"
               max={totalPage}
-              value={page}
-              onChange={(e) => {setPage(e.target.value)}}
+              value={inputPage}
+              onChange={(e) => {handleFillPage(e)}}
+              onKeyDown={(e) => { 
+                if (e.key === "Enter") {
+                  setPage(inputPage);
+                  setIsEnterPage(true);
+                  e.target.blur();
+                }
+              }} 
               className={`${styles.scaleNumber}`}
             />
           </div>

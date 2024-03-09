@@ -4,19 +4,26 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { useSelector } from 'react-redux';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PDFRenderer({ page, setPage, totalPage, setTotalPage, scale }) {
+export default function PDFRenderer({ 
+  page, 
+  setPage, 
+  totalPage, 
+  setTotalPage, 
+  scale,
+  isEnterPage = false,
+  setIsEnterPage,
+}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const parentRef = useRef(null);
   const pageRef = useRef(null);
   const [numPages, setNumPages] = useState(1);
-  const [isEnterPage, setIsEnterPage] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   const fileInfo = useSelector((state) => state.app.fileInfo);
   var pageHeight = pageRef && pageRef && pageRef.current? pageRef.current.offsetHeight - (50*(scale / 100)): (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-
+console.log(isEnterPage)
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////  
   useEffect(() => {
@@ -28,14 +35,17 @@ export default function PDFRenderer({ page, setPage, totalPage, setTotalPage, sc
   }, [scrollOffset]);
   
   useEffect(() => {
-    // console.log(page);
-    // setIsEnterPage(false);
-    // var number = pageHeight;
-    // console.log(number)
-    // document.getElementById('PDFCtn').scrollTo({
-    //   top: number,
-    //   behavior: "smooth"
-    // });
+    if(isEnterPage) {
+      setIsEnterPage(true);
+      var number = (pageHeight+ (50*(scale / 100)))*(page-1);
+      document.getElementById('PDFCtn').scrollTo({
+        top: number,
+        behavior: "smooth"
+      });
+      setTimeout(()=>{
+        setIsEnterPage(false);
+      }, 1000);
+    };
   }, [page]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
