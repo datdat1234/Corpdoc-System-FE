@@ -66,6 +66,9 @@ export default function LoginPage({ setIsLogin }) {
 
   const handleNavigate = async (tab) => {
     // console.log('ok')
+    setErrUsername('');
+    setErrPassword('');
+    setErrLogin('');
     if (tab === 0) navigate(`/home`);
     else {
       setIsLoad(true);
@@ -80,6 +83,7 @@ export default function LoginPage({ setIsLogin }) {
         const resultCode = res?.data?.resultCode;
         if (resultCode !== '00047') {
           setErrLogin(res?.data?.resultMessage.vi);
+          dispatch(setGlobalLoading(false));
           setIsLoad(false);
           return;
         }
@@ -98,6 +102,7 @@ export default function LoginPage({ setIsLogin }) {
         dispatch(setGlobalLoading(false));
       } catch (error) {
         setIsLoad(false);
+        dispatch(setGlobalLoading(false));
         console.error('Error:', error);
       }
     }
@@ -115,29 +120,30 @@ export default function LoginPage({ setIsLogin }) {
     if (tab === 0)
       return (
         <>
-          <FormInput name="Tên của bạn" type="text" />
-          <FormInput name="Email" type="text" />
-          <FormInput name="Mật khẩu" type="password" />
-          <FormInput name="Nhập lại mật khẩu" type="password" />
+          <FormInput name="Tên của bạn" type="text" onEnter={() => {handleNavigate(tab)}}/>
+          <FormInput name="Email" type="text" onEnter={() => {handleNavigate(tab)}}/>
+          <FormInput name="Mật khẩu" type="password" onEnter={() => {handleNavigate(tab)}}/>
+          <FormInput name="Nhập lại mật khẩu" type="password" onEnter={() => {handleNavigate(tab)}}/>
         </>
       );
     else
       return (
         <>
-          <FormInput name="Username" type="text" setInputVal={setUsername} />
+          <FormInput name="Username" type="text" setInputVal={setUsername} onEnter={() => {handleNavigate(tab)}}/>
           {errUsername && (
-            <p className="text-danger mVertical10 text16Bold">{errUsername}</p>
+            <div className={`mVertical10 text16Bold ${styles.errCtn}`}>{errUsername}</div>
           )}
           <FormInput
             name="Mật khẩu"
             type="password"
             setInputVal={setPassword}
+            onEnter={() => {handleNavigate(tab)}}
           />
           {errPassword && (
-            <p className="text-danger mVertical10 text16Bold">{errPassword}</p>
+            <div className={`mVertical10 text16Bold ${styles.errCtn}`}>{errPassword}</div>
           )}
           {errLogin !== '' && (
-            <p className="text-danger mVertical10 text16Bold">{errLogin}</p>
+            <div className={`mVertical10 text16Bold ${styles.errCtn}`}>{errLogin}</div>
           )}
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}

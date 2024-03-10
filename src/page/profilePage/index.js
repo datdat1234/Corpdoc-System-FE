@@ -10,7 +10,7 @@ import Input from 'common/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import { getNameRole, setNotification } from 'util/js/helper';
-import { editUserInfo, refreshToken } from '../../util/js/APIs';
+import { editUserInfo } from '../../util/js/APIs';
 import { setUserInfo } from '../../redux/action/app';
 import { logout } from '../../util/js/APICaller';
 
@@ -123,6 +123,7 @@ export default function ProfilePage() {
                 text="Phòng ban"
                 value="Phòng nhân sự"
                 canChange={false}
+                onEnter={() => {handleSubmitBtn()}}
               />
             </div>
             <div className={`${styles.inputRowDetailCtn}`}>
@@ -130,7 +131,9 @@ export default function ProfilePage() {
                 type="text" 
                 text="Phân quyền" 
                 value={getNameRole(userInfo.Role)} 
-                canChange={false}/>
+                canChange={false}
+                onEnter={() => {handleSubmitBtn()}}
+              />
             </div>
           </div>
           <Input
@@ -138,26 +141,35 @@ export default function ProfilePage() {
             text="Tên tài khoản"
             value={userInfo.Username}
             canChange={false}
+            onEnter={() => {handleSubmitBtn()}}
           />
           <Input 
             type="text" 
             text="Họ và tên" 
-            value={name} setData={setName} />
+            value={name} setData={setName}
+            onEnter={() => {handleSubmitBtn()}}
+          />
           <Input 
             type="password" 
             text="Mật khẩu cũ" 
             placeholder="Nhập mật khẩu cũ" 
-            value={oldPassword} setData={setOldPassword} />
+            value={oldPassword} setData={setOldPassword}
+            onEnter={() => {handleSubmitBtn()}} 
+          />
           <Input 
             type="password" 
             text="Mật khẩu mới" 
             placeholder="Nhập mật khẩu mới" 
-            value={newPassword} setData={setNewPassword} />
+            value={newPassword} setData={setNewPassword}
+            onEnter={() => {handleSubmitBtn()}} 
+          />
           <Input 
             type="password" 
             text="Nhập lại mật khẩu" 
             placeholder="Xác nhận mật khẩu mới"
-            value={confirmPassword} setData={setConfirmPassword} />
+            value={confirmPassword} setData={setConfirmPassword}
+            onEnter={() => {handleSubmitBtn()}} 
+          />
           {/* <div className={`${styles.rowCtn}`}>
             <div className={`${styles.inputRowDetailCtn} mRight10`}>
               <Input

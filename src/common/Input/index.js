@@ -14,6 +14,7 @@ export default function Input({
   textStyles = '',
   placeholder = '',
   canChange = true,
+  onEnter,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -90,7 +91,6 @@ export default function Input({
             options={handleOptions()}
             styles={colourStyles}
             onChange={(item) => handleChangeSelect(item.value)}
-            onKeyDown={(e) => handleOnKeyDown(e)}
           />
         </div>
       );
@@ -102,6 +102,7 @@ export default function Input({
             type="date"
             className={`${checkIsRow('input')} ${styles.inputDate}`}
             placeholder={placeholder}
+            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
           />
         </div>
       );
@@ -120,6 +121,7 @@ export default function Input({
             className={`${styles.textareaCtn}`}
             onChange={(e) => setData(e.target.value)}
             placeholder={placeholder}
+            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
           ></textarea>
         </div>
       );
@@ -135,6 +137,7 @@ export default function Input({
             placeholder={placeholder} 
             onFocus={(e) => e.target.placeholder = ""} 
             onBlur={(e) => e.target.placeholder = placeholder}
+            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
           />
           {type === 'password' && (
             <div className={styles.icon} onClick={() => handlePassword()}>
@@ -160,6 +163,7 @@ export default function Input({
             placeholder={placeholder} 
             onFocus={(e) => e.target.placeholder = ""} 
             onBlur={(e) => e.target.placeholder = placeholder}
+            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
           />:
           <div className={`text14SemiBold ${styles.cantChangeInput}`}>
             {value}

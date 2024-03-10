@@ -136,6 +136,7 @@ export default function UploadFolderPage() {
             text="Thư mục cha"
             value={handlePathValue()}
             setData={handleSetParentInfo}
+            onEnter={() => {handleUploadFolder()}}
           />
         )}
         <Input
@@ -144,6 +145,7 @@ export default function UploadFolderPage() {
           bonusText="(tối đa 50 ký tự)"
           value={folderName}
           setData={setFolderName}
+          onEnter={() => {handleUploadFolder()}}
         />
         <Input
           type="text"
@@ -151,13 +153,21 @@ export default function UploadFolderPage() {
           bonusText="(Tối đa 20 ký tự)"
           value={author}
           setData={setAuthor}
+          onEnter={() => {handleUploadFolder()}}
         />
-        <Input type="textarea" text="Mô tả" value={desc} setData={setDesc} />
+        <Input 
+          type="textarea" 
+          text="Mô tả" 
+          value={desc} 
+          setData={setDesc} 
+          onEnter={() => {handleUploadFolder()}}
+        />
         <Input
           type="select-keydown"
           text="Tiêu chí của thư mục"
           value={criteria}
           setData={handleSetCriteria}
+          onEnter={() => {handleUploadFolder()}}
         />
         <div className={`${styles.checkboxCtn}`}>{renderCriterionTag()}</div>
         <div className={`${styles.btnCtn} mBottom10`}>

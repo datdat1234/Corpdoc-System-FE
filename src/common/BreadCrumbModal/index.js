@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import UseOnClickOutside from 'util/hook/useOnClickOutside';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import { BREAD_CRUMB_TABS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function BreadCrumbModal({ctnStyles = ''}) {
+export default function BreadCrumbModal({ctnStyles = '', setModal}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-
+  const ref = useRef();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-
+  UseOnClickOutside(ref, () => setModal(false));
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -60,6 +61,7 @@ export default function BreadCrumbModal({ctnStyles = ''}) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div
+      ref={ref}
       className={`pHorizontal20 ${styles.root} ${ctnStyles}`}
     >
       {renderTabs()}

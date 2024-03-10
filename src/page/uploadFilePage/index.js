@@ -143,6 +143,7 @@ export default function UploadFilePage() {
           bonusText="(tối đa 50 ký tự)"
           value={fileName}
           setData={setFileName}
+          onEnter={() => {handleUploadFile()}}
         />
         <Input
           type="text"
@@ -150,13 +151,21 @@ export default function UploadFilePage() {
           bonusText="(Tối đa 20 ký tự)"
           value={author}
           setData={setAuthor}
+          onEnter={() => {handleUploadFile()}}
         />
-        <Input type="textarea" text="Mô tả" value={desc} setData={setDesc} />
+        <Input 
+          type="textarea" 
+          text="Mô tả" 
+          value={desc} 
+          setData={setDesc} 
+          onEnter={() => {handleUploadFile()}}
+        />
         <Input
           type="select"
           text="Tiêu chí của tài liệu"
           value={criteria}
           setData={handleSetCriteria}
+          onEnter={() => {handleUploadFile()}}
         />
         <div className={`${styles.checkboxCtn}`}>{renderCriterionTag()}</div>
         <div className={`${styles.btnCtn} mBottom10`}>
