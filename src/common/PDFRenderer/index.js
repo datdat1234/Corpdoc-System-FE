@@ -23,7 +23,7 @@ export default function PDFRenderer({
   var pageHeight = pageRef && pageRef && pageRef.current? pageRef.current.offsetHeight - (50*(scale / 100)): (scale / 100);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
-console.log(isEnterPage)
+
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////  
   useEffect(() => {

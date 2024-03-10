@@ -88,6 +88,13 @@ export const getDomainFolder = (deptId) => {
   });
 }
 
+export const getBreadCrumb = (folderId) => {
+  return post(`${API_URL}/folder/get-breadcrumb`, {
+    companyId: getCompanyId(),
+    folderId: folderId,
+  });
+};
+
 //#endregion
 
 //#region Media

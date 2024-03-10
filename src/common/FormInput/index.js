@@ -7,6 +7,7 @@ export default function FormInput({
   name = '',
   type = 'text',
   setInputVal = null,
+  onEnter,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -42,6 +43,7 @@ export default function FormInput({
         aria-describedby="inputGroup-sizing-sm"
         // value={inputVal}
         onChange={e => setInputVal(e.target.value)}
+        onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
       />
       <div className={styles.label}>
         <p className={styles.name}>{name}</p>

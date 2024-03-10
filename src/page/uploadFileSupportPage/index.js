@@ -112,6 +112,7 @@ export default function UploadFileSupportPage() {
           bonusText="(tối đa 50 ký tự)"
           value={fileName}
           setData={setFileName}
+          onEnter={() => {handleUploadFile()}}
         />
         <Input
           type="text"
@@ -119,8 +120,15 @@ export default function UploadFileSupportPage() {
           bonusText="(Tối đa 20 ký tự)"
           value={author}
           setData={setAuthor}
+          onEnter={() => {handleUploadFile()}}
         />
-        <Input type="textarea" text="Mô tả" value={desc} setData={setDesc} />
+        <Input 
+          type="textarea" 
+          text="Mô tả" 
+          value={desc} 
+          setData={setDesc}
+          onEnter={() => {handleUploadFile()}}
+        />
         <div className={`${styles.btnCtn} mBottom10`}>
           <div className={`${styles.btnWrapper}`}>
             <Button

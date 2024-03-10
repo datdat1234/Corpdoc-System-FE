@@ -60,7 +60,7 @@ export default function SearchModal({ value = [], grid = [] }) {
             icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
             onClick={() => setOpenModal(index)}
           />
-          {modal[index] && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2'/>}
+          {modal[index] && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2' setModal={setModal}/>}
         </div>
       );
     }
