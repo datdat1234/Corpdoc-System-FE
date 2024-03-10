@@ -151,7 +151,7 @@ export default function Layout({ children }) {
           </div>
         </div>
         <div
-          className={`${styles.pdfCtn} ${!showPdf && 'bg-bgColor560'}`}
+          className={`${styles.pdfCtn} ${!showPdf && 'bg-bgColor7'}`}
           style={{ width: `${100 - width}%` }}
         >
           {showPdf && (
