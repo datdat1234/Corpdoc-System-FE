@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
 import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
-import { extractFileName, extractFileType } from 'util/js/helper';
+import { extractFileName, extractFileType, setNotification } from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getCriteria, uploadFile } from 'util/js/APIs';
+import { setGlobalLoading } from '../../redux/action/app';
 
 export default function UploadFilePage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.app.userInfo);
+  const isLoad = useSelector((state) => state.app.globalLoading);
   const [criteria, setCritetia] = useState([]);
   const [fileName, setFileName] = useState('');
   const [author, setAuthor] = useState('');
@@ -42,6 +45,11 @@ export default function UploadFilePage() {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleUploadFile = async () => {
+    if (fileName === '' || fileContent === null || fileCriteria.length === 0) {
+      setNotification('warning', 'Vui lòng nhập các trường bắt buộc.');
+      dispatch(setGlobalLoading(false));
+      return;
+    }
     const fileMetadata = {
       fileName,
       author,
@@ -139,7 +147,7 @@ export default function UploadFilePage() {
         </div>
         <Input
           type="text"
-          text="Tên tài liệu"
+          text="* Tên tài liệu"
           bonusText="(tối đa 50 ký tự)"
           value={fileName}
           setData={setFileName}
@@ -162,7 +170,7 @@ export default function UploadFilePage() {
         />
         <Input
           type="select"
-          text="Tiêu chí của tài liệu"
+          text="* Tiêu chí của tài liệu"
           value={criteria}
           setData={handleSetCriteria}
           onEnter={() => {handleUploadFile()}}
@@ -175,6 +183,7 @@ export default function UploadFilePage() {
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
               onClick={handleUploadFile}
+              isLoad={isLoad}
             />
           </div>
         </div>

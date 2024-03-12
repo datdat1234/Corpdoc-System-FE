@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './styles.module.css';
 import IconButton from 'common/IconButton';
 import Button from 'common/Button';
@@ -7,6 +7,7 @@ import CheckBoxForm from 'common/CheckBoxForm';
 import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import UseOnClickOutside from 'util/hook/useOnClickOutside';
 
 export default function SearchModal({ value = [], grid = [] }) {
   // #region    VARIABLES //////////////////////////
@@ -14,12 +15,13 @@ export default function SearchModal({ value = [], grid = [] }) {
   var modals = Array(grid.length).fill(false);
   const [isSaved, setIsSaved] = useState(false);
   const [modal, setModal] = useState(modals);
+  const ref = useRef();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-
+  UseOnClickOutside(ref, () => setModal(false));
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -55,12 +57,12 @@ export default function SearchModal({ value = [], grid = [] }) {
       );
     } else {
       return (
-        <div className={`${styles.editCtn}`}>
+        <div className={`${styles.editCtn}`} ref={ref}>
           <IconButton
             icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
             onClick={() => setOpenModal(index)}
           />
-          {modal[index] && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2' setModal={setModal}/>}
+          {modal[index] && <BreadCrumbModal ctnStyles='br-15 br-TopRight-2'/>}
         </div>
       );
     }

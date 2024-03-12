@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
 import Input from 'common/Input';
-import { extractFileName, extractFileType } from 'util/js/helper';
+import { extractFileName, extractFileType, setNotification } from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { uploadFile } from 'util/js/APIs';
+import { setGlobalLoading } from '../../redux/action/app';
 
 export default function UploadFileSupportPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.app.userInfo);
+  const isLoad = useSelector((state) => state.app.globalLoading);
   const [fileName, setFileName] = useState('');
   const [author, setAuthor] = useState('');
   const [desc, setDesc] = useState('');
@@ -32,6 +35,11 @@ export default function UploadFileSupportPage() {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleUploadFile = async () => {
+    if (fileName === '' || fileContent === null) {
+      setNotification('warning', 'Vui lòng nhập các trường bắt buộc.');
+      dispatch(setGlobalLoading(false));
+      return;
+    }
     const fileMetadata = {
       fileName,
       author,
@@ -108,7 +116,7 @@ export default function UploadFileSupportPage() {
         </div>
         <Input
           type="text"
-          text="Tên tài liệu"
+          text="* Tên tài liệu"
           bonusText="(tối đa 50 ký tự)"
           value={fileName}
           setData={setFileName}
@@ -136,6 +144,7 @@ export default function UploadFileSupportPage() {
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
               onClick={handleUploadFile}
+              isLoad={isLoad}
             />
           </div>
         </div>

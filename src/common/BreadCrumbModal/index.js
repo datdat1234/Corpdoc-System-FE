@@ -4,17 +4,23 @@ import styles from './styles.module.css';
 import Button from 'common/Button';
 import { BREAD_CRUMB_TABS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import icon from 'util/js/icon';
 
-export default function BreadCrumbModal({ctnStyles = '', setModal}) {
+export default function BreadCrumbModal({
+  ctnStyles = '',
+  save,
+  setSave,
+  handleChangeSave
+}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-  const ref = useRef();
+  
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-  UseOnClickOutside(ref, () => setModal(false));
+
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -29,7 +35,20 @@ export default function BreadCrumbModal({ctnStyles = '', setModal}) {
   const renderTabs = () => {
     const tabItems = [];
     const tabLength = BREAD_CRUMB_TABS.length;
-    for (let i = 0; i < tabLength; i++) {
+    tabItems.push(
+      <div key={0} className={styles.tabCtn}>
+        <Button
+          ctnStyles={`h-60 border-bottom-1 border-style-solid`}
+          name={!save? "Lưu": "Bỏ lưu"}
+          icon1Styles="w-24 h-24 fs-16"
+          icon2Styles="w-24 h-24 fs-16"
+          btnStyles="bg-bgColor4 text14SemiBold pLeft10"
+          icon1={<FontAwesomeIcon icon={!save? icon.bookmark: icon.unBookmark} />}
+          onClick={() => handleChangeSave()}
+        />
+      </div>
+    );
+    for (let i = 1; i < tabLength; i++) {
       tabItems.push(
         <div key={i} className={styles.tabCtn}>
           <Button
@@ -61,7 +80,6 @@ export default function BreadCrumbModal({ctnStyles = '', setModal}) {
   // #endregion VIEWS //////////////////////////////
   return (
     <div
-      ref={ref}
       className={`pHorizontal20 ${styles.root} ${ctnStyles}`}
     >
       {renderTabs()}
