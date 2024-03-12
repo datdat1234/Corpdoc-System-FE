@@ -242,6 +242,21 @@ export const BREAD_CRUMB_TABS = [
   },
 ];
 
+export const NOTI_TABS = [
+  {
+    isRead: true,
+    text: 'Tài liệu Cây cam ngọt của tôi đã được trưởng phòng xác nhận.',
+  },
+  {
+    isRead: false,
+    text: 'Thư mục HK231 không được trưởng phòng xác nhận.',
+  },
+  {
+    isRead: false,
+    text: 'Thư mục Khoa học máy tính đã được trưởng phòng xóa.',
+  },
+];
+
 export const HOMEPAGE_ITEM_GRIDS = [
   'col-1',
   'col-10',
