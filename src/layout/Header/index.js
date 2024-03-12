@@ -5,6 +5,7 @@ import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import HoverModal from 'common/HoverModal';
+import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import {
@@ -19,6 +20,7 @@ import {
   PROFILE_NAVIGATE_MANAGER,
   PROFILE_TABS_ADMIN,
   PROFILE_NAVIGATE_ADMIN,
+  NOTI_TABS,
 } from 'util/js/constant';
 import { getDomainFolder } from 'util/js/APIs';
 
@@ -32,6 +34,7 @@ export default function Header() {
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.app.userInfo);
   const [isHovered, setIsHovered] = useState(0);
+  const [openNoti, setOpenNoti] = useState(false);
   const [uploadTab, setUploadTab] = useState(UPLOAD_TABS);
   let profileTab, profileTabIcon, profileNavigate;
   switch (userInfo.Role) {
@@ -60,6 +63,7 @@ export default function Header() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
+      setUploadTab(UPLOAD_TABS);
       if (userInfo && userInfo.DeptID) {
         const folderRes = await getDomainFolder(userInfo?.DeptID);
         const folders = folderRes?.data?.data?.domainIds;
@@ -111,6 +115,39 @@ export default function Header() {
   const handleMouseLeave = () => {
     setIsHovered(0);
   };
+
+  const renderTabs = () => {
+    const tabItems = [];
+    const tabLength = NOTI_TABS.length;
+    for (let i = 0; i < tabLength; i++) {
+      tabItems.push(
+        <div 
+          key={i} 
+          className={`${styles.tabCtn}
+            ${NOTI_TABS[i].isRead && 'bg-main'}
+            ${i === 0 && 'br-TopLeft-15 br-TopRight-2'}`
+          }>
+          <Button
+            ctnStyles={`h-60 p15 ${
+              i !== tabLength - 1 && 'border-bottom-1 border-style-solid'
+            }`}
+            name={NOTI_TABS[i].text}
+            btnStyles={`mHorizontal5 ${NOTI_TABS[i].isRead ? 'text14Bold' : 'text14'}`}
+            onClick={() => console.log(1)}
+          />
+        </div>
+      );
+    }
+    return tabItems;
+  };
+
+  const renderNotiBox= () => {
+    return (
+      <div className={`br-15 br-TopRight-2 ${styles.notiCtn}`}>
+        {renderTabs()}
+      </div>
+    )
+  }
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -119,7 +156,7 @@ export default function Header() {
   const renderUserInfo = () => {
     return (
       <div>
-        <p className={`${styles.name}`}>{userInfo.Name}</p>
+        <p className={`${styles.name} ellipsis`}>{userInfo.Name}</p>
         <p className={`${styles.role}`}>
           {userInfo.Role === 'Staff' && 'Nhân viên'}
           {userInfo.Role === 'Manager' && 'Trưởng phòng'}
@@ -282,12 +319,24 @@ export default function Header() {
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
       >
-        <Button
-          ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
-          icon1Styles="text"
-          icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
-          onClick={() => ({})}
-        />
+        {!openNoti ? 
+          <div className={`${styles.notiBtnCtn}`}>
+            <Button
+              ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
+              icon1Styles="text"
+              icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
+              onClick={() => (setOpenNoti(!openNoti))}
+            />
+            <div className={`${styles.notiBtnAlert}`}></div>
+          </div>:
+          <Button
+            ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 br-BottomRight-2 bg-bgColor3"
+            icon1Styles="text"
+            icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
+            onClick={() => (setOpenNoti(!openNoti))}
+          />
+        }
+        {openNoti && renderNotiBox()}
       </div>
       <div
         className="position-relative"

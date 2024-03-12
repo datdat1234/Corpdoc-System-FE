@@ -71,7 +71,7 @@ export const formatItemFolder = (data) => {
     for (let i = 0; i < data.length; i++) {
       formattedData.push([
         {
-          text: '',
+          text: data[i].IsSave,
           type: 'save',
         },
         {
@@ -103,7 +103,7 @@ export const formatItemFile = (data) => {
     for (let i = 0; i < data.length; i++) {
       formattedData.push([
         {
-          text: '',
+          text: data[i].IsSave,
           type: 'save',
         },
         {

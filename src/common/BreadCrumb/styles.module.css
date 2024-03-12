@@ -8,5 +8,5 @@
   height: 34px;
   border: 1px solid rgba(35, 24, 17, 0.75);
   margin-bottom: 20px;
-  z-index: 1;
+  /* z-index: 1; */
 }

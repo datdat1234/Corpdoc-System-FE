@@ -91,6 +91,7 @@ export default function Input({
             options={handleOptions()}
             styles={colourStyles}
             onChange={(item) => handleChangeSelect(item.value)}
+            onKeyDown={(e) => handleOnKeyDown(e)}
           />
         </div>
       );

@@ -9,6 +9,7 @@ import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getCriteria, getFolderPath, uploadFolder } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
+import { setNotification } from 'util/js/helper';
 
 export default function UploadFolderPage() {
   // #region    VARIABLES //////////////////////////
@@ -16,6 +17,7 @@ export default function UploadFolderPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.app.userInfo);
+  const isLoad = useSelector((state) => state.app.globalLoading);
   const location = useLocation();
   const newStructure = location.state ? location.state.newStructure : null;
   const [criteria, setCritetia] = useState([]);
@@ -48,6 +50,11 @@ export default function UploadFolderPage() {
   //////////////////////////////////////////////////
   const handleUploadFolder = async () => {
     dispatch(setGlobalLoading(true));
+    if (folderName === '' || showCritNumber === folderCriteria.length || folderParentInfo === '') {
+      setNotification('warning', 'Vui lòng nhập các trường bắt buộc.');
+      dispatch(setGlobalLoading(false));
+      return;
+    }
     const folderInfo = {
       folderName,
       author,
@@ -133,7 +140,7 @@ export default function UploadFolderPage() {
         {!newStructure && (
           <Input
             type="select"
-            text="Thư mục cha"
+            text="* Thư mục cha"
             value={handlePathValue()}
             setData={handleSetParentInfo}
             onEnter={() => {handleUploadFolder()}}
@@ -141,7 +148,7 @@ export default function UploadFolderPage() {
         )}
         <Input
           type="text"
-          text="Tên miền"
+          text="* Tên miền"
           bonusText="(tối đa 50 ký tự)"
           value={folderName}
           setData={setFolderName}
@@ -164,7 +171,7 @@ export default function UploadFolderPage() {
         />
         <Input
           type="select-keydown"
-          text="Tiêu chí của thư mục"
+          text="* Tiêu chí của thư mục"
           value={criteria}
           setData={handleSetCriteria}
           onEnter={() => {handleUploadFolder()}}
@@ -177,6 +184,7 @@ export default function UploadFolderPage() {
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
               onClick={handleUploadFolder}
+              isLoad={isLoad}
             />
           </div>
         </div>

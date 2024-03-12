@@ -89,7 +89,8 @@ export default function Layout({ children }) {
 
   const handleMouseMoveSideBar = (event) => {
     const containerWidth = resizableSidebarRef.current.parentNode.clientWidth;
-    const newWidth = (event.clientX / containerWidth) * 100;
+    let newWidth = (event.clientX / containerWidth) * 100;
+    if (newWidth > 40) newWidth = 40;
     setSidebarWidth(newWidth);
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './styles.module.css';
 import IconButton from 'common/IconButton';
 import Button from 'common/Button';
@@ -7,19 +7,23 @@ import CheckBoxForm from 'common/CheckBoxForm';
 import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import { setChangeSaveFolder, setChangeSaveFile } from 'util/js/APIs';
+import { setNotification } from 'util/js/helper';
+import UseOnClickOutside from 'util/hook/useOnClickOutside';
 
 export default function SrcItem({ value = [], grid = [] }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   var modals = Array(grid.length).fill(false);
-  const [isSaved, setIsSaved] = useState(false);
+  const [save, setSave] = useState(value[0].text ?? false);
   const [modal, setModal] = useState(modals);
+  const ref = useRef();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-
+  UseOnClickOutside(ref, () => setModal([]));
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -36,33 +40,56 @@ export default function SrcItem({ value = [], grid = [] }) {
     setModal(modals);
   };
 
+  const handleChangeSave = async () => {
+    if(value[1].type === 'folder') {
+      await setChangeSaveFolder(save, value[1].id).then((res)=>{
+        if (res?.data?.data) {
+          setNotification("success", !save? "Đã thêm vào danh mục đã lưu.": "Đã xóa khỏi danh mục đã lưu.")
+          setSave(!save);
+        } else {
+          setNotification("error", res?.data?.resultMessage?.vi);
+        }
+      });
+    }
+    else {
+      await setChangeSaveFile(save, value[1].id).then((res)=>{
+        if (res?.data?.data) {
+          setNotification("success", !save? "Đã thêm vào danh mục đã lưu.": "Đã xóa khỏi danh mục đã lưu.")
+          setSave(!save);
+        } else {
+          setNotification("error", res?.data?.resultMessage?.vi);
+        }
+      });
+    }
+  };
+
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-  const renderIconBtnCell = (isSave, index = 0) => {
-    if (isSave) {
-      return (
+  const renderBookmarkBtnCell = (isSave = false, index = 0) => {
+    return (
+      <IconButton
+        icon={<FontAwesomeIcon icon={isSave? icon.bookmark: icon.unBookmark} />}
+        ctnStyles="mRight10"
+        onClick={() => {
+          handleChangeSave();
+        }}
+      />
+    )
+  };
+  
+  const renderEditBtnCell = (index = 0) => {
+    return (
+      <div className={`${styles.editCtn}`} ref={ref}>
         <IconButton
-          icon={<FontAwesomeIcon icon={icon.bookmark} />}
-          ctnStyles="mRight10"
-          onClick={() => {
-            console.log('click');
-          }}
+          icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
+          onClick={() => setOpenModal(index)}
         />
-      );
-    } else {
-      return (
-        <div className={`${styles.editCtn}`}>
-          <IconButton
-            icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
-            onClick={() => setOpenModal(index)}
-          />
-          {modal[index] && <BreadCrumbModal ctnStyles="br-15 br-TopRight-2" setModal={setModal}/>}
-        </div>
-      );
-    }
+        {modal[index] && <BreadCrumbModal ctnStyles="br-15 br-TopRight-2" save={save} setSave={setSave} handleChangeSave={handleChangeSave} />}
+      </div>
+    );
   };
 
   const renderTextCell = (text, type) => {
@@ -150,8 +177,8 @@ export default function SrcItem({ value = [], grid = [] }) {
   };
 
   const renderItems = (item, index) => {
-    if (item.type.includes('save')) return renderIconBtnCell(true);
-    if (item.type.includes('edit')) return renderIconBtnCell(false, index);
+    if (item.type.includes('save')) return renderBookmarkBtnCell(save);
+    if (item.type.includes('edit')) return renderEditBtnCell(index);
     if (item.type.includes('text')) return renderTextCell(item.text, item.type);
     if (item.type.includes('header')) return renderHeaderCell(item.text);
     if (item.type.includes('file'))

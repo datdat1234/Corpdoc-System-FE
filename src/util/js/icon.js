@@ -38,6 +38,10 @@ import {
   faCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  faBookmark as faUnBookmark,
+} from '@fortawesome/free-regular-svg-icons';
+
 const icon = {
   caretDown: faCaretDown,
   caretRight: faCaretRight,
@@ -50,6 +54,7 @@ const icon = {
   eyeSlash: faEyeSlash,
   file: faFile,
   bookmark: faBookmark,
+  unBookmark: faUnBookmark,
   ellipsisVertical: faEllipsisVertical,
   download: faDownload,
   plus: faPlus,

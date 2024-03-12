@@ -44,6 +44,7 @@ export default function FolderPage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
+      setItems([]);
       const childRes = await getChildByFolderId(id);
       const filesRes = await getFileByCriteria(id);
       const folders = childRes?.data?.data?.child;

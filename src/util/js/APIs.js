@@ -95,6 +95,22 @@ export const getBreadCrumb = (folderId) => {
   });
 };
 
+export const setChangeSaveFolder = (status, folderId) => {
+  return post(`${API_URL}/folder/set-change-save`, {
+    companyId: getCompanyId(),
+    status: status,
+    folderId: folderId,
+  });
+};
+
+export const setChangeSaveFile = (status, fileId) => {
+  return post(`${API_URL}/file/set-change-save`, {
+    companyId: getCompanyId(),
+    status: status,
+    fileId: fileId,
+  });
+};
+
 //#endregion
 
 //#region Media
