@@ -15,7 +15,7 @@ const getRefreshToken = () => {
 
 const getUserInfo = () => {
   return store.getState().app.userInfo;
-}
+};
 
 const buildAxiosConfig = (api, method, headers = null) => {
   let config = {
@@ -61,8 +61,9 @@ const callAxios = (
         logout();
       } else {
         const checkStatus = handleResponse(err?.response);
-        if(err?.response?.data?.resultCode === '00012') {
-          if(checkStatus) return callAxios(api, payload, method, headers, isShowErrorMessage);
+        if (err?.response?.data?.resultCode === '00012') {
+          if (checkStatus)
+            return callAxios(api, payload, method, headers, isShowErrorMessage);
           else logout();
         }
         if (isShowErrorMessage) {
@@ -90,7 +91,7 @@ export const post = (
   api,
   body = null,
   headers = null,
-  isShowErrorMessage = true,
+  isShowErrorMessage = true
 ) => {
   return callAxios(api, body, 'post', headers, isShowErrorMessage);
 };
@@ -129,89 +130,113 @@ export const logout = () => {
 
 export const handleResponse = async (res) => {
   let resultCode = res?.data?.resultCode;
-  let resultMessage = res?.data?.resultMessage?.vi ?? res?.data?.resultMessage?.en;
+  let resultMessage =
+    res?.data?.resultMessage?.vi ?? res?.data?.resultMessage?.en;
   switch (resultCode) {
-    case '00005': break;
-    case '00006': 
+    case '00005':
+      break;
+    case '00006':
       logout();
       break;
-    case '00007': break;
-    case '00008': 
-      setNotification("error", resultMessage);
+    case '00007':
       break;
-    case '00009': 
-      setNotification("error", resultMessage);
+    case '00008':
+      setNotification('error', resultMessage);
       break;
-    case '00011': 
+    case '00009':
+      setNotification('error', resultMessage);
+      break;
+    case '00011':
       logout();
       break;
-    case '00012': 
+    case '00012':
       // refresh token
       const refresh = await refreshToken(getRefreshToken());
       if (refresh?.status !== '00065') return false;
       break;
-    case '00017': 
-      setNotification("error", resultMessage);
+    case '00017':
+      setNotification('error', resultMessage);
       break;
-    case '00019': 
-      setNotification("error", resultMessage);
+    case '00019':
+      setNotification('error', resultMessage);
       logout();
       break;
-    case '00021': 
-      setNotification("error", resultMessage);
+    case '00021':
+      setNotification('error', resultMessage);
       break;
-    case '00022': break;
-    case '00023': break;
-    case '00024': break;
-    case '00025': break;
-    case '00026': break;
-    case '00027': break;
-    case '00028': break;
-    case '00029': break;
-    case '00032': break;
-    case '00033': 
-      setNotification("error", resultMessage);
+    case '00022':
       break;
-    case '00034': break;
-    case '00035': break;
-    case '00036': break;
-    case '00038': 
-      setNotification("warning", resultMessage);
+    case '00023':
       break;
-    case '00039': 
-      setNotification("warning", resultMessage);
+    case '00024':
       break;
-    case '00040': 
-      setNotification("warning", resultMessage);
+    case '00025':
       break;
-    case '00042': 
-      setNotification("error", resultMessage);
+    case '00026':
       break;
-    case '00043': break;
-    case '00044': break;
-    case '00045': 
-      setNotification("warning", resultMessage);
+    case '00027':
       break;
-    case '00047': 
-      setNotification("success", resultMessage);
+    case '00028':
       break;
-    case '00048': break;
-    case '00050': 
-      setNotification("success", resultMessage);
+    case '00029':
       break;
-    case '00052': break;
-    case '00053': break;
-    case '00054': break;
-    case '00055': break;
-    case '00058': break;
-    case '00061': break;
-    case '00062': 
-      setNotification("warning", resultMessage);
+    case '00032':
       break;
-    case '00063': 
-      setNotification("warning", resultMessage);
+    case '00033':
+      setNotification('error', resultMessage);
       break;
-    case '00065': 
+    case '00034':
+      break;
+    case '00035':
+      break;
+    case '00036':
+      break;
+    case '00038':
+      setNotification('warning', resultMessage);
+      break;
+    case '00039':
+      setNotification('warning', resultMessage);
+      break;
+    case '00040':
+      setNotification('warning', resultMessage);
+      break;
+    case '00042':
+      setNotification('error', resultMessage);
+      break;
+    case '00043':
+      break;
+    case '00044':
+      break;
+    case '00045':
+      setNotification('warning', resultMessage);
+      break;
+    case '00047':
+      setNotification('success', resultMessage);
+      break;
+    case '00048':
+      break;
+    case '00050':
+      setNotification('success', resultMessage);
+      break;
+    case '00052':
+      break;
+    case '00053':
+      break;
+    case '00054':
+      break;
+    case '00055':
+      break;
+    case '00058':
+      break;
+    case '00061':
+      break;
+    case '00062':
+      setNotification('warning', resultMessage);
+      break;
+    case '00063':
+      setNotification('warning', resultMessage);
+      break;
+    case '00065':
       // call lại sau khi refresh
       const userInfo = getUserInfo();
       if (userInfo) {
@@ -221,31 +246,50 @@ export const handleResponse = async (res) => {
       store.dispatch(setUserInfo(userInfo));
       localStorage.setItem('token', userInfo.accessToken);
       break;
-    case '00066': break;
-    case '00068': break;
-    case '00069': 
-      setNotification("warning", resultMessage);
+    case '00066':
       break;
-    case '00072': 
-      setNotification("warning", resultMessage);
+    case '00068':
       break;
-    case '00073': 
-      setNotification("warning", resultMessage);
+    case '00069':
+      setNotification('warning', resultMessage);
       break;
-    case '00076': 
-      setNotification("success", resultMessage);
+    case '00072':
+      setNotification('warning', resultMessage);
       break;
-    case '00077': break;
-    case '00078': break;
-    case '00079': break;
-    case '00080': break;
-    case '00081': break;
-    case '00084': break;
-    case '00086': break;
-    case '00089': break;
-    case '00092': break;
-    case '00093': break;
-    default: break;
+    case '00073':
+      setNotification('warning', resultMessage);
+      break;
+    case '00076':
+      setNotification('success', resultMessage);
+      break;
+    case '00077':
+      break;
+    case '00078':
+      break;
+    case '00079':
+      break;
+    case '00080':
+      break;
+    case '00081':
+      break;
+    case '00084':
+      break;
+    case '00086':
+      break;
+    case '00089':
+      break;
+    case '00092':
+      break;
+    case '00093':
+      break;
+    case '00094':
+      setNotification('error', resultMessage);
+      break;
+    case '00095':
+      setNotification('success', resultMessage);
+      break;
+    default:
+      break;
   }
   return true;
 };

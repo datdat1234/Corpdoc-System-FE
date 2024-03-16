@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
 import Input from 'common/Input';
-import { extractFileName, extractFileType, setNotification } from 'util/js/helper';
+import {
+  extractFileName,
+  extractFileType,
+  setNotification,
+} from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { uploadFile } from 'util/js/APIs';
+import { uploadFileSupport } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
 
 export default function UploadFileSupportPage() {
@@ -15,6 +19,8 @@ export default function UploadFileSupportPage() {
   //////////////////////////////////////////////////
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { state } = useLocation();
+  const { supportType } = state;
   const userInfo = useSelector((state) => state.app.userInfo);
   const isLoad = useSelector((state) => state.app.globalLoading);
   const [fileName, setFileName] = useState('');
@@ -28,7 +34,7 @@ export default function UploadFileSupportPage() {
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
-  
+
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -50,11 +56,11 @@ export default function UploadFileSupportPage() {
       userId: userInfo?.UserID,
       deptId: userInfo?.DeptID,
       deleted: false,
-      status: 'active',
+      status: 'Active',
       isPrivate: false,
     };
-    const response = await uploadFile(fileMetadata, fileContent);
-    if (response?.data?.resultCode === '00034') {
+    const response = await uploadFileSupport(fileMetadata, fileContent);
+    if (response?.data?.resultCode === '00095') {
       navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
     } else {
       navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
@@ -77,6 +83,10 @@ export default function UploadFileSupportPage() {
     fileInput.click();
   };
 
+  const renderBreadcrumb = (type) => {
+    if (type === 'book') return 'Thư viện sách cá nhân';
+    else return 'Tài liệu pháp luật doanh nghiệp';
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -89,7 +99,7 @@ export default function UploadFileSupportPage() {
     <div className={`${styles.root}`}>
       <div className={`${styles.navCtn}`}>
         <Button
-          name="Tải lên tài liệu cho miền Đồ án tốt nghiệp _ Luận văn tốt nghiệp"
+          name={`Tải lên tài liệu cho miền ${renderBreadcrumb(supportType)}`}
           ctnStyles="h-100 text18SemiBold border-bottom-1 border-style-solid border-bg5-60 br-10"
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
@@ -122,7 +132,9 @@ export default function UploadFileSupportPage() {
           bonusText="(tối đa 50 ký tự)"
           value={fileName}
           setData={setFileName}
-          onEnter={() => {handleUploadFile()}}
+          onEnter={() => {
+            handleUploadFile();
+          }}
         />
         <Input
           type="text"
@@ -130,14 +142,18 @@ export default function UploadFileSupportPage() {
           bonusText="(Tối đa 20 ký tự)"
           value={author}
           setData={setAuthor}
-          onEnter={() => {handleUploadFile()}}
+          onEnter={() => {
+            handleUploadFile();
+          }}
         />
-        <Input 
-          type="textarea" 
-          text="Mô tả" 
-          value={desc} 
+        <Input
+          type="textarea"
+          text="Mô tả"
+          value={desc}
           setData={setDesc}
-          onEnter={() => {handleUploadFile()}}
+          onEnter={() => {
+            handleUploadFile();
+          }}
         />
         <div className={`${styles.btnCtn} mBottom10`}>
           <div className={`${styles.btnWrapper}`}>
@@ -145,7 +161,9 @@ export default function UploadFileSupportPage() {
               name="XÁC NHẬN"
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
-              onClick={() => {handleUploadFile()}}
+              onClick={() => {
+                handleUploadFile();
+              }}
               isLoad={isLoad}
             />
           </div>
