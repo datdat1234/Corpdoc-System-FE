@@ -5,7 +5,6 @@ import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import HoverModal from 'common/HoverModal';
-import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import {
@@ -20,9 +19,8 @@ import {
   PROFILE_NAVIGATE_MANAGER,
   PROFILE_TABS_ADMIN,
   PROFILE_NAVIGATE_ADMIN,
-  NOTI_TABS,
 } from 'util/js/constant';
-import { getDomainFolder } from 'util/js/APIs';
+import { getDomainFolder, getNoti } from 'util/js/APIs';
 
 ////////API IMPORT //////////////////////////////////
 ////////////////////////////////////////////////////
@@ -36,6 +34,8 @@ export default function Header() {
   const [isHovered, setIsHovered] = useState(0);
   const [openNoti, setOpenNoti] = useState(false);
   const [uploadTab, setUploadTab] = useState(UPLOAD_TABS);
+  const [noti, setNoti] = useState([]);
+  const [notiAlert, setNotiAlert] = useState(false);
   let profileTab, profileTabIcon, profileNavigate;
   switch (userInfo.Role) {
     case 'admin':
@@ -68,8 +68,8 @@ export default function Header() {
         const folderRes = await getDomainFolder(userInfo?.DeptID);
         const folders = folderRes?.data?.data?.domainIds;
         const domainUpload = [];
-        if(folders !== undefined){
-          for(let i=0; i<folders.length; i++) {
+        if (folders !== undefined) {
+          for (let i = 0; i < folders.length; i++) {
             domainUpload.push(folders[i].Name);
           }
           setUploadTab(uploadTab.concat(domainUpload));
@@ -81,8 +81,21 @@ export default function Header() {
     };
 
     fetchData();
-  },[userInfo]);
+  }, [userInfo]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userInfo && userInfo.UserID) {
+        const notiRes = await getNoti(userInfo.UserID);
+        const notis = notiRes?.data?.data?.noti;
+        const isNotiAlert = notiRes?.data?.data?.isNew;
+        setNoti(notis);
+        setNotiAlert(isNotiAlert);
+      }
+    };
+
+    fetchData();
+  }, [userInfo]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -108,6 +121,7 @@ export default function Header() {
     });
     return onClick;
   };
+
   const handleMouseEnter = (i) => {
     setIsHovered(i);
   };
@@ -116,23 +130,33 @@ export default function Header() {
     setIsHovered(0);
   };
 
-  const renderTabs = () => {
+  const handleClickNotiBtn = async () => {
+    setOpenNoti(!openNoti);
+  };
+  //////////////////////////////////////////////////
+  // #endregion FUNCTIONS //////////////////////////
+
+  // #region    VIEWS //////////////////////////////
+  //////////////////////////////////////////////////
+  const renderNotis = () => {
     const tabItems = [];
-    const tabLength = NOTI_TABS.length;
+    const tabLength = noti.length;
     for (let i = 0; i < tabLength; i++) {
       tabItems.push(
-        <div 
-          key={i} 
+        <div
+          key={i}
           className={`${styles.tabCtn}
-            ${NOTI_TABS[i].isRead && 'bg-main'}
-            ${i === 0 && 'br-TopLeft-15 br-TopRight-2'}`
-          }>
+            ${noti[i].IsSeen && 'bg-main'}
+            ${i === 0 && 'br-TopLeft-15 br-TopRight-2'}`}
+        >
           <Button
             ctnStyles={`h-60 p15 ${
               i !== tabLength - 1 && 'border-bottom-1 border-style-solid'
             }`}
-            name={NOTI_TABS[i].text}
-            btnStyles={`mHorizontal5 ${NOTI_TABS[i].isRead ? 'text14Bold' : 'text14'}`}
+            name={noti[i].Description}
+            btnStyles={`mHorizontal5 ${
+              noti[i].IsSeen ? 'text14Bold' : 'text14'
+            }`}
             onClick={() => console.log(1)}
           />
         </div>
@@ -141,18 +165,14 @@ export default function Header() {
     return tabItems;
   };
 
-  const renderNotiBox= () => {
+  const renderNotiBox = () => {
     return (
       <div className={`br-15 br-TopRight-2 ${styles.notiCtn}`}>
-        {renderTabs()}
+        {renderNotis()}
       </div>
-    )
-  }
-  //////////////////////////////////////////////////
-  // #endregion FUNCTIONS //////////////////////////
+    );
+  };
 
-  // #region    VIEWS //////////////////////////////
-  //////////////////////////////////////////////////
   const renderUserInfo = () => {
     return (
       <div>
@@ -319,23 +339,24 @@ export default function Header() {
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
       >
-        {!openNoti ? 
+        {!openNoti ? (
           <div className={`${styles.notiBtnCtn}`}>
             <Button
               ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
               icon1Styles="text"
               icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
-              onClick={() => (setOpenNoti(!openNoti))}
+              onClick={handleClickNotiBtn}
             />
-            <div className={`${styles.notiBtnAlert}`}></div>
-          </div>:
+            {notiAlert && <div className={`${styles.notiBtnAlert}`}></div>}
+          </div>
+        ) : (
           <Button
             ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 br-BottomRight-2 bg-bgColor3"
             icon1Styles="text"
             icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
-            onClick={() => (setOpenNoti(!openNoti))}
+            onClick={handleClickNotiBtn}
           />
-        }
+        )}
         {openNoti && renderNotiBox()}
       </div>
       <div
