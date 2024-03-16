@@ -142,6 +142,7 @@ export const downloadFile = (fileId) => {
     `${API_URL}/file/download`,
     {
       fileId: fileId,
+      companyId: getCompanyId(),
     },
     { responseType: 'blob' }
   );
