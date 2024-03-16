@@ -53,11 +53,11 @@ export default function UploadFileSupportPage() {
       isPrivate: false,
     };
     const response = await uploadFile(fileMetadata, fileContent);
-    if (response?.data?.resultCode === '00034') {
-      navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
-    } else {
-      navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
-    }
+    // if (response?.data?.resultCode === '00034') {
+    //   navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
+    // } else {
+    //   navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
+    // }
   };
 
   const handleClickUploadFile = () => {
@@ -143,7 +143,7 @@ export default function UploadFileSupportPage() {
               name="XÁC NHẬN"
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
-              onClick={handleUploadFile}
+              onClick={() => {handleUploadFile()}}
               isLoad={isLoad}
             />
           </div>
