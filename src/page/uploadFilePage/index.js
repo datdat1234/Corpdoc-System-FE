@@ -45,6 +45,7 @@ export default function UploadFilePage() {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleUploadFile = async () => {
+    dispatch(setGlobalLoading(true));
     if (fileName === '' || fileContent === null || fileCriteria.length === 0) {
       setNotification('warning', 'Vui lòng nhập các trường bắt buộc.');
       dispatch(setGlobalLoading(false));
@@ -69,6 +70,7 @@ export default function UploadFilePage() {
     } else {
       navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
     }
+    dispatch(setGlobalLoading(false));
   };
 
   const handleClickUploadFile = () => {

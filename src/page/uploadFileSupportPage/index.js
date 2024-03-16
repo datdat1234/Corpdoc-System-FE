@@ -35,6 +35,7 @@ export default function UploadFileSupportPage() {
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleUploadFile = async () => {
+    dispatch(setGlobalLoading(true));
     if (fileName === '' || fileContent === null) {
       setNotification('warning', 'Vui lòng nhập các trường bắt buộc.');
       dispatch(setGlobalLoading(false));
@@ -53,11 +54,12 @@ export default function UploadFileSupportPage() {
       isPrivate: false,
     };
     const response = await uploadFile(fileMetadata, fileContent);
-    // if (response?.data?.resultCode === '00034') {
-    //   navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
-    // } else {
-    //   navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
-    // }
+    if (response?.data?.resultCode === '00034') {
+      navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
+    } else {
+      navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
+    }
+    dispatch(setGlobalLoading(false));
   };
 
   const handleClickUploadFile = () => {

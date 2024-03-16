@@ -61,8 +61,10 @@ export default function Input({
 
   const handleOptions = () => {
     const options = [];
-    for (let i = 0; i < value.length; i++) {
-      options.push({ value: value[i], label: value[i] });
+    if (value !== undefined) {
+      for (let i = 0; i < value.length; i++) {
+        options.push({ value: value[i], label: value[i] });
+      }
     }
     return options;
   };
