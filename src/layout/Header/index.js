@@ -217,11 +217,15 @@ export default function Header() {
             onClick={[
               () => {
                 handleMouseLeave();
-                navigate('/upload-file-support');
+                navigate('/upload-file-support', {
+                  state: { supportType: 'book' },
+                });
               },
               () => {
                 handleMouseLeave();
-                navigate('/upload-file-support');
+                navigate('/upload-file-support', {
+                  state: { supportType: 'admin-docs' },
+                });
               },
               () => {
                 handleMouseLeave();
