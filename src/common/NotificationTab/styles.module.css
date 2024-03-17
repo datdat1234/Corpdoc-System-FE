@@ -1,0 +1,17 @@
+.root {
+  position: relative; 
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  border-bottom: 1px solid var(--bgColor550);
+  line-height: 1.2;
+}
+
+.descrCtn {
+  padding-left: 8px;
+  height: 34px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
