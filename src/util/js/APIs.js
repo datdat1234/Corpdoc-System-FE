@@ -116,6 +116,18 @@ export const setChangeSaveFolder = (status, folderId) => {
   });
 };
 
+
+export const getSupportStructure = (deptId, typeDoc) => {
+  return get(
+    `${API_URL}/folder/get-support-folder`,
+    {
+      deptId: deptId,
+      typeDoc: typeDoc,
+      companyId: getCompanyId(),
+    },
+  );
+};
+
 //#endregion
 
 //#region Media

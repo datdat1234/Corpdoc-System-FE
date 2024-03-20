@@ -66,6 +66,7 @@ export default function Header() {
     const fetchData = async () => {
       setUploadTab(UPLOAD_TABS);
       if (userInfo && userInfo.DeptID) {
+        // get domainfolder
         const folderRes = await getDomainFolder(userInfo?.DeptID);
         const folders = folderRes?.data?.data?.domainIds;
         const domainUpload = [];
@@ -79,11 +80,14 @@ export default function Header() {
         if (userInfo?.Role !== 'Staff')
           setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
 
+        // Get noti
+
         const notiRes = await getNoti(userInfo.UserID);
         const notis = notiRes?.data?.data?.noti;
         const isNotiAlert = notiRes?.data?.data?.isNew;
         setNoti(notis);
         setNotiAlert(isNotiAlert);
+
       }
     };
 

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
 import FolderStruct from 'common/FolderStruct';
+import FolderSupStruct from 'common/FolderSupStruct';
 import Button from 'common/Button';
 import {
   SIDEBAR_TABS,
@@ -14,7 +15,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getChildByFolderId } from 'util/js/APIs';
 
-export default function Sidebar() {
+export default function Sidebar({adminDomain, bookDomain}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [currentTab, setCurrentTab] = useState(0);
@@ -98,16 +99,24 @@ export default function Sidebar() {
 
   const renderFolderStructs = () => {
     const tabItems = [];
-    for (let i = 0; i < SIDEBAR_STRUCTURE.length; i++) {
-      tabItems.push(
-        <div key={i}>
-          <FolderStruct
-            name={SIDEBAR_STRUCTURE[i].name}
-            ident={SIDEBAR_STRUCTURE[i].id}
-          />
-        </div>
-      );
-    }
+    tabItems.push(
+      <div key={1}>
+        <FolderSupStruct
+          name={adminDomain?.name ?? ''}
+          childs={adminDomain?.childs ?? []}
+          typeDoc={"admin-doc"}
+          level={1}
+        />
+      </div>,
+      <div key={2}>
+        <FolderSupStruct
+          name={bookDomain?.name ?? ''}
+          childs={bookDomain?.childs ?? []}
+          typeDoc={"book"}
+          level={1}
+        />
+      </div>
+    );
     return tabItems;
   };
 

@@ -23,6 +23,7 @@ import ApprovalPage from 'page/approvalPage';
 import CompanyManagePage from 'page/companyManagePage';
 import DeptManagePage from 'page/deptManagePage';
 import FolderPage from 'page/folderPage';
+import SupportFolderPage from 'page/supportFolderPage';
 
 export default function RouterProvider() {
   const [isLogin, setIsLogin] = useState(localStorage.getItem('token'));
@@ -60,6 +61,8 @@ export default function RouterProvider() {
         return <DeptManagePage />;
       case '/folder':
         return <FolderPage />;
+      case '/folder-support':
+        return <SupportFolderPage />;
       default:
         return <Navigate replace to="/login" />;
     }
@@ -98,6 +101,7 @@ export default function RouterProvider() {
       <Route path="/company-manage" element={getElement('/company-manage')} />
       <Route path="/dept-manage" element={getElement('/dept-manage')} />
       <Route path="/folder/:id" element={getElement('/folder')} />
+      <Route path="/folder-support/:typeDoc/:level" element={getElement('/folder-support')} />
     </Routes>
   );
 
