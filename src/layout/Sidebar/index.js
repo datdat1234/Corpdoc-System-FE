@@ -13,14 +13,16 @@ import {
   SIDEBAR_STRUCTURE,
 } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getChildByFolderId } from 'util/js/APIs';
+import { getChildByFolderId, getSupportStructure } from 'util/js/APIs';
 
-export default function Sidebar({adminDomain, bookDomain}) {
+export default function Sidebar({}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const [currentTab, setCurrentTab] = useState(0);
   const [child, setChild] = useState([]);
   const userInfo = useSelector((state) => state.app.userInfo);
+  const [adminDomain, setAdminDomain] = useState();
+  const [bookDomain, setBookDomain] = useState();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -31,6 +33,14 @@ export default function Sidebar({adminDomain, bookDomain}) {
       const rootId = await localStorage.getItem('root');
       const childRes = await getChildByFolderId(rootId);
       setChild(childRes?.data?.data?.child);
+
+      // get support tree
+      const adminDomainRes = await getSupportStructure(userInfo.DeptID, 'admin-doc');
+      const adminDomain = adminDomainRes?.data?.data?.dataRes;
+      setAdminDomain(adminDomain);
+      const bookDomainRes = await getSupportStructure(userInfo.DeptID, 'book');
+      const bookDomain = bookDomainRes?.data?.data?.dataRes;
+      setBookDomain(bookDomain);
     };
 
     fetchData();
