@@ -21,8 +21,9 @@ export default function Sidebar({}) {
   const [currentTab, setCurrentTab] = useState(0);
   const [child, setChild] = useState([]);
   const userInfo = useSelector((state) => state.app.userInfo);
-  const [adminDomain, setAdminDomain] = useState();
-  const [bookDomain, setBookDomain] = useState();
+  var switchFolder = useSelector((state) => state.app.folderPage);
+  const [adminDomain, setAdminDomain] = useState({name: 'Văn bản hành chính', childs: []});
+  const [bookDomain, setBookDomain] = useState({name: 'Thư viện sách', childs: []});
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -44,7 +45,7 @@ export default function Sidebar({}) {
     };
 
     fetchData();
-  }, []);
+  }, [switchFolder]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -112,16 +113,16 @@ export default function Sidebar({}) {
     tabItems.push(
       <div key={1}>
         <FolderSupStruct
-          name={adminDomain?.name ?? ''}
-          childs={adminDomain?.childs ?? []}
+          name={adminDomain.name}
+          childs={adminDomain.childs}
           typeDoc={"admin-doc"}
           level={1}
         />
       </div>,
       <div key={2}>
         <FolderSupStruct
-          name={bookDomain?.name ?? ''}
-          childs={bookDomain?.childs ?? []}
+          name={bookDomain?.name}
+          childs={bookDomain?.childs}
           typeDoc={"book"}
           level={1}
         />
