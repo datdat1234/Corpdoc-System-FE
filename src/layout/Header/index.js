@@ -5,6 +5,7 @@ import logo1 from 'asset/images/logo1.png';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import HoverModal from 'common/HoverModal';
+import NotificationBox from 'common/NotificationBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import {
@@ -77,15 +78,7 @@ export default function Header() {
 
         if (userInfo?.Role !== 'Staff')
           setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
-      }
-    };
 
-    fetchData();
-  }, [userInfo]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (userInfo && userInfo.UserID) {
         const notiRes = await getNoti(userInfo.UserID);
         const notis = notiRes?.data?.data?.noti;
         const isNotiAlert = notiRes?.data?.data?.isNew;
@@ -96,6 +89,7 @@ export default function Header() {
 
     fetchData();
   }, [userInfo]);
+
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -138,41 +132,6 @@ export default function Header() {
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-  const renderNotis = () => {
-    const tabItems = [];
-    const tabLength = noti.length;
-    for (let i = 0; i < tabLength; i++) {
-      tabItems.push(
-        <div
-          key={i}
-          className={`${styles.tabCtn}
-            ${noti[i].IsSeen && 'bg-main'}
-            ${i === 0 && 'br-TopLeft-15 br-TopRight-2'}`}
-        >
-          <Button
-            ctnStyles={`h-60 p15 ${
-              i !== tabLength - 1 && 'border-bottom-1 border-style-solid'
-            }`}
-            name={noti[i].Description}
-            btnStyles={`mHorizontal5 ${
-              noti[i].IsSeen ? 'text14Bold' : 'text14'
-            }`}
-            onClick={() => console.log(1)}
-          />
-        </div>
-      );
-    }
-    return tabItems;
-  };
-
-  const renderNotiBox = () => {
-    return (
-      <div className={`br-15 br-TopRight-2 ${styles.notiCtn}`}>
-        {renderNotis()}
-      </div>
-    );
-  };
-
   const renderUserInfo = () => {
     return (
       <div>
@@ -361,7 +320,7 @@ export default function Header() {
             onClick={handleClickNotiBtn}
           />
         )}
-        {openNoti && renderNotiBox()}
+        {openNoti && <NotificationBox notis={noti} />}
       </div>
       <div
         className="position-relative"
