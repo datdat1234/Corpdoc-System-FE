@@ -288,6 +288,12 @@ export const handleResponse = async (res) => {
     case '00095':
       setNotification('success', resultMessage);
       break;
+    case '00096':
+      setNotification('error', resultMessage);
+      break;
+    case '00097':
+      setNotification('error', resultMessage);
+      break;
     default:
       break;
   }
