@@ -32,7 +32,7 @@ export default function NotificationTab({noti}) {
     <div
       className={`w-100 text14
         ${styles.root} 
-        ${noti.IsSeen && 'bg-subColor1'}`}
+        ${!noti.IsSeen && 'bg-subColor1'}`}
       onClick={()=>{console.log("click")}}
     >
       <div className={`ellipsis text14SemiBold`}>

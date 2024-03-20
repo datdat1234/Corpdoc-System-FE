@@ -17,11 +17,13 @@ import styles from './styles.module.css';
 import PDFRenderer from 'common/PDFRenderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import { getSupportStructure } from 'util/js/APIs';
 
 export default function Layout({ children }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const fileInfo = useSelector((state) => state.app.fileInfo);
+  const userInfo = useSelector((state) => state.app.userInfo);
   const noti = useSelector((state) => state.app.noti);
   const resizableRef = useRef(null);
   const resizableSidebarRef = useRef(null);
@@ -33,13 +35,28 @@ export default function Layout({ children }) {
   const [sidebarWidth, setSidebarWidth] = useState(33.328);
   const [showPdf, setShowPdf] = useState(false);
   const [isEnterPage, setIsEnterPage] = useState(false);
+  const [adminDomain, setAdminDomain] = useState();
+  const [bookDomain, setBookDomain] = useState();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
   useEffect(() => {
+
+    const fetchData = async () => {
+      // get support tree
+      const adminDomainRes = await getSupportStructure(userInfo.DeptID, 'admin-doc');
+      const adminDomain = adminDomainRes?.data?.data?.dataRes;
+      setAdminDomain(adminDomain);
+      const bookDomainRes = await getSupportStructure(userInfo.DeptID, 'book');
+      const bookDomain = bookDomainRes?.data?.data?.dataRes;
+      setBookDomain(bookDomain);
+    }
+
     setShowPdf(fileInfo?.Url ? true : false);
+    fetchData();
+  
   }, [fileInfo]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
@@ -121,7 +138,7 @@ export default function Layout({ children }) {
                   ref={resizableSidebarRef}
                   style={{ width: `${sidebarWidth}%` }}
                 >
-                  <Sidebar />
+                  <Sidebar adminDomain={adminDomain} bookDomain={bookDomain}/>
                   <div
                     className={`${styles.resizerSideBar}`}
                     onMouseDown={handleMouseDownSideBar}

@@ -97,6 +97,41 @@ export const formatItemFolder = (data) => {
   return formattedData;
 };
 
+export const formatItemSupportFolder = (data) => {
+  const formattedData = [];
+  if(data !== undefined) {
+    for (let i = 0; i < data.length; i++) {
+      formattedData.push([
+        {
+          text: true,
+          type: 'save',
+        },
+        {
+          text: data[i].name,
+          type: 'support-folder',
+        },
+        {
+          text: '',
+          type: 'text',
+        },
+        {
+          text: '',
+          type: 'text-size',
+        },
+        {
+          text: '',
+          type: 'edit',
+        },
+        {
+          childs: data[i].childs,
+          type: 'childs'
+        }
+      ]);
+    }
+  }
+  return formattedData;
+};
+
 export const formatItemFile = (data) => {
   const formattedData = [];
   if(data !== undefined) {

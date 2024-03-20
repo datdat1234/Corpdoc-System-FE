@@ -57,11 +57,11 @@ export const SIDEBAR_ICONS_ADMIN = [
 export const SIDEBAR_STRUCTURE = [
   {
     id: '1',
-    name: 'Thư viện sách cá nhân',
+    name: 'Thư viện sách',
   },
   {
     id: '2',
-    name: 'Tài liệu pháp luật doanh nghiệp',
+    name: 'Văn bản hành chính',
   },
 ];
 
@@ -258,6 +258,14 @@ export const NOTI_TABS = [
 ];
 
 export const HOMEPAGE_ITEM_GRIDS = [
+  'col-1',
+  'col-10',
+  'col-6',
+  'col-6',
+  'col-1',
+];
+
+export const SUPPORT_ITEM_GRIDS = [
   'col-1',
   'col-10',
   'col-6',
