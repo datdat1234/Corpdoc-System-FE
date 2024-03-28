@@ -66,25 +66,13 @@ export const SIDEBAR_STRUCTURE = [
 ];
 
 export const UPLOAD_TABS = [
-  'Thư viện sách cá nhân',
-  'Tài liệu pháp luật doanh nghiệp',
+  'Thư viện sách',
+  'Văn bản hành chính',
 ];
 
 export const CREATE_STRUCTURE = ['Tạo cấu trúc mới'];
 
 export const UPLOAD_TABS_ICON = [
-  {
-    left: null,
-    right: icon.caretRight,
-  },
-  {
-    left: null,
-    right: icon.caretRight,
-  },
-  {
-    left: null,
-    right: icon.caretRight,
-  },
   {
     left: icon.plus,
     right: null,

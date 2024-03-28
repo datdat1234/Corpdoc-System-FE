@@ -124,7 +124,7 @@ export const formatItemSupportFolder = (data) => {
         },
         {
           childs: data[i].childs,
-          type: 'childs'
+          type: data[i].type
         }
       ]);
     }
