@@ -116,7 +116,6 @@ export default function Sidebar({}) {
           name={adminDomain.name}
           childs={adminDomain.childs}
           typeDoc={"admin-doc"}
-          level={1}
         />
       </div>,
       <div key={2}>
@@ -124,7 +123,6 @@ export default function Sidebar({}) {
           name={bookDomain?.name}
           childs={bookDomain?.childs}
           typeDoc={"book"}
-          level={1}
         />
       </div>
     );

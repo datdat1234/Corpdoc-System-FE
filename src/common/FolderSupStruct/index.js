@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
 import { getChildByFolderId } from 'util/js/APIs';
 
-export default function FolderSupStruct({ name = '', childs, typeDoc = "", level = 1 }) {
+export default function FolderSupStruct({ name = '', childs, typeDoc = "", pathDoc = "" }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function FolderSupStruct({ name = '', childs, typeDoc = "", level
 
   const handleNavigate = () => {
     dispatch(setFolderPage(!switchFolder));
-    navigate(`/folder-support/${typeDoc}/${level}`);
+    navigate(`/folder-support/${typeDoc}/${pathDoc}`);
   };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
@@ -51,7 +51,7 @@ export default function FolderSupStruct({ name = '', childs, typeDoc = "", level
             name={childs[i].name} 
             childs={childs[i].childs}
             typeDoc={typeDoc}
-            level={level+1}
+            pathDoc={pathDoc !== ''? pathDoc + '-' + childs[i].name : childs[i].name}
           />
         </div>
       );

@@ -101,7 +101,8 @@ export default function RouterProvider() {
       <Route path="/company-manage" element={getElement('/company-manage')} />
       <Route path="/dept-manage" element={getElement('/dept-manage')} />
       <Route path="/folder/:id" element={getElement('/folder')} />
-      <Route path="/folder-support/:typeDoc/:level" element={getElement('/folder-support')} />
+      <Route path="/folder-support/:typeDoc" element={getElement('/folder-support')} />
+      <Route path="/folder-support/:typeDoc/:pathDoc" element={getElement('/folder-support')} />
     </Routes>
   );
 

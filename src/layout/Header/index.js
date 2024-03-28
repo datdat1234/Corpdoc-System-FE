@@ -32,9 +32,13 @@ export default function Header() {
   //////////////////////////////////////////////////
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.app.userInfo);
+  const switchFolder = useSelector((state) => state.app.folderPage);
   const [isHovered, setIsHovered] = useState(0);
   const [openNoti, setOpenNoti] = useState(false);
-  const [uploadTab, setUploadTab] = useState(UPLOAD_TABS);
+  const [uploadTab, setUploadTab] = useState([]);
+  const [uploadNavigate, setUploadNavigate] = useState([]);
+  const [uploadIcon, setUploadIcon] = useState([]);
+  const [uploadSmallhover, setUploadSmallhover] = useState([]);
   const [noti, setNoti] = useState([]);
   const [notiAlert, setNotiAlert] = useState(false);
   let profileTab, profileTabIcon, profileNavigate;
@@ -64,22 +68,57 @@ export default function Header() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      setUploadTab(UPLOAD_TABS);
       if (userInfo && userInfo.DeptID) {
         // get domainfolder
         const folderRes = await getDomainFolder(userInfo?.DeptID);
         const folders = folderRes?.data?.data?.domainIds;
-        const domainUpload = [];
+        let domainUpload = [
+          'Thư viện sách',
+          'Văn bản hành chính',
+        ];
+        let domainNavigate = [
+          () => {
+            handleMouseLeave();
+            navigate('/upload-file-support', {
+              state: { supportType: 'book' },
+            });
+          },
+          () => {
+            handleMouseLeave();
+            navigate('/upload-file-support', {
+              state: { supportType: 'admin-docs' },
+            });
+          },
+        ];
+        let domainIcon = [
+          { left: null, right: icon.caretRight },
+          { left: null, right: icon.caretRight },
+        ];
         if (folders !== undefined) {
           for (let i = 0; i < folders.length; i++) {
             domainUpload.push(folders[i].Name);
+            domainNavigate.push(() => {
+              handleMouseLeave();
+              navigate('/upload-file');
+            })
+            domainIcon.push({ left: null, right: icon.caretRight });
           }
-          setUploadTab(uploadTab.concat(domainUpload));
         }
 
-        if (userInfo?.Role !== 'Staff')
-          setUploadTab(uploadTab.concat(CREATE_STRUCTURE));
+        if (userInfo?.Role !== 'Staff') {
+          domainUpload.push(CREATE_STRUCTURE[0]);
+          domainNavigate.push(
+            () => {
+              handleMouseLeave();
+              navigate('/upload-folder', { state: { newStructure: true } });
+            }
+          );
+          domainIcon.push(UPLOAD_TABS_ICON[0]);
+        }
 
+        setUploadTab(domainUpload);
+        setUploadNavigate(domainNavigate);
+        setUploadIcon(domainIcon);
         // Get noti
 
         const notiRes = await getNoti(userInfo.UserID);
@@ -209,7 +248,7 @@ export default function Header() {
         {isHovered === 1 && (
           <HoverModal
             ctnStyles="bg-bgColor4 border-color-bg5"
-            icon={UPLOAD_TABS_ICON}
+            icon={uploadIcon}
             name={uploadTab}
             lastBtnStyles={
               userInfo.Role === 'Staff' ? '' : 'textH6Black header bg-bgColor5'
@@ -218,29 +257,8 @@ export default function Header() {
               userInfo.Role === 'Staff' ? 'bg-bgColor4' : 'bg-bgColor5'
             }
             isFolder={true}
-            onClick={[
-              () => {
-                handleMouseLeave();
-                navigate('/upload-file-support', {
-                  state: { supportType: 'book' },
-                });
-              },
-              () => {
-                handleMouseLeave();
-                navigate('/upload-file-support', {
-                  state: { supportType: 'admin-docs' },
-                });
-              },
-              () => {
-                handleMouseLeave();
-                navigate('/upload-file');
-              },
-              () => {
-                handleMouseLeave();
-                navigate('/upload-folder', { state: { newStructure: true } });
-              },
-            ]}
-            smallHoverIDs={[2]}
+            onClick={uploadNavigate}
+            smallHoverIDs={[2,3]}
             setIsHovered1={setIsHovered}
           />
         )}
