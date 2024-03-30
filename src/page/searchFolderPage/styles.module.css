@@ -28,7 +28,8 @@
 }
 
 .inputRowDetailCtn {
-  width: calc(50% - 5px);
+  /* width: calc(50% - 5px); */
+  width: 100%;
 }
 
 .checkboxCtn {

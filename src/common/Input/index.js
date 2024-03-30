@@ -1,4 +1,4 @@
-import React, { useState , useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './styles.module.css';
 import CheckBoxForm from 'common/CheckBoxForm';
 import Select from 'react-select';
@@ -10,11 +10,11 @@ export default function Input({
   bonusText = '',
   type = '',
   value,
-  setData = (e)=>{},
+  setData = (e) => {},
   textStyles = '',
   placeholder = '',
   canChange = true,
-  onEnter,
+  onEnter = (e) => {},
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -104,8 +104,11 @@ export default function Input({
           <input
             type="date"
             className={`${checkIsRow('input')} ${styles.inputDate}`}
+            onChange={(e) => setData(e.target.value)}
             placeholder={placeholder}
-            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') onEnter();
+            }}
           />
         </div>
       );
@@ -113,7 +116,12 @@ export default function Input({
     if (type.includes('checkbox')) {
       return (
         <div className="mTop10">
-          <CheckBoxForm text={text} textStyles={textStyles} />
+          <CheckBoxForm
+            text={text}
+            textStyles={textStyles}
+            checked={placeholder}
+            setCheck={setData}
+          />
         </div>
       );
     }
@@ -124,7 +132,9 @@ export default function Input({
             className={`${styles.textareaCtn}`}
             onChange={(e) => setData(e.target.value)}
             placeholder={placeholder}
-            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') onEnter();
+            }}
           ></textarea>
         </div>
       );
@@ -137,10 +147,12 @@ export default function Input({
             className={`${checkIsRow('input')}`}
             value={value}
             onChange={(e) => setData(e.target.value)}
-            placeholder={placeholder} 
-            onFocus={(e) => e.target.placeholder = ""} 
-            onBlur={(e) => e.target.placeholder = placeholder}
-            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
+            placeholder={placeholder}
+            onFocus={(e) => (e.target.placeholder = '')}
+            onBlur={(e) => (e.target.placeholder = placeholder)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') onEnter();
+            }}
           />
           {type === 'password' && (
             <div className={styles.icon} onClick={() => handlePassword()}>
@@ -157,21 +169,24 @@ export default function Input({
     if (type.includes('text')) {
       return (
         <div>
-          {canChange?
-          <input
-            type="text"
-            className={`${checkIsRow('input')}`}
-            value={value}
-            onChange={(e) => setData(e.target.value)}
-            placeholder={placeholder} 
-            onFocus={(e) => e.target.placeholder = ""} 
-            onBlur={(e) => e.target.placeholder = placeholder}
-            onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
-          />:
-          <div className={`text14SemiBold ${styles.cantChangeInput}`}>
-            {value}
-          </div>
-          }
+          {canChange ? (
+            <input
+              type="text"
+              className={`${checkIsRow('input')}`}
+              value={value}
+              onChange={(e) => setData(e.target.value)}
+              placeholder={placeholder}
+              onFocus={(e) => (e.target.placeholder = '')}
+              onBlur={(e) => (e.target.placeholder = placeholder)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') onEnter();
+              }}
+            />
+          ) : (
+            <div className={`text14SemiBold ${styles.cantChangeInput}`}>
+              {value}
+            </div>
+          )}
         </div>
       );
     }
