@@ -120,7 +120,7 @@ export default function UploadFilePage() {
     <div className={`${styles.root}`}>
       <div className={`${styles.navCtn}`}>
         <Button
-          name="Tải lên tài liệu cho miền Đồ án tốt nghiệp _ Luận văn tốt nghiệp"
+          name="Tải lên tài liệu"
           ctnStyles="h-100 text18SemiBold border-bottom-1 border-style-solid border-bg5-60 br-10"
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"

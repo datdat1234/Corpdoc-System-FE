@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
 import FolderStruct from 'common/FolderStruct';
@@ -7,8 +8,10 @@ import FolderSupStruct from 'common/FolderSupStruct';
 import Button from 'common/Button';
 import {
   SIDEBAR_TABS,
+  SIDEBAR_NAVIGATE,
   SIDEBAR_ICONS,
   SIDEBAR_TABS_ADMIN,
+  SIDEBAR_NAVIGATE_ADMIN,
   SIDEBAR_ICONS_ADMIN,
   SIDEBAR_STRUCTURE,
 } from 'util/js/constant';
@@ -18,6 +21,7 @@ import { getChildByFolderId, getSupportStructure } from 'util/js/APIs';
 export default function Sidebar({}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState(0);
   const [child, setChild] = useState([]);
   const userInfo = useSelector((state) => state.app.userInfo);
@@ -76,6 +80,7 @@ export default function Sidebar({}) {
               icon1={<FontAwesomeIcon icon={SIDEBAR_ICONS_ADMIN[i]} />}
               onClick={() => {
                 setCurrentTab(i);
+                navigate(SIDEBAR_NAVIGATE_ADMIN[i])
               }}
             />
           </div>
@@ -99,6 +104,7 @@ export default function Sidebar({}) {
               icon1={<FontAwesomeIcon icon={SIDEBAR_ICONS[i]} />}
               onClick={() => {
                 setCurrentTab(i);
+                navigate(SIDEBAR_NAVIGATE[i]);
               }}
             />
           </div>

@@ -87,7 +87,7 @@ export default function SrcItem({ value = [], grid = [] }) {
           icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
           onClick={() => setOpenModal(index)}
         />
-        {modal[index] && <BreadCrumbModal ctnStyles="br-15 br-TopRight-2" save={save} setSave={setSave} handleChangeSave={handleChangeSave} />}
+        {modal[index] && <BreadCrumbModal ctnStyles="br-15 br-TopRight-2" save={save} setSave={setSave} handleChangeSave={handleChangeSave} isFolder={value[1].type==="file"? false: true}/>}
       </div>
     );
   };
@@ -99,7 +99,7 @@ export default function SrcItem({ value = [], grid = [] }) {
           type === 'text-size' && 'ta-right mRight10'
         }`}
       >
-        {text}
+        {text} {type === 'text-size' && 'KB'}
       </p>
     );
   };

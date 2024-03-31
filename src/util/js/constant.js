@@ -33,6 +33,13 @@ export const SIDEBAR_TABS = [
   'Thùng rác',
 ];
 
+export const SIDEBAR_NAVIGATE = [
+  '',
+  '',
+  'saved-folder',
+  '',
+];
+
 export const SIDEBAR_ICONS = [
   icon.folderTree,
   icon.share,
@@ -45,6 +52,13 @@ export const SIDEBAR_TABS_ADMIN = [
   'Các phòng ban - ',
   'Đã lưu',
   'Thùng rác',
+];
+
+export const SIDEBAR_NAVIGATE_ADMIN = [
+  '',
+  '',
+  'saved-folder',
+  '',
 ];
 
 export const SIDEBAR_ICONS_ADMIN = [
@@ -217,16 +231,19 @@ export const BREAD_CRUMB_TABS = [
     icon1: icon.pencil,
     text: 'Sửa thông tin',
     icon2: icon.caretRight,
+    navigate: 'edit-file',
   },
   {
     icon1: icon.upload,
     text: 'Tải lên tài liệu',
     icon2: icon.caretRight,
+    navigate: 'upload-file',
   },
   {
     icon1: icon.folder,
     text: 'Thêm thư mục',
     icon2: icon.caretRight,
+    navigate: 'upload-folder',
   },
 ];
 
@@ -303,6 +320,7 @@ export const NOT_SHOW_SIDEBAR = [
   '/staff-manage',
   '/company-manage',
   '/dept-manage',
+  '/edit-file',
 ];
 
 export const IS_SETTING_PAGE = [

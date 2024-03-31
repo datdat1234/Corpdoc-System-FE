@@ -84,8 +84,8 @@ export const formatItemFolder = (data) => {
           type: 'text',
         },
         {
-          text: '1,100,099 KB',
-          type: 'text-size',
+          text: '',
+          type: '',
         },
         {
           text: '',

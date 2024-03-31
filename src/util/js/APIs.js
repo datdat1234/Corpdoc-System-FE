@@ -128,6 +128,15 @@ export const getSupportStructure = (deptId, typeDoc) => {
   );
 };
 
+export const getSavedFolder = () => {
+  return get(
+    `${API_URL}/folder/get-saved-folder`,
+    {
+      companyId: getCompanyId(),
+    },
+  );
+};
+
 //#endregion
 
 //#region Media

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import UseOnClickOutside from 'util/hook/useOnClickOutside';
 import styles from './styles.module.css';
 import Button from 'common/Button';
@@ -10,10 +11,12 @@ export default function BreadCrumbModal({
   ctnStyles = '',
   save,
   setSave,
-  handleChangeSave
+  handleChangeSave,
+  isFolder = true,
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const navigate = useNavigate();
   
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -48,7 +51,32 @@ export default function BreadCrumbModal({
         />
       </div>
     );
-    for (let i = 1; i < tabLength; i++) {
+    if (!isFolder) {
+      tabItems.push(
+        <div key={1} className={styles.tabCtn}>
+          <Button
+            ctnStyles={`h-60 border-bottom-1 border-style-solid`}
+            name={BREAD_CRUMB_TABS[1].text}
+            icon1Styles="w-24 h-24 fs-16"
+            icon2Styles="w-24 h-24 fs-16"
+            btnStyles="bg-bgColor4 text14SemiBold pLeft10"
+            icon1={
+              BREAD_CRUMB_TABS[1].icon1 && (
+                <FontAwesomeIcon icon={BREAD_CRUMB_TABS[1].icon1} />
+              )
+            }
+            icon2={
+              BREAD_CRUMB_TABS[1].icon2 && (
+                <FontAwesomeIcon icon={BREAD_CRUMB_TABS[1].icon2} />
+              )
+            }
+            onClick={() => console.log(1)}
+          />
+        </div>
+      );
+    }
+    for (let i = 2; i < tabLength; i++) {
+      if (i===2 && isFolder) continue;
       tabItems.push(
         <div key={i} className={styles.tabCtn}>
           <Button
@@ -69,7 +97,7 @@ export default function BreadCrumbModal({
                 <FontAwesomeIcon icon={BREAD_CRUMB_TABS[i].icon2} />
               )
             }
-            onClick={() => console.log(1)}
+            onClick={() => navigate(`/${BREAD_CRUMB_TABS[i].navigate}`)}
           />
         </div>
       );
