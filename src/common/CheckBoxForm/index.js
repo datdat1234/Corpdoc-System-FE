@@ -5,6 +5,7 @@ export default function CheckBoxForm({
   text = '',
   textStyles = '',
   checked = false,
+  setCheck = (value) => {},
   setCheckAll = (value) => {},
   isCheckAllInput = false,
   setIsCheckAllInput = (value) => {},
@@ -26,6 +27,10 @@ export default function CheckBoxForm({
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
   const handleCheck = () => {
+    // Set input check data
+    setCheck(!isChecked);
+
+    // Handle check input UI
     setIsChecked(!isChecked);
     if (isCheckAllInput) {
       setCheckAll(!isChecked);

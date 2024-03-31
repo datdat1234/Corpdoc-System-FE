@@ -41,12 +41,6 @@ export const editUserInfo = (data) => {
 
 //#region File
 
-export const getCriteria = () => {
-  return get(`${API_URL}/file/criteria`, {
-    companyId: getCompanyId(),
-  });
-};
-
 export const getFileByCriteria = (folderId) => {
   return get(`${API_URL}/file/get-file`, {
     companyId: getCompanyId(),
@@ -62,9 +56,44 @@ export const setChangeSaveFile = (status, fileId) => {
   });
 };
 
+export const getFileAuthor = () => {
+  return get(`${API_URL}/file/author`, {
+    companyId: getCompanyId(),
+  });
+};
+
+export const searchFile = (searchData) => {
+  return get(`${API_URL}/file/search`, {
+    companyId: getCompanyId(),
+    data: searchData,
+  });
+};
+
+//#endregion
+
+//#region Dept
+
+export const getDeptName = () => {
+  return get(`${API_URL}/dept/get-dept-name`, {
+    companyId: getCompanyId(),
+  });
+};
+
 //#endregion
 
 //#region Folder
+
+export const getCriteria = () => {
+  return get(`${API_URL}/folder/criteria`, {
+    companyId: getCompanyId(),
+  });
+};
+
+export const getFolderAuthor = () => {
+  return get(`${API_URL}/folder/author`, {
+    companyId: getCompanyId(),
+  });
+};
 
 export const getFolderPath = (deptId) => {
   return get(`${API_URL}/folder/get-path`, {
@@ -116,7 +145,6 @@ export const setChangeSaveFolder = (status, folderId) => {
   });
 };
 
-
 export const getSupportStructure = (deptId, typeDoc) => {
   return get(
     `${API_URL}/folder/get-support-folder`,
@@ -126,6 +154,13 @@ export const getSupportStructure = (deptId, typeDoc) => {
       companyId: getCompanyId(),
     },
   );
+};
+
+export const searchFolder = (searchData) => {
+  return get(`${API_URL}/folder/search`, {
+    companyId: getCompanyId(),
+    data: searchData,
+  });
 };
 
 export const getSavedFolder = () => {
@@ -139,7 +174,7 @@ export const getSavedFolder = () => {
 
 //#endregion
 
-//#region Media
+//#region Notification
 
 export const getNoti = (userId) => {
   return get(`${API_URL}/noti/get-noti`, {
