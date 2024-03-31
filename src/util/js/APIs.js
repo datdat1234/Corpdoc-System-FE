@@ -41,6 +41,12 @@ export const editUserInfo = (data) => {
 
 //#region File
 
+export const getFileCriteria = () => {
+  return get(`${API_URL}/file/criteria`, {
+    companyId: getCompanyId(),
+  });
+};
+
 export const getFileByCriteria = (folderId) => {
   return get(`${API_URL}/file/get-file`, {
     companyId: getCompanyId(),
@@ -62,9 +68,11 @@ export const getFileAuthor = () => {
   });
 };
 
-export const searchFile = (searchData) => {
+export const searchFile = (deptId, userId, searchData) => {
   return get(`${API_URL}/file/search`, {
     companyId: getCompanyId(),
+    deptId: deptId,
+    userId: userId,
     data: searchData,
   });
 };
@@ -79,11 +87,17 @@ export const getDeptName = () => {
   });
 };
 
+export const getDept = () => {
+  return get(`${API_URL}/dept/get-dept`, {
+    companyId: getCompanyId(),
+  });
+};
+
 //#endregion
 
 //#region Folder
 
-export const getCriteria = () => {
+export const getFolderCriteria = () => {
   return get(`${API_URL}/folder/criteria`, {
     companyId: getCompanyId(),
   });
@@ -146,30 +160,26 @@ export const setChangeSaveFolder = (status, folderId) => {
 };
 
 export const getSupportStructure = (deptId, typeDoc) => {
-  return get(
-    `${API_URL}/folder/get-support-folder`,
-    {
-      deptId: deptId,
-      typeDoc: typeDoc,
-      companyId: getCompanyId(),
-    },
-  );
+  return get(`${API_URL}/folder/get-support-folder`, {
+    deptId: deptId,
+    typeDoc: typeDoc,
+    companyId: getCompanyId(),
+  });
 };
 
-export const searchFolder = (searchData) => {
+export const searchFolder = (deptId, userId, searchData) => {
   return get(`${API_URL}/folder/search`, {
     companyId: getCompanyId(),
+    deptId: deptId,
+    userId: userId,
     data: searchData,
   });
 };
 
 export const getSavedFolder = () => {
-  return get(
-    `${API_URL}/folder/get-saved-folder`,
-    {
-      companyId: getCompanyId(),
-    },
-  );
+  return get(`${API_URL}/folder/get-saved-folder`, {
+    companyId: getCompanyId(),
+  });
 };
 
 //#endregion

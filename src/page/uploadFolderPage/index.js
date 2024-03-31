@@ -7,7 +7,7 @@ import Button from 'common/Button';
 import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria, getFolderPath, uploadFolder } from 'util/js/APIs';
+import { getFolderCriteria, getFolderPath, uploadFolder } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
 import { setNotification } from 'util/js/helper';
 
@@ -35,7 +35,7 @@ export default function UploadFolderPage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const critRes = await getCriteria();
+      const critRes = await getFolderCriteria();
       const folderRes = await getFolderPath(userInfo?.DeptID);
       setCritetia(critRes?.data?.data?.criteria);
       setFolders(folderRes?.data?.data?.folder);

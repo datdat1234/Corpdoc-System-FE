@@ -8,7 +8,7 @@ import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { extractFileName, extractFileType, setNotification } from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria, uploadFile } from 'util/js/APIs';
+import { getFolderCriteria, uploadFile } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
 
 export default function EditFilePage() {
@@ -33,7 +33,7 @@ export default function EditFilePage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getCriteria();
+      const response = await getFolderCriteria();
       setCritetia(response?.data?.data?.criteria);
     };
 
