@@ -15,6 +15,7 @@ export default function Input({
   placeholder = '',
   canChange = true,
   onEnter = (e) => {},
+  defaultValue='',
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -89,7 +90,7 @@ export default function Input({
         <div className={`${styles.selectCtn}`}>
           <Select
             ref={selectRef}
-            defaultValue={{ value: '', label: '' }}
+            value={{ value: defaultValue, label: defaultValue }}
             options={handleOptions()}
             styles={colourStyles}
             onChange={(item) => handleChangeSelect(item.value)}
@@ -130,6 +131,7 @@ export default function Input({
         <div>
           <textarea
             className={`${styles.textareaCtn}`}
+            value={value}
             onChange={(e) => setData(e.target.value)}
             placeholder={placeholder}
             onKeyDown={(e) => {

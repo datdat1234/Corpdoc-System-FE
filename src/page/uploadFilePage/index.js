@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
@@ -8,7 +8,7 @@ import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { extractFileName, extractFileType, setNotification } from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria, uploadFile } from 'util/js/APIs';
+import { getCriteria, uploadFile, getFolderInfo } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
 
 export default function UploadFilePage() {
@@ -18,6 +18,8 @@ export default function UploadFilePage() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.app.userInfo);
   const isLoad = useSelector((state) => state.app.globalLoading);
+  const { state } = useLocation();
+  const { id } = state;
   const [criteria, setCritetia] = useState([]);
   const [fileName, setFileName] = useState('');
   const [author, setAuthor] = useState('');
@@ -33,8 +35,11 @@ export default function UploadFilePage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getCriteria();
-      setCritetia(response?.data?.data?.criteria);
+      const criteriaRes = await getCriteria();
+      setCritetia(criteriaRes?.data?.data?.criteria);
+      const response = await getFolderInfo(id);
+      const resData = response?.data?.data;
+      setFileCriteria(resData?.Criteria);
     };
 
     fetchData();
@@ -120,7 +125,7 @@ export default function UploadFilePage() {
     <div className={`${styles.root}`}>
       <div className={`${styles.navCtn}`}>
         <Button
-          name="Tải lên tài liệu"
+          name={"Tải lên tài liệu"}
           ctnStyles="h-100 text18SemiBold border-bottom-1 border-style-solid border-bg5-60 br-10"
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"

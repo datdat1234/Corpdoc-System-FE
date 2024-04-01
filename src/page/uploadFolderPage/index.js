@@ -7,7 +7,7 @@ import Button from 'common/Button';
 import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria, getFolderPath, uploadFolder } from 'util/js/APIs';
+import { getCriteria, getFolderPath, uploadFolder, getFolderInfo } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
 import { setNotification } from 'util/js/helper';
 
@@ -20,6 +20,7 @@ export default function UploadFolderPage() {
   const isLoad = useSelector((state) => state.app.globalLoading);
   const location = useLocation();
   const newStructure = location.state ? location.state.newStructure : null;
+  const id = location.state ? location.state.id : null;
   const [criteria, setCritetia] = useState([]);
   const [folderName, setFolderName] = useState('');
   const [author, setAuthor] = useState('');
@@ -28,6 +29,7 @@ export default function UploadFolderPage() {
   const [folders, setFolders] = useState([]);
   const [folderParentInfo, setFolderParentInfo] = useState('');
   const [showCritNumber, setShowCritNumber] = useState(0);
+  const [folderParent, setFolderParent] = useState('');
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -37,8 +39,18 @@ export default function UploadFolderPage() {
     const fetchData = async () => {
       const critRes = await getCriteria();
       const folderRes = await getFolderPath(userInfo?.DeptID);
+      let allFolders = folderRes?.data?.data?.folder;
       setCritetia(critRes?.data?.data?.criteria);
-      setFolders(folderRes?.data?.data?.folder);
+      setFolders(allFolders);      
+      for(let i=0; i<allFolders.length; i++) {
+        if (allFolders[i].FolderID === id) {
+          setFolderParentInfo(allFolders[i].Path);
+          setFolderCriteria(allFolders[i].Criteria);
+          setShowCritNumber(allFolders[i].Criteria.length);
+          setFolderParent(allFolders[i].Name);
+          break;
+        }
+      }
     };
 
     fetchData();
@@ -128,7 +140,7 @@ export default function UploadFolderPage() {
     <div className={`${styles.root}`}>
       <div className={`${styles.navCtn}`}>
         <Button
-          name={newStructure ? 'Tạo miền cấu trúc mới' : 'Thêm thư mục mới'}
+          name={newStructure ? 'Tạo miền cấu trúc mới' : 'Thêm thư mục mới thuộc ' + folderParent}
           ctnStyles="h-100 text18SemiBold border-bottom-1 border-style-solid border-bg5-60 br-10"
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
@@ -144,6 +156,7 @@ export default function UploadFolderPage() {
             value={handlePathValue()}
             setData={handleSetParentInfo}
             onEnter={() => {handleUploadFolder()}}
+            defaultValue={folderParentInfo}
           />
         )}
         <Input

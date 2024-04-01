@@ -69,6 +69,41 @@ export const searchFile = (searchData) => {
   });
 };
 
+
+export const getFileInfo = (fileId) => {
+  return post(
+    `${API_URL}/file/get-file-info`,
+    {
+      companyId: getCompanyId(),
+      fileId: fileId
+    },
+  );
+};
+
+export const editFile = (fileData) => {
+  return post(
+    `${API_URL}/file/edit-file`,
+    {
+      companyId: getCompanyId(),
+      fileId: fileData.fileId,
+      fileName: fileData.fileName,
+      desc: fileData.desc,
+      author: fileData.author,
+      fileCriteria: fileData.fileCriteria
+    },
+  );
+};
+
+export const getUsedStorage = (deptId) => {
+  return post(
+    `${API_URL}/file/get-used-storage`,
+    {
+      companyId: getCompanyId(),
+      deptId: deptId,
+    },
+  );
+};
+
 //#endregion
 
 //#region Dept
@@ -168,6 +203,29 @@ export const getSavedFolder = () => {
     `${API_URL}/folder/get-saved-folder`,
     {
       companyId: getCompanyId(),
+    },
+  );
+};
+
+export const getFolderInfo = (folderId) => {
+  return post(
+    `${API_URL}/folder/get-folder-info`,
+    {
+      companyId: getCompanyId(),
+      folderId: folderId
+    },
+  );
+};
+
+export const editFolder = (folderData) => {
+  return post(
+    `${API_URL}/folder/edit-folder`,
+    {
+      companyId: getCompanyId(),
+      folderId: folderData.folderId,
+      folderName: folderData.folderName,
+      desc: folderData.desc,
+      author: folderData.author,
     },
   );
 };

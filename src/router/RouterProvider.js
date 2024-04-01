@@ -26,6 +26,7 @@ import FolderPage from 'page/folderPage';
 import SupportFolderPage from 'page/supportFolderPage';
 import SavedFolderPage from 'page/savedFolderPage';
 import EditFilePage from 'page/EditFilePage';
+import EditFolderPage from 'page/EditFolderPage';
 
 export default function RouterProvider() {
   const [isLogin, setIsLogin] = useState(localStorage.getItem('token'));
@@ -69,6 +70,8 @@ export default function RouterProvider() {
         return <SavedFolderPage />;
       case '/edit-file':
         return <EditFilePage />;
+      case '/edit-folder':
+        return <EditFolderPage />;
       default:
         return <Navigate replace to="/login" />;
     }
@@ -111,6 +114,7 @@ export default function RouterProvider() {
       <Route path="/folder-support/:typeDoc/:pathDoc" element={getElement('/folder-support')} />
       <Route path="/saved-folder" element={getElement('/saved-folder')} />
       <Route path="/edit-file" element={getElement('/edit-file')} />
+      <Route path="/edit-folder" element={getElement('/edit-folder')} />
     </Routes>
   );
 

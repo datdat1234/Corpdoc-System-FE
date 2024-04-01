@@ -62,6 +62,7 @@ export default function SavedFolderPage() {
   const renderItem = () => {
     const tabItems = [];
     for (let i = 0; i <= items.length; i++) {
+      if (i > 0) items[i - 1][0].text = true; 
       tabItems.push(
         <div key={i}>
           <SrcItem

@@ -71,7 +71,7 @@ export default function BreadCrumb({}) {
         {item}
       </p>
       <FontAwesomeIcon icon={icon.caretDown} />
-      {modal && <BreadCrumbModal ctnStyles='w-100 br-2 br-BottomLeft-15 br-BottomRight-15' save={save} setSave={setSave} handleChangeSave={handleChangeSave} />}
+      {modal && <BreadCrumbModal ctnStyles='w-100 br-2 br-BottomLeft-15 br-BottomRight-15' save={save} setSave={setSave} handleChangeSave={handleChangeSave} infoItm={id} />}
     </div>
   );
 }

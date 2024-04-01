@@ -99,9 +99,10 @@ export default function Header() {
             domainUpload.push(folders[i].Name);
             domainNavigate.push(() => {
               handleMouseLeave();
-              navigate('/upload-file');
+              navigate('/upload-file', { state: { id: folders[i].FolderID } });
             })
             domainIcon.push({ left: null, right: icon.caretRight });
+            setUploadSmallhover(prevState => ([...prevState, folders[i].FolderID]))
           }
         }
 
@@ -259,6 +260,7 @@ export default function Header() {
             isFolder={true}
             onClick={uploadNavigate}
             smallHoverIDs={[2,3]}
+            onClickSmallHover={uploadSmallhover}
             setIsHovered1={setIsHovered}
           />
         )}

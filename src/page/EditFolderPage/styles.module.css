@@ -10,7 +10,7 @@
 
 .navCtn {
   width: 100%;
-  min-height: 50px !important;
+  min-height: 50px;
   margin-bottom: 10px;
 }
 
@@ -18,25 +18,17 @@
   width: 100%;
   max-height: calc(100vh - var(--rowSingle) * 2 - 80px);
   padding: 15px 15px;
-  /* overflow: auto; */
+  overflow: auto;
 }
 
-.inputRowCtn {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-
-.inputRowDetailCtn {
-  /* width: calc(50% - 5px); */
+.btnUploadCtn {
+  height: 54px;
   width: 100%;
-}
-
-.checkboxCtn {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 
 .btnCtn {
@@ -51,4 +43,13 @@
 .btnWrapper {
   width: 340px;
   height: 100%;
+}
+
+.checkboxCtn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
 }

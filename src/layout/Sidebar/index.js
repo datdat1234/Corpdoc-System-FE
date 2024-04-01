@@ -16,7 +16,7 @@ import {
   SIDEBAR_STRUCTURE,
 } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getChildByFolderId, getSupportStructure } from 'util/js/APIs';
+import { getChildByFolderId, getSupportStructure, getUsedStorage } from 'util/js/APIs';
 
 export default function Sidebar({}) {
   // #region    VARIABLES //////////////////////////
@@ -28,6 +28,7 @@ export default function Sidebar({}) {
   var switchFolder = useSelector((state) => state.app.folderPage);
   const [adminDomain, setAdminDomain] = useState({name: 'Văn bản hành chính', childs: []});
   const [bookDomain, setBookDomain] = useState({name: 'Thư viện sách', childs: []});
+  const [usedStorage, setUsedStorage] = useState(0);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -46,6 +47,10 @@ export default function Sidebar({}) {
       const bookDomainRes = await getSupportStructure(userInfo.DeptID, 'book');
       const bookDomain = bookDomainRes?.data?.data?.dataRes;
       setBookDomain(bookDomain);
+
+      //get used storage
+      const usedStorageRes = await getUsedStorage (userInfo.DeptID);
+      setUsedStorage(usedStorageRes?.data?.data); 
     };
 
     fetchData();
@@ -165,12 +170,12 @@ export default function Sidebar({}) {
       </div>
       <div className={`${styles.storageCtn} pVertical15 pHorizontal15`}>
         <p className="text14 pVertical5">
-          Đã sử dụng 14,62 GB trong tổng số 15 GB (76%)
+          Đã sử dụng {usedStorage} GB trong tổng số 1.5 GB ({Math.round(((100 / 1.5) * usedStorage) * 100) / 100}%)
         </p>
         <div className={`${styles.progressCtn} progress bg-text60`}>
           <div
             className={`${styles.progressBar} progress-bar bg-main`}
-            style={{ width: '25%' }}
+            style={{ width: (((100 / 1.5) * usedStorage))+'%' }}
           ></div>
         </div>
       </div>

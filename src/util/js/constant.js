@@ -321,6 +321,7 @@ export const NOT_SHOW_SIDEBAR = [
   '/company-manage',
   '/dept-manage',
   '/edit-file',
+  '/edit-folder',
 ];
 
 export const IS_SETTING_PAGE = [

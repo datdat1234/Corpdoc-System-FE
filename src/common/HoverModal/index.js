@@ -17,6 +17,7 @@ export default function HoverModal({
   isFolder = false,
   smallHoverIDs = [],
   setIsHovered1,
+  onClickSmallHover=[],
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -134,12 +135,12 @@ export default function HoverModal({
           onClick={[
             () => {
               handleMouseLeave();
-              navigate('/upload-folder', { state: { newStructure: false } });
+              navigate('/upload-folder', { state: { newStructure: false, id:onClickSmallHover[i-2] } });
               setIsHovered1(0);
             },
             () => {
               handleMouseLeave();
-              navigate('/upload-file');
+              navigate('/upload-file', { state: { id:onClickSmallHover[i-2] } });
               setIsHovered1(0);
             },
           ]}

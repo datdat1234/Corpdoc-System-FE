@@ -13,6 +13,7 @@ export default function BreadCrumbModal({
   setSave,
   handleChangeSave,
   isFolder = true,
+  infoItm = '',
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -76,7 +77,6 @@ export default function BreadCrumbModal({
       );
     }
     for (let i = 2; i < tabLength; i++) {
-      if (i===2 && isFolder) continue;
       tabItems.push(
         <div key={i} className={styles.tabCtn}>
           <Button
@@ -97,7 +97,9 @@ export default function BreadCrumbModal({
                 <FontAwesomeIcon icon={BREAD_CRUMB_TABS[i].icon2} />
               )
             }
-            onClick={() => navigate(`/${BREAD_CRUMB_TABS[i].navigate}`)}
+            onClick={() => navigate(`/${i===2 && isFolder? 'edit-folder' : BREAD_CRUMB_TABS[i].navigate}`,{
+              state: { id: infoItm },})
+            }
           />
         </div>
       );

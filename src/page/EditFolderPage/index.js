@@ -6,24 +6,24 @@ import icon from 'util/js/icon';
 import Button from 'common/Button';
 import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
-import { setNotification } from 'util/js/helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCriteria, getFileInfo, editFile } from 'util/js/APIs';
+import { getFolderInfo, editFolder } from 'util/js/APIs';
 import { setGlobalLoading } from '../../redux/action/app';
+import { setNotification } from 'util/js/helper';
 
-export default function EditFilePage() {
+export default function EditFolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.app.userInfo);
   const isLoad = useSelector((state) => state.app.globalLoading);
   const { state } = useLocation();
   const { id } = state;
-  const [criteria, setCritetia] = useState([]);
-  const [fileName, setFileName] = useState('');
+  const [folderName, setFolderName] = useState('');
   const [author, setAuthor] = useState('');
   const [desc, setDesc] = useState('');
-  const [fileCriteria, setFileCriteria] = useState([]);
+  const [folders, setFolders] = useState([]);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -31,14 +31,11 @@ export default function EditFilePage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const criteriaData = await getCriteria();
-      setCritetia(criteriaData?.data?.data?.criteria);
-      const response = await getFileInfo(id);
+      const response = await getFolderInfo(id);
       const resData = response?.data?.data;
-      setFileName(resData.Name);
+      setFolderName(resData.Name);
       setDesc(resData.Description);
       setAuthor(resData.Author);
-      setFileCriteria(resData.Criteria);
     };
 
     fetchData();
@@ -48,62 +45,43 @@ export default function EditFilePage() {
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-  const handleUploadFile = async () => {
+  const handleUploadFolder = async () => {
     dispatch(setGlobalLoading(true));
-    if (fileName === '' || fileCriteria.length === 0) {
+    if (folderName === '') {
       setNotification('warning', 'Vui lòng nhập các trường bắt buộc.');
       dispatch(setGlobalLoading(false));
       return;
     }
-    const fileInfo = {
-      fileId: id,
-      fileName: fileName,
+    const folderInfo = {
+      folderId: id,
+      folderName: folderName,
       author: author,
       desc: desc,
-      fileCriteria: fileCriteria,
     };
-    const response = await editFile(fileInfo);
+    const response = await editFolder(folderInfo);
     if (response?.data?.resultCode === '00001') {
-      navigate(`/result-page`, { state: { type: 'file', status: 'success' } });
+      navigate(`/result-page`, { state: { type: 'folder', status: 'success' } });
     } else {
-      navigate(`/result-page`, { state: { type: 'file', status: 'error' } });
+      navigate(`/result-page`, {
+        state: { type: 'folder', status: 'error' },
+      });
     }
     dispatch(setGlobalLoading(false));
   };
 
-  const handleSetCriteria = (criterion) => {
-    if (fileCriteria.includes(criterion) || criterion === '') return;
-    else {
-      setFileCriteria([...fileCriteria, criterion]);
-    }
-  };
-
-  const handleCloseCriteria = (criterion) => {
-    setFileCriteria(fileCriteria.filter((value) => value !== criterion));
-  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-  const renderCriterionTag = () => {
-    return fileCriteria?.map((criterion, index) => {
-      return (
-        <CriteriaTag
-          key={index}
-          text={criterion}
-          handleClick={handleCloseCriteria}
-        />
-      );
-    });
-  };
+
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
     <div className={`${styles.root}`}>
       <div className={`${styles.navCtn}`}>
         <Button
-          name={"Sửa tài liệu: " + fileName}
+          name={'Sửa thư mục: ' + folderName}
           ctnStyles="h-100 text18SemiBold border-bottom-1 border-style-solid border-bg5-60 br-10"
           btnStyles="bg-bgColor4 pLeft10"
           icon1Styles="w-24 h-24 d-flex justify-content-center align-items-center"
@@ -114,11 +92,11 @@ export default function EditFilePage() {
       <div className={`${styles.input}`}>
         <Input
           type="text"
-          text="* Tên tài liệu"
+          text="* Tên miền"
           bonusText="(tối đa 50 ký tự)"
-          value={fileName}
-          setData={setFileName}
-          onEnter={() => {handleUploadFile()}}
+          value={folderName}
+          setData={setFolderName}
+          onEnter={() => {handleUploadFolder()}}
         />
         <Input
           type="text"
@@ -126,30 +104,22 @@ export default function EditFilePage() {
           bonusText="(Tối đa 20 ký tự)"
           value={author}
           setData={setAuthor}
-          onEnter={() => {handleUploadFile()}}
+          onEnter={() => {handleUploadFolder()}}
         />
         <Input 
           type="textarea" 
           text="Mô tả" 
           value={desc} 
           setData={setDesc} 
-          onEnter={() => {handleUploadFile()}}
+          onEnter={() => {handleUploadFolder()}}
         />
-        <Input
-          type="select"
-          text="* Tiêu chí của tài liệu"
-          value={criteria}
-          setData={handleSetCriteria}
-          onEnter={() => {handleUploadFile()}}
-        />
-        <div className={`${styles.checkboxCtn}`}>{renderCriterionTag()}</div>
         <div className={`${styles.btnCtn} mBottom10`}>
           <div className={`${styles.btnWrapper}`}>
             <Button
               name="XÁC NHẬN"
               ctnStyles="h-100 textH6Bold br-10 bg-text justify-content-end"
               btnStyles="bg-text white d-flex justify-content-center align-items-center"
-              onClick={handleUploadFile}
+              onClick={handleUploadFolder}
               isLoad={isLoad}
             />
           </div>
