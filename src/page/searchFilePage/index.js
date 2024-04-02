@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import icon from 'util/js/icon';
 import Button from 'common/Button';
@@ -7,7 +8,7 @@ import Input from 'common/Input';
 import CriteriaTag from 'common/CriteriaTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  getCriteria,
+  getFileCriteria,
   getFileAuthor,
   getDeptName,
   searchFile,
@@ -17,6 +18,7 @@ export default function SearchFilePage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.app.userInfo);
   const [criteria, setCritetia] = useState([]);
   const [authorData, setAuthorData] = useState([]);
   const [deptData, setDeptData] = useState([]);
@@ -34,7 +36,7 @@ export default function SearchFilePage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const critRes = await getCriteria();
+      const critRes = await getFileCriteria();
       const authorRes = await getFileAuthor();
       const deptRes = await getDeptName();
       setCritetia(critRes?.data?.data?.criteria);
@@ -57,10 +59,16 @@ export default function SearchFilePage() {
       date: date,
       criteria: fileCriteria,
       isSave: isSave,
-      isShare: isShare,
+      // isShare: isShare,
     };
-    const res = await searchFile(searchData);
-    // () => navigate('/search-file-result')
+
+    navigate('/search-file-result', {
+      state: {
+        DeptID: userInfo?.DeptID,
+        UserID: userInfo?.UserID,
+        searchData: searchData,
+      },
+    });
   };
 
   const handleSetCriteria = (criterion) => {
@@ -158,13 +166,13 @@ export default function SearchFilePage() {
             value={isSave}
             setData={setIsSave}
           />
-          <Input
+          {/* <Input
             type="checkbox"
             text="Tài liệu được chia sẻ"
             textStyles="textH6Bold"
             value={isShare}
             setData={setIsShare}
-          />
+          /> */}
         </div>
         <div className={`${styles.btnCtn} mBottom10`}>
           <div className={`${styles.btnWrapper}`}>

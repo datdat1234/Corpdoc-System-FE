@@ -41,23 +41,32 @@ export default function SrcItem({ value = [], grid = [] }) {
   };
 
   const handleChangeSave = async () => {
-    if(value[1].type === 'folder') {
-      await setChangeSaveFolder(save, value[1].id).then((res)=>{
+    if (value[1].type === 'folder') {
+      await setChangeSaveFolder(save, value[1].id).then((res) => {
         if (res?.data?.data) {
-          setNotification("success", !save? "Đã thêm vào danh mục đã lưu.": "Đã xóa khỏi danh mục đã lưu.")
+          setNotification(
+            'success',
+            !save
+              ? 'Đã thêm vào danh mục đã lưu.'
+              : 'Đã xóa khỏi danh mục đã lưu.'
+          );
           setSave(!save);
         } else {
-          setNotification("error", res?.data?.resultMessage?.vi);
+          setNotification('error', res?.data?.resultMessage?.vi);
         }
       });
-    }
-    else {
-      await setChangeSaveFile(save, value[1].id).then((res)=>{
+    } else {
+      await setChangeSaveFile(save, value[1].id).then((res) => {
         if (res?.data?.data) {
-          setNotification("success", !save? "Đã thêm vào danh mục đã lưu.": "Đã xóa khỏi danh mục đã lưu.")
+          setNotification(
+            'success',
+            !save
+              ? 'Đã thêm vào danh mục đã lưu.'
+              : 'Đã xóa khỏi danh mục đã lưu.'
+          );
           setSave(!save);
         } else {
-          setNotification("error", res?.data?.resultMessage?.vi);
+          setNotification('error', res?.data?.resultMessage?.vi);
         }
       });
     }
@@ -71,15 +80,17 @@ export default function SrcItem({ value = [], grid = [] }) {
   const renderBookmarkBtnCell = (isSave = false, index = 0) => {
     return (
       <IconButton
-        icon={<FontAwesomeIcon icon={isSave? icon.bookmark: icon.unBookmark} />}
+        icon={
+          <FontAwesomeIcon icon={isSave ? icon.bookmark : icon.unBookmark} />
+        }
         ctnStyles="mRight10"
         onClick={() => {
           handleChangeSave();
         }}
       />
-    )
+    );
   };
-  
+
   const renderEditBtnCell = (index = 0) => {
     return (
       <div className={`${styles.editCtn}`} ref={ref}>

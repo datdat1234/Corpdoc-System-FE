@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './styles.module.css';
 import Button from 'common/Button';
 import SrcItem from 'common/SrcItem';
@@ -7,11 +7,17 @@ import Pagination from 'common/Pagination';
 import { SEARCH_RESULT_GRIDS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import { searchFile, getDept } from 'util/js/APIs';
 
 export default function SearchFileResultPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { DeptID, UserID, searchData } = state;
+  const [deptData, setDeptData] = useState([]);
+  const [resData, setResData] = useState([]);
+  const [recordCount, setRecordCount] = useState(0);
   const value = [
     {
       text: '',
@@ -34,43 +40,8 @@ export default function SearchFileResultPage() {
       type: 'header',
     },
     {
-      text: 'Địa điểm',
-      type: 'header',
-    },
-    {
       text: '',
       type: '',
-    },
-  ];
-
-  const value1 = [
-    {
-      text: '',
-      type: 'save',
-    },
-    {
-      text: 'Truyện hư cấu',
-      type: 'file',
-    },
-    {
-      text: 'Phòng nhân sự',
-      type: 'text',
-    },
-    {
-      text: '1/12/2024 11:52 PM',
-      type: 'text',
-    },
-    {
-      text: '1,111,111 KB',
-      type: 'text-size',
-    },
-    {
-      text: 'Tài liệu của tôi/Truyện hư cấu',
-      type: 'text',
-    },
-    {
-      text: '',
-      type: 'edit',
     },
   ];
   //////////////////////////////////////////////////
@@ -78,19 +49,63 @@ export default function SearchFileResultPage() {
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
+  useEffect(() => {
+    const fetchData = async () => {
+      const deptRes = await getDept();
+      const searchRes = await searchFile(DeptID, UserID, searchData);
+      setDeptData(deptRes?.data?.data?.dept);
+      setResData(searchRes?.data?.data?.data);
+      setRecordCount(searchRes?.data?.data?.count);
+    };
 
+    fetchData();
+  }, []);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
   // #region    FUNCTIONS //////////////////////////
   //////////////////////////////////////////////////
-
+  const getFileDept = (deptId) => {
+    const dept = deptData.find((dept) => dept.DeptID === deptId);
+    return dept?.Name;
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
-
+  const renderSearchResult = () => {
+    return resData.map((file, index) => {
+      const fileData = [
+        {
+          text: '',
+          type: 'save',
+        },
+        {
+          text: file?._source?.Name,
+          type: 'file',
+          id: file?._source?.FileID,
+        },
+        {
+          text: getFileDept(file?._source?.DeptID),
+          type: 'text',
+        },
+        {
+          text: file?._source?.CreatedDate,
+          type: 'text',
+        },
+        {
+          text: file?._source?.Size,
+          type: 'text-size',
+        },
+        {
+          text: '',
+          type: 'edit',
+        },
+      ];
+      return <SrcItem grid={SEARCH_RESULT_GRIDS} value={fileData} />;
+    });
+  };
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
@@ -108,14 +123,12 @@ export default function SearchFileResultPage() {
       <div className={`${styles.resultCtn}`}>
         <div className="w-100">
           <SrcItem grid={SEARCH_RESULT_GRIDS} value={value} />
-          <SrcItem grid={SEARCH_RESULT_GRIDS} value={value1} />
-          <SrcItem grid={SEARCH_RESULT_GRIDS} value={value1} />
-          <SrcItem grid={SEARCH_RESULT_GRIDS} value={value1} />
+          {renderSearchResult()}
         </div>
         <div className={`${styles.pagination}`}>
           <p className="text14 mLeft10">
-            Tìm thấy <span className="text14Bold">3</span> kết quả tài liệu phù
-            hợp.
+            Tìm thấy <span className="text14Bold">{recordCount}</span> kết quả
+            tài liệu phù hợp.
           </p>
           <Pagination />
         </div>

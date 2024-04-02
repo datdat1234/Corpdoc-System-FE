@@ -281,10 +281,9 @@ export const SUPPORT_ITEM_GRIDS = [
 export const SEARCH_RESULT_GRIDS = [
   'col-1',
   'col-8',
-  'col-3-5',
+  'col-5',
   'col-4',
-  'col-3-5',
-  'col-3',
+  'col-5',
   'col-1',
 ];
 
