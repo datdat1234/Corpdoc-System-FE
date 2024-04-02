@@ -98,7 +98,12 @@ export default function SrcItem({ value = [], grid = [] }) {
           icon={<FontAwesomeIcon icon={icon.ellipsisVertical} />}
           onClick={() => setOpenModal(index)}
         />
-        {modal[index] && <BreadCrumbModal ctnStyles="br-15 br-TopRight-2" save={save} setSave={setSave} handleChangeSave={handleChangeSave} isFolder={value[1].type==="file"? false: true} infoItm={value[1].id}/>}
+        {modal[index] && <BreadCrumbModal 
+          ctnStyles="br-15 br-TopRight-2" 
+          save={save} setSave={setSave} 
+          handleChangeSave={handleChangeSave} 
+          isFolder={value[1].type==="file"? false: true} 
+          infoItm={value[1].id}/>}
       </div>
     );
   };
