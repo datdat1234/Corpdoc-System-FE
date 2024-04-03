@@ -34,8 +34,8 @@ export const SIDEBAR_TABS = [
 ];
 
 export const SIDEBAR_NAVIGATE = [
-  '',
-  '',
+  'home',
+  'shared-folder',
   'saved-folder',
   '',
 ];
