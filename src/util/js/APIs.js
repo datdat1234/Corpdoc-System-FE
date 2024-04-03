@@ -217,6 +217,12 @@ export const getSavedFolder = () => {
   });
 };
 
+export const getSharedFolder = () => {
+  return get(`${API_URL}/folder/get-shared-folder`, {
+    companyId: getCompanyId(),
+  });
+};
+
 export const getFolderInfo = (folderId) => {
   return post(
     `${API_URL}/folder/get-folder-info`,
