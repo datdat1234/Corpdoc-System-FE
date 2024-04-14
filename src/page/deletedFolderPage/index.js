@@ -2,25 +2,26 @@ import React, { useState, useEffect } from 'react';
 import BreadCrumb from 'common/BreadCrumb';
 import SrcItem from 'common/SrcItem';
 import styles from './styles.module.css';
-import { HOMEPAGE_ITEM_GRIDS } from 'util/js/constant';
+import { DELETED_ITEM_GRIDS } from 'util/js/constant';
 import Pagination from 'common/Pagination';
-import { getSharedFolder } from 'util/js/APIs';
-import { formatItemFolder, formatItemFile } from 'util/js/helper';
+import { getDeletedFolder } from 'util/js/APIs';
+import { formatItemDeletedFolder, formatItemDeletedFile } from 'util/js/helper';
+import { upload } from '@testing-library/user-event/dist/upload';
 
-export default function SharedFolderPage() {
+export default function DeletedFolderPage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   var header = [
-    {
-      text: '',
-      type: '',
-    },
     {
       text: 'Tên',
       type: 'header',
     },
     {
       text: 'Ngày đăng tải',
+      type: 'header',
+    },
+    {
+      text: 'Ngày xóa',
       type: 'header',
     },
     {
@@ -33,6 +34,7 @@ export default function SharedFolderPage() {
     },
   ];
   const [items, setItems] = useState([]);
+  const [change, setChange] = useState(false);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -40,14 +42,14 @@ export default function SharedFolderPage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const childRes = await getSharedFolder();
+      const childRes = await getDeletedFolder();
       const folders = childRes?.data?.data?.folders;
       const files = childRes?.data?.data?.files;
-      setItems(formatItemFolder(folders).concat(formatItemFile(files)));
+      setItems(formatItemDeletedFolder(folders).concat(formatItemDeletedFile(files)));
     };
 
     fetchData();
-  }, []);
+  }, [change]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
@@ -65,8 +67,10 @@ export default function SharedFolderPage() {
       tabItems.push(
         <div key={i}>
           <SrcItem
-            grid={HOMEPAGE_ITEM_GRIDS}
+            grid={DELETED_ITEM_GRIDS}
             value={i === 0 ? header : items[i - 1]}
+            update={change}
+            setUpdate={setChange}
           />
         </div>
       );

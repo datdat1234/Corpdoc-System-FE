@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
@@ -16,12 +16,12 @@ import {
   PROFILE_NAVIGATE_ADMIN 
 } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Navigate } from 'react-router-dom';
 
 export default function SettingSidebar() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentTab, setCurrentTab] = useState(0);
   const userInfo = useSelector((state) => state.app.userInfo);
   let profileTab, profileTabIcon, profileNavigate;
@@ -46,6 +46,14 @@ export default function SettingSidebar() {
 
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
+  useEffect(()=>{
+    switch (location.pathname){
+      case '/staff-manage':
+        setCurrentTab(1);
+        break;
+      default: setCurrentTab(0);
+    }
+  },[])
 
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////

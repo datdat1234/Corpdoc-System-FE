@@ -26,6 +26,27 @@ export const refreshToken = (refreshToken) => {
   });
 };
 
+export const getAllUsersDept = () => {
+  return post(`${API_URL}/user/get-all-users-dept`, {
+    companyId: getCompanyId(),
+  });
+};
+
+export const resetPasswordUser = (staffId) => {
+  return post(`${API_URL}/user/reset-password`, {
+    companyId: getCompanyId(),
+    staffId: staffId
+  });
+};
+
+export const changeStatusUser = (staffId, crtStatus) => {
+  return post(`${API_URL}/user/change-status`, {
+    companyId: getCompanyId(),
+    staffId: staffId,
+    crtStatus: crtStatus
+  });
+};
+
 //#endregion
 
 //#region Profile
@@ -223,6 +244,12 @@ export const getSharedFolder = () => {
   });
 };
 
+export const getDeletedFolder = () => {
+  return get(`${API_URL}/folder/get-deleted-folder`, {
+    companyId: getCompanyId(),
+  });
+};
+
 export const getFolderInfo = (folderId) => {
   return post(
     `${API_URL}/folder/get-folder-info`,
@@ -242,6 +269,17 @@ export const editFolder = (folderData) => {
       folderName: folderData.folderName,
       desc: folderData.desc,
       author: folderData.author,
+    },
+  );
+};
+
+export const setChangeFolderDelete = (folderId, isDeleted) => {
+  return post(
+    `${API_URL}/folder/set-change-delete`,
+    {
+      companyId: getCompanyId(),
+      folderId: folderId,
+      isDeleted: isDeleted,
     },
   );
 };
@@ -297,4 +335,16 @@ export const uploadFileSupport = (fileMetadata, fileContent) => {
     'Content-Type': 'multipart/form-data',
   });
 };
+
+export const setChangeFileDelete = (fileId, isDeleted) => {
+  return post(
+    `${API_URL}/file/set-change-delete`,
+    {
+      companyId: getCompanyId(),
+      fileId: fileId,
+      isDeleted: isDeleted,
+    },
+  );
+};
+
 //#endregion

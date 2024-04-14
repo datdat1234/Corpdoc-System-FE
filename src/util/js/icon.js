@@ -36,6 +36,10 @@ import {
   faClipboardUser,
   faTriangleExclamation,
   faCircleExclamation,
+  faTrashArrowUp,
+  faRotateLeft,
+  faUserLock,
+  faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -81,6 +85,10 @@ const icon = {
   clipboardUser: faClipboardUser,
   triangleExclamation: faTriangleExclamation,
   circleExclamation: faCircleExclamation,
+  trashArrowUp: faTrashArrowUp,
+  rotateLeft: faRotateLeft,
+  userLock: faUserLock,
+  unlock: faUnlock,
 };
 
 export default icon;

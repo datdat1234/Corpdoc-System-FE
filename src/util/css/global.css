@@ -46,6 +46,10 @@
   height: 24px;
 }
 
+.h-30 {
+  height: 30px;
+}
+
 .h-39 {
   height: 39px;
 }
@@ -80,8 +84,12 @@
   width: 24px;
 }
 
+.w-30 {
+  width: 30px;
+}
+
 .w-340 {
-  width: 340px
+  width: 340px;
 }
 
 .w-auto {

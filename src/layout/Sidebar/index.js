@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './styles.module.css';
 import SidebarTab from 'common/SidebarTab';
 import FolderStruct from 'common/FolderStruct';
@@ -22,6 +22,7 @@ export default function Sidebar({}) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentTab, setCurrentTab] = useState(0);
   const [child, setChild] = useState([]);
   const userInfo = useSelector((state) => state.app.userInfo);
@@ -55,6 +56,12 @@ export default function Sidebar({}) {
 
     fetchData();
   }, [switchFolder]);
+
+  useEffect(()=>{
+    if (location.pathname === '/home') {
+      setCurrentTab(0);
+    }
+  },[location.pathname])
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
