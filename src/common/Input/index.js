@@ -15,7 +15,7 @@ export default function Input({
   placeholder = '',
   canChange = true,
   onEnter = (e) => {},
-  defaultValue='',
+  defaultValue = '',
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
@@ -90,7 +90,10 @@ export default function Input({
         <div className={`${styles.selectCtn}`}>
           <Select
             ref={selectRef}
-            value={{ value: defaultValue, label: defaultValue }}
+            value={{
+              value: placeholder !== '' ? placeholder : defaultValue,
+              label: placeholder !== '' ? placeholder : defaultValue,
+            }}
             options={handleOptions()}
             styles={colourStyles}
             onChange={(item) => handleChangeSelect(item.value)}
