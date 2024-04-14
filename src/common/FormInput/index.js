@@ -6,6 +6,7 @@ import icon from 'util/js/icon';
 export default function FormInput({
   name = '',
   type = 'text',
+  inputVal = '',
   setInputVal = null,
   onEnter,
 }) {
@@ -41,7 +42,7 @@ export default function FormInput({
         className={`form-control ${styles.input}`}
         aria-label="Small"
         aria-describedby="inputGroup-sizing-sm"
-        // value={inputVal}
+        value={inputVal}
         onChange={e => setInputVal(e.target.value)}
         onKeyDown={(e) => {if (e.key === "Enter") onEnter()}}
       />

@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import BreadCrumbModal from 'common/BreadCrumbModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
-import { getBreadCrumb, setChangeSaveFolder } from 'util/js/APIs';
+import { getBreadCrumb, setChangeSaveFolder, setChangeFolderDelete } from 'util/js/APIs';
 import UseOnClickOutside from 'util/hook/useOnClickOutside';
 import { setNotification } from 'util/js/helper';
+import { setFolderPage } from '../../redux/action/app';
 
 export default function BreadCrumb({}) {
   // #region    VARIABLES //////////////////////////
@@ -18,6 +19,8 @@ export default function BreadCrumb({}) {
   const [item, setItems] = useState('');
   var switchFolder = useSelector((state) => state.app.folderPage);
   const ref = useRef();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -50,6 +53,18 @@ export default function BreadCrumb({}) {
       }
     });
   };
+  
+  const handleDeleteBtn = async () => {
+    await setChangeFolderDelete(id, false).then((res)=>{
+      if (res?.data?.data) {
+        setNotification("success", "Đã xóa thành công.");
+        navigate(-1);
+        dispatch(setFolderPage(!switchFolder));
+      } else {
+        setNotification("error", res?.data?.resultMessage?.vi);
+      }
+    });
+  };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -71,7 +86,13 @@ export default function BreadCrumb({}) {
         {item}
       </p>
       <FontAwesomeIcon icon={icon.caretDown} />
-      {modal && <BreadCrumbModal ctnStyles='w-100 br-2 br-BottomLeft-15 br-BottomRight-15' save={save} setSave={setSave} handleChangeSave={handleChangeSave} infoItm={id} />}
+      {modal && 
+      <BreadCrumbModal 
+        ctnStyles='w-100 br-2 br-BottomLeft-15 br-BottomRight-15' 
+        save={save} setSave={setSave} 
+        handleChangeSave={handleChangeSave} 
+        handleDeleteBtn={handleDeleteBtn}
+        infoItm={id} />}
     </div>
   );
 }

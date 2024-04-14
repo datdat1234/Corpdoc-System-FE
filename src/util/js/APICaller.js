@@ -155,7 +155,7 @@ export const handleResponse = async (res) => {
       if (refresh?.status !== '00065') return false;
       break;
     case '00017':
-      setNotification('error', resultMessage);
+      logout();
       break;
     case '00019':
       setNotification('error', resultMessage);

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import UseOnClickOutside from 'util/hook/useOnClickOutside';
 import styles from './styles.module.css';
 import Button from 'common/Button';
@@ -12,12 +13,14 @@ export default function BreadCrumbModal({
   save,
   setSave,
   handleChangeSave,
+  handleDeleteBtn,
   isFolder = true,
   infoItm = '',
 }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.app.userInfo);
   
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
@@ -76,7 +79,31 @@ export default function BreadCrumbModal({
         </div>
       );
     }
-    for (let i = 2; i < tabLength; i++) {
+    if (userInfo.Role !== 'Staff') {
+      tabItems.push(
+        <div key={2} className={styles.tabCtn}>
+          <Button
+            ctnStyles={`h-60 border-bottom-1 border-style-solid`}
+            name={BREAD_CRUMB_TABS[2].text}
+            icon1Styles="w-24 h-24 fs-16"
+            icon2Styles="w-24 h-24 fs-16"
+            btnStyles="bg-bgColor4 text14SemiBold pLeft10"
+            icon1={
+              BREAD_CRUMB_TABS[2].icon1 && (
+                <FontAwesomeIcon icon={BREAD_CRUMB_TABS[2].icon1} />
+              )
+            }
+            icon2={
+              BREAD_CRUMB_TABS[2].icon2 && (
+                <FontAwesomeIcon icon={BREAD_CRUMB_TABS[2].icon2} />
+              )
+            }
+            onClick={() => console.log(1)}
+          />
+        </div>
+      );
+    }
+    for (let i = 3; i < tabLength; i++) {
       tabItems.push(
         <div key={i} className={styles.tabCtn}>
           <Button
@@ -97,7 +124,7 @@ export default function BreadCrumbModal({
                 <FontAwesomeIcon icon={BREAD_CRUMB_TABS[i].icon2} />
               )
             }
-            onClick={() => navigate(`/${i===2 && isFolder? 'edit-folder' : BREAD_CRUMB_TABS[i].navigate}`,{
+            onClick={() => navigate(`/${i===3 && isFolder? 'edit-folder' : BREAD_CRUMB_TABS[i].navigate}`,{
               state: { id: infoItm },})
             }
           />
@@ -109,10 +136,24 @@ export default function BreadCrumbModal({
   //////////////////////////////////////////////////
   // #endregion VIEWS //////////////////////////////
   return (
-    <div
-      className={`pHorizontal20 ${styles.root} ${ctnStyles}`}
-    >
-      {renderTabs()}
+    <div className={`${styles.root} ${ctnStyles}`}>
+      <div
+        className={`pHorizontal20 bg-bgColor4 ${userInfo.Role === 'Staff' && 'br-BottomLeft-15 br-BottomRight-15'}`}
+      >
+        {renderTabs()}
+      </div>
+      {userInfo.Role !== 'Staff' &&
+        <div key={6} className={`pHorizontal20 bg-bgColor5 br-BottomLeft-15 br-BottomRight-15 ${styles.tabCtn}`}>
+          <Button
+            ctnStyles={`h-60 bg-bgColor5`}
+            name='Xóa'
+            icon1Styles="w-24 h-24 fs-16 header"
+            btnStyles="bg-bgColor5 header text14SemiBold pLeft10"
+            icon1={<FontAwesomeIcon icon={icon.trashCan} />}
+            onClick={() => handleDeleteBtn()}
+          />
+        </div>
+      }
     </div>
   );
 }

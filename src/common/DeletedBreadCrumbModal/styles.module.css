@@ -6,7 +6,7 @@
   min-width: 270px;
   outline: 1px solid var(--text75);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25), -4px 4px 4px rgba(0, 0, 0, 0.25);
-  /* background-color: var(--bgColor4); */
+  background-color: var(--bgColor5);
   z-index: 1;
 }
 

@@ -37,7 +37,7 @@ export const SIDEBAR_NAVIGATE = [
   'home',
   'shared-folder',
   'saved-folder',
-  '',
+  'deleted-folder',
 ];
 
 export const SIDEBAR_ICONS = [
@@ -228,6 +228,11 @@ export const BREAD_CRUMB_TABS = [
     icon2: null,
   },
   {
+    icon1: icon.share,
+    text: 'Chia sẻ',
+    icon2: null,
+  },
+  {
     icon1: icon.pencil,
     text: 'Sửa thông tin',
     icon2: icon.caretRight,
@@ -244,6 +249,14 @@ export const BREAD_CRUMB_TABS = [
     text: 'Thêm thư mục',
     icon2: icon.caretRight,
     navigate: 'upload-folder',
+  },
+];
+
+export const DELETED_BREAD_CRUMB_TABS = [
+  {
+    icon1: icon.trashArrowUp,
+    text: 'Khôi phục tài liệu',
+    icon2: null,
   },
 ];
 
@@ -278,6 +291,13 @@ export const SUPPORT_ITEM_GRIDS = [
   'col-1',
 ];
 
+export const DELETED_ITEM_GRIDS = [
+  'col-7',
+  'col-6',
+  'col-6',
+  'col-4',
+  'col-1',
+];
 export const SEARCH_RESULT_GRIDS = [
   'col-1',
   'col-8',
@@ -298,11 +318,11 @@ export const APPROVAL_GRIDS = [
 ];
 
 export const STAFF_MANAGE_GRIDS = [
-  'col-1',
-  'col-10',
+  'col-2',
+  'col-8',
   'col-6',
   'col-5',
-  'col-2',
+  'col-3',
 ];
 
 export const NOT_SHOW_SIDEBAR = [

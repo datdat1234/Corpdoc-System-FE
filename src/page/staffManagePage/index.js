@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import Button from 'common/Button';
@@ -8,18 +9,37 @@ import Input from 'common/Input';
 import { STAFF_MANAGE_GRIDS } from 'util/js/constant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import { getUsedStorage, getAllUsersDept, resetPasswordUser, changeStatusUser } from 'util/js/APIs';
+import { getNameRole, setNotification } from 'util/js/helper';
 
 export default function StaffManagePage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.app.userInfo);
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckAllInput, setIsCheckAllInput] = useState(true);
+  const [usedStorage, setUsedStorage] = useState(0);
+  const [deptData, setDeptData] = useState({Name: ''});
+  const [usersData, setUsersData] = useState([]);
+  const [change, setChange] = useState(true);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
   
   // #region    useEffect //////////////////////////
   //////////////////////////////////////////////////
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const usedStorageRes = await getUsedStorage (userInfo.DeptID);
+      setUsedStorage(usedStorageRes?.data?.data);
+
+      const deptInfoRes = await getAllUsersDept();
+      setDeptData(deptInfoRes?.data?.data?.deptInfo);
+      setUsersData(deptInfoRes?.data?.data?.usersInDept);
+    }
+
+    fetchData();
+  },[change])
 
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
@@ -53,31 +73,44 @@ export default function StaffManagePage() {
     },
   ];
 
-  const value1 = [
-    {
-      text: '',
-      type: 'checkbox',
-      isChecked: isChecked,
-      setCheckAll: setIsChecked,
-      setIsCheckAllInput: setIsCheckAllInput,
-    },
-    {
-      text: 'Nguyễn Văn A',
-      type: 'text',
-    },
-    {
-      text: 'user1_group1_company',
-      type: 'text',
-    },
-    {
-      text: 'Trưởng phòng',
-      type: 'text',
-    },
-    {
-      text: '',
-      type: 'approval',
-    },
-  ];
+  const handleResetPassword = async () => {
+    if (isCheckAllInput) {
+      let ids= [];
+      for (let i = 0; i < usersData.length; i++) {
+        ids.push(usersData[i].UserID);
+      }
+      await resetPasswordUser(ids).then((res) => {
+        if (res?.data?.data) {
+          setNotification(
+            'success',
+            'Đã cài đặt lại mật khẩu cho toàn bộ người dùng.'
+          );
+        } else {
+          setNotification('error', res?.data?.resultMessage?.vi);
+        }
+      });
+    }
+  }
+
+  const handleBlockUser = async () => {
+    if (isCheckAllInput) {
+      let ids= [];
+      for (let i = 0; i < usersData.length; i++) {
+        ids.push(usersData[i].UserID);
+      }
+      await changeStatusUser(ids, 'Active').then((res) => {
+        if (res?.data?.resultCode === "00001") {
+          setNotification(
+            'success',
+            'Đã chặn toàn bộ người dùng.'
+          );
+          setChange(!change)
+        } else {
+          setNotification('error', res?.data?.resultMessage?.vi);
+        }
+      });
+    }
+  }
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////
 
@@ -91,20 +124,20 @@ export default function StaffManagePage() {
       <div className={`border-bottom-1 border-style-solid border-bg5-60 br-10 ${styles.navCtn}`}>
         <div className='col-12'>
           <Button
-            name="PHÒNG NHÂN SỰ"
+            name={deptData.Name}
             ctnStyles="h-100 text24Black"
             btnStyles="bg-bgColor4 pLeft10 main"
-            onClick={() => console.log(-1)}
+            onClick={() => {}}
           />
         </div>
         <div className={`${styles.storageCtn} pVertical15 pHorizontal15`}>
           <p className="text14 pVertical5">
-            Đã sử dụng 14,62 GB trong tổng số 15 GB (76%)
+            Đã sử dụng {usedStorage} GB trong tổng số 1.5 GB ({Math.round(((100 / 1.5) * usedStorage) * 100) / 100}%)
           </p>
           <div className={`${styles.progressCtn} progress bg-text60`}>
             <div
               className={`${styles.progressBar} progress-bar bg-main`}
-              style={{ width: '25%' }}
+              style={{ width: (((100 / 1.5) * usedStorage))+'%' }}
             ></div>
           </div>
         </div>
@@ -137,6 +170,7 @@ export default function StaffManagePage() {
               name="Cài đặt lại mật khẩu"
               ctnStyles="pHorizontal15 pVertical10 br-10 text14Bold bg-bgColor3"
               btnStyles="bg-bgColor3 black"
+              onClick={()=>handleResetPassword()}
             />
           </div>
           <div className={`${styles.btnWrapper} bg-error`}>
@@ -144,17 +178,47 @@ export default function StaffManagePage() {
               name="Chặn tài khoản"
               ctnStyles="pHorizontal15 pVertical10 br-10 text14Bold bg-error"
               btnStyles="bg-error white"
+              onClick={()=>handleBlockUser()}
             />
           </div>
           <div className={`${styles.totalWrapper} text-end main text20Black`}>
-            Tổng cộng: 3
+            Tổng cộng: {usersData.length}
           </div>
         </div>
-        <div className={`${styles.resultCtn}`}>
+        <div className={`${styles.resultCtn} ps-1`}>
           <div className="w-100">
             <SrcItem grid={STAFF_MANAGE_GRIDS} value={value} />
-            <SrcItem grid={STAFF_MANAGE_GRIDS} value={value1} />
-            <SrcItem grid={STAFF_MANAGE_GRIDS} value={value1} />
+            {usersData.map((user, index)=> {
+              let userInfo = [
+                {
+                  text: '',
+                  type: 'checkbox',
+                  isChecked: isChecked,
+                  setCheckAll: setIsChecked,
+                  setIsCheckAllInput: setIsCheckAllInput,
+                },
+                {
+                  text: user.Name,
+                  type: 'text',
+                  id: user.UserID,
+                },
+                {
+                  text: user.Username,
+                  type: 'text',
+                },
+                {
+                  text: getNameRole(user.Role),
+                  type: 'text',
+                },
+                {
+                  text: user.Status,
+                  type: 'manage',
+                },
+              ];
+              return(
+                <SrcItem grid={STAFF_MANAGE_GRIDS} value={userInfo} setUpdate={setChange} update={change}/>
+              )
+            })}
           </div>
           <div className={`${styles.pagination}`}>
             <Pagination />

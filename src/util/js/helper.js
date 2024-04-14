@@ -69,6 +69,10 @@ export const formatItemFolder = (data) => {
   const formattedData = [];
   if(data !== undefined) {
     for (let i = 0; i < data.length; i++) {
+      let createdDate;
+      if (data[i].CreatedDate) {
+        createdDate = new Date(data[i].CreatedDate);
+      }
       formattedData.push([
         {
           text: data[i].IsSave,
@@ -80,7 +84,11 @@ export const formatItemFolder = (data) => {
           id: data[i].FolderID,
         },
         {
-          text: data[i].CreatedDate,
+          text: createdDate.toLocaleString('en-GB',{
+            dateStyle: 'short',
+            timeStyle: 'short',
+            timeZone: 'Asia/Ho_Chi_Minh',
+          }),
           type: 'text',
         },
         {
@@ -136,6 +144,10 @@ export const formatItemFile = (data) => {
   const formattedData = [];
   if(data !== undefined) {
     for (let i = 0; i < data.length; i++) {
+      let createdDate;
+      if (data[i].CreatedDate) {
+        createdDate = new Date(data[i].CreatedDate);
+      }
       formattedData.push([
         {
           text: data[i].IsSave,
@@ -147,7 +159,11 @@ export const formatItemFile = (data) => {
           id: data[i].FileID,
         },
         {
-          text: data[i].CreatedDate,
+          text: createdDate.toLocaleString('en-GB',{
+            dateStyle: 'short',
+            timeStyle: 'short',
+            timeZone: 'Asia/Ho_Chi_Minh',
+          }),
           type: 'text',
         },
         {
@@ -161,7 +177,100 @@ export const formatItemFile = (data) => {
       ]);
     }
   }
-  // console.log(formattedData)
+  return formattedData;
+};
+
+export const formatItemDeletedFolder = (data) => {
+  const formattedData = [];
+  if(data !== undefined) {
+    for (let i = 0; i < data.length; i++) {
+      let createdDate, deletedDate;
+      if (data[i].CreatedDate) {
+        createdDate = new Date(data[i].CreatedDate);
+      }
+      if (data[i].UpdatedDate) {
+        deletedDate = new Date(data[i].UpdatedDate);
+      }
+      formattedData.push([
+        {
+          text: data[i].Name,
+          type: 'folder',
+          id: data[i].FolderID,
+        },
+        {
+          text: createdDate.toLocaleString('en-GB',{
+            dateStyle: 'short',
+            timeStyle: 'short',
+            timeZone: 'Asia/Ho_Chi_Minh',
+          }),
+          type: 'text',
+        },
+        {
+          text: deletedDate.toLocaleString('en-GB',{
+            dateStyle: 'short',
+            timeStyle: 'short',
+            timeZone: 'Asia/Ho_Chi_Minh',
+          }),
+          type: 'text',
+        },
+        {
+          text: '',
+          type: '',
+        },
+        {
+          text: '',
+          type: 'restore',
+        },
+      ]);
+    }
+  }
+  return formattedData;
+};
+
+export const formatItemDeletedFile = (data) => {
+  const formattedData = [];
+  if(data !== undefined) {
+    for (let i = 0; i < data.length; i++) {
+      let createdDate, deletedDate;
+      if (data[i].CreatedDate) {
+        createdDate = new Date(data[i].CreatedDate);
+      }
+      if (data[i].UpdatedDate) {
+        deletedDate = new Date(data[i].UpdatedDate);
+      }
+      formattedData.push([
+        {
+          text: data[i].Name,
+          type: 'file',
+          id: data[i].FileID,
+        },
+        {
+          text: createdDate.toLocaleString('en-GB',{
+            dateStyle: 'short',
+            timeStyle: 'short',
+            timeZone: 'Asia/Ho_Chi_Minh',
+          }),
+          type: 'text',
+        },
+        {
+          text: deletedDate.toLocaleString('en-GB',{
+            dateStyle: 'short',
+            timeStyle: 'short',
+            timeZone: 'Asia/Ho_Chi_Minh',
+          }),
+          type: 'text',
+        },
+        {
+          text: data[i].Size,
+          type: 'text-size',
+        },
+        {
+          text: '',
+          type: 'restore',
+        },
+      ]);
+    }
+  }
   return formattedData;
 };
 

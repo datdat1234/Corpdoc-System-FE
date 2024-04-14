@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'universal-cookie';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import { AUTH_FORM_WIDTH } from 'util/js/constant';
@@ -11,6 +12,7 @@ import CheckBoxForm from 'common/CheckBoxForm';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icon from 'util/js/icon';
+import base64 from 'base-64'
 ////////API IMPORT //////////////////////////////////
 ////////////////////////////////////////////////////
 import { login, getRootFolder } from 'util/js/APIs';
@@ -19,13 +21,15 @@ export default function LoginPage({ setIsLogin }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
   const formWidth = AUTH_FORM_WIDTH;
+  const cookies = new Cookies();
   const [tab, setTab] = useState(1);
   const [isResetPass, setIsResetPass] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState(cookies.get('username')?? '');
+  const [password, setPassword] = useState(cookies?.get('password')?.toString()? base64.decode(cookies?.get('password')?.toString()) : '');
+  const [rememberMe, setRememberMe] = useState(cookies.get('username') && cookies.get('password'));
   const [errUsername, setErrUsername] = useState('');
   const [errPassword, setErrPassword] = useState('');
   const [errLogin, setErrLogin] = useState('');
@@ -97,6 +101,10 @@ export default function LoginPage({ setIsLogin }) {
           localStorage.setItem('root', root.FolderID);
         }
         setIsLogin(userInfo.accessToken);
+        if (rememberMe) {
+          cookies.set('username', userInfo.Username);
+          cookies.set('password', base64.encode(String(password)));
+        }
         navigate(`/home`);
         setIsLoad(false);
         dispatch(setGlobalLoading(false));
@@ -129,13 +137,14 @@ export default function LoginPage({ setIsLogin }) {
     else
       return (
         <>
-          <FormInput name="Username" type="text" setInputVal={setUsername} onEnter={() => {handleNavigate(tab)}}/>
+          <FormInput name="Username" type="text" inputVal={username} setInputVal={setUsername} onEnter={() => {handleNavigate(tab)}}/>
           {errUsername && (
             <div className={`mVertical10 text16Bold ${styles.errCtn}`}>{errUsername}</div>
           )}
           <FormInput
             name="Mật khẩu"
             type="password"
+            inputVal={password}
             setInputVal={setPassword}
             onEnter={() => {handleNavigate(tab)}}
           />
@@ -148,7 +157,7 @@ export default function LoginPage({ setIsLogin }) {
           <div
             className={`d-flex justify-content-between align-items-center ${styles.forgotPass}`}
           >
-            <CheckBoxForm text="Ghi nhớ mật khẩu" textStyles="text14" />
+            <CheckBoxForm text="Ghi nhớ mật khẩu" textStyles="text14" checked={rememberMe} setCheck={setRememberMe}/>
             <p
               className={`text14 ${styles.hoverPass}`}
               onClick={handleResetPass}
