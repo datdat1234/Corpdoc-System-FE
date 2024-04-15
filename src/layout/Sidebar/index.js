@@ -51,7 +51,7 @@ export default function Sidebar({}) {
 
       //get used storage
       const usedStorageRes = await getUsedStorage (userInfo.DeptID);
-      setUsedStorage(usedStorageRes?.data?.data); 
+      setUsedStorage(usedStorageRes?.data?.data > 1.5 ? 1.5 : usedStorageRes.data?.data); 
     };
 
     fetchData();
@@ -177,6 +177,7 @@ export default function Sidebar({}) {
       </div>
       <div className={`${styles.storageCtn} pVertical15 pHorizontal15`}>
         <p className="text14 pVertical5">
+          {1.5-usedStorage < 0.5 && <p className="error text14Bold">Đã sử dụng gần hết bộ nhớ</p>}
           Đã sử dụng {usedStorage} GB trong tổng số 1.5 GB ({Math.round(((100 / 1.5) * usedStorage) * 100) / 100}%)
         </p>
         <div className={`${styles.progressCtn} progress bg-text60`}>

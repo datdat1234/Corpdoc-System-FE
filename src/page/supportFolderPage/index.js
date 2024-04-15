@@ -101,7 +101,7 @@ export default function SupportFolderPage() {
     };
 
     fetchData();
-  }, [pathDoc]);
+  }, [pathDoc || typeDoc]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 
