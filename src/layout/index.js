@@ -29,7 +29,7 @@ export default function Layout({ children }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [scale, setScale] = useState(100);
-  const [width, setWidth] = useState(100);
+  const [width, setWidth] = useState(50);
   const [sidebarWidth, setSidebarWidth] = useState(33.328);
   const [showPdf, setShowPdf] = useState(false);
   const [isEnterPage, setIsEnterPage] = useState(false);
@@ -109,14 +109,14 @@ export default function Layout({ children }) {
     return (
       <div className={`container-fluid d-flex flex-row ${styles.root}`}>
         <div
-          className="position-relative"
+          className="col-12 position-relative"
           ref={resizableRef}
           style={{ width: `${width}%` }}
         >
           <div className={`d-flex flex-column ${styles.leftDiv}`}>
             <Header />
             <div className={`d-flex flex-row ${styles.bodyLeft}`}>
-              {/* {checkShowSideBar() && (
+              {checkShowSideBar() && (
                 <div
                   className={`${styles.sidebar}`}
                   ref={resizableSidebarRef}
@@ -129,7 +129,7 @@ export default function Layout({ children }) {
                   ></div>
                 </div>
               )}
-              {checkSettingPage() && <SettingSidebar />} */}
+              {checkSettingPage() && <SettingSidebar />}
               <div
                 className={`${styles.contentCtn}`}
                 style={{
@@ -145,14 +145,14 @@ export default function Layout({ children }) {
             </div>
             {noti.type && <Notification noti={noti}/>}
           </div>
-          {/* <div
+          <div
             className={`d-flex flex-column justify-content-center align-items-center ${styles.resizer}`}
             onMouseDown={handleMouseDown}
           >
             <FontAwesomeIcon icon={icon.gripLinesVertical} />
-          </div> */}
+          </div>
         </div>
-        {/* <div
+        <div
           className={`${styles.pdfCtn} ${!showPdf && 'bg-bgColor7'}`}
           style={{ width: `${100 - width}%` }}
         >
@@ -182,7 +182,7 @@ export default function Layout({ children }) {
               </div>
             </div>
           )}
-        </div> */}
+        </div>
       </div>
     );
   };
