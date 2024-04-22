@@ -199,72 +199,6 @@ export default function Header() {
         <img className={styles.logo} src={logo1} alt={'Logo'}></img>
       </div>
       <div className={styles.remainCtn}></div>
-      {userInfo.Role === 'Admin' && (
-        <div className="position-relative">
-          {isHovered === 1 || isHovered === 2 ? (
-            <Button
-              ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
-              icon1Styles="text"
-              icon1={<FontAwesomeIcon icon={icon.userGroup} size={`lg`} />}
-              onClick={() => ({})}
-            />
-          ) : (
-            <Button
-              name={'Phòng Nhân sự'}
-              ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
-              icon1Styles="text"
-              icon2Styles="text mLeft10"
-              btnStyles="textH6Black bg-bgColor3 text mHorizontal5"
-              icon1={<FontAwesomeIcon icon={icon.userGroup} size={`lg`} />}
-              icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
-              onClick={() => ({})}
-            />
-          )}
-        </div>
-      )}
-      <div
-        className="position-relative"
-        onMouseEnter={() => handleMouseEnter(1)}
-        onMouseLeave={() => handleMouseLeave()}
-      >
-        {isHovered === 1 ? (
-          <Button
-            name={'Tải lên tài liệu'}
-            ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-TopLeft-15 br-TopRight-15 bg-bgColor5"
-            icon1Styles="header"
-            icon2Styles="header mLeft10"
-            btnStyles="textH6Black bg-bgColor5 header mHorizontal5"
-            icon1={<FontAwesomeIcon icon={icon.fileArrowUp} size={`lg`} />}
-            icon2={<FontAwesomeIcon icon={icon.chevronDown} />}
-            onClick={() => ({})}
-          />
-        ) : (
-          <Button
-            ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor5"
-            icon1Styles="header"
-            icon1={<FontAwesomeIcon icon={icon.fileArrowUp} size={`lg`} />}
-            onClick={() => ({})}
-          />
-        )}
-        {isHovered === 1 && (
-          <HoverModal
-            ctnStyles="bg-bgColor4 border-color-bg5"
-            icon={uploadIcon}
-            name={uploadTab}
-            lastBtnStyles={
-              userInfo.Role === 'Staff' ? '' : 'textH6Black header bg-bgColor5'
-            }
-            lastBtnColor={
-              userInfo.Role === 'Staff' ? 'bg-bgColor4' : 'bg-bgColor5'
-            }
-            isFolder={true}
-            onClick={uploadNavigate}
-            smallHoverIDs={[2,3]}
-            onClickSmallHover={uploadSmallhover}
-            setIsHovered1={setIsHovered}
-          />
-        )}
-      </div>
       <div
         className="position-relative"
         onMouseEnter={() => handleMouseEnter(2)}
@@ -306,45 +240,6 @@ export default function Header() {
             ]}
           />
         )}
-      </div>
-      {userInfo.Role !== 'Staff' && (
-        <div
-          className="position-relative"
-          onMouseEnter={() => handleMouseEnter()}
-          onMouseLeave={() => handleMouseLeave()}
-        >
-          <Button
-            ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
-            icon1Styles="text"
-            icon1={<FontAwesomeIcon icon={icon.fileCircleCheck} size={`2x`} />}
-            onClick={() => navigate('/approval')}
-          />
-        </div>
-      )}
-      <div
-        className="position-relative"
-        onMouseEnter={() => handleMouseEnter()}
-        onMouseLeave={() => handleMouseLeave()}
-      >
-        {!openNoti ? (
-          <div className={`${styles.notiBtnCtn}`}>
-            <Button
-              ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 bg-bgColor3"
-              icon1Styles="text"
-              icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
-              onClick={handleClickNotiBtn}
-            />
-            {notiAlert && <div className={`${styles.notiBtnAlert}`}></div>}
-          </div>
-        ) : (
-          <Button
-            ctnStyles="d-flex align-items-center justify-content-between pHorizontal15 br-15 br-BottomRight-2 bg-bgColor3"
-            icon1Styles="text"
-            icon1={<FontAwesomeIcon icon={icon.bell} size={`2x`} />}
-            onClick={handleClickNotiBtn}
-          />
-        )}
-        {openNoti && <NotificationBox notis={noti} />}
       </div>
       <div
         className="position-relative"
