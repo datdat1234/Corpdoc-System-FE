@@ -3,27 +3,40 @@ import SrcItem from 'common/SrcItem';
 import styles from './styles.module.css';
 import { HOMEPAGE_ITEM_GRIDS } from 'util/js/constant';
 import Pagination from 'common/Pagination';
-import { getChildByFolderId } from 'util/js/APIs';
-import { formatItemFolder } from 'util/js/helper';
+import { getCompanies } from 'util/js/APIs';
+import { formatCompany } from 'util/js/helper';
 
 export default function HomePage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const itemPerPage = 20;
   var header = [
     {
-      text: '',
-      type: '',
-    },
-    {
-      text: 'Tên',
+      text: 'Tên công ty',
       type: 'header',
     },
     {
-      text: 'Ngày đăng tải',
+      text: 'Dung lượng',
       type: 'header',
     },
     {
-      text: 'Kích thước',
+      text: 'Số lượng quản trị viên',
+      type: 'header',
+    },
+    {
+      text: 'Số lượng quản lí',
+      type: 'header',
+    },
+    {
+      text: 'Số lượng nhân viên',
+      type: 'header',
+    },
+    {
+      text: 'Trạng thái',
+      type: 'header',
+    },
+    {
+      text: 'Ngày hết hạn',
       type: 'header',
     },
     {
@@ -32,6 +45,7 @@ export default function HomePage() {
     },
   ];
   const [items, setItems] = useState([]);
+  const [crtPage, setCrtPage] = useState(1);
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -39,10 +53,10 @@ export default function HomePage() {
   //////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
-      const rootId = await localStorage.getItem('root');
-      const childRes = await getChildByFolderId(rootId);
-      const folders = childRes?.data?.data?.child;
-      setItems(formatItemFolder(folders));
+      const comRes = await getCompanies();
+      if (comRes.status === 200) {
+        setItems(comRes?.data?.data?.company);
+      }
     };
 
     fetchData();
@@ -59,16 +73,22 @@ export default function HomePage() {
   // #region    VIEWS //////////////////////////////
   //////////////////////////////////////////////////
   const renderItem = () => {
-    const tabItems = [];
-    for (let i = 0; i <= items.length; i++) {
-      tabItems.push(
-        <div key={i}>
-          <SrcItem
-            grid={HOMEPAGE_ITEM_GRIDS}
-            value={i === 0 ? header : items[i - 1]}
-          />
-        </div>
-      );
+    const tabItems = [
+      <div key={0}>
+        <SrcItem grid={HOMEPAGE_ITEM_GRIDS} value={header} />
+      </div>,
+    ];
+    for (let i = 0; i < items.length; i++) {
+      if (i >= (crtPage - 1) * itemPerPage && i < crtPage * itemPerPage) {
+        tabItems.push(
+          <div key={i + 1}>
+            <SrcItem
+              grid={HOMEPAGE_ITEM_GRIDS}
+              value={formatCompany(items[i])}
+            />
+          </div>
+        );
+      }
     }
     return tabItems;
   };
@@ -79,7 +99,12 @@ export default function HomePage() {
       <div className={`${styles.wrapper}`}>
         <div className="w-100">{renderItem()}</div>
         <div className={`${styles.pagination}`}>
-          <Pagination />
+          <Pagination
+            selectedPage={crtPage}
+            setSelectedPage={setCrtPage}
+            itemLength={items.length}
+            itemPerPage={itemPerPage}
+          />
         </div>
       </div>
     </div>

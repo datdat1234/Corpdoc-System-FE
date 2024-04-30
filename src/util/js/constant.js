@@ -1,7 +1,7 @@
 import icon from './icon';
 
 export const BASE_URL = process.env.REACT_APP_BE_URL || 'http://localhost:3001';
-export const API_URL = `${BASE_URL}/api`;
+export const API_URL = `${BASE_URL}/api/system`;
 export const is1920x1080 = window.innerWidth === 1920;
 export const is1920OrMore = window.innerWidth >= 1920;
 export const is1440x900 = window.innerWidth === 1440;
@@ -276,10 +276,13 @@ export const NOTI_TABS = [
 ];
 
 export const HOMEPAGE_ITEM_GRIDS = [
-  'col-1',
-  'col-10',
-  'col-6',
-  'col-6',
+  'col-5',
+  'col-3',
+  'col-3',
+  'col-3',
+  'col-3',
+  'col-3',
+  'col-3',
   'col-1',
 ];
 

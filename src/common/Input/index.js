@@ -64,7 +64,7 @@ export default function Input({
     const options = [];
     if (value !== undefined) {
       for (let i = 0; i < value.length; i++) {
-        options.push({ value: value[i], label: value[i] });
+        options.push({ value: value[i], label: value[i].PlanName });
       }
     }
     return options;

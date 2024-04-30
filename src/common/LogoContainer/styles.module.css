@@ -27,6 +27,8 @@
   border-radius: 50%;
   filter: blur(100px);
   background-color: var(--bgColor4);
+  top: -100px;
+  right: 0;
 }
 
 .image {
@@ -36,6 +38,7 @@
   right: 40%;
   height: 623px;
   width: 823px;
+  display: none;
 }
 
 @media only screen and (max-width: 1250px){

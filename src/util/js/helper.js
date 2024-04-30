@@ -67,7 +67,7 @@ export const extractFileType = (name) => {
 
 export const formatItemFolder = (data) => {
   const formattedData = [];
-  if(data !== undefined) {
+  if (data !== undefined) {
     for (let i = 0; i < data.length; i++) {
       let createdDate;
       if (data[i].CreatedDate) {
@@ -84,7 +84,7 @@ export const formatItemFolder = (data) => {
           id: data[i].FolderID,
         },
         {
-          text: createdDate.toLocaleString('en-GB',{
+          text: createdDate.toLocaleString('en-GB', {
             dateStyle: 'short',
             timeStyle: 'short',
             timeZone: 'Asia/Ho_Chi_Minh',
@@ -105,9 +105,59 @@ export const formatItemFolder = (data) => {
   return formattedData;
 };
 
+export const formatCompany = (data) => {
+  if (data !== undefined) {
+    let outdatedDate = null;
+    if (data.OutdatedDate) {
+      outdatedDate = new Date(data.OutdatedDate);
+    }
+    return [
+      {
+        text: data.CompanyName,
+        type: 'text',
+      },
+      {
+        text: data.Storage,
+        type: 'text',
+      },
+      {
+        text: data.AdminAcctNum,
+        type: 'text',
+      },
+      {
+        text: data.MgrAcctNum,
+        type: 'text',
+      },
+      {
+        text: data.EmplAcctNum,
+        type: 'text',
+      },
+      {
+        text: data.Status,
+        type: 'text',
+      },
+      {
+        text: !outdatedDate
+          ? ''
+          : outdatedDate.toLocaleString('en-GB', {
+              dateStyle: 'short',
+              timeStyle: 'short',
+              timeZone: 'Asia/Ho_Chi_Minh',
+            }),
+        type: 'text',
+      },
+      {
+        text: '',
+        type: 'edit',
+        id: data.CompanyID,
+      },
+    ];
+  }
+};
+
 export const formatItemSupportFolder = (data) => {
   const formattedData = [];
-  if(data !== undefined) {
+  if (data !== undefined) {
     for (let i = 0; i < data.length; i++) {
       formattedData.push([
         {
@@ -132,8 +182,8 @@ export const formatItemSupportFolder = (data) => {
         },
         {
           childs: data[i].childs,
-          type: data[i].type
-        }
+          type: data[i].type,
+        },
       ]);
     }
   }
@@ -142,7 +192,7 @@ export const formatItemSupportFolder = (data) => {
 
 export const formatItemFile = (data) => {
   const formattedData = [];
-  if(data !== undefined) {
+  if (data !== undefined) {
     for (let i = 0; i < data.length; i++) {
       let createdDate;
       if (data[i].CreatedDate) {
@@ -159,7 +209,7 @@ export const formatItemFile = (data) => {
           id: data[i].FileID,
         },
         {
-          text: createdDate.toLocaleString('en-GB',{
+          text: createdDate.toLocaleString('en-GB', {
             dateStyle: 'short',
             timeStyle: 'short',
             timeZone: 'Asia/Ho_Chi_Minh',
@@ -182,7 +232,7 @@ export const formatItemFile = (data) => {
 
 export const formatItemDeletedFolder = (data) => {
   const formattedData = [];
-  if(data !== undefined) {
+  if (data !== undefined) {
     for (let i = 0; i < data.length; i++) {
       let createdDate, deletedDate;
       if (data[i].CreatedDate) {
@@ -198,7 +248,7 @@ export const formatItemDeletedFolder = (data) => {
           id: data[i].FolderID,
         },
         {
-          text: createdDate.toLocaleString('en-GB',{
+          text: createdDate.toLocaleString('en-GB', {
             dateStyle: 'short',
             timeStyle: 'short',
             timeZone: 'Asia/Ho_Chi_Minh',
@@ -206,7 +256,7 @@ export const formatItemDeletedFolder = (data) => {
           type: 'text',
         },
         {
-          text: deletedDate.toLocaleString('en-GB',{
+          text: deletedDate.toLocaleString('en-GB', {
             dateStyle: 'short',
             timeStyle: 'short',
             timeZone: 'Asia/Ho_Chi_Minh',
@@ -229,7 +279,7 @@ export const formatItemDeletedFolder = (data) => {
 
 export const formatItemDeletedFile = (data) => {
   const formattedData = [];
-  if(data !== undefined) {
+  if (data !== undefined) {
     for (let i = 0; i < data.length; i++) {
       let createdDate, deletedDate;
       if (data[i].CreatedDate) {
@@ -245,7 +295,7 @@ export const formatItemDeletedFile = (data) => {
           id: data[i].FileID,
         },
         {
-          text: createdDate.toLocaleString('en-GB',{
+          text: createdDate.toLocaleString('en-GB', {
             dateStyle: 'short',
             timeStyle: 'short',
             timeZone: 'Asia/Ho_Chi_Minh',
@@ -253,7 +303,7 @@ export const formatItemDeletedFile = (data) => {
           type: 'text',
         },
         {
-          text: deletedDate.toLocaleString('en-GB',{
+          text: deletedDate.toLocaleString('en-GB', {
             dateStyle: 'short',
             timeStyle: 'short',
             timeZone: 'Asia/Ho_Chi_Minh',
@@ -275,18 +325,19 @@ export const formatItemDeletedFile = (data) => {
 };
 
 export const getNameRole = (role) => {
-  switch (role) { 
+  switch (role) {
     case 'Manager':
       return 'Trưởng phòng';
     case 'Admin':
       return 'Quản trị viên';
-    default: return 'Nhân viên';
+    default:
+      return 'Nhân viên';
   }
-}
+};
 
 export const setNotification = (type, message) => {
-  store.dispatch(setNoti({type: type, message: message}));
-  setTimeout(()=>{
-    store.dispatch(setNoti({type: '', message: ''}));
+  store.dispatch(setNoti({ type: type, message: message }));
+  setTimeout(() => {
+    store.dispatch(setNoti({ type: '', message: '' }));
   }, 3000);
-}
+};

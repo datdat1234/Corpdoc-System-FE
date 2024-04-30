@@ -155,7 +155,6 @@ export const handleResponse = async (res) => {
       if (refresh?.status !== '00065') return false;
       break;
     case '00017':
-      logout();
       break;
     case '00019':
       setNotification('error', resultMessage);
@@ -272,6 +271,9 @@ export const handleResponse = async (res) => {
       break;
     case '00081':
       break;
+    case '00082':
+      setNotification('success', resultMessage);
+      break;
     case '00084':
       break;
     case '00086':
@@ -293,6 +295,18 @@ export const handleResponse = async (res) => {
       break;
     case '00097':
       setNotification('error', resultMessage);
+      break;
+    case '00098':
+      setNotification('success', resultMessage);
+      break;
+    case '00099':
+      setNotification('success', resultMessage);
+      break;
+    case '00100':
+      setNotification('error', resultMessage);
+      break;
+    case '00101':
+      setNotification('success', resultMessage);
       break;
     default:
       break;
