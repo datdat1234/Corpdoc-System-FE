@@ -4,45 +4,53 @@ export const SET_FILE_INFO = "SET_FILE_INFO";
 export const SET_NOTI = "SET_NOTI";
 export const SET_FOLDER_PAGE = "SET_FOLDER_PAGE";
 export const SET_OPEN_MODAL = "SET_OPEN_MODAL";
+export const SET_UPDATE_HOME_PAGE = "SET_UPDATE_HOME_PAGE";
 
-export function setGlobalLoading(visible) {
+export function setGlobalLoading(data) {
   return {
     type: SET_GLOBAL_LOADING,
-    payload: visible,
+    payload: data,
   };
 }
 
-export function setUserInfo(visible) {
+export function setUserInfo(data) {
   return {
     type: SET_USER_INFO,
-    payload: visible,
+    payload: data,
   };
 }
 
-export function setFileInfo(visible) {
+export function setFileInfo(data) {
   return {
     type: SET_FILE_INFO,
-    payload: visible,
+    payload: data,
   };
 }
 
-export function setNoti(visible) {
+export function setNoti(data) {
   return {
     type: SET_NOTI,
-    payload: visible,
+    payload: data,
   };
 }
 
-export function setFolderPage(visible) {
+export function setFolderPage(data) {
   return {
     type: SET_FOLDER_PAGE,
-    payload: visible,
+    payload: data,
   };
 }
 
-export function setOpenModal(visible) {
+export function setOpenModal(data) {
   return {
     type: SET_OPEN_MODAL,
-    payload: visible,
+    payload: data,
+  };
+}
+
+export function setUptHomePage(data) {
+  return {
+    type: SET_UPDATE_HOME_PAGE,
+    payload: data,
   };
 }

@@ -5,10 +5,14 @@ import { HOMEPAGE_ITEM_GRIDS } from 'util/js/constant';
 import Pagination from 'common/Pagination';
 import { getCompanies } from 'util/js/APIs';
 import { formatCompany } from 'util/js/helper';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUptHomePage } from '../../redux/action/app';
 
 export default function HomePage() {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
+  const dispatch = useDispatch();
+  const isLoad = useSelector((state) => state.app.uptHomePage);
   const itemPerPage = 20;
   var header = [
     {
@@ -56,11 +60,12 @@ export default function HomePage() {
       const comRes = await getCompanies();
       if (comRes.status === 200) {
         setItems(comRes?.data?.data?.company);
+        dispatch(setUptHomePage(false));
       }
     };
 
     fetchData();
-  }, []);
+  }, [isLoad]);
   //////////////////////////////////////////////////
   // #endregion useEffect //////////////////////////
 

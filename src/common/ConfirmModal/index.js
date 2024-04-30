@@ -1,14 +1,16 @@
 import React from 'react';
 import IconButton from 'common/IconButton';
 import Button from 'common/Button';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { setUptHomePage } from '../../redux/action/app';
 import icon from 'util/js/icon';
 import styles from './styles.module.css';
 
 export default function ConfirmModal({ text = '', setShowModal, setValue }) {
   // #region    VARIABLES //////////////////////////
   //////////////////////////////////////////////////
-
+  const dispatch = useDispatch();
   //////////////////////////////////////////////////
   // #endregion VARIABLES //////////////////////////
 
@@ -23,6 +25,9 @@ export default function ConfirmModal({ text = '', setShowModal, setValue }) {
   const handleSetModal = (val1, val2) => {
     setShowModal(val1);
     setValue(val2);
+    if(val2) {
+      dispatch(setUptHomePage(true));
+    }
   };
   //////////////////////////////////////////////////
   // #endregion FUNCTIONS //////////////////////////

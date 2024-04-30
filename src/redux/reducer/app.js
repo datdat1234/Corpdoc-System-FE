@@ -5,8 +5,8 @@ import {
   SET_NOTI,
   SET_FOLDER_PAGE,
   SET_OPEN_MODAL,
+  SET_UPDATE_HOME_PAGE,
 } from '../action/app';
-// import { deepClone } from "../../util/js/helper";
 
 export default function appReducer(
   state = {
@@ -16,6 +16,7 @@ export default function appReducer(
     noti: {type:'', message: ''},
     folderPage: false,
     openModal: {type: '', infoItm: {}},
+    uptHomePage: false,
   },
   action
 ) {
@@ -49,6 +50,11 @@ export default function appReducer(
       return {
         ...state,
         openModal: action.payload,
+      };
+    case SET_UPDATE_HOME_PAGE:
+      return {
+        ...state,
+        uptHomePage: action.payload,
       };
     default:
       return state;
