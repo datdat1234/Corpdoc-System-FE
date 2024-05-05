@@ -1,6 +1,6 @@
 import icon from './icon';
 
-export const BASE_URL = process.env.REACT_APP_BE_URL || 'http://localhost:3001';
+export const BASE_URL = process.env.REACT_APP_BE_URL || 'http://localhost:4001';
 export const API_URL = `${BASE_URL}/api/system`;
 export const is1920x1080 = window.innerWidth === 1920;
 export const is1920OrMore = window.innerWidth >= 1920;
