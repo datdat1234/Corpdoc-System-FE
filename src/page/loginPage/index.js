@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
-import { AUTH_FORM_WIDTH } from 'util/js/constant';
 import { setUserInfo, setGlobalLoading } from '../../redux/action/app';
 import LogoContainer from 'common/LogoContainer';
-import Logo from 'asset/images/logo.png';
+import Logo from 'asset/images/logo.webp';
 import FormInput from 'common/FormInput';
 import Button from 'common/Button';
 import { useNavigate } from 'react-router-dom';
 import { login } from 'util/js/APIs';
+import { AUTH_FORM_WIDTH } from 'util/js/constant';
 
 export default function LoginPage({ setIsLogin }) {
   // #region    VARIABLES //////////////////////////
